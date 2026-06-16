@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\rrspk\\OneDrive\\\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\\unity\u4FDD\u5B58\\seisaku(kari)\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|c:\\users\\rrspk\\onedrive\\\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\\unity\u4FDD\u5B58\\seisaku(kari)\\assets\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerManager.cs",
+              "DocumentMoniker": "C:\\Users\\rrspk\\OneDrive\\\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\\unity\u4FDD\u5B58\\seisaku(kari)\\Assets\\PlayerManager.cs",
+              "RelativeDocumentMoniker": "Assets\\PlayerManager.cs",
+              "ToolTip": "C:\\Users\\rrspk\\OneDrive\\\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\\unity\u4FDD\u5B58\\seisaku(kari)\\Assets\\PlayerManager.cs",
+              "RelativeToolTip": "Assets\\PlayerManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-15T11:50:52.121Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
