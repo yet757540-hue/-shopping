@@ -140,13 +140,33 @@ public class PlayerManager : MonoBehaviour
     private float GetForwardAcceleration(float horizontalSpeed)
     {
         // 速度が指定値未満なら低速用加速度を使う
-        if (horizontalSpeed < accelerationSwitchSpeed)
+        if (GetForwardSpeed() < accelerationSwitchSpeed)
         {
             return lowSpeedAcceleration;
         }
 
         // 速度が指定値以上なら高速用加速度を使う
         return highSpeedAcceleration;
+    }
+    private float GetForwardSpeed()
+    {
+        // Rigidbodyの現在速度を取得
+        Vector3 velocity = rb.linearVelocity;
+
+        // Y方向を無視して、水平方向の速度だけ使う
+        Vector3 horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
+
+        // プレイヤーの正面方向
+        Vector3 forward = transform.forward;
+
+        // Y方向を無視して、水平な前方向にする
+        forward.y = 0f;
+        forward.Normalize();
+
+        // プレイヤーの正面方向に対する速度を取得
+        float forwardSpeed = Vector3.Dot(horizontalVelocity, forward);
+
+        return forwardSpeed;
     }
 
     private void ApplyReverseForce()

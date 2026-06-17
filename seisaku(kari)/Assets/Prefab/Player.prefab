@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1499487529478854967}
   - component: {fileID: 5707856932140349517}
   - component: {fileID: 658734645768193305}
+  - component: {fileID: 4543527137078668913}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -127,10 +128,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c9fac1e13f65945aefd0b28ef1e6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  acceleration: 5
-  deceleration: 30
-  rotateSpeed: 200
-  maxSpeed: 20
+  lowSpeedAcceleration: 25
+  highSpeedAcceleration: 3
+  accelerationSwitchSpeed: 8
+  reverseAcceleration: 12
+  deceleration: 10
+  brakeDeceleration: 25
+  maxSpeed: 25
+  maxReverseSpeed: 6
+  triggerDeadZone: 0.1
+  stopThreshold: 0.1
+  turnResetSpeed: 20
+  stickDeadZone: 0.1
+  turnAcceleration: 8
+  turnDeceleration: 12
+  maxAngularSpeed: 3
 --- !u!54 &658734645768193305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,11 +165,24 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &4543527137078668913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300661638329206093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b38e5e27ef17c948b179e5b13564e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionReporter
+  ignoreTrigger: 1
 --- !u!1 &7964287787335054214
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +195,7 @@ GameObject:
   - component: {fileID: 2900759136645762525}
   - component: {fileID: 1169668681490347720}
   - component: {fileID: 6722873608251313212}
+  - component: {fileID: 6943950545775133946}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -185,13 +211,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7964287787335054214}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -0.1918401, y: 1.4305385, z: -4.673842}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
+  m_LocalPosition: {x: -0.1918401, y: 1.6, z: -2.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3799215837079544983}
-  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!20 &2900759136645762525
 Camera:
   m_ObjectHideFlags: 0
@@ -210,7 +236,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 17.137775
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -225,7 +251,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70.00001
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -295,3 +321,20 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &6943950545775133946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7964287787335054214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027999156c6baa245b2110f9b75bb8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedFOVController
+  targetRigidbody: {fileID: 658734645768193305}
+  minFOV: 65
+  maxFOV: 95
+  maxSpeed: 25
+  smoothTime: 0.25
