@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\SpeedFOVController.cs" />
+    <Compile Include="Assets\Script\TimerManager.cs" />
     <Compile Include="Assets\Script\GamepadRumbleManager.cs" />
     <Compile Include="Assets\Script\CameraShakeController.cs" />
     <Compile Include="Assets\Script\GameManage.cs" />
