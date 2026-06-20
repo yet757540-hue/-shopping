@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +18,14 @@ public class GamepadRumbleManager : MonoBehaviour
         if (rumbleCoroutine != null)
         {
             StopCoroutine(rumbleCoroutine);
+            rumbleCoroutine = null;
+        }
+
+        duration = Mathf.Max(0f, duration);
+        if (duration <= 0f)
+        {
+            StopRumble();
+            return;
         }
 
         rumbleCoroutine = StartCoroutine(RumbleCoroutine(gamepad, lowFrequency, highFrequency, duration));
@@ -25,28 +33,34 @@ public class GamepadRumbleManager : MonoBehaviour
 
     private IEnumerator RumbleCoroutine(Gamepad gamepad, float lowFrequency, float highFrequency, float duration)
     {
-        // Êý‚Ž¤ò0¡«1¤ËÖÆÏÞ
         lowFrequency = Mathf.Clamp01(lowFrequency);
         highFrequency = Mathf.Clamp01(highFrequency);
 
-        // Õñ„Óé_Ê¼
         gamepad.SetMotorSpeeds(lowFrequency, highFrequency);
 
         yield return new WaitForSeconds(duration);
 
-        // Õñ„ÓÍ£Ö¹
         gamepad.SetMotorSpeeds(0f, 0f);
-
         rumbleCoroutine = null;
     }
 
-    private void OnDisable()
+    public void StopRumble()
     {
-        // ¥ª¥Ö¥¸¥§¥¯¥È¤¬Ÿo„¿¤Ë¤Ê¤Ã¤¿¤È¤­¡¢Õñ„Ó¤òÖ¹¤á¤ë
+        if (rumbleCoroutine != null)
+        {
+            StopCoroutine(rumbleCoroutine);
+            rumbleCoroutine = null;
+        }
+
         if (Gamepad.current != null)
         {
             Gamepad.current.SetMotorSpeeds(0f, 0f);
         }
+    }
+
+    private void OnDisable()
+    {
+        StopRumble();
     }
 
     private void OnApplicationPause(bool pause)
@@ -63,7 +77,7 @@ public class GamepadRumbleManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        // ¥²©`¥à½KÁË•r¤ËÕñ„Ó¤ò¥ê¥»¥Ã¥È
         InputSystem.ResetHaptics();
     }
 }
+

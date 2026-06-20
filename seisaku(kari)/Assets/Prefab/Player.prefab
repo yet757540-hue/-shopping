@@ -140,8 +140,8 @@ MonoBehaviour:
   turnResetSpeed: 20
   stickDeadZone: 0.1
   turnAcceleration: 8
-  turnDeceleration: 12
   maxAngularSpeed: 3
+  readGamepadDirectly: 1
 --- !u!54 &658734645768193305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -182,3 +182,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionReporter
   ignoreTrigger: 1
+  showDebugLog: 0
+  collisionEntered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 1cea92ea6002cb5449629fc353ceed4f, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  triggerEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerExited:
+    m_PersistentCalls:
+      m_Calls: []

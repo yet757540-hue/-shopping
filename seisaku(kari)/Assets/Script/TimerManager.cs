@@ -1,25 +1,32 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TimerManager : MonoBehaviour
 {
-    [Header("参照設定")]
-    [SerializeField] private TMP_Text timerText;          // タイマー表示用テキスト
-    [SerializeField] private RectTransform timerRect;     // タイマーUIのRectTransform
+    [Header("References")]
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private RectTransform timerRect;
 
-    [Header("表示位置設定")]
-    [SerializeField] private Vector2 topPosition = new Vector2(0f, 420f);     // 画面上部の位置
-    [SerializeField] private Vector2 centerPosition = new Vector2(0f, 0f);   // 画面中央の位置
+    [Header("Display Positions")]
+    [SerializeField] private Vector2 topPosition = new Vector2(0f, 420f);
+    [SerializeField] private Vector2 centerPosition = new Vector2(0f, 0f);
 
-    [Header("演出設定")]
-    [SerializeField] private float moveDuration = 0.35f;  // 中央へ移動する時間
-    [SerializeField] private float centerHoldTime = 1.0f; // 中央に表示しておく時間
-    [SerializeField] private bool hideAfterStop = false;  // 停止演出後に非表示にするか
-    
+    [Header("Animation")]
+    [SerializeField] private float moveDuration = 0.35f;
+    [SerializeField] private float centerHoldTime = 1.0f;
+    [SerializeField] private bool hideAfterStop = false;
+    [SerializeField] private bool showDebugLog = false;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent timerStarted = new UnityEvent();
+    [SerializeField] private UnityEvent timerStopped = new UnityEvent();
+    [SerializeField] private UnityEvent timerReset = new UnityEvent();
 
     private float elapsedTime = 0f;
     private bool isRunning = false;
+    private int lastDisplayedCentiseconds = -1;
 
     private Coroutine moveCoroutine;
 
@@ -51,32 +58,34 @@ public class TimerManager : MonoBehaviour
 
     public void StartTimer()
     {
-        // 前回の演出が残っている場合は止める
+        if (isRunning)
+        {
+            return;
+        }
+
         if (moveCoroutine != null)
         {
             StopCoroutine(moveCoroutine);
             moveCoroutine = null;
         }
 
-        // タイマーをリセット
         elapsedTime = 0f;
+        lastDisplayedCentiseconds = -1;
         isRunning = true;
 
-        // 画面上部に戻す
         if (timerRect != null)
         {
             timerRect.anchoredPosition = topPosition;
         }
 
-        // 表示する
         if (timerText != null)
         {
             timerText.gameObject.SetActive(true);
         }
 
         UpdateTimerText();
-
-        Debug.Log("[TimerManager] タイマー開始");
+        timerStarted.Invoke();
+        Log("[TimerManager] Timer started");
     }
 
     public void StopTimer()
@@ -95,17 +104,19 @@ public class TimerManager : MonoBehaviour
         }
 
         moveCoroutine = StartCoroutine(MoveTimerToCenter());
-
-        Debug.Log("[TimerManager] タイマー停止: " + elapsedTime);
+        timerStopped.Invoke();
+        Log("[TimerManager] Timer stopped: " + elapsedTime);
     }
 
     public void ResetTimer()
     {
         isRunning = false;
         elapsedTime = 0f;
+        lastDisplayedCentiseconds = -1;
         ResetTimerView();
+        timerReset.Invoke();
 
-        Debug.Log("[TimerManager] タイマーリセット");
+        Log("[TimerManager] Timer reset");
     }
 
     private void ResetTimerView()
@@ -130,9 +141,17 @@ public class TimerManager : MonoBehaviour
             return;
         }
 
+        int centiseconds = Mathf.FloorToInt(elapsedTime * 100f);
+        if (centiseconds == lastDisplayedCentiseconds)
+        {
+            return;
+        }
+
+        lastDisplayedCentiseconds = centiseconds;
+
         int minutes = Mathf.FloorToInt(elapsedTime / 60f);
         int seconds = Mathf.FloorToInt(elapsedTime % 60f);
-        int milliseconds = Mathf.FloorToInt((elapsedTime * 100f) % 100f);
+        int milliseconds = centiseconds % 100;
 
         timerText.text = $"{minutes:00}:{seconds:00}.{milliseconds:00}";
     }
@@ -146,12 +165,13 @@ public class TimerManager : MonoBehaviour
 
         Vector2 startPosition = timerRect.anchoredPosition;
         float timer = 0f;
+        float duration = Mathf.Max(0.01f, moveDuration);
 
-        while (timer < moveDuration)
+        while (timer < duration)
         {
             timer += Time.deltaTime;
 
-            float t = timer / moveDuration;
+            float t = timer / duration;
             t = Mathf.SmoothStep(0f, 1f, t);
 
             timerRect.anchoredPosition = Vector2.Lerp(
@@ -165,7 +185,7 @@ public class TimerManager : MonoBehaviour
 
         timerRect.anchoredPosition = centerPosition;
 
-        yield return new WaitForSeconds(centerHoldTime);
+        yield return new WaitForSeconds(Mathf.Max(0f, centerHoldTime));
 
         if (hideAfterStop && timerText != null)
         {
@@ -174,11 +194,21 @@ public class TimerManager : MonoBehaviour
 
         moveCoroutine = null;
     }
+
+    private void Log(string message)
+    {
+        if (showDebugLog)
+        {
+            Debug.Log(message);
+        }
+    }
+
     [ContextMenu("Test Start Timer")]
     private void TestStartTimer()
     {
         StartTimer();
     }
+
     [ContextMenu("Test Stop Timer")]
     private void TestStopTimer()
     {

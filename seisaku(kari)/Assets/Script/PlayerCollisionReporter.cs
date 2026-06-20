@@ -1,59 +1,63 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerCollisionReporter : MonoBehaviour
 {
-    [Header("判定設定")]
-    [SerializeField] private bool ignoreTrigger = false; // タイマー範囲を使うなら false にする
+    [Serializable]
+    public class CollisionEvent : UnityEvent<Collision>
+    {
+    }
+
+    [Serializable]
+    public class ColliderEvent : UnityEvent<Collider>
+    {
+    }
+
+    [Header("Collision Settings")]
+    [SerializeField] private bool ignoreTrigger = false;
+    [SerializeField] private bool showDebugLog = false;
+
+    [Header("Events")]
+    [SerializeField] private CollisionEvent collisionEntered = new CollisionEvent();
+    [SerializeField] private ColliderEvent triggerEntered = new ColliderEvent();
+    [SerializeField] private ColliderEvent triggerExited = new ColliderEvent();
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("[PlayerCollisionReporter] OnCollisionEnter: " + collision.gameObject.name);
-
-        if (GameManager.Instance == null)
-        {
-            Debug.LogWarning("[PlayerCollisionReporter] GameManager.Instance が null です。");
-            return;
-        }
-
-        GameManager.Instance.OnPlayerCollision(collision);
+        Log("[PlayerCollisionReporter] OnCollisionEnter: " + collision.gameObject.name);
+        collisionEntered.Invoke(collision);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("[PlayerCollisionReporter] OnTriggerEnter: Triggerを検出しました。相手: " + other.gameObject.name);
+        Log("[PlayerCollisionReporter] OnTriggerEnter: " + other.gameObject.name);
 
         if (ignoreTrigger)
         {
-            Debug.Log("[PlayerCollisionReporter] ignoreTrigger が true のため、Trigger処理を無視します。");
             return;
         }
 
-        if (GameManager.Instance == null)
-        {
-            Debug.LogWarning("[PlayerCollisionReporter] GameManager.Instance が null です。");
-            return;
-        }
-
-        GameManager.Instance.OnPlayerTriggerEnter(other);
+        triggerEntered.Invoke(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("[PlayerCollisionReporter] OnTriggerExit: " + other.gameObject.name);
+        Log("[PlayerCollisionReporter] OnTriggerExit: " + other.gameObject.name);
 
         if (ignoreTrigger)
         {
-            Debug.Log("[PlayerCollisionReporter] ignoreTrigger が true のため、Triggerを無視します。");
             return;
         }
 
-        if (GameManager.Instance == null)
+        triggerExited.Invoke(other);
+    }
+
+    private void Log(string message)
+    {
+        if (showDebugLog)
         {
-            Debug.LogWarning("[PlayerCollisionReporter] GameManager.Instance が null です。");
-            return;
+            Debug.Log(message);
         }
-
-        GameManager.Instance.OnPlayerTriggerExit(other);
-        Debug.Log("1");
     }
 }

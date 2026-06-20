@@ -1,17 +1,18 @@
 using System.Collections;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class CameraShakeController : MonoBehaviour
 {
-    [Header("画面揺れ設定")]
-    [SerializeField] private float shakeFrequency = 35f; // 揺れの細かさ
+    [Header("Shake Settings")]
+    [SerializeField] private float shakeFrequency = 35f;
+    [SerializeField] private float zMultiplier = 0.2f;
 
     private Vector3 originalLocalPosition;
     private Coroutine shakeCoroutine;
 
     private void Awake()
     {
-        // 初期ローカル位置を保存
         originalLocalPosition = transform.localPosition;
     }
 
@@ -20,36 +21,44 @@ public class CameraShakeController : MonoBehaviour
         strength = Mathf.Max(0f, strength);
         duration = Mathf.Max(0f, duration);
 
-        if (shakeCoroutine != null)
+        StopShake();
+
+        if (strength <= 0f || duration <= 0f)
         {
-            StopCoroutine(shakeCoroutine);
-            transform.localPosition = originalLocalPosition;
+            return;
         }
 
         shakeCoroutine = StartCoroutine(ShakeCoroutine(strength, duration));
     }
 
+    public void StopShake()
+    {
+        if (shakeCoroutine != null)
+        {
+            StopCoroutine(shakeCoroutine);
+            shakeCoroutine = null;
+        }
+
+        transform.localPosition = originalLocalPosition;
+    }
+
     private IEnumerator ShakeCoroutine(float strength, float duration)
     {
         float timer = 0f;
+        float interval = 1f / Mathf.Max(1f, shakeFrequency);
 
         while (timer < duration)
         {
             timer += Time.deltaTime;
 
-            // 時間経過に応じて揺れを弱くする
-            float t = timer / duration;
-            float currentStrength = Mathf.Lerp(strength, 0f, t);
-
-            // ランダムな揺れ方向を作る
+            float progress = Mathf.Clamp01(timer / duration);
+            float currentStrength = Mathf.Lerp(strength, 0f, progress);
             Vector3 shakeOffset = Random.insideUnitSphere * currentStrength;
-
-            // Z方向に大きく動くと見た目が不自然になりやすいので抑える
-            shakeOffset.z *= 0.2f;
+            shakeOffset.z *= zMultiplier;
 
             transform.localPosition = originalLocalPosition + shakeOffset;
 
-            yield return new WaitForSeconds(1f / shakeFrequency);
+            yield return new WaitForSeconds(interval);
         }
 
         transform.localPosition = originalLocalPosition;
@@ -58,11 +67,12 @@ public class CameraShakeController : MonoBehaviour
 
     private void OnDisable()
     {
-        if (shakeCoroutine != null)
-        {
-            StopCoroutine(shakeCoroutine);
-        }
+        StopShake();
+    }
 
-        transform.localPosition = originalLocalPosition;
+    private void OnValidate()
+    {
+        shakeFrequency = Mathf.Max(1f, shakeFrequency);
+        zMultiplier = Mathf.Clamp01(zMultiplier);
     }
 }
