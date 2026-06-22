@@ -63,16 +63,21 @@
   <ItemGroup>
     <Compile Include="Assets\Script\SpeedFOVController.cs" />
     <Compile Include="Assets\Script\TimerManager.cs" />
+    <Compile Include="Assets\Script\ControlsGuideUI.cs" />
     <Compile Include="Assets\Script\GamepadRumbleManager.cs" />
     <Compile Include="Assets\Script\TimerZone.cs" />
     <Compile Include="Assets\Script\CameraShakeController.cs" />
+    <Compile Include="Assets\Script\InventoryStatusUI.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\CollisionFeedbackManager.cs" />
     <Compile Include="Assets\Script\ImpactSettings.cs" />
     <Compile Include="Assets\Script\ScoreTarget.cs" />
     <Compile Include="Assets\Script\PlayerManager.cs" />
+    <Compile Include="Assets\Script\JapaneseUIFont.cs" />
+    <Compile Include="Assets\Script\PlayerInventory.cs" />
     <Compile Include="Assets\Script\CameraFollowController.cs" />
+    <Compile Include="Assets\Script\InventoryInfluenceSettings.cs" />
     <Compile Include="Assets\Script\PlayerCollisionReporter.cs" />
     <Compile Include="Assets\Script\ScoreboardManager.cs" />
   </ItemGroup>
@@ -94,6 +99,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Shaders\ScoreTargetVisibleOverlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Starter Assets\Sample\Environment\Shaders\Built-in_RP\ArmatureShader.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

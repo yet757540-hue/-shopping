@@ -30,6 +30,9 @@ public class PlayerManager : MonoBehaviour
     private float accelerateInput;
     private float brakeInput;
     private bool isReversing = false;
+    private float loadAccelerationMultiplier = 1f;
+    private float loadDecelerationMultiplier = 1f;
+    private float loadTurnMultiplier = 1f;
 
     private void Awake()
     {
@@ -63,6 +66,13 @@ public class PlayerManager : MonoBehaviour
         steerInput = Mathf.Clamp(steer, -1f, 1f);
         accelerateInput = Mathf.Clamp01(accelerate);
         brakeInput = Mathf.Clamp01(brake);
+    }
+
+    public void SetLoadInfluence(float accelerationMultiplier, float decelerationMultiplier, float turnMultiplier)
+    {
+        loadAccelerationMultiplier = Mathf.Max(0f, accelerationMultiplier);
+        loadDecelerationMultiplier = Mathf.Max(0f, decelerationMultiplier);
+        loadTurnMultiplier = Mathf.Max(0f, turnMultiplier);
     }
 
     private void ReadGamepadInput()
@@ -99,6 +109,7 @@ public class PlayerManager : MonoBehaviour
             Vector3 force = transform.forward * currentAcceleration * accelerateInput;
 
             rb.AddForce(force, ForceMode.Acceleration);
+            ApplyLateralBrake(deceleration * loadDecelerationMultiplier);
             return;
         }
 
@@ -118,36 +129,47 @@ public class PlayerManager : MonoBehaviour
                 return;
             }
 
-            ApplyBrake(brakeDeceleration);
+            ApplyBrake(brakeDeceleration * loadDecelerationMultiplier);
             return;
         }
 
         isReversing = false;
-        ApplyBrake(deceleration);
+        ApplyBrake(deceleration * loadDecelerationMultiplier);
     }
 
     private float GetForwardAcceleration(float forwardSpeed)
     {
         if (forwardSpeed < accelerationSwitchSpeed)
         {
-            return lowSpeedAcceleration;
+            return lowSpeedAcceleration * loadAccelerationMultiplier;
         }
 
-        return highSpeedAcceleration;
+        return highSpeedAcceleration * loadAccelerationMultiplier;
     }
 
     private float GetForwardSpeed(Vector3 horizontalVelocity)
     {
+        return Vector3.Dot(horizontalVelocity, GetHorizontalForward());
+    }
+
+    private Vector3 GetLateralVelocity(Vector3 horizontalVelocity)
+    {
+        Vector3 forward = GetHorizontalForward();
+        Vector3 forwardVelocity = forward * Vector3.Dot(horizontalVelocity, forward);
+        return horizontalVelocity - forwardVelocity;
+    }
+
+    private Vector3 GetHorizontalForward()
+    {
         Vector3 forward = transform.forward;
         forward.y = 0f;
         forward.Normalize();
-
-        return Vector3.Dot(horizontalVelocity, forward);
+        return forward;
     }
 
     private void ApplyReverseForce()
     {
-        Vector3 reverseForce = -transform.forward * reverseAcceleration * brakeInput;
+        Vector3 reverseForce = -transform.forward * reverseAcceleration * loadAccelerationMultiplier * brakeInput;
         rb.AddForce(reverseForce, ForceMode.Acceleration);
     }
 
@@ -175,6 +197,45 @@ public class PlayerManager : MonoBehaviour
         rb.AddForce(brakeForce, ForceMode.Acceleration);
     }
 
+    private void ApplyLateralBrake(float brakePower)
+    {
+        Vector3 velocity = rb.linearVelocity;
+        Vector3 horizontalVelocity = new Vector3(velocity.x, 0f, velocity.z);
+
+        if (horizontalVelocity.sqrMagnitude <= 0.001f)
+        {
+            return;
+        }
+
+        Vector3 lateralVelocity = GetLateralVelocity(horizontalVelocity);
+        float lateralSpeed = lateralVelocity.magnitude;
+
+        if (lateralSpeed <= stopThreshold)
+        {
+            rb.linearVelocity = new Vector3(
+                velocity.x - lateralVelocity.x,
+                velocity.y,
+                velocity.z - lateralVelocity.z
+            );
+            return;
+        }
+
+        float speedDrop = brakePower * Time.fixedDeltaTime;
+
+        if (lateralSpeed <= speedDrop)
+        {
+            rb.linearVelocity = new Vector3(
+                velocity.x - lateralVelocity.x,
+                velocity.y,
+                velocity.z - lateralVelocity.z
+            );
+            return;
+        }
+
+        Vector3 brakeForce = -lateralVelocity.normalized * brakePower;
+        rb.AddForce(brakeForce, ForceMode.Acceleration);
+    }
+
     private void ApplyTurnTorque()
     {
         if (Mathf.Abs(steerInput) <= stickDeadZone)
@@ -182,7 +243,7 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        Vector3 torque = Vector3.up * steerInput * turnAcceleration;
+        Vector3 torque = Vector3.up * steerInput * turnAcceleration * loadTurnMultiplier;
         rb.AddTorque(torque, ForceMode.Acceleration);
     }
 
@@ -197,7 +258,7 @@ public class PlayerManager : MonoBehaviour
         float newY = Mathf.MoveTowards(
             angularVelocity.y,
             0f,
-            turnResetSpeed * Time.fixedDeltaTime
+            turnResetSpeed * loadTurnMultiplier * Time.fixedDeltaTime
         );
 
         rb.angularVelocity = new Vector3(0f, newY, 0f);

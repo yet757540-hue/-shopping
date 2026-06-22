@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace StarterAssets
 {
+    // 三人称 Starter Assets のプレイヤーとカメラを再配置するエディタメニューです。
     public partial class StarterAssetsDeployMenu : ScriptableObject
     {
         // prefab paths
@@ -17,6 +18,7 @@ namespace StarterAssets
         [MenuItem(MenuRoot + "/Reset Third Person Controller Armature", false)]
         static void ResetThirdPersonControllerArmature()
         {
+            // Animator 付きの三人称プレイヤーを探し、なければプレハブから生成します。
             var thirdPersonControllers = FindObjectsByType<ThirdPersonController>();
             var player = thirdPersonControllers.FirstOrDefault(controller =>
                 controller.GetComponent<Animator>() && controller.CompareTag(PlayerTag));
@@ -50,6 +52,7 @@ namespace StarterAssets
         [MenuItem(MenuRoot + "/Reset Third Person Controller Capsule", false)]
         static void ResetThirdPersonControllerCapsule()
         {
+            // カプセル版の三人称プレイヤーを探し、なければプレハブから生成します。
             var thirdPersonControllers = FindObjectsByType<ThirdPersonController>();
             var player = thirdPersonControllers.FirstOrDefault(controller =>
                 !controller.GetComponent<Animator>() && controller.CompareTag(PlayerTag));
@@ -82,6 +85,7 @@ namespace StarterAssets
 
         static string GetThirdPersonPrefabPath()
         {
+            // Armature プレハブ位置から三人称用プレハブフォルダを推定します。
             if (TryLocatePrefab(PlayerArmaturePrefabName, null, new[] { typeof(ThirdPersonController), typeof(StarterAssetsInputs) }, out GameObject _, out string prefabPath))
             {
                 var pathString = new StringBuilder();

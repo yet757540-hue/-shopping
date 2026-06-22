@@ -7,19 +7,23 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 #endif
 
+// URP が未設定のプロジェクトへ、必要な URP パッケージと設定を補助するエディタウィンドウです。
 public class URPWizard : EditorWindow
 {
     [InitializeOnLoadMethod]
     static void OnInitialize()
     {
+        // エディタ読み込み時に URP 設定を確認します。
         URPCheck();
     }
 
     static void URPCheck()
     {
+        // すでに Render Pipeline が設定されていれば何もしません。
         if (GraphicsSettings.currentRenderPipeline != null) 
             return;
 
+        // Package Manager から URP パッケージの有無を確認します。
         var request = Client.List();
         while (!request.IsCompleted) { }
 
@@ -28,6 +32,7 @@ public class URPWizard : EditorWindow
         
         if (request.Result.All(info => info.name != "com.unity.render-pipelines.universal"))
         {
+            // URP パッケージがなければ追加を試みます。
             var addRequest = Client.Add("com.unity.render-pipelines.universal");
             
             while (!addRequest.IsCompleted) { }
@@ -43,6 +48,7 @@ public class URPWizard : EditorWindow
 #if USE_URP
     static void FindAndAssignPipeline()
     {
+        // プロジェクト内の URP Asset を探して GraphicsSettings に割り当てます。
         var existingPipelines = AssetDatabase.FindAssets("t:UniversalRenderPipelineAsset");
 
         if (existingPipelines.Length == 0)
@@ -60,6 +66,7 @@ public class URPWizard : EditorWindow
     {
         static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths, bool didDomainReload)
         {
+            // Import 後に URP Asset が見つかるようになった場合、自動で割り当てます。
             //if we have no pipeline set, we try to find one as one may have been imported
             if (GraphicsSettings.currentRenderPipeline != null) 
                 return;

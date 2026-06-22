@@ -137,8 +137,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &114511486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8005070754656177733, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -157,8 +164,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1001 &118881572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -229,26 +243,53 @@ PrefabInstance:
       objectReference: {fileID: 1101463241}
     - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: localOffset.y
-      value: 3
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: localOffset.z
       value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+      propertyPath: overviewHeight
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743879188258456552, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: localLookAtOffset.y
-      value: 2.6
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829801078395725782, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829801078395725782, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829801078395725782, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6178945335414075926, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: m_Name
       value: CameraRig
       objectReference: {fileID: 0}
     - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+      propertyPath: maxFOV
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+      propertyPath: minFOV
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+      propertyPath: maxSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808952901160586044, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
       propertyPath: targetRigidbody
       value: 
       objectReference: {fileID: 1975423900}
-    m_RemovedComponents:
-    - {fileID: 3660251825290224485, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -274,8 +315,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &136357611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3807487464971216742, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -294,8 +342,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &163963651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3901256209292726311, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -314,8 +369,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &190464402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2051764540056451991, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -486,8 +548,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &274915778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 207641100999143636, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -506,8 +575,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &331251817 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2806707509076389224, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -526,8 +602,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &376354552 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2847572274181045207, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -546,8 +629,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
+--- !u!1 &377766598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 377766600}
+  - component: {fileID: 377766599}
+  m_Layer: 0
+  m_Name: InventoryInfluenceSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &377766599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377766598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bccd05e4099230e408325a2996187568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryInfluenceSettings
+  inventory: {fileID: 1975423901}
+  playerManager: {fileID: 1975423903}
+  impactSettings: {fileID: 2100031152}
+  accelerationWeightFactor: 0.045
+  decelerationWeightFactor: 0.045
+  turnWeightFactor: 0.08
+  collisionWeightFactor: 0.08
+  minAccelerationMultiplier: 0.45
+  minDecelerationMultiplier: 0.2
+  minTurnMultiplier: 0.2
+  currentTotalWeight: 0
+  currentAccelerationMultiplier: 1
+  currentDecelerationMultiplier: 1
+  currentTurnMultiplier: 1
+  currentCollisionMultiplier: 1
+--- !u!4 &377766600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377766598}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.99, y: -1.31424, z: -12.40758}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,8 +842,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &499211806 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 232286497493014751, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -713,8 +869,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &539264442 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6471462295172062202, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -733,8 +896,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &579169359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5314237940401310745, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -753,8 +923,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &638871321
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,25 +1041,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreboardManager
   impactSettings: {fileID: 2100031152}
+  inventory: {fileID: 0}
   scoreboardText: {fileID: 0}
-  targetPool:
-  - {fileID: 2145477661}
-  - {fileID: 1820350616}
-  - {fileID: 1601793524}
-  - {fileID: 0}
-  - {fileID: 1407718221}
-  - {fileID: 2032753788}
-  - {fileID: 1367039792}
-  - {fileID: 2076148769}
-  - {fileID: 469115830}
-  - {fileID: 1004696325}
-  - {fileID: 1706687215}
-  - {fileID: 2135158099}
   targetCount: 3
-  targetScore: 20
+  minRequiredItemCount: 3
+  maxRequiredItemCount: 8
+  resetInventoryOnEnd: 1
   clearWhenTimerStops: 1
-  minScoreGain: 5
-  maxScoreGain: 35
+  minItemGain: 1
+  maxItemGain: 5
   createTextIfMissing: 1
   anchoredPosition: {x: -32, y: 32}
   size: {x: 360, y: 150}
@@ -890,6 +1057,11 @@ MonoBehaviour:
   incompleteFlashColor: {r: 1, g: 0, b: 0, a: 1}
   incompleteFlashCount: 3
   incompleteFlashInterval: 0.12
+  lastRawImpactSpeed: 0
+  lastImpactSpeed: 0
+  lastImpactRate: 0
+  lastItemGain: 0
+  lastRequiredCount: 0
 --- !u!4 &684323249
 Transform:
   m_ObjectHideFlags: 0
@@ -923,8 +1095,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &716729993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4078468678151207320, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -943,8 +1122,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &772497879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 737771408832109348, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -963,8 +1149,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &775239584 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7926702194483554704, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -983,8 +1176,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &807753908 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3274875795864070519, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1003,8 +1203,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1001 &816152534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1122,8 +1329,36 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: maxSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: deceleration
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: maxReverseSpeed
+      value: 6.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: brakeDeceleration
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: reverseAcceleration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: lowSpeedAcceleration
-      value: 20
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: highSpeedAcceleration
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: accelerationSwitchSpeed
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 6300661638329206093, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: m_Name
@@ -1229,10 +1464,11 @@ MonoBehaviour:
   maxShakeStrength: 0.25
   minShakeDuration: 0.08
   maxShakeDuration: 0.35
+  shakeCooldown: 0.08
   collisionClips:
   - {fileID: 8300000, guid: 45e484ae459aab84ea75005de779efc0, type: 3}
-  minCollisionVolume: 0
-  maxCollisionVolume: 0
+  minCollisionVolume: 0.001
+  maxCollisionVolume: 0.005
   minCollisionPitch: 0.9
   maxCollisionPitch: 1.1
   soundCooldown: 0.08
@@ -1415,8 +1651,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1004696320 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1605967652287708468, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1435,8 +1678,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1006148695 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6109873470187692422, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1455,8 +1705,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1043948872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4509059403649384634, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1475,8 +1732,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1101463233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5811131322853375040, guid: 47ae3ed6f2f16e040a0f0f3f7cc7038a, type: 3}
@@ -1494,7 +1758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e83cc67ea19e7a4eae0b0b69b1e980e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraShakeController
-  shakeFrequency: 35
+  shakeFrequency: 15
   zMultiplier: 0.2
 --- !u!4 &1101463241 stripped
 Transform:
@@ -1519,8 +1783,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1162045661 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5054143053394350611, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1539,8 +1810,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1202622137 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2726331262915000385, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1559,8 +1837,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1238319711 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5181976145623480163, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1579,8 +1864,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1278055214 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8121795137389577036, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1599,8 +1891,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1298664353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 661089972681623717, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1619,8 +1918,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1323214618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3113227647481325762, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1639,8 +1945,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1341459398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6157843671699690391, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1659,8 +1972,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1360330946 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8302473941496584330, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1679,8 +1999,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1367039787 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5024455925218298287, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1699,8 +2026,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1407718216 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2111804967231639274, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1719,8 +2053,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1480146377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,7 +2073,6 @@ GameObject:
   - component: {fileID: 1480146379}
   - component: {fileID: 1480146378}
   - component: {fileID: 1480146380}
-  - component: {fileID: 1480146381}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1752,8 +2092,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83b69ab73433d84aa62cb47af0e1195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  collisionFeedbackManager: {fileID: 851096312}
-  timerManager: {fileID: 1480146381}
 --- !u!4 &1480146379
 Transform:
   m_ObjectHideFlags: 0
@@ -1867,71 +2205,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1480146381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480146377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277edb7298fda684d96855a3973fffc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TimerManager
-  timerText: {fileID: 1662320634}
-  timerRect: {fileID: 1662320633}
-  topPosition: {x: 0, y: 420}
-  centerPosition: {x: 0, y: 0}
-  moveDuration: 0.35
-  centerHoldTime: 1
-  hideAfterStop: 0
-  showDebugLog: 0
-  timerStarted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 684323247}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  timerStopped:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 684323247}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  timerReset:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 684323247}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1486261476 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2841844534909488307, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -1950,8 +2223,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1569092308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,9 +2261,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277edb7298fda684d96855a3973fffc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerManager
-  timerText: {fileID: 1662320634}
+  timerText: {fileID: 0}
   timerRect: {fileID: 0}
-  topPosition: {x: 0, y: 420}
+  createTextIfMissing: 1
+  size: {x: 260, y: 64}
+  fontSize: 42
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  topPosition: {x: 0, y: 260}
   centerPosition: {x: 0, y: 0}
   moveDuration: 0.35
   centerHoldTime: 1
@@ -2006,19 +2290,7 @@ MonoBehaviour:
         m_CallState: 2
   timerStopped:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 684323248}
-        m_TargetAssemblyTypeName: ScoreboardManager, Assembly-CSharp
-        m_MethodName: StartScoreboard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   timerReset:
     m_PersistentCalls:
       m_Calls:
@@ -2067,8 +2339,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1602030136 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3521892218387167415, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2087,8 +2366,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1662320632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1662320633
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2244,8 +2530,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1001 &1723194314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2256,15 +2549,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 207641100999143636, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u725B\u4E73"
       objectReference: {fileID: 0}
     - target: {fileID: 232286497493014751, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u98DF\u30D1\u30F3"
       objectReference: {fileID: 0}
     - target: {fileID: 360509810958936327, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u308A\u3093\u3054"
       objectReference: {fileID: 0}
     - target: {fileID: 366768224799892306, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Size.z
@@ -2276,43 +2569,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 369197617837215625, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u5375"
       objectReference: {fileID: 0}
     - target: {fileID: 616589523895196153, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30E8\u30FC\u30B0\u30EB\u30C8"
       objectReference: {fileID: 0}
     - target: {fileID: 661089972681623717, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30AB\u30EC\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 737771408832109348, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u304A\u8336"
       objectReference: {fileID: 0}
     - target: {fileID: 841749006195735150, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf4
+      value: "\u51B7\u51CD\u9903\u5B50"
       objectReference: {fileID: 0}
     - target: {fileID: 921675207221072258, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u7D0D\u8C46"
       objectReference: {fileID: 0}
     - target: {fileID: 1004872547273928469, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf1
+      value: "\u8C46\u8150"
       objectReference: {fileID: 0}
     - target: {fileID: 1293210747324877292, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u5473\u564C"
       objectReference: {fileID: 0}
     - target: {fileID: 1605967652287708468, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u91A4\u6CB9"
       objectReference: {fileID: 0}
     - target: {fileID: 1891290870779911144, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u7C73"
       objectReference: {fileID: 0}
     - target: {fileID: 2051764540056451991, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_TagString
@@ -2320,19 +2613,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2111804967231639274, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf5
+      value: "\u30D0\u30CA\u30CA"
       objectReference: {fileID: 0}
     - target: {fileID: 2324623335855812480, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30C8\u30DE\u30C8"
       objectReference: {fileID: 0}
     - target: {fileID: 2456252799737319551, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u3058\u3083\u304C\u3044\u3082"
       objectReference: {fileID: 0}
     - target: {fileID: 2544188253363274122, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u306B\u3093\u3058\u3093"
       objectReference: {fileID: 0}
     - target: {fileID: 2606542885807960449, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_TagString
@@ -2340,59 +2633,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2726331262915000385, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u7389\u306D\u304E"
       objectReference: {fileID: 0}
     - target: {fileID: 2806707509076389224, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30AD\u30E3\u30D9\u30C4"
       objectReference: {fileID: 0}
     - target: {fileID: 2841844534909488307, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30EC\u30BF\u30B9"
       objectReference: {fileID: 0}
     - target: {fileID: 2847572274181045207, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u304D\u3085\u3046\u308A"
       objectReference: {fileID: 0}
     - target: {fileID: 3113227647481325762, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u8C5A\u8089"
       objectReference: {fileID: 0}
     - target: {fileID: 3274875795864070519, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u9D8F\u8089"
       objectReference: {fileID: 0}
     - target: {fileID: 3431653728765455602, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u725B\u8089"
       objectReference: {fileID: 0}
     - target: {fileID: 3436290129857871256, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u9BAD"
       objectReference: {fileID: 0}
     - target: {fileID: 3482396631950844382, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u307E\u3050\u308D"
       objectReference: {fileID: 0}
     - target: {fileID: 3521892218387167415, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30CF\u30E0"
       objectReference: {fileID: 0}
     - target: {fileID: 3807487464971216742, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30BD\u30FC\u30BB\u30FC\u30B8"
       objectReference: {fileID: 0}
     - target: {fileID: 3901256209292726311, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30C1\u30FC\u30BA"
       objectReference: {fileID: 0}
     - target: {fileID: 4078468678151207320, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30D0\u30BF\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 4509059403649384634, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30A2\u30A4\u30B9\u30AF\u30EA\u30FC\u30E0"
       objectReference: {fileID: 0}
     - target: {fileID: 4718119742013478509, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_LocalScale.z
@@ -2404,55 +2697,55 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882731488026308280, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u51B7\u51CD\u3046\u3069\u3093"
       objectReference: {fileID: 0}
     - target: {fileID: 5024455925218298287, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf7
+      value: "\u30DD\u30C6\u30C8\u30C1\u30C3\u30D7\u30B9"
       objectReference: {fileID: 0}
     - target: {fileID: 5054143053394350611, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30C1\u30E7\u30B3\u30EC\u30FC\u30C8"
       objectReference: {fileID: 0}
     - target: {fileID: 5181976145623480163, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30D3\u30B9\u30B1\u30C3\u30C8"
       objectReference: {fileID: 0}
     - target: {fileID: 5314237940401310745, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u305B\u3093\u3079\u3044"
       objectReference: {fileID: 0}
     - target: {fileID: 5354922519833568128, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30B3\u30FC\u30D2\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 5570121124138642466, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u7D05\u8336"
       objectReference: {fileID: 0}
     - target: {fileID: 5591639649376253159, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30AA\u30EC\u30F3\u30B8\u30B8\u30E5\u30FC\u30B9"
       objectReference: {fileID: 0}
     - target: {fileID: 5730888766747469254, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf3
+      value: "\u30DF\u30CD\u30E9\u30EB\u30A6\u30A9\u30FC\u30BF\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 6080420805664477982, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30D3\u30FC\u30EB"
       objectReference: {fileID: 0}
     - target: {fileID: 6109873470187692422, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30B7\u30E3\u30F3\u30D7\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 6157843671699690391, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u6D17\u5264"
       objectReference: {fileID: 0}
     - target: {fileID: 6182752036948055908, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30C6\u30A3\u30C3\u30B7\u30E5"
       objectReference: {fileID: 0}
     - target: {fileID: 6348422881494867604, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2496,15 +2789,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6471462295172062202, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30C8\u30A4\u30EC\u30C3\u30C8\u30DA\u30FC\u30D1\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 7238615176327448259, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf2
+      value: "\u6B6F\u307F\u304C\u304D\u7C89"
       objectReference: {fileID: 0}
     - target: {fileID: 7683866808106887765, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf8
+      value: "\u304A\u306B\u304E\u308A"
       objectReference: {fileID: 0}
     - target: {fileID: 7891318462466693696, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
@@ -2512,23 +2805,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7926702194483554704, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u5F01\u5F53"
       objectReference: {fileID: 0}
     - target: {fileID: 8005070754656177733, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30B5\u30F3\u30C9\u30A4\u30C3\u30C1"
       objectReference: {fileID: 0}
     - target: {fileID: 8121795137389577036, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u30B5\u30E9\u30C0"
       objectReference: {fileID: 0}
     - target: {fileID: 8302473941496584330, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf
+      value: "\u5510\u63DA\u3052"
       objectReference: {fileID: 0}
     - target: {fileID: 9031455429875978590, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Name
-      value: shelf6
+      value: "\u30AB\u30C3\u30D7\u9EBA"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -2712,8 +3005,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1838278405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5591639649376253159, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2732,8 +3032,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1882072268
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,8 +3162,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1947055715 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3482396631950844382, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2875,8 +3189,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &1953631770 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4882731488026308280, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2895,13 +3216,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!54 &1975423900 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 658734645768193305, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
   m_PrefabInstance: {fileID: 816152534}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1975423901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6439518371512612300, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+  m_PrefabInstance: {fileID: 816152534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2bf05a67fd9794aa168b771597da97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+--- !u!114 &1975423903 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+  m_PrefabInstance: {fileID: 816152534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c9fac1e13f65945aefd0b28ef1e6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
 --- !u!1 &2023837677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5570121124138642466, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2920,8 +3270,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2032753783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9031455429875978590, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2940,8 +3297,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2054415614 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 369197617837215625, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2960,8 +3324,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2070481905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5354922519833568128, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -2980,8 +3351,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2076148764 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7683866808106887765, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -3000,8 +3378,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2087917345 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2544188253363274122, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -3020,8 +3405,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2100031151
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,8 +3443,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e42db90739c2086429ca810fde54156c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImpactSettings
-  minImpactSpeed: 7.5
-  maxImpactSpeed: 25
+  minImpactSpeed: 7
+  maxImpactSpeed: 20
+  loadImpactMultiplier: 1
+  lastRawImpactSpeed: 0
+  lastAdjustedImpactSpeed: 0
+  lastImpactRate: 0
 --- !u!4 &2100031153
 Transform:
   m_ObjectHideFlags: 0
@@ -3086,8 +3482,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2135158094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2456252799737319551, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -3106,8 +3509,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1 &2145477656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1004872547273928469, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
@@ -3126,8 +3536,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
   displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3145,3 +3562,4 @@ SceneRoots:
   - {fileID: 1569092310}
   - {fileID: 885634386}
   - {fileID: 2100031153}
+  - {fileID: 377766600}

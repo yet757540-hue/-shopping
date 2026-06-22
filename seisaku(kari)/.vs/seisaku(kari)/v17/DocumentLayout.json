@@ -3,15 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\assets\\script\\gamemanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|c:\\users\\admin\\onedrive\\\u6587\u6863\\github\\-shopping\\seisaku(kari)\\assets\\script\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\assets\\script\\scoretarget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\scoretarget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\assets\\script\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|c:\\users\\admin\\onedrive\\\u6587\u6863\\github\\-shopping\\seisaku(kari)\\assets\\script\\playercollisionreporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\GameManage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Script\\GameManage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\assets\\script\\playercollisionreporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playercollisionreporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -42,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +58,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "PlayerInventory.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerInventory.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerInventory.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerInventory.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerInventory.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-21T14:32:35.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ScoreTarget.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\ScoreTarget.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\ScoreTarget.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\ScoreTarget.cs",
+              "RelativeToolTip": "Assets\\Script\\ScoreTarget.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwBsAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-21T12:38:17.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "TimerManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\TimerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\TimerManager.cs",
@@ -58,12 +91,11 @@
               "RelativeToolTip": "Assets\\Script\\TimerManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-19T14:20:34.333Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T14:20:34.333Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Assets\\PlayerManager.cs",
@@ -74,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "PlayerCollisionReporter.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerCollisionReporter.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PlayerCollisionReporter.cs",
@@ -82,38 +114,34 @@
               "RelativeToolTip": "Assets\\Script\\PlayerCollisionReporter.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAkwCUAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T13:35:04.532Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-17T13:35:04.532Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PlayerManager.cs",
               "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerManager.cs",
               "RelativeToolTip": "Assets\\Script\\PlayerManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T13:34:17.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-17T13:34:17.577Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "GameManage.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\GameManage.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GameManage.cs",
               "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\GameManage.cs",
               "RelativeToolTip": "Assets\\Script\\GameManage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUBAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T13:33:58.907Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-17T13:33:58.907Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "CollisionAudioPlayer.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\CollisionAudioPlayer.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\CollisionAudioPlayer.cs",
@@ -124,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "GamepadRumbleManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\GamepadRumbleManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GamepadRumbleManager.cs",
@@ -132,12 +160,11 @@
               "RelativeToolTip": "Assets\\Script\\GamepadRumbleManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T13:30:44.639Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-17T13:30:44.639Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "SpeedFOVController.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\SpeedFOVController.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\SpeedFOVController.cs",

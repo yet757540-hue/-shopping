@@ -46,12 +46,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollowController
   target: {fileID: 0}
-  offset: {x: 0, y: 8, z: -10}
+  cameraChild: {fileID: 0}
+  localOffset: {x: 0, y: 7.8, z: -18}
+  localLookAtOffset: {x: 0, y: 1.2, z: 0}
   followSmoothTime: 0.2
-  rotateOffsetWithTarget: 0
-  lookAtTarget: 1
-  lookAtHeight: 1.5
   rotationSmoothSpeed: 8
+  useOnlyTargetYaw: 1
+  enableOverviewCamera: 1
+  overviewHeight: 45
+  overviewLookAtOffset: {x: 0, y: 0, z: 0}
+  overviewPanSmoothSpeed: 10
+  overviewPanMaxDistance: 18
+  overviewPanDeadZone: 0.15
 --- !u!1001 &664733884384404561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,7 +110,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4319594527913658164, guid: 0ac69713497e3d246bd91c5e11e11891, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

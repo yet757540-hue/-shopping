@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5707856932140349517}
   - component: {fileID: 658734645768193305}
   - component: {fileID: 4543527137078668913}
+  - component: {fileID: 6439518371512612300}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -204,3 +205,15 @@ MonoBehaviour:
   triggerExited:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6439518371512612300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300661638329206093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e2bf05a67fd9794aa168b771597da97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory

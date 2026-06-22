@@ -1,4 +1,4 @@
-%YAML 1.1
+﻿%YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &207641100999143636
 GameObject:
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 4834968234282022323}
   - component: {fileID: 4879866424130404525}
   m_Layer: 0
-  m_Name: shelf4 (1)
+  m_Name: 牛乳
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1693,7 +1693,7 @@ GameObject:
   - component: {fileID: 2767284704336372926}
   - component: {fileID: 7005745397940852785}
   m_Layer: 0
-  m_Name: shelf1
+  m_Name: 食パン
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2814,7 +2814,7 @@ GameObject:
   - component: {fileID: 236480003719840677}
   - component: {fileID: 3177830093878949010}
   m_Layer: 0
-  m_Name: shelf1 (1)
+  m_Name: りんご
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3710,7 +3710,7 @@ GameObject:
   - component: {fileID: 7761120881821739177}
   - component: {fileID: 8517668494375001715}
   m_Layer: 0
-  m_Name: shelf4
+  m_Name: 卵
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3822,7 +3822,7 @@ GameObject:
   - component: {fileID: 4276523721157034693}
   - component: {fileID: 706716001154742055}
   m_Layer: 0
-  m_Name: shelf1 (2)
+  m_Name: ヨーグルト
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4046,7 +4046,7 @@ GameObject:
   - component: {fileID: 869009869810989622}
   - component: {fileID: 9197937879278480807}
   m_Layer: 0
-  m_Name: shelf3
+  m_Name: カレー
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5202,7 +5202,7 @@ GameObject:
   - component: {fileID: 2596323977286562004}
   - component: {fileID: 8568647239065194860}
   m_Layer: 0
-  m_Name: shelf2
+  m_Name: お茶
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7328,3 +7328,4 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+

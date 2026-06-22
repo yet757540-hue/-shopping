@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
+    // Starter Assets の三人称キャラクター移動・視点・アニメーションを制御します。
     [RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM
     [RequireComponent(typeof(PlayerInput))]
@@ -125,6 +126,7 @@ namespace StarterAssets
 
         private void Awake()
         {
+            // メインカメラ参照をタグから取得します。
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -134,6 +136,7 @@ namespace StarterAssets
 
         private void Start()
         {
+            // コンポーネント参照とアニメーション ID を初期化します。
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -147,6 +150,7 @@ namespace StarterAssets
 
             AssignAnimationIDs();
 
+            // ジャンプと落下判定のタイマーを初期化します。
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
@@ -154,6 +158,7 @@ namespace StarterAssets
 
         private void Update()
         {
+            // 毎フレーム、入力に応じた移動・重力・接地状態を更新します。
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();

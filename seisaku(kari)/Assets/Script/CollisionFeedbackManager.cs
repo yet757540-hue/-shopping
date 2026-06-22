@@ -20,6 +20,7 @@ public class CollisionFeedbackManager : MonoBehaviour
     [SerializeField] private float maxShakeStrength = 0.25f;
     [SerializeField] private float minShakeDuration = 0.08f;
     [SerializeField] private float maxShakeDuration = 0.35f;
+    [SerializeField] private float shakeCooldown = 0.08f;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioClip[] collisionClips;
@@ -31,6 +32,7 @@ public class CollisionFeedbackManager : MonoBehaviour
 
     private AudioSource audioSource;
     private float lastRumbleTime = -999f;
+    private float lastShakeTime = -999f;
     private float lastSoundTime = -999f;
 
     private void Awake()
@@ -51,12 +53,17 @@ public class CollisionFeedbackManager : MonoBehaviour
 
     public void PlayFeedback(float impactSpeed)
     {
-        if (impactSettings == null || !impactSettings.IsStrongEnough(impactSpeed))
+        if (impactSettings == null)
         {
             return;
         }
 
-        float impactRate = impactSettings.GetImpactRate(impactSpeed);
+        float impactRate = impactSettings.GetImpactRateFromRawSpeed(impactSpeed);
+
+        if (!impactSettings.IsStrongEnough(impactSettings.LastAdjustedImpactSpeed))
+        {
+            return;
+        }
 
         TryStartRumble(impactRate);
         TryStartCameraShake(impactRate);
@@ -132,52 +139,27 @@ public class CollisionFeedbackManager : MonoBehaviour
 
     private void TryStartRumble(float impactRate)
     {
-        if (rumbleManager == null)
-        {
-            return;
-        }
-
-        if (Time.time - lastRumbleTime < rumbleCooldown)
+        if (rumbleManager == null || Time.time - lastRumbleTime < rumbleCooldown)
         {
             return;
         }
 
         lastRumbleTime = Time.time;
-
-        float rumbleStrength = Mathf.Lerp(
-            minRumbleStrength,
-            maxRumbleStrength,
-            impactRate
-        );
-
-        float rumbleDuration = Mathf.Lerp(
-            minRumbleDuration,
-            maxRumbleDuration,
-            impactRate
-        );
-
+        float rumbleStrength = Mathf.Lerp(minRumbleStrength, maxRumbleStrength, impactRate);
+        float rumbleDuration = Mathf.Lerp(minRumbleDuration, maxRumbleDuration, impactRate);
         rumbleManager.Rumble(rumbleStrength * 0.7f, rumbleStrength, rumbleDuration);
     }
 
     private void TryStartCameraShake(float impactRate)
     {
-        if (cameraShakeController == null)
+        if (cameraShakeController == null || Time.time - lastShakeTime < shakeCooldown)
         {
             return;
         }
 
-        float shakeStrength = Mathf.Lerp(
-            minShakeStrength,
-            maxShakeStrength,
-            impactRate
-        );
-
-        float shakeDuration = Mathf.Lerp(
-            minShakeDuration,
-            maxShakeDuration,
-            impactRate
-        );
-
+        lastShakeTime = Time.time;
+        float shakeStrength = Mathf.Lerp(minShakeStrength, maxShakeStrength, impactRate);
+        float shakeDuration = Mathf.Lerp(minShakeDuration, maxShakeDuration, impactRate);
         cameraShakeController.Shake(shakeStrength, shakeDuration);
     }
 
@@ -201,20 +183,8 @@ public class CollisionFeedbackManager : MonoBehaviour
         }
 
         lastSoundTime = Time.time;
-
-        float volume = Mathf.Lerp(
-            minCollisionVolume,
-            maxCollisionVolume,
-            impactRate
-        );
-
-        float pitch = Random.Range(
-            minCollisionPitch,
-            maxCollisionPitch
-        );
-
-        audioSource.pitch = pitch;
-        audioSource.PlayOneShot(clip, volume);
+        audioSource.pitch = Random.Range(minCollisionPitch, maxCollisionPitch);
+        audioSource.PlayOneShot(clip, Mathf.Lerp(minCollisionVolume, maxCollisionVolume, impactRate));
     }
 
     private void OnDisable()
@@ -230,6 +200,7 @@ public class CollisionFeedbackManager : MonoBehaviour
     private void OnValidate()
     {
         rumbleCooldown = Mathf.Max(0f, rumbleCooldown);
+        shakeCooldown = Mathf.Max(0f, shakeCooldown);
         soundCooldown = Mathf.Max(0f, soundCooldown);
         minRumbleDuration = Mathf.Max(0f, minRumbleDuration);
         maxRumbleDuration = Mathf.Max(minRumbleDuration, maxRumbleDuration);

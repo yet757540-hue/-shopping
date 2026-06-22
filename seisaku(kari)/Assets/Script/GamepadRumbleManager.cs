@@ -2,12 +2,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// ゲームパッドの振動を一定時間だけ再生・停止します。
 public class GamepadRumbleManager : MonoBehaviour
 {
     private Coroutine rumbleCoroutine;
 
     public void Rumble(float lowFrequency, float highFrequency, float duration)
     {
+        // 現在のゲームパッドがない場合は何もしません。
         Gamepad gamepad = Gamepad.current;
 
         if (gamepad == null)
@@ -17,6 +19,7 @@ public class GamepadRumbleManager : MonoBehaviour
 
         if (rumbleCoroutine != null)
         {
+            // 新しい振動を優先するため、前の振動を止めます。
             StopCoroutine(rumbleCoroutine);
             rumbleCoroutine = null;
         }
@@ -33,6 +36,7 @@ public class GamepadRumbleManager : MonoBehaviour
 
     private IEnumerator RumbleCoroutine(Gamepad gamepad, float lowFrequency, float highFrequency, float duration)
     {
+        // 入力された振動強度を 0〜1 に収めます。
         lowFrequency = Mathf.Clamp01(lowFrequency);
         highFrequency = Mathf.Clamp01(highFrequency);
 
@@ -46,6 +50,7 @@ public class GamepadRumbleManager : MonoBehaviour
 
     public void StopRumble()
     {
+        // コルーチンと実機の振動を両方止めます。
         if (rumbleCoroutine != null)
         {
             StopCoroutine(rumbleCoroutine);
@@ -60,11 +65,13 @@ public class GamepadRumbleManager : MonoBehaviour
 
     private void OnDisable()
     {
+        // オブジェクト無効化時に振動が残らないようにします。
         StopRumble();
     }
 
     private void OnApplicationPause(bool pause)
     {
+        // アプリ停止中はハプティクスを一時停止します。
         if (pause)
         {
             InputSystem.PauseHaptics();
@@ -77,6 +84,7 @@ public class GamepadRumbleManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        // アプリ終了時は全ての振動状態をリセットします。
         InputSystem.ResetHaptics();
     }
 }

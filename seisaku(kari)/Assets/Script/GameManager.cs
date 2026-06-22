@@ -2,46 +2,33 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private CollisionFeedbackManager collisionFeedbackManager;
-    [SerializeField] private TimerManager timerManager;
-
     private void Awake()
     {
-        if (collisionFeedbackManager == null)
+        if (FindAnyObjectByType<ControlsGuideUI>() == null)
         {
-            collisionFeedbackManager = FindAnyObjectByType<CollisionFeedbackManager>();
+            gameObject.AddComponent<ControlsGuideUI>();
         }
 
-        if (timerManager == null)
-        {
-            timerManager = FindAnyObjectByType<TimerManager>();
-        }
-    }
+        EnsureInventorySystems();
 
-    public void OnPlayerCollision(Collision collision)
-    {
-        if (collisionFeedbackManager == null)
+        if (FindAnyObjectByType<InventoryStatusUI>() == null)
         {
-            return;
-        }
-
-        collisionFeedbackManager.PlayFeedback(collision);
-    }
-
-    public void OnPlayerTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out TimerZone timerZone))
-        {
-            timerZone.HandleEnter(timerManager);
+            gameObject.AddComponent<InventoryStatusUI>();
         }
     }
 
-    public void OnPlayerTriggerExit(Collider other)
+    private void EnsureInventorySystems()
     {
-        if (other.TryGetComponent(out TimerZone timerZone))
+        PlayerManager playerManager = FindAnyObjectByType<PlayerManager>();
+
+        if (playerManager != null && playerManager.GetComponent<PlayerInventory>() == null)
         {
-            timerZone.HandleExit(timerManager);
+            playerManager.gameObject.AddComponent<PlayerInventory>();
+        }
+
+        if (FindAnyObjectByType<InventoryInfluenceSettings>() == null)
+        {
+            gameObject.AddComponent<InventoryInfluenceSettings>();
         }
     }
 }

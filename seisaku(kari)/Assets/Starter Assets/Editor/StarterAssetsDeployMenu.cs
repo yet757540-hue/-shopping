@@ -7,6 +7,7 @@ using Unity.Cinemachine;
 
 namespace StarterAssets
 {
+    // Starter Assets のプレハブ配置と参照修復を行うエディタメニューです。
     // This class needs to be a scriptable object to support dynamic determination of StarterAssets install path
     public partial class StarterAssetsDeployMenu : ScriptableObject
     {
@@ -28,6 +29,7 @@ namespace StarterAssets
 
         private static void CheckCameras(Transform targetParent, string prefabFolder)
         {
+            // Main Camera と Cinemachine カメラの存在を確認し、不足していれば生成します。
             CheckMainCamera(prefabFolder);
 
             GameObject vcam = GameObject.Find(CinemachineVirtualCameraName);
@@ -53,6 +55,7 @@ namespace StarterAssets
             GameObject target = targets.FirstOrDefault(t => t.transform.IsChildOf(targetParent));
             if (target == null)
             {
+                // プレイヤー配下に Cinemachine 用の追従ターゲットを作成します。
                 target = new GameObject("PlayerCameraRoot");
                 target.transform.SetParent(targetParent);
                 target.transform.localPosition = new Vector3(0f, 1.375f, 0f);
@@ -65,6 +68,7 @@ namespace StarterAssets
 
         private static void CheckMainCamera(string inFolder)
         {
+            // MainCamera タグのカメラがなければ、Starter Assets のプレハブから作成します。
             GameObject[] mainCameras = GameObject.FindGameObjectsWithTag(MainCameraTag);
 
             if (mainCameras.Length < 1)
@@ -90,6 +94,7 @@ namespace StarterAssets
         private static void CheckVirtualCameraFollowReference(GameObject target,
             GameObject cinemachineVirtualCamera)
         {
+            // CinemachineCamera の Follow 参照を指定ターゲットへ設定します。
             var serializedObject =
                 new SerializedObject(cinemachineVirtualCamera.GetComponent<CinemachineCamera>());
             var serializedProperty = serializedObject.FindProperty("m_Follow");

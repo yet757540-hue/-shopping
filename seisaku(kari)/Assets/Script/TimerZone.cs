@@ -66,7 +66,7 @@ public class TimerZone : MonoBehaviour
         HandleExit(timerManager);
     }
 
-    public void HandleEnter(TimerManager fallbackTimerManager)
+    public void HandleEnter(TimerManager fallbackTimerManager = null)
     {
         if (lastEnterFrame == Time.frameCount)
         {
@@ -74,10 +74,10 @@ public class TimerZone : MonoBehaviour
         }
 
         lastEnterFrame = Time.frameCount;
-        Apply(onEnter, fallbackTimerManager);
+        ExecuteAction(onEnter, fallbackTimerManager);
     }
 
-    public void HandleExit(TimerManager fallbackTimerManager)
+    public void HandleExit(TimerManager fallbackTimerManager = null)
     {
         if (lastExitFrame == Time.frameCount)
         {
@@ -85,7 +85,7 @@ public class TimerZone : MonoBehaviour
         }
 
         lastExitFrame = Time.frameCount;
-        Apply(onExit, fallbackTimerManager);
+        ExecuteAction(onExit, fallbackTimerManager);
     }
 
     private bool IsPlayer(Collider other)
@@ -98,7 +98,7 @@ public class TimerZone : MonoBehaviour
         return other.CompareTag(playerTag);
     }
 
-    private void Apply(TimerZoneAction action, TimerManager fallbackTimerManager)
+    private void ExecuteAction(TimerZoneAction action, TimerManager fallbackTimerManager)
     {
         TimerManager targetTimer = timerManager != null ? timerManager : fallbackTimerManager;
 

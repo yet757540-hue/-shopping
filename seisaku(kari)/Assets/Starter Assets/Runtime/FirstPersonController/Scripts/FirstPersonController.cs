@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
+	// Starter Assets の一人称キャラクター移動・視点・ジャンプを制御します。
 	[RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM
 	[RequireComponent(typeof(PlayerInput))]
@@ -88,6 +89,7 @@ namespace StarterAssets
 
 		private void Awake()
 		{
+			// メインカメラ参照をタグから取得します。
 			// get a reference to our main camera
 			if (_mainCamera == null)
 			{
@@ -97,6 +99,7 @@ namespace StarterAssets
 
 		private void Start()
 		{
+			// 必要なコンポーネント参照を取得し、ジャンプ関連タイマーを初期化します。
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM
@@ -112,6 +115,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
+			// 毎フレーム、重力・接地・移動を更新します。
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
@@ -119,11 +123,13 @@ namespace StarterAssets
 
 		private void LateUpdate()
 		{
+			// カメラ回転は移動更新後に行います。
 			CameraRotation();
 		}
 
 		private void GroundedCheck()
 		{
+			// 足元付近に地面があるか Sphere 判定します。
 			// set sphere position, with offset
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
 			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
@@ -131,6 +137,7 @@ namespace StarterAssets
 
 		private void CameraRotation()
 		{
+			// 視点入力がある場合だけカメラターゲットを回転させます。
 			// if there is an input
 			if (_input.look.sqrMagnitude >= _threshold)
 			{

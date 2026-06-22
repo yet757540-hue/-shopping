@@ -1,4 +1,8 @@
 /*
+日本語概要:
+モバイルビルド時に PlayerInput の自動コントロールスキーム切り替えを無効化し、
+不要なデバイス検索による負荷を避けるための Starter Assets 補助スクリプトです。
+
 The PlayerInput component has an auto-switch control scheme action that allows automatic changing of connected devices.
 IE: Switching from Keyboard to Gamepad in-game.
 When built to a mobile phone; in most cases, there is no concept of switching connected devices as controls are typically driven through what is on the device's hardware (Screen, Tilt, etc)
@@ -13,6 +17,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
+// モバイル環境で PlayerInput の自動切り替えを止めます。
 public class MobileDisableAutoSwitchControls : MonoBehaviour
 {
     
@@ -23,11 +28,13 @@ public class MobileDisableAutoSwitchControls : MonoBehaviour
 
     void Start()
     {
+        // 起動時に自動切り替えを無効化します。
         DisableAutoSwitchControls();
     }
 
     void DisableAutoSwitchControls()
     {
+        // PlayerInput が接続デバイスを探索し続けないようにします。
         playerInput.neverAutoSwitchControlSchemes = true;
     }
 
