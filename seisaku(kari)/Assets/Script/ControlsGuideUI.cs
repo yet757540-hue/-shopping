@@ -26,7 +26,7 @@ public class ControlsGuideUI : MonoBehaviour
     };
 
     [Header("Layout")]
-    [SerializeField] private Vector2 anchoredPosition = new Vector2(24f, 0f);
+    [SerializeField] private Vector2 anchoredPosition = new Vector2(24f, 48f);
     [SerializeField] private Vector2 size = new Vector2(360f, 260f);
     [SerializeField] private int titleFontSize = 28;
     [SerializeField] private int bodyFontSize = 22;

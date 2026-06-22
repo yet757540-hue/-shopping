@@ -138,7 +138,7 @@ MonoBehaviour:
   maxReverseSpeed: 6
   triggerDeadZone: 0.1
   stopThreshold: 0.1
-  turnResetSpeed: 20
+  turnResetSpeed: 8
   stickDeadZone: 0.1
   turnAcceleration: 8
   maxAngularSpeed: 3

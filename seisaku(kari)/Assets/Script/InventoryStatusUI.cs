@@ -247,7 +247,8 @@ public class InventoryStatusUI : MonoBehaviour
 
         float acceleration = influenceSettings != null ? influenceSettings.CurrentAccelerationMultiplier : 1f;
         float deceleration = influenceSettings != null ? influenceSettings.CurrentDecelerationMultiplier : 1f;
-        float turn = influenceSettings != null ? influenceSettings.CurrentTurnMultiplier : 1f;
+        float turnAcceleration = influenceSettings != null ? influenceSettings.CurrentTurnAccelerationMultiplier : 1f;
+        float turnDeceleration = influenceSettings != null ? influenceSettings.CurrentTurnDecelerationMultiplier : 1f;
         float collision = influenceSettings != null ? influenceSettings.CurrentCollisionMultiplier : 1f;
 
         influenceBuilder
@@ -258,9 +259,14 @@ public class InventoryStatusUI : MonoBehaviour
             .AppendLine();
 
         influenceBuilder
-            .Append("\u65cb\u56de ")
-            .Append(FormatMultiplier(turn))
-            .Append(" / \u885d\u7a81 ")
+            .Append("\u65cb\u56de\u52a0\u901f ")
+            .Append(FormatMultiplier(turnAcceleration))
+            .Append(" / \u65cb\u56de\u6e1b\u901f ")
+            .Append(FormatMultiplier(turnDeceleration))
+            .AppendLine();
+
+        influenceBuilder
+            .Append("\u885d\u7a81 ")
             .Append(FormatMultiplier(collision))
             .AppendLine();
     }

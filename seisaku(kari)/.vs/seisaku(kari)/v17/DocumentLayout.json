@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|c:\\users\\admin\\onedrive\\\u6587\u6863\\github\\-shopping\\seisaku(kari)\\assets\\script\\inventoryinfluencesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventoryinfluencesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|c:\\users\\admin\\onedrive\\\u6587\u6863\\github\\-shopping\\seisaku(kari)\\assets\\script\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DF6438F4-67DF-6401-B0C0-68F98B317357}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -50,15 +54,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InventoryInfluenceSettings.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\InventoryInfluenceSettings.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\InventoryInfluenceSettings.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\InventoryInfluenceSettings.cs",
+              "RelativeToolTip": "Assets\\Script\\InventoryInfluenceSettings.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-22T14:39:30.955Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlayerInventory.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerInventory.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PlayerInventory.cs",
@@ -71,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ScoreTarget.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\ScoreTarget.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\ScoreTarget.cs",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "TimerManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\TimerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\TimerManager.cs",
@@ -95,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Assets\\PlayerManager.cs",
@@ -106,7 +123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PlayerCollisionReporter.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerCollisionReporter.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PlayerCollisionReporter.cs",
@@ -118,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PlayerManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\PlayerManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\PlayerManager.cs",
@@ -130,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "GameManage.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\GameManage.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GameManage.cs",
@@ -141,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "CollisionAudioPlayer.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\CollisionAudioPlayer.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\CollisionAudioPlayer.cs",
@@ -152,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GamepadRumbleManager.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\GamepadRumbleManager.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\GamepadRumbleManager.cs",
@@ -164,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "SpeedFOVController.cs",
               "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\seisaku(kari)\\Assets\\Script\\SpeedFOVController.cs",
               "RelativeDocumentMoniker": "Assets\\Script\\SpeedFOVController.cs",

@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float stopThreshold = 0.1f;
 
     [Header("Turn Settings")]
-    [SerializeField] private float turnResetSpeed = 20f;
+    [SerializeField] private float turnResetSpeed = 8f;
     [SerializeField] private float stickDeadZone = 0.1f;
     [SerializeField] private float turnAcceleration = 8f;
     [SerializeField] private float maxAngularSpeed = 3f;
@@ -32,7 +32,8 @@ public class PlayerManager : MonoBehaviour
     private bool isReversing = false;
     private float loadAccelerationMultiplier = 1f;
     private float loadDecelerationMultiplier = 1f;
-    private float loadTurnMultiplier = 1f;
+    private float loadTurnAccelerationMultiplier = 1f;
+    private float loadTurnDecelerationMultiplier = 1f;
 
     private void Awake()
     {
@@ -68,11 +69,17 @@ public class PlayerManager : MonoBehaviour
         brakeInput = Mathf.Clamp01(brake);
     }
 
-    public void SetLoadInfluence(float accelerationMultiplier, float decelerationMultiplier, float turnMultiplier)
+    public void SetLoadInfluence(
+        float accelerationMultiplier,
+        float decelerationMultiplier,
+        float turnAccelerationMultiplier,
+        float turnDecelerationMultiplier
+    )
     {
         loadAccelerationMultiplier = Mathf.Max(0f, accelerationMultiplier);
         loadDecelerationMultiplier = Mathf.Max(0f, decelerationMultiplier);
-        loadTurnMultiplier = Mathf.Max(0f, turnMultiplier);
+        loadTurnAccelerationMultiplier = Mathf.Max(0f, turnAccelerationMultiplier);
+        loadTurnDecelerationMultiplier = Mathf.Max(0f, turnDecelerationMultiplier);
     }
 
     private void ReadGamepadInput()
@@ -243,7 +250,7 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        Vector3 torque = Vector3.up * steerInput * turnAcceleration * loadTurnMultiplier;
+        Vector3 torque = Vector3.up * steerInput * turnAcceleration * loadTurnAccelerationMultiplier;
         rb.AddTorque(torque, ForceMode.Acceleration);
     }
 
@@ -255,13 +262,16 @@ public class PlayerManager : MonoBehaviour
         }
 
         Vector3 angularVelocity = rb.angularVelocity;
-        float newY = Mathf.MoveTowards(
-            angularVelocity.y,
-            0f,
-            turnResetSpeed * loadTurnMultiplier * Time.fixedDeltaTime
-        );
 
-        rb.angularVelocity = new Vector3(0f, newY, 0f);
+        if (Mathf.Abs(angularVelocity.y) <= 0.001f)
+        {
+            rb.angularVelocity = new Vector3(0f, 0f, 0f);
+            return;
+        }
+
+        float resetPower = turnResetSpeed * loadTurnDecelerationMultiplier;
+        Vector3 resetTorque = Vector3.up * -angularVelocity.y * resetPower;
+        rb.AddTorque(resetTorque, ForceMode.Acceleration);
     }
 
     private void LimitHorizontalSpeed()

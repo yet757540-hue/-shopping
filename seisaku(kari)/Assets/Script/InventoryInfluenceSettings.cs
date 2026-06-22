@@ -11,25 +11,29 @@ public class InventoryInfluenceSettings : MonoBehaviour
     [Header("Weight Influence")]
     [SerializeField] private float accelerationWeightFactor = 0.04f;
     [SerializeField] private float decelerationWeightFactor = 0.03f;
-    [SerializeField] private float turnWeightFactor = 0.04f;
+    [SerializeField] private float turnAccelerationWeightFactor = 0.04f;
+    [SerializeField] private float turnDecelerationWeightFactor = 0.04f;
     [SerializeField] private float collisionWeightFactor = 0.03f;
 
     [Header("Minimum Movement Multipliers")]
     [SerializeField] private float minAccelerationMultiplier = 0.35f;
     [SerializeField] private float minDecelerationMultiplier = 0.45f;
-    [SerializeField] private float minTurnMultiplier = 0.35f;
+    [SerializeField] private float minTurnAccelerationMultiplier = 0.35f;
+    [SerializeField] private float minTurnDecelerationMultiplier = 0.35f;
 
     [Header("Runtime Debug")]
     [SerializeField] private float currentTotalWeight = 0f;
     [SerializeField] private float currentAccelerationMultiplier = 1f;
     [SerializeField] private float currentDecelerationMultiplier = 1f;
-    [SerializeField] private float currentTurnMultiplier = 1f;
+    [SerializeField] private float currentTurnAccelerationMultiplier = 1f;
+    [SerializeField] private float currentTurnDecelerationMultiplier = 1f;
     [SerializeField] private float currentCollisionMultiplier = 1f;
 
     public float CurrentTotalWeight => currentTotalWeight;
     public float CurrentAccelerationMultiplier => currentAccelerationMultiplier;
     public float CurrentDecelerationMultiplier => currentDecelerationMultiplier;
-    public float CurrentTurnMultiplier => currentTurnMultiplier;
+    public float CurrentTurnAccelerationMultiplier => currentTurnAccelerationMultiplier;
+    public float CurrentTurnDecelerationMultiplier => currentTurnDecelerationMultiplier;
     public float CurrentCollisionMultiplier => currentCollisionMultiplier;
 
     private void Awake()
@@ -99,13 +103,23 @@ public class InventoryInfluenceSettings : MonoBehaviour
         float weight = inventory != null ? inventory.TotalWeight : 0f;
         float accelerationMultiplier = CalculatePenalty(weight, accelerationWeightFactor, minAccelerationMultiplier);
         float decelerationMultiplier = CalculatePenalty(weight, decelerationWeightFactor, minDecelerationMultiplier);
-        float turnMultiplier = CalculatePenalty(weight, turnWeightFactor, minTurnMultiplier);
+        float turnAccelerationMultiplier = CalculatePenalty(
+            weight,
+            turnAccelerationWeightFactor,
+            minTurnAccelerationMultiplier
+        );
+        float turnDecelerationMultiplier = CalculatePenalty(
+            weight,
+            turnDecelerationWeightFactor,
+            minTurnDecelerationMultiplier
+        );
         float collisionMultiplier = 1f + Mathf.Max(0f, weight) * Mathf.Max(0f, collisionWeightFactor);
 
         currentTotalWeight = weight;
         currentAccelerationMultiplier = accelerationMultiplier;
         currentDecelerationMultiplier = decelerationMultiplier;
-        currentTurnMultiplier = turnMultiplier;
+        currentTurnAccelerationMultiplier = turnAccelerationMultiplier;
+        currentTurnDecelerationMultiplier = turnDecelerationMultiplier;
         currentCollisionMultiplier = collisionMultiplier;
 
         if (playerManager != null)
@@ -113,7 +127,8 @@ public class InventoryInfluenceSettings : MonoBehaviour
             playerManager.SetLoadInfluence(
                 accelerationMultiplier,
                 decelerationMultiplier,
-                turnMultiplier
+                turnAccelerationMultiplier,
+                turnDecelerationMultiplier
             );
         }
 
@@ -133,10 +148,12 @@ public class InventoryInfluenceSettings : MonoBehaviour
     {
         accelerationWeightFactor = Mathf.Max(0f, accelerationWeightFactor);
         decelerationWeightFactor = Mathf.Max(0f, decelerationWeightFactor);
-        turnWeightFactor = Mathf.Max(0f, turnWeightFactor);
+        turnAccelerationWeightFactor = Mathf.Max(0f, turnAccelerationWeightFactor);
+        turnDecelerationWeightFactor = Mathf.Max(0f, turnDecelerationWeightFactor);
         collisionWeightFactor = Mathf.Max(0f, collisionWeightFactor);
         minAccelerationMultiplier = Mathf.Clamp01(minAccelerationMultiplier);
         minDecelerationMultiplier = Mathf.Clamp01(minDecelerationMultiplier);
-        minTurnMultiplier = Mathf.Clamp01(minTurnMultiplier);
+        minTurnAccelerationMultiplier = Mathf.Clamp01(minTurnAccelerationMultiplier);
+        minTurnDecelerationMultiplier = Mathf.Clamp01(minTurnDecelerationMultiplier);
     }
 }

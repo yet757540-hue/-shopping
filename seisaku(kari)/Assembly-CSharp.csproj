@@ -66,6 +66,7 @@
     <Compile Include="Assets\Script\ControlsGuideUI.cs" />
     <Compile Include="Assets\Script\GamepadRumbleManager.cs" />
     <Compile Include="Assets\Script\TimerZone.cs" />
+    <Compile Include="Assets\Script\TimerDisplayUI.cs" />
     <Compile Include="Assets\Script\CameraShakeController.cs" />
     <Compile Include="Assets\Script\InventoryStatusUI.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
