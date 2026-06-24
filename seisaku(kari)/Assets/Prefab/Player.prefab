@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 658734645768193305}
   - component: {fileID: 4543527137078668913}
   - component: {fileID: 6439518371512612300}
+  - component: {fileID: 1955691970528975162}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -102,7 +103,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6300661638329206093}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9bd2826f6f574c19a33efe92b45f04cd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -112,7 +113,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -143,6 +144,7 @@ MonoBehaviour:
   turnAcceleration: 8
   maxAngularSpeed: 3
   readGamepadDirectly: 1
+  controlScheme: 0
 --- !u!54 &658734645768193305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -217,3 +219,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e2bf05a67fd9794aa168b771597da97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+--- !u!136 &1955691970528975162
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6300661638329206093}
+  m_Material: {fileID: 13400000, guid: 9bd2826f6f574c19a33efe92b45f04cd, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.44906837
+  m_Height: 1.0110477
+  m_Direction: 2
+  m_Center: {x: 0.00034332275, y: -0.00075950625, z: -0.0011072159}

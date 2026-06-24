@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Input Settings")]
     [SerializeField] private bool readGamepadDirectly = true;
+    [SerializeField] private PlayerMovementControlScheme controlScheme = PlayerMovementControlScheme.Triggers;
 
     private Rigidbody rb;
     private float steerInput;
@@ -82,6 +83,43 @@ public class PlayerManager : MonoBehaviour
         loadTurnDecelerationMultiplier = Mathf.Max(0f, turnDecelerationMultiplier);
     }
 
+    public void ApplyMovementSettings(PlayerMovementSettings settings)
+    {
+        if (settings == null)
+        {
+            return;
+        }
+
+        settings.Validate();
+
+        lowSpeedAcceleration = settings.LowSpeedAcceleration;
+        highSpeedAcceleration = settings.HighSpeedAcceleration;
+        accelerationSwitchSpeed = settings.AccelerationSwitchSpeed;
+        reverseAcceleration = settings.ReverseAcceleration;
+        deceleration = settings.Deceleration;
+        brakeDeceleration = settings.BrakeDeceleration;
+        maxSpeed = settings.MaxSpeed;
+        maxReverseSpeed = settings.MaxReverseSpeed;
+        triggerDeadZone = settings.TriggerDeadZone;
+        stopThreshold = settings.StopThreshold;
+        turnResetSpeed = settings.TurnResetSpeed;
+        stickDeadZone = settings.StickDeadZone;
+        turnAcceleration = settings.TurnAcceleration;
+        maxAngularSpeed = settings.MaxAngularSpeed;
+
+        if (rb != null)
+        {
+            rb.maxAngularVelocity = maxAngularSpeed;
+        }
+    }
+
+    public void ApplyControlScheme(PlayerMovementControlScheme scheme)
+    {
+        controlScheme = scheme;
+        SetMoveInput(steerInput, 0f, 0f);
+        isReversing = false;
+    }
+
     private void ReadGamepadInput()
     {
         Gamepad gamepad = Gamepad.current;
@@ -92,11 +130,26 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        SetMoveInput(
-            gamepad.leftStick.x.ReadValue(),
-            gamepad.rightTrigger.ReadValue(),
-            gamepad.leftTrigger.ReadValue()
-        );
+        float steer = gamepad.leftStick.x.ReadValue();
+
+        switch (controlScheme)
+        {
+            case PlayerMovementControlScheme.FaceButtons:
+                SetMoveInput(
+                    steer,
+                    gamepad.buttonSouth.ReadValue(),
+                    gamepad.buttonEast.ReadValue()
+                );
+                break;
+            case PlayerMovementControlScheme.Triggers:
+            default:
+                SetMoveInput(
+                    steer,
+                    gamepad.rightTrigger.ReadValue(),
+                    gamepad.leftTrigger.ReadValue()
+                );
+                break;
+        }
     }
 
     private void ApplyDriveInput()

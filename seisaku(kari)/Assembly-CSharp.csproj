@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\SpeedFOVController.cs" />
+    <Compile Include="Assets\Script\RuntimeOptionMenu.cs" />
     <Compile Include="Assets\Script\TimerManager.cs" />
+    <Compile Include="Assets\Script\PlayerMovementPresetApplier.cs" />
     <Compile Include="Assets\Script\ControlsGuideUI.cs" />
     <Compile Include="Assets\Script\GamepadRumbleManager.cs" />
     <Compile Include="Assets\Script\TimerZone.cs" />
@@ -70,16 +72,20 @@
     <Compile Include="Assets\Script\CameraShakeController.cs" />
     <Compile Include="Assets\Script\InventoryStatusUI.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Script\StartMenuView.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\CollisionFeedbackManager.cs" />
     <Compile Include="Assets\Script\ImpactSettings.cs" />
     <Compile Include="Assets\Script\ScoreTarget.cs" />
+    <Compile Include="Assets\Script\PlayerMovementPreset.cs" />
     <Compile Include="Assets\Script\PlayerManager.cs" />
     <Compile Include="Assets\Script\JapaneseUIFont.cs" />
     <Compile Include="Assets\Script\PlayerInventory.cs" />
+    <Compile Include="Assets\Script\StartMenuManager.cs" />
     <Compile Include="Assets\Script\CameraFollowController.cs" />
     <Compile Include="Assets\Script\InventoryInfluenceSettings.cs" />
     <Compile Include="Assets\Script\PlayerCollisionReporter.cs" />
+    <Compile Include="Assets\Script\PlayerMovementControlPreset.cs" />
     <Compile Include="Assets\Script\ScoreboardManager.cs" />
   </ItemGroup>
   <ItemGroup>
