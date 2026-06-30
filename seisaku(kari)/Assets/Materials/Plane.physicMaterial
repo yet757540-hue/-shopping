@@ -6,10 +6,10 @@ PhysicsMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Slippery
+  m_Name: Plane
   serializedVersion: 2
-  m_DynamicFriction: 0.4
-  m_StaticFriction: 0.2
-  m_Bounciness: 0
+  m_DynamicFriction: 0
+  m_StaticFriction: 0
+  m_Bounciness: 0.3
   m_FrictionCombine: 1
   m_BounceCombine: 2

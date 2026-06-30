@@ -1251,6 +1251,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 658734645768193305, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: m_Mass
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 658734645768193305, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 658734645768193305, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955691970528975162, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 493089824e3c4eb4c9757344e9e79c83, type: 2}
     - target: {fileID: 3799215837079544983, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.1
@@ -1269,7 +1285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3799215837079544983, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.285
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 3799215837079544983, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1365,11 +1381,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: deceleration
-      value: 16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: turnResetSpeed
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: maxReverseSpeed
@@ -1403,7 +1419,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1499487529478854967, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2748,6 +2765,10 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 9bd2826f6f574c19a33efe92b45f04cd, type: 2}
+    - target: {fileID: 1088440258901806778, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 493089824e3c4eb4c9757344e9e79c83, type: 2}
     - target: {fileID: 1275200266863925990, guid: 197feb15635cb3740bdb0423ff04c7d7, type: 3}
       propertyPath: m_Material
       value: 

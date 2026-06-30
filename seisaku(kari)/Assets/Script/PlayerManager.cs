@@ -36,11 +36,12 @@ public class PlayerManager : MonoBehaviour
     private float loadTurnAccelerationMultiplier = 1f;
     private float loadTurnDecelerationMultiplier = 1f;
 
+    public float AccelerateInput => accelerateInput;
+    public PlayerMovementControlScheme ControlScheme => controlScheme;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotationX |
-                         RigidbodyConstraints.FreezeRotationZ;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         rb.maxAngularVelocity = maxAngularSpeed;

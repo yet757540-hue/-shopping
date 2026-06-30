@@ -4,6 +4,8 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class ScoreTarget : MonoBehaviour
 {
+    private const string VisibleOverlayResourceName = "ScoreTargetVisibleOverlay";
+
     private class MaterialColorState
     {
         public Material material;
@@ -303,10 +305,21 @@ public class ScoreTarget : MonoBehaviour
             return visibleOverlayMaterial;
         }
 
+        Material resourceMaterial = Resources.Load<Material>(VisibleOverlayResourceName);
+
+        if (resourceMaterial != null)
+        {
+            visibleOverlayMaterial = new Material(resourceMaterial);
+            visibleOverlayMaterial.hideFlags = HideFlags.DontSave;
+            UpdateVisibleOverlayMaterial();
+            return visibleOverlayMaterial;
+        }
+
         Shader shader = Shader.Find("Custom/ScoreTargetVisibleOverlay");
 
         if (shader == null)
         {
+            Debug.LogWarning("[ScoreTarget] Visible overlay shader/material was not found.", this);
             return null;
         }
 

@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.cyberkomodo.dualsense": {
+      "version": "file:C:/Users/admin/Downloads/CyberKomodo.DualSense-main",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.inputsystem": "1.4.0"
+      }
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.12",
       "depth": 0,
