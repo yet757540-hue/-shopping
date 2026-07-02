@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{DF6438F4-67DF-6401-B0C0-68F98B317357}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.CyberComodo.DualSense.Codegen", "Unity.CyberComodo.DualSense.Codegen.csproj", "{6DD3ADE3-C753-93FB-DF43-056216927A58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyberKomodo.DualSense", "CyberKomodo.DualSense.csproj", "{F95985C0-94D5-1CEB-FABF-D0CF746C1075}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF6438F4-67DF-6401-B0C0-68F98B317357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF6438F4-67DF-6401-B0C0-68F98B317357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF6438F4-67DF-6401-B0C0-68F98B317357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF6438F4-67DF-6401-B0C0-68F98B317357}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD3ADE3-C753-93FB-DF43-056216927A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD3ADE3-C753-93FB-DF43-056216927A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD3ADE3-C753-93FB-DF43-056216927A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD3ADE3-C753-93FB-DF43-056216927A58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95985C0-94D5-1CEB-FABF-D0CF746C1075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95985C0-94D5-1CEB-FABF-D0CF746C1075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95985C0-94D5-1CEB-FABF-D0CF746C1075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95985C0-94D5-1CEB-FABF-D0CF746C1075}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
