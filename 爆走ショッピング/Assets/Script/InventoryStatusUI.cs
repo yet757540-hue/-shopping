@@ -3,6 +3,16 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 現在の所持品と、重量が移動・衝突へ与えている影響を表示する UI です。
+// 役割:
+// - PlayerInventory の中身を種類ごとにまとめて表示します。
+// - InventoryInfluenceSettings の現在倍率を表示し、重さによる変化を確認できるようにします。
+// 接続:
+// - GameManager が未配置時に自動追加します。
+// - PlayerInventory.InventoryChanged を購読しますが、参照の遅延生成に備えて Update でも再解決します。
+// - 日本語表示には JapaneseUIFont.Get を使います。
+// 読むときの要点:
+// - CreateRuntimePanel が UI 生成、BuildInventoryText と BuildInfluenceText が表示文字列の作成です。
 public class InventoryStatusUI : MonoBehaviour
 {
     private class ItemSummary
@@ -37,6 +47,7 @@ public class InventoryStatusUI : MonoBehaviour
     private readonly StringBuilder influenceBuilder = new StringBuilder();
     private readonly Dictionary<string, ItemSummary> itemSummaries = new Dictionary<string, ItemSummary>();
 
+    // 参照解決、UI 生成、初回表示をまとめて行います。
     private void Awake()
     {
         ResolveReferences();
@@ -44,6 +55,7 @@ public class InventoryStatusUI : MonoBehaviour
         RefreshText();
     }
 
+    // 有効化時に参照とイベント購読を復旧し、表示を最新化します。
     private void OnEnable()
     {
         ResolveReferences();
@@ -51,6 +63,7 @@ public class InventoryStatusUI : MonoBehaviour
         RefreshText();
     }
 
+    // 無効化時は所持品イベントの購読を解除します。
     private void OnDisable()
     {
         if (inventory != null)
@@ -59,6 +72,7 @@ public class InventoryStatusUI : MonoBehaviour
         }
     }
 
+    // 参照が後から生成された場合に備え、毎フレーム再解決と表示更新を行います。
     private void Update()
     {
         if (inventory == null || influenceSettings == null)
@@ -70,6 +84,7 @@ public class InventoryStatusUI : MonoBehaviour
         RefreshText();
     }
 
+    // PlayerInventory と InventoryInfluenceSettings をシーンから探します。
     private void ResolveReferences()
     {
         if (inventory == null)
@@ -83,6 +98,7 @@ public class InventoryStatusUI : MonoBehaviour
         }
     }
 
+    // 所持品変更で即時表示更新されるようにイベントを購読します。
     private void SubscribeInventory()
     {
         if (inventory == null)
@@ -94,6 +110,7 @@ public class InventoryStatusUI : MonoBehaviour
         inventory.InventoryChanged += RefreshText;
     }
 
+    // Canvas と所持品表示パネルを実行時に作ります。
     private void CreateRuntimePanel()
     {
         if (panelRect != null)
@@ -165,6 +182,7 @@ public class InventoryStatusUI : MonoBehaviour
         influenceText.lineSpacing = 1.05f;
     }
 
+    // パネル内で使う共通 Text を生成します。
     private Text CreateText(string objectName, Transform parent)
     {
         GameObject textObject = new GameObject(objectName);
@@ -178,6 +196,7 @@ public class InventoryStatusUI : MonoBehaviour
         return text;
     }
 
+    // 所持品欄と重量影響欄の両方を再構築して画面へ反映します。
     private void RefreshText()
     {
         if (inventoryText == null || influenceText == null)
@@ -191,6 +210,7 @@ public class InventoryStatusUI : MonoBehaviour
         influenceText.text = influenceBuilder.ToString().TrimEnd();
     }
 
+    // 所持数、総重量、種類ごとの所持品一覧を作ります。
     private void BuildInventoryText()
     {
         inventoryBuilder.Clear();
@@ -240,6 +260,7 @@ public class InventoryStatusUI : MonoBehaviour
         }
     }
 
+    // 現在の重量影響倍率を表示用テキストへ整形します。
     private void BuildInfluenceText()
     {
         influenceBuilder.Clear();
@@ -271,10 +292,12 @@ public class InventoryStatusUI : MonoBehaviour
             .AppendLine();
     }
 
+    // CarriedItems を itemId ごとの表示件数へ集計します。
     private void BuildItemSummaries()
     {
         itemSummaries.Clear();
 
+        // CarriedItems は取得した個数分だけ並ぶため、UI では itemId ごとに集計して短く表示します。
         foreach (PlayerInventory.CarriedItem item in inventory.CarriedItems)
         {
             if (item == null || string.IsNullOrWhiteSpace(item.itemId))
@@ -297,11 +320,13 @@ public class InventoryStatusUI : MonoBehaviour
         }
     }
 
+    // 倍率を x0.00 形式で表示します。
     private string FormatMultiplier(float value)
     {
         return "x" + value.ToString("0.00");
     }
 
+    // UI サイズ、フォント、表示件数を安全な範囲へ補正します。
     private void OnValidate()
     {
         size.x = Mathf.Max(220f, size.x);

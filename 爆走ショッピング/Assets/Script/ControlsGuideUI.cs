@@ -3,6 +3,15 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+// 画面左側に操作方法を表示する軽量 UI です。
+// 役割:
+// - Canvas や Text が未配置でも、実行時に操作ガイドを自動生成します。
+// - entries のキー名と説明文を 1 つの本文テキストへ組み立てます。
+// 接続:
+// - GameManager がシーン起動時に未配置なら自動で追加します。
+// - 日本語表示には JapaneseUIFont.Get を使い、環境にある日本語フォントを選びます。
+// 読むときの要点:
+// - CreateRuntimeGuide が UI の生成、RefreshText が表示文の再構築を担当します。
 public class ControlsGuideUI : MonoBehaviour
 {
     [Serializable]
@@ -41,6 +50,7 @@ public class ControlsGuideUI : MonoBehaviour
     private Text bodyText;
     private readonly StringBuilder textBuilder = new StringBuilder();
 
+    // 必要なら UI を自動生成し、初期表示文を作ります。
     private void Awake()
     {
         if (createIfMissing && panelRect == null)
@@ -51,6 +61,7 @@ public class ControlsGuideUI : MonoBehaviour
         RefreshText();
     }
 
+    // Canvas、背景パネル、タイトル、本文テキストを実行時に組み立てます。
     private void CreateRuntimeGuide()
     {
         Canvas canvas = FindAnyObjectByType<Canvas>();
@@ -104,6 +115,7 @@ public class ControlsGuideUI : MonoBehaviour
         bodyText.lineSpacing = 1.25f;
     }
 
+    // 共通設定済みの Text オブジェクトを作ります。
     private Text CreateText(string objectName, Transform parent)
     {
         GameObject textObject = new GameObject(objectName);
@@ -117,11 +129,13 @@ public class ControlsGuideUI : MonoBehaviour
         return text;
     }
 
+    // 実行時 UI 用の日本語対応フォントを取得します。
     private Font GetRuntimeFont(int fontSize)
     {
         return JapaneseUIFont.Get(fontSize);
     }
 
+    // entries の内容を 1 つの本文文字列へ整形します。
     private void RefreshText()
     {
         if (bodyText == null)
@@ -147,6 +161,7 @@ public class ControlsGuideUI : MonoBehaviour
         bodyText.text = textBuilder.ToString().TrimEnd();
     }
 
+    // UI サイズとフォントサイズの最低値を保証します。
     private void OnValidate()
     {
         size.x = Mathf.Max(180f, size.x);

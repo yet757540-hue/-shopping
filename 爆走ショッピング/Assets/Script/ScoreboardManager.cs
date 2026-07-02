@@ -5,6 +5,18 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+// ランダムに選ばれた目標アイテムの必要数を表示し、取得状況を管理するスコアボードです。
+// 役割:
+// - ScoreTarget から目標候補を作り、開始時に複数種類の必要数をランダム決定します。
+// - プレイヤーの衝突からアイテム獲得数を計算し、PlayerInventory へ追加します。
+// - 目標達成状況を UI と ScoreTarget のハイライトへ反映します。
+// 接続:
+// - PlayerCollisionReporter.collisionEntered から RegisterCollision を呼ぶ想定です。
+// - TimerZone はゴール時に TryCompleteScoreboard を呼び、未達成ならタイマー停止を止めます。
+// - ImpactSettings は衝突速度から獲得数を決めるために使います。
+// - PlayerInventory.InventoryChanged を購読して表示とハイライトを更新します。
+// 読むときの要点:
+// - isBoardActive は「現在の買い物リストが有効か」を表します。完了判定は IsComplete に集約されています。
 public class ScoreboardManager : MonoBehaviour
 {
     [Serializable]
@@ -83,6 +95,7 @@ public class ScoreboardManager : MonoBehaviour
 
     public bool IsActive => isBoardActive && activeEntries.Count > 0;
 
+    // 必要な参照と UI をそろえ、初期状態ではスコアボードを空にします。
     private void Awake()
     {
         ResolveReferences();
@@ -100,11 +113,13 @@ public class ScoreboardManager : MonoBehaviour
         ClearScoreboard();
     }
 
+    // 有効化時に所持品変更イベントを購読します。
     private void OnEnable()
     {
         SubscribeInventory();
     }
 
+    // 無効化時に所持品変更イベントの購読を解除します。
     private void OnDisable()
     {
         if (inventory != null)
@@ -113,6 +128,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
+    // 新しい買い物リストを開始し、目標アイテムと必要数をランダムに決めます。
     public void StartScoreboard()
     {
         if (isBoardActive)
@@ -120,6 +136,7 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
+        // 新しいスコアボード開始時は、前回のハイライトと取得済み状態を戻してから候補を選び直します。
         ResolveReferences();
         EnsureTargetPool();
         RestoreAllTargetHighlights();
@@ -155,6 +172,7 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
+    // ゴール時に呼ばれ、未達成なら警告を出して false を返します。
     public bool TryCompleteScoreboard()
     {
         if (IsActive && !IsComplete)
@@ -167,6 +185,7 @@ public class ScoreboardManager : MonoBehaviour
         return true;
     }
 
+    // スコアボード状態とハイライトを消し、表示も空にします。
     public void ClearScoreboard()
     {
         RestoreAllTargetHighlights();
@@ -177,6 +196,7 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
+    // プレイヤー衝突から ScoreTarget を見つけ、衝突強度に応じた個数を所持品へ追加します。
     public void RegisterCollision(Collision collision)
     {
         if (collision == null)
@@ -184,6 +204,7 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
+        // 衝突相手の親階層まで見て ScoreTarget を探します。
         ScoreTarget target = FindScoreTarget(collision);
 
         if (target == null)
@@ -208,6 +229,7 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
+        // スコアボードが開始していない場合でも、所持品としては取得できます。
         if (!isBoardActive)
         {
             return;
@@ -217,6 +239,7 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
+    // 未達成のままゴールしようとしたとき、スコアボード表示を点滅させます。
     public void FlashIncompleteWarning()
     {
         if (scoreboardText == null)
@@ -228,6 +251,7 @@ public class ScoreboardManager : MonoBehaviour
         incompleteFlashCoroutine = StartCoroutine(FlashIncompleteCoroutine());
     }
 
+    // スコアボードを完了状態にし、必要なら所持品をリセットします。
     private void CompleteScoreboard()
     {
         RestoreAllTargetHighlights();
@@ -244,6 +268,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
+    // ImpactSettings、PlayerInventory、UI 更新に必要な参照を探します。
     private void ResolveReferences()
     {
         if (impactSettings == null)
@@ -276,6 +301,7 @@ public class ScoreboardManager : MonoBehaviour
         SubscribeInventory();
     }
 
+    // 所持品変更時にスコアボード表示を更新できるように購読します。
     private void SubscribeInventory()
     {
         if (inventory == null)
@@ -287,6 +313,7 @@ public class ScoreboardManager : MonoBehaviour
         inventory.InventoryChanged += RefreshAfterInventoryChanged;
     }
 
+    // targetPool から itemId が重複しない候補リストを作ります。
     private List<ScoreTarget> BuildUniqueCandidates()
     {
         List<ScoreTarget> candidates = new List<ScoreTarget>();
@@ -308,6 +335,7 @@ public class ScoreboardManager : MonoBehaviour
         return candidates;
     }
 
+    // Collision の Collider または Rigidbody から親階層の ScoreTarget を探します。
     private ScoreTarget FindScoreTarget(Collision collision)
     {
         ScoreTarget target = null;
@@ -330,6 +358,7 @@ public class ScoreboardManager : MonoBehaviour
         return target;
     }
 
+    // Inspector で設定された最小最大範囲から必要数をランダムに選びます。
     private int GetRandomRequiredCount()
     {
         int min = Mathf.Min(minRequiredItemCount, maxRequiredItemCount);
@@ -338,12 +367,14 @@ public class ScoreboardManager : MonoBehaviour
         return lastRequiredCount;
     }
 
+    // 衝突速度から獲得数を計算します。弱すぎる衝突なら false を返します。
     private bool TryCalculateItemGain(float impactSpeed, out int itemGain)
     {
         lastRawImpactSpeed = impactSpeed;
         lastImpactRate = impactSettings != null ? impactSettings.GetImpactRateFromRawSpeed(impactSpeed) : 0f;
         lastImpactSpeed = impactSettings != null ? impactSettings.LastAdjustedImpactSpeed : impactSpeed;
 
+        // 弱すぎる衝突ではアイテムを獲得しません。
         if (impactSettings != null && !impactSettings.IsStrongEnough(lastImpactSpeed))
         {
             lastItemGain = 0;
@@ -356,11 +387,13 @@ public class ScoreboardManager : MonoBehaviour
         return true;
     }
 
+    // シーン内の ScoreTarget を現在の候補プールとして取り直します。
     private void EnsureTargetPool()
     {
         targetPool = FindObjectsByType<ScoreTarget>();
     }
 
+    // 新しいリスト開始前に、各 ScoreTarget の取得済み状態を戻します。
     private void ResetTargetCollectionState()
     {
         foreach (ScoreTarget target in targetPool)
@@ -372,6 +405,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
+    // 所持品変更後、目標達成状況に合わせてハイライトと表示を更新します。
     private void RefreshAfterInventoryChanged()
     {
         if (!isBoardActive)
@@ -390,6 +424,7 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
+    // 指定 target と同じ itemId の目標がまだ必要かを見て、ハイライト状態を更新します。
     private void UpdateTargetHighlight(ScoreTarget target)
     {
         TargetEntry entry = activeEntries.Find(item => item.target != null && item.target.ItemId == target.ItemId);
@@ -403,6 +438,7 @@ public class ScoreboardManager : MonoBehaviour
         SetHighlightForItemId(entry.target.ItemId, stillNeeded);
     }
 
+    // 同じ itemId を持つ全 ScoreTarget のハイライトをまとめて切り替えます。
     private void SetHighlightForItemId(string itemId, bool highlighted)
     {
         if (targetPool == null || string.IsNullOrWhiteSpace(itemId))
@@ -410,6 +446,7 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
+        // 同じ itemId のオブジェクトが複数ある場合、全て同じ目標アイテムとしてハイライトします。
         foreach (ScoreTarget target in targetPool)
         {
             if (target == null || target.ItemId != itemId)
@@ -421,11 +458,13 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
+    // 指定 target の現在所持数を PlayerInventory から取得します。
     private int GetCurrentCount(ScoreTarget target)
     {
         return inventory != null ? inventory.GetCount(target) : 0;
     }
 
+    // activeEntries の現在数と必要数をスコアボード Text へ反映します。
     private void RefreshText()
     {
         if (scoreboardText == null)
@@ -460,6 +499,7 @@ public class ScoreboardManager : MonoBehaviour
         scoreboardText.text = textBuilder.ToString().TrimEnd();
     }
 
+    // 候補プールと現在リストの両方から、すべてのハイライトを解除します。
     private void RestoreAllTargetHighlights()
     {
         if (targetPool != null)
@@ -482,6 +522,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
+    // 未達成警告としてスコアボード文字色を一定回数点滅させます。
     private IEnumerator FlashIncompleteCoroutine()
     {
         int count = Mathf.Max(1, incompleteFlashCount);
@@ -500,6 +541,7 @@ public class ScoreboardManager : MonoBehaviour
         incompleteFlashCoroutine = null;
     }
 
+    // 点滅コルーチンを止め、文字色を通常色へ戻します。
     private void StopIncompleteFlash()
     {
         if (incompleteFlashCoroutine != null)
@@ -514,6 +556,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
+    // Canvas、背景、Text を実行時に作り、スコアボード表示先を確保します。
     private void CreateRuntimeScoreboard()
     {
         Canvas canvas = FindAnyObjectByType<Canvas>();
@@ -561,6 +604,7 @@ public class ScoreboardManager : MonoBehaviour
         scoreboardText = text;
     }
 
+    // スコアボード設定値を安全な範囲へ補正します。
     private void OnValidate()
     {
         targetCount = Mathf.Max(1, targetCount);

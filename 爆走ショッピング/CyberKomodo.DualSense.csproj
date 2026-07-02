@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F95985C0-94D5-1CEB-FABF-D0CF746C1075}</ProjectGuid>
+    <ProjectGuid>{C1FB3B52-B1CE-841B-D15E-A750D3B6FB45}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>CyberKomodo.DualSense</AssemblyName>

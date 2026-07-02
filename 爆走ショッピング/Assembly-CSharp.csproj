@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DF6438F4-67DF-6401-B0C0-68F98B317357}</ProjectGuid>
+    <ProjectGuid>{68B34E66-91B5-D3EB-362A-5B64F8383E74}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -1416,7 +1416,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="CyberKomodo.DualSense.csproj">
-      <Project>{F95985C0-94D5-1CEB-FABF-D0CF746C1075}</Project>
+      <Project>{C1FB3B52-B1CE-841B-D15E-A750D3B6FB45}</Project>
       <Name>CyberKomodo.DualSense</Name>
     </ProjectReference>
   </ItemGroup>

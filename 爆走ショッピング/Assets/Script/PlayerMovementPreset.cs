@@ -2,6 +2,14 @@ using System;
 using UnityEngine;
 
 [Serializable]
+// スタートメニューの「MOVE PRESET」に表示する移動性能プリセットです。
+// 役割:
+// - 表示名と PlayerMovementSettings をセットで保持します。
+// - Classic / Hard の標準プリセットをコード上で作れます。
+// 接続:
+// - StartMenuManager が選択し、PlayerMovementPresetApplier 経由で PlayerManager.ApplyMovementSettings に渡します。
+// 読むときの要点:
+// - CreateSettingsCopy は元プリセットを書き換えないためのコピーを返します。
 public sealed class PlayerMovementPreset
 {
     [SerializeField] private string displayName = "Classic";
@@ -10,10 +18,12 @@ public sealed class PlayerMovementPreset
     public string DisplayName => string.IsNullOrWhiteSpace(displayName) ? "Preset" : displayName;
     public PlayerMovementSettings Settings => settings;
 
+    // Unity のシリアライズ用に必要な空コンストラクタです。
     public PlayerMovementPreset()
     {
     }
 
+    // 表示名と設定値を指定してプリセットを作る内部用コンストラクタです。
     private PlayerMovementPreset(string displayName, PlayerMovementSettings settings)
     {
         this.displayName = displayName;
@@ -21,22 +31,26 @@ public sealed class PlayerMovementPreset
         Validate();
     }
 
+    // 標準的な操作感の移動プリセットを作ります。
     public static PlayerMovementPreset CreateClassic()
     {
         return new PlayerMovementPreset("Classic", PlayerMovementSettings.CreateClassic());
     }
 
+    // 速度や旋回が強めの移動プリセットを作ります。
     public static PlayerMovementPreset CreateHard()
     {
         return new PlayerMovementPreset("Hard", PlayerMovementSettings.CreateHard());
     }
 
+    // 元のプリセットを変更しないよう、設定値のコピーを返します。
     public PlayerMovementSettings CreateSettingsCopy()
     {
         Validate();
         return settings.Clone();
     }
 
+    // 表示名と settings の欠落を補い、設定値の範囲も検証します。
     public void Validate()
     {
         if (string.IsNullOrWhiteSpace(displayName))
@@ -54,6 +68,10 @@ public sealed class PlayerMovementPreset
 }
 
 [Serializable]
+// PlayerManager に反映される実際の移動パラメータ群です。
+// 役割:
+// - 加速、減速、最高速、旋回、入力デッドゾーンなどを 1 セットにまとめます。
+// - Validate で Inspector から不正な値が入っても最低限の範囲に補正します。
 public sealed class PlayerMovementSettings
 {
     [Header("Movement Settings")]
@@ -89,11 +107,13 @@ public sealed class PlayerMovementSettings
     public float TurnAcceleration => turnAcceleration;
     public float MaxAngularSpeed => maxAngularSpeed;
 
+    // Classic 用の既定値セットを作ります。
     public static PlayerMovementSettings CreateClassic()
     {
         return new PlayerMovementSettings();
     }
 
+    // Hard 用に数値を調整した設定セットを作ります。
     public static PlayerMovementSettings CreateHard()
     {
         return new PlayerMovementSettings
@@ -115,6 +135,7 @@ public sealed class PlayerMovementSettings
         };
     }
 
+    // PlayerManager へ渡しても元データが変わらないよう、全フィールドを複製します。
     public PlayerMovementSettings Clone()
     {
         return new PlayerMovementSettings
@@ -136,6 +157,7 @@ public sealed class PlayerMovementSettings
         };
     }
 
+    // 速度、加速度、デッドゾーンなどの不正値を補正します。
     public void Validate()
     {
         lowSpeedAcceleration = Mathf.Max(0f, lowSpeedAcceleration);

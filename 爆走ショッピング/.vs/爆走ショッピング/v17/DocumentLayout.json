@@ -1,0 +1,406 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\camerafollowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\camerafollowcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|c:\\users\\admin\\onedrive\\\u6587\u6863\\github\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\playermovementcontrolpreset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playermovementcontrolpreset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\playermovementpreset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playermovementpreset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\playermovementpresetapplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playermovementpresetapplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\runtimeoptionmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\runtimeoptionmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\scoreboardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\scoreboardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\scoretarget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\scoretarget.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\speedfovcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\speedfovcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\startmenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\startmenumanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\startmenuview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\startmenuview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\timerdisplayui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\timerdisplayui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\timermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\timermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\timerzone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\timerzone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playerinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\playercollisionreporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playercollisionreporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\japaneseuifont.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\japaneseuifont.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\inventorystatusui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventorystatusui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\inventoryinfluencesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\inventoryinfluencesettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\gamepadrumblemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamepadrumblemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\controlsguideui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\controlsguideui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\collisionfeedbackmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\collisionfeedbackmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\assets\\script\\camerashakecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68B34E66-91B5-D3EB-362A-5B64F8383E74}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\camerashakecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TimerManager.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\TimerManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\TimerManager.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\TimerManager.cs",
+              "RelativeToolTip": "Assets\\Script\\TimerManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:36.702Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TimerDisplayUI.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\TimerDisplayUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\TimerDisplayUI.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\TimerDisplayUI.cs",
+              "RelativeToolTip": "Assets\\Script\\TimerDisplayUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:35.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StartMenuView.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\StartMenuView.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\StartMenuView.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\StartMenuView.cs",
+              "RelativeToolTip": "Assets\\Script\\StartMenuView.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:35.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StartMenuManager.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\StartMenuManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\StartMenuManager.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\StartMenuManager.cs",
+              "RelativeToolTip": "Assets\\Script\\StartMenuManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:34.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SpeedFOVController.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\SpeedFOVController.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\SpeedFOVController.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\SpeedFOVController.cs",
+              "RelativeToolTip": "Assets\\Script\\SpeedFOVController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:33.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ScoreTarget.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\ScoreTarget.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\ScoreTarget.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\ScoreTarget.cs",
+              "RelativeToolTip": "Assets\\Script\\ScoreTarget.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:32.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ScoreboardManager.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\ScoreboardManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\ScoreboardManager.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\ScoreboardManager.cs",
+              "RelativeToolTip": "Assets\\Script\\ScoreboardManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:32.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RuntimeOptionMenu.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\RuntimeOptionMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\RuntimeOptionMenu.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\RuntimeOptionMenu.cs",
+              "RelativeToolTip": "Assets\\Script\\RuntimeOptionMenu.cs",
+              "ViewState": "AgIAAOUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:31.464Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerMovementPresetApplier.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerMovementPresetApplier.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerMovementPresetApplier.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerMovementPresetApplier.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerMovementPresetApplier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:30.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerMovementPreset.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerMovementPreset.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerMovementPreset.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerMovementPreset.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerMovementPreset.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:30.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayerMovementControlPreset.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerMovementControlPreset.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerMovementControlPreset.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerMovementControlPreset.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerMovementControlPreset.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:29.429Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CameraFollowController.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\CameraFollowController.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\CameraFollowController.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\CameraFollowController.cs",
+              "RelativeToolTip": "Assets\\Script\\CameraFollowController.cs",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAswGcAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:01.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TimerZone.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\TimerZone.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\TimerZone.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\TimerZone.cs",
+              "RelativeToolTip": "Assets\\Script\\TimerZone.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:37.37Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PlayerManager.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerManager.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerManager.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:28.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PlayerInventory.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerInventory.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerInventory.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerInventory.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerInventory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:28.026Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PlayerCollisionReporter.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerCollisionReporter.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerCollisionReporter.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\PlayerCollisionReporter.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerCollisionReporter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:27.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "JapaneseUIFont.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\JapaneseUIFont.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\JapaneseUIFont.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\JapaneseUIFont.cs",
+              "RelativeToolTip": "Assets\\Script\\JapaneseUIFont.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:26.094Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "InventoryStatusUI.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\InventoryStatusUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\InventoryStatusUI.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\InventoryStatusUI.cs",
+              "RelativeToolTip": "Assets\\Script\\InventoryStatusUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:25.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "InventoryInfluenceSettings.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\InventoryInfluenceSettings.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\InventoryInfluenceSettings.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\InventoryInfluenceSettings.cs",
+              "RelativeToolTip": "Assets\\Script\\InventoryInfluenceSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:24.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "GamepadRumbleManager.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\GamepadRumbleManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\GamepadRumbleManager.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\GamepadRumbleManager.cs",
+              "RelativeToolTip": "Assets\\Script\\GamepadRumbleManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:16.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\GameManager.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Script\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:15.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ControlsGuideUI.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\ControlsGuideUI.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\ControlsGuideUI.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\ControlsGuideUI.cs",
+              "RelativeToolTip": "Assets\\Script\\ControlsGuideUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:14.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CollisionFeedbackManager.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\CollisionFeedbackManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\CollisionFeedbackManager.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\CollisionFeedbackManager.cs",
+              "RelativeToolTip": "Assets\\Script\\CollisionFeedbackManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:13.853Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CameraShakeController.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\CameraShakeController.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\CameraShakeController.cs",
+              "ToolTip": "C:\\Users\\admin\\OneDrive\\\u6587\u6863\\GitHub\\-shopping\\\u7206\u8D70\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\\Assets\\Script\\CameraShakeController.cs",
+              "RelativeToolTip": "Assets\\Script\\CameraShakeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-02T13:14:13.1Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
