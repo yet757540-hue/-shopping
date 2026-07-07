@@ -2,15 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TimerManager の経過時間を画面に表示し、停止時に中央へ移動させる UI です。
-// 役割:
-// - TimerManager の Started / Stopped / ResetCompleted / TimeChanged を購読して表示を更新します。
-// - Text が未配置でも実行時にタイマー表示を生成します。
-// 接続:
-// - TimerManager と同じ GameObject、またはシーン内の TimerManager を自動探索します。
-// - 日本語フォントヘルパー JapaneseUIFont を使いますが、表示文字自体は mm:ss.cc 形式です。
-// 読むときの要点:
-// - TimeChanged は 1/100 秒単位で通知されるため、表示更新もセンチ秒単位で抑えています。
 public class TimerDisplayUI : MonoBehaviour
 {
     [Header("References")]
@@ -36,7 +27,6 @@ public class TimerDisplayUI : MonoBehaviour
     private int lastDisplayedCentiseconds = -1;
     private Coroutine moveCoroutine;
 
-    // 参照解決、Text 確保、見た目設定、初期表示を行います。
     private void Awake()
     {
         ResolveReferences();
@@ -45,7 +35,6 @@ public class TimerDisplayUI : MonoBehaviour
         ResetTimerView();
     }
 
-    // 有効化時に TimerManager へイベント購読し、現在時間で表示を更新します。
     private void OnEnable()
     {
         ResolveReferences();
@@ -53,13 +42,11 @@ public class TimerDisplayUI : MonoBehaviour
         RefreshFromTimer();
     }
 
-    // 無効化時に TimerManager のイベント購読を解除します。
     private void OnDisable()
     {
         UnsubscribeTimer();
     }
 
-    // 同じ GameObject、またはシーン内から TimerManager を探します。
     private void ResolveReferences()
     {
         if (timerManager == null)
@@ -73,7 +60,6 @@ public class TimerDisplayUI : MonoBehaviour
         }
     }
 
-    // TimerManager の状態イベントと時間変更イベントを購読します。
     private void SubscribeTimer()
     {
         if (timerManager == null)
@@ -92,7 +78,6 @@ public class TimerDisplayUI : MonoBehaviour
         timerManager.TimeChanged += HandleTimeChanged;
     }
 
-    // TimerManager から登録したイベントハンドラを外します。
     private void UnsubscribeTimer()
     {
         if (timerManager == null)
@@ -106,7 +91,6 @@ public class TimerDisplayUI : MonoBehaviour
         timerManager.TimeChanged -= HandleTimeChanged;
     }
 
-    // TimerManager の現在時間を使って表示を同期します。
     private void RefreshFromTimer()
     {
         if (timerManager == null)
@@ -118,33 +102,27 @@ public class TimerDisplayUI : MonoBehaviour
         UpdateTimerText(timerManager.ElapsedTime, true);
     }
 
-    // タイマー開始時は表示位置と表示状態を初期状態へ戻します。
     private void HandleTimerStarted()
     {
         ResetTimerView();
     }
 
-    // タイマー停止時は最終時間を表示し、中央移動演出を開始します。
     private void HandleTimerStopped()
     {
         RefreshFromTimer();
-        // ゴール時に結果が目立つよう、タイマー表示を中央へ移動します。
         StartMoveTimerToCenter();
     }
 
-    // タイマーリセット時は表示も初期状態へ戻します。
     private void HandleTimerReset()
     {
         ResetTimerView();
     }
 
-    // TimerManager から通知された経過時間を表示に反映します。
     private void HandleTimeChanged(float elapsedTime)
     {
         UpdateTimerText(elapsedTime, false);
     }
 
-    // タイマー表示を上部に戻し、非表示状態なら再表示します。
     private void ResetTimerView()
     {
         StopMoveCoroutine();
@@ -162,7 +140,6 @@ public class TimerDisplayUI : MonoBehaviour
         RefreshFromTimer();
     }
 
-    // 既存 Text を探し、なければ実行時に作ります。
     private void EnsureTimerText()
     {
         if (timerText == null)
@@ -181,7 +158,6 @@ public class TimerDisplayUI : MonoBehaviour
         }
     }
 
-    // Canvas と Timer Text を実行時に作ります。
     private void CreateRuntimeTimerText()
     {
         Canvas canvas = FindAnyObjectByType<Canvas>();
@@ -208,7 +184,6 @@ public class TimerDisplayUI : MonoBehaviour
         timerText = textObject.AddComponent<Text>();
     }
 
-    // Timer Text のフォント、サイズ、色、配置を設定します。
     private void ConfigureTimerText()
     {
         if (timerText == null)
@@ -225,7 +200,6 @@ public class TimerDisplayUI : MonoBehaviour
         timerText.raycastTarget = false;
     }
 
-    // 経過時間を mm:ss.cc 形式へ変換し、必要なときだけ Text を更新します。
     private void UpdateTimerText(float elapsedTime, bool force)
     {
         if (timerText == null)
@@ -247,14 +221,12 @@ public class TimerDisplayUI : MonoBehaviour
         timerText.text = $"{minutes:00}:{seconds:00}.{milliseconds:00}";
     }
 
-    // 中央移動演出を開始します。既存演出があれば止めてから始めます。
     private void StartMoveTimerToCenter()
     {
         StopMoveCoroutine();
         moveCoroutine = StartCoroutine(MoveTimerToCenter());
     }
 
-    // タイマー表示を現在位置から中央位置へ滑らかに移動します。
     private IEnumerator MoveTimerToCenter()
     {
         if (timerRect == null)
@@ -285,7 +257,6 @@ public class TimerDisplayUI : MonoBehaviour
         moveCoroutine = null;
     }
 
-    // 中央移動コルーチンが動いていれば停止します。
     private void StopMoveCoroutine()
     {
         if (moveCoroutine == null)
@@ -297,7 +268,6 @@ public class TimerDisplayUI : MonoBehaviour
         moveCoroutine = null;
     }
 
-    // UI サイズ、フォント、演出時間を安全な範囲へ補正します。
     private void OnValidate()
     {
         size.x = Mathf.Max(80f, size.x);

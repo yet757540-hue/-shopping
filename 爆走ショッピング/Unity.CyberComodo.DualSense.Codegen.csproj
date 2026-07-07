@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{E7CBDD94-499B-07C4-DAB3-27CE5DC6C139}</ProjectGuid>
+    <ProjectGuid>{6DD3ADE3-C753-93FB-DF43-056216927A58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.CyberComodo.DualSense.Codegen</AssemblyName>

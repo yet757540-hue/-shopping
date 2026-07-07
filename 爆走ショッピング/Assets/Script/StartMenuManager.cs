@@ -6,18 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// スタート画面、オプション画面、ゲーム開始時の設定引き渡しを管理します。
-// 役割:
-// - START / OPTION / EXIT のメニュー選択と、ゲームパッド・キーボード入力を処理します。
-// - Prefab の StartMenuView があればそれを使い、なければ最低限の UI を実行時に生成します。
-// - オプションで音量、移動プリセット、操作方式を選び、ゲームシーン読み込み前に一時保存します。
-// 接続:
-// - RuntimeOptionMenu がオプション行のフォーカス、決定、値変更を担当します。
-// - PlayerMovementPresetApplier が選択済み移動設定を次のシーンの PlayerManager へ渡します。
-// - startSelected / optionOpened / optionClosed / exitSelected は Inspector から追加演出などを接続できます。
-// 読むときの要点:
-// - isOptionOpen でメインメニュー入力とオプション入力を分けます。
-// - スティック入力は押しっぱなしで連続移動しないよう、Held フラグと releaseThreshold で 1 回入力化しています。
 public class StartMenuManager : MonoBehaviour
 {
     private enum MenuOption
@@ -108,7 +96,6 @@ public class StartMenuManager : MonoBehaviour
     public int SelectedMenuIndex => selectedMenuIndex;
     public StartMenuView ActiveMenuView => activeMenuView;
 
-    // プリセットを検証し、メニュー UI を準備して初期選択状態にします。
     private void Awake()
     {
         EnsureMovementPresets();
@@ -118,7 +105,6 @@ public class StartMenuManager : MonoBehaviour
         SetOptionVisible(false);
     }
 
-    // 入力デバイスを読み、オプション表示中かどうかで入力処理を振り分けます。
     private void Update()
     {
         Gamepad gamepad = Gamepad.current;
@@ -131,7 +117,6 @@ public class StartMenuManager : MonoBehaviour
 
         if (isOptionOpen)
         {
-            // オプション表示中はメインメニューの START/EXIT には反応させません。
             HandleOptionInput(gamepad, keyboard);
             return;
         }
@@ -139,7 +124,6 @@ public class StartMenuManager : MonoBehaviour
         HandleMainMenuInput(gamepad, keyboard);
     }
 
-    // メインメニューの上下移動と決定入力を処理します。
     private void HandleMainMenuInput(Gamepad gamepad, Keyboard keyboard)
     {
         int movement = ReadNavigationMovement(gamepad, keyboard);
@@ -155,12 +139,10 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // オプション画面のフォーカス移動、値調整、戻る入力を処理します。
     private void HandleOptionInput(Gamepad gamepad, Keyboard keyboard)
     {
         if (optionMenu != null && optionMenu.HasActiveItem)
         {
-            // 行を編集中のときは上下移動ではなく、左右調整またはキャンセルだけを受け付けます。
             if (IsBackPressed(gamepad, keyboard))
             {
                 optionMenu.CancelActiveItem();
@@ -198,7 +180,6 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // メインメニュー用に、D-pad、矢印キー、左スティックから 1 ステップ分の移動を読みます。
     private int ReadNavigationMovement(Gamepad gamepad, Keyboard keyboard)
     {
         if (gamepad != null)
@@ -262,7 +243,6 @@ public class StartMenuManager : MonoBehaviour
         return 0;
     }
 
-    // オプション項目の上下フォーカス移動を読みます。
     private int ReadOptionNavigationMovement(Gamepad gamepad, Keyboard keyboard)
     {
         if (gamepad != null)
@@ -299,7 +279,6 @@ public class StartMenuManager : MonoBehaviour
         return ReadAnalogAxisStep(gamepad.leftStick.y.ReadValue(), ref isOptionNavigationHeld, false);
     }
 
-    // オプション編集中の左右調整入力を読みます。
     private int ReadOptionAdjustment(Gamepad gamepad, Keyboard keyboard)
     {
         if (gamepad != null)
@@ -336,7 +315,6 @@ public class StartMenuManager : MonoBehaviour
         return ReadAnalogAxisStep(gamepad.leftStick.x.ReadValue(), ref isOptionAdjustmentHeld, true);
     }
 
-    // アナログスティック入力を、押しっぱなしで連続しない 1 ステップ入力へ変換します。
     private int ReadAnalogAxisStep(float axisValue, ref bool isHeld, bool positiveMovesNext)
     {
         float deadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);
@@ -363,33 +341,28 @@ public class StartMenuManager : MonoBehaviour
         return positiveMovesNext ? -1 : 1;
     }
 
-    // 決定ボタンまたは Enter/Space が押された瞬間を返します。
     private bool IsConfirmPressed(Gamepad gamepad, Keyboard keyboard)
     {
         return (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame) ||
                (keyboard != null && (keyboard.enterKey.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame));
     }
 
-    // キャンセルボタンまたは Escape が押された瞬間を返します。
     private bool IsBackPressed(Gamepad gamepad, Keyboard keyboard)
     {
         return (gamepad != null && gamepad.buttonEast.wasPressedThisFrame) ||
                (keyboard != null && keyboard.escapeKey.wasPressedThisFrame);
     }
 
-    // 外部 UI などから次のメニュー項目へ移動するための公開入口です。
     public void SelectNext()
     {
         MoveSelection(1);
     }
 
-    // 外部 UI などから前のメニュー項目へ移動するための公開入口です。
     public void SelectPrevious()
     {
         MoveSelection(-1);
     }
 
-    // 現在選択中の START / OPTION / EXIT に対応する処理を実行します。
     public void ActivateSelectedOption()
     {
         if (menuItems.Count == 0)
@@ -411,7 +384,6 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // メインメニューの選択 index を上下に循環移動します。
     private void MoveSelection(int delta)
     {
         if (menuItems.Count == 0)
@@ -429,7 +401,6 @@ public class StartMenuManager : MonoBehaviour
         SelectMenuIndex(nextIndex % menuItems.Count);
     }
 
-    // 指定 index を範囲内に収めて選択し、見た目を更新します。
     private void SelectMenuIndex(int index)
     {
         if (menuItems.Count == 0)
@@ -442,7 +413,6 @@ public class StartMenuManager : MonoBehaviour
         RefreshSelectionVisuals();
     }
 
-    // 選択中の行だけ背景色を selectedBackgroundColor にします。
     private void RefreshSelectionVisuals()
     {
         for (int i = 0; i < menuItems.Count; i++)
@@ -457,7 +427,6 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // ゲームシーン名を確認し、移動設定を預けてからシーンを読み込みます。
     public void StartGame()
     {
         if (string.IsNullOrWhiteSpace(gameSceneName))
@@ -472,14 +441,12 @@ public class StartMenuManager : MonoBehaviour
             return;
         }
 
-        // シーン読み込み前に選択中の移動設定を静的中継役へ預けます。
         QueueSelectedMovementPreset();
         startSelected.Invoke();
         StartSelected?.Invoke();
         SceneManager.LoadScene(gameSceneName);
     }
 
-    // オプション画面を開き、フォーカスと入力状態を初期化します。
     public void OpenOptions()
     {
         if (isOptionOpen)
@@ -496,7 +463,6 @@ public class StartMenuManager : MonoBehaviour
         OptionOpened?.Invoke();
     }
 
-    // オプション画面を閉じ、編集中の項目があればキャンセルします。
     public void CloseOptions()
     {
         if (!isOptionOpen)
@@ -512,7 +478,6 @@ public class StartMenuManager : MonoBehaviour
         OptionClosed?.Invoke();
     }
 
-    // 終了イベントを通知し、Editor では再生停止、ビルドでは Application.Quit を実行します。
     public void ExitGame()
     {
         exitSelected.Invoke();
@@ -525,7 +490,6 @@ public class StartMenuManager : MonoBehaviour
 #endif
     }
 
-    // Prefab UI または実行時生成 UI を作り、標準オプション項目を登録します。
     private void CreateRuntimeUI()
     {
         menuItems.Clear();
@@ -538,13 +502,11 @@ public class StartMenuManager : MonoBehaviour
         RegisterDefaultOptionItems();
     }
 
-    // 参照済み View、Prefab、シーン内 View の順に探し、使えればバインドします。
     private bool TryCreatePrefabUI()
     {
         StartMenuView view = sceneMenuView;
         bool instantiatedPrefab = false;
 
-        // 参照済み View、Prefab、シーン内検索の順で UI を探します。
         if (view == null && menuViewPrefab != null)
         {
             view = Instantiate(menuViewPrefab);
@@ -578,7 +540,6 @@ public class StartMenuManager : MonoBehaviour
         return true;
     }
 
-    // StartMenuView の各参照を StartMenuManager の操作対象として保持します。
     private void BindPrefabView(StartMenuView view)
     {
         activeMenuView = view;
@@ -595,7 +556,6 @@ public class StartMenuManager : MonoBehaviour
         optionMenu = new RuntimeOptionMenu(optionContentRoot, CreateOptionMenuStyle());
     }
 
-    // Prefab 側の 1 行をメニュー項目として登録します。
     private void BindPrefabMenuRow(StartMenuView.MenuRowReference row, string label, MenuOption option)
     {
         row.SetLabel(label);
@@ -608,7 +568,6 @@ public class StartMenuManager : MonoBehaviour
         });
     }
 
-    // Prefab がない場合に使う標準 UI を実行時生成します。
     private void CreateDefaultRuntimeUI()
     {
         activeMenuView = null;
@@ -618,7 +577,6 @@ public class StartMenuManager : MonoBehaviour
         CreateOptionPopup(canvas.transform);
     }
 
-    // スタートメニュー専用 Canvas を作ります。
     private Canvas CreateCanvas()
     {
         GameObject canvasObject = new GameObject("Start Menu Canvas");
@@ -634,7 +592,6 @@ public class StartMenuManager : MonoBehaviour
         return createdCanvas;
     }
 
-    // 画面全体を覆う背景 Image を作ります。
     private void CreateBackground(Transform parent)
     {
         RectTransform backgroundRect = CreateRect("White Background", parent);
@@ -645,7 +602,6 @@ public class StartMenuManager : MonoBehaviour
         background.raycastTarget = false;
     }
 
-    // START / OPTION / EXIT の 3 行を持つメインメニューを作ります。
     private void CreateMainMenu(Transform parent)
     {
         menuItems.Clear();
@@ -663,7 +619,6 @@ public class StartMenuManager : MonoBehaviour
         CreateMenuRow("Exit Row", "EXIT", MenuOption.Exit, -rowSpacing);
     }
 
-    // メインメニューの 1 行を作り、MenuItem として登録します。
     private void CreateMenuRow(string objectName, string label, MenuOption option, float yPosition)
     {
         RectTransform row = CreateRect(objectName, mainMenuRoot);
@@ -691,7 +646,6 @@ public class StartMenuManager : MonoBehaviour
         });
     }
 
-    // オプション用ポップアップ、戻るヒント、項目配置 root を作ります。
     private void CreateOptionPopup(Transform parent)
     {
         RectTransform popupRect = CreateRect("Option Popup", parent);
@@ -725,7 +679,6 @@ public class StartMenuManager : MonoBehaviour
         optionMenu = new RuntimeOptionMenu(optionContentRoot, CreateOptionMenuStyle());
     }
 
-    // 外部または標準設定から、数値変更用オプション行を追加します。
     public RuntimeOptionSlider AddSliderOption(
         string label,
         float minValue,
@@ -756,7 +709,6 @@ public class StartMenuManager : MonoBehaviour
         return slider;
     }
 
-    // RuntimeOptionMenu に渡す見た目設定を StartMenuManager の Inspector 値から作ります。
     private RuntimeOptionMenuStyle CreateOptionMenuStyle()
     {
         return new RuntimeOptionMenuStyle
@@ -773,10 +725,8 @@ public class StartMenuManager : MonoBehaviour
         };
     }
 
-    // 音量、移動プリセット、操作方式の標準オプション項目を登録します。
     private void RegisterDefaultOptionItems()
     {
-        // ここに項目を追加すると、RuntimeOptionMenu の入力処理に自動で乗ります。
         AddSliderOption(
             "VOLUME",
             0f,
@@ -802,7 +752,6 @@ public class StartMenuManager : MonoBehaviour
         );
     }
 
-    // 外部または標準設定から、選択肢切り替え用オプション行を追加します。
     public RuntimeOptionChoice AddChoiceOption(
         string label,
         string[] choices,
@@ -821,31 +770,26 @@ public class StartMenuManager : MonoBehaviour
         return choice;
     }
 
-    // AudioListener のマスター音量へ反映します。
     private void SetMasterVolume(float value)
     {
         AudioListener.volume = Mathf.Clamp01(value);
     }
 
-    // 音量スライダーの値をパーセント表示へ変換します。
     private string FormatVolumeValue(float value)
     {
         return Mathf.RoundToInt(Mathf.Clamp01(value) * 100f) + "%";
     }
 
-    // MOVE PRESET の選択 index を保存します。
     private void HandleMovementPresetChanged(int index, string _)
     {
         selectedMovementPresetIndex = Mathf.Clamp(index, 0, movementPresets.Length - 1);
     }
 
-    // MOVE CONTROL の選択 index を保存します。
     private void HandleMovementControlPresetChanged(int index, string _)
     {
         selectedMovementControlPresetIndex = Mathf.Clamp(index, 0, movementControlPresets.Length - 1);
     }
 
-    // 移動プリセット配列から、オプション表示用のラベル配列を作ります。
     private string[] GetMovementPresetLabels()
     {
         EnsureMovementPresets();
@@ -860,7 +804,6 @@ public class StartMenuManager : MonoBehaviour
         return labels;
     }
 
-    // 操作方式プリセット配列から、オプション表示用のラベル配列を作ります。
     private string[] GetMovementControlPresetLabels()
     {
         EnsureMovementControlPresets();
@@ -875,7 +818,6 @@ public class StartMenuManager : MonoBehaviour
         return labels;
     }
 
-    // 現在選択中の移動設定と操作方式を、次のシーン用に一時保存します。
     private void QueueSelectedMovementPreset()
     {
         EnsureMovementPresets();
@@ -888,7 +830,6 @@ public class StartMenuManager : MonoBehaviour
         PlayerMovementPresetApplier.SetPendingControlScheme(controlPreset.ControlScheme);
     }
 
-    // 移動プリセット配列の欠落や null を補い、選択 index を範囲内に収めます。
     private void EnsureMovementPresets()
     {
         if (movementPresets == null || movementPresets.Length == 0)
@@ -926,7 +867,6 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // 操作方式プリセット配列の欠落や null を補い、選択 index を範囲内に収めます。
     private void EnsureMovementControlPresets()
     {
         if (movementControlPresets == null || movementControlPresets.Length == 0)
@@ -966,7 +906,6 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // オプション内で編集中かどうかに応じて、戻るヒントの文言を切り替えます。
     private void RefreshOptionBackHint()
     {
         if (optionBackHint == null)
@@ -977,14 +916,12 @@ public class StartMenuManager : MonoBehaviour
         optionBackHint.text = optionMenu != null && optionMenu.HasActiveItem ? "B CANCEL" : "B BACK";
     }
 
-    // オプション画面用のアナログ入力保持状態をリセットします。
     private void ResetOptionInputState()
     {
         isOptionNavigationHeld = false;
         isOptionAdjustmentHeld = false;
     }
 
-    // オプションポップアップの四辺に細い枠線を作ります。
     private void CreateBorder(RectTransform parent)
     {
         CreateBorderSegment("Option Border Top", parent, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, 2f));
@@ -993,7 +930,6 @@ public class StartMenuManager : MonoBehaviour
         CreateBorderSegment("Option Border Right", parent, new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(2f, 0f));
     }
 
-    // 枠線 1 辺分の Image を指定 anchor と size で作ります。
     private void CreateBorderSegment(string objectName, RectTransform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 sizeDelta)
     {
         RectTransform borderRect = CreateRect(objectName, parent);
@@ -1008,7 +944,6 @@ public class StartMenuManager : MonoBehaviour
         border.raycastTarget = false;
     }
 
-    // メニュー用 Text を共通設定つきで作ります。
     private Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -1024,7 +959,6 @@ public class StartMenuManager : MonoBehaviour
         return text;
     }
 
-    // RectTransform 付き GameObject を作り、指定親へ接続します。
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -1032,7 +966,6 @@ public class StartMenuManager : MonoBehaviour
         return rectObject.GetComponent<RectTransform>();
     }
 
-    // RectTransform を親いっぱいに広げ、指定 offset を適用します。
     private void Stretch(RectTransform rect, Vector2 offsetMin, Vector2 offsetMax)
     {
         rect.anchorMin = Vector2.zero;
@@ -1041,7 +974,6 @@ public class StartMenuManager : MonoBehaviour
         rect.offsetMax = offsetMax;
     }
 
-    // メインメニューとオプションポップアップの表示状態を切り替えます。
     private void SetOptionVisible(bool visible)
     {
         isOptionOpen = visible;
@@ -1057,7 +989,6 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // Inspector 値の欠落や範囲外入力を補正します。
     private void OnValidate()
     {
         if (string.IsNullOrWhiteSpace(gameSceneName))

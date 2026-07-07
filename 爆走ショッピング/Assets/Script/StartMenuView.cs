@@ -2,14 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-// 手作りまたは Prefab 化したスタートメニュー UI の参照置き場です。
-// 役割:
-// - StartMenuManager が必要とする Canvas、メニュー行、オプション表示領域への参照をまとめます。
-// - UI の見た目は Prefab 側で作り、操作ロジックは StartMenuManager 側に置くための橋渡しです。
-// 接続:
-// - StartMenuManager.TryCreatePrefabUI が HasRequiredReferences を確認し、足りなければ実行時生成 UI にフォールバックします。
-// 読むときの要点:
-// - MenuRowReference は 1 行ぶんの root、background、labelText をまとめた小さな参照クラスです。
 public class StartMenuView : MonoBehaviour
 {
     [Serializable]
@@ -24,7 +16,6 @@ public class StartMenuView : MonoBehaviour
         public Text LabelText => labelText;
         public bool IsValid => root != null && background != null && labelText != null;
 
-        // StartMenuManager 側からメニュー行の表示文字を設定します。
         public void SetLabel(string label)
         {
             if (labelText != null)

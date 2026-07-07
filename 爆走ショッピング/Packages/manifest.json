@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.cyberkomodo.dualsense": "file:C:/Users/admin/Downloads/CyberKomodo.DualSense-main",
     "com.unity.ai.navigation": "2.0.12",
     "com.unity.cinemachine": "3.1.2",
     "com.unity.collab-proxy": "2.12.4",
