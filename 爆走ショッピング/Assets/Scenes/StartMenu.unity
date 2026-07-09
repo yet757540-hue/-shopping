@@ -186,15 +186,15 @@ MonoBehaviour:
   - displayName: EXTREMLY EASY
     settings:
       lowSpeedAcceleration: 20
-      highSpeedAcceleration: 3
-      accelerationSwitchSpeed: 11
+      highSpeedAcceleration: 2.5
+      accelerationSwitchSpeed: 8
       reverseAcceleration: 12
-      deceleration: 16
+      deceleration: 18
       brakeDeceleration: 25
       maxSpeed: 30
       maxReverseSpeed: 7
       triggerDeadZone: 0.1
-      stopThreshold: 0.1
+      stopThreshold: 1
       turnResetSpeed: 13
       stickDeadZone: 0.1
       turnAcceleration: 10
@@ -202,15 +202,15 @@ MonoBehaviour:
   - displayName: Normal
     settings:
       lowSpeedAcceleration: 12
-      highSpeedAcceleration: 3
-      accelerationSwitchSpeed: 10
+      highSpeedAcceleration: 2.5
+      accelerationSwitchSpeed: 8
       reverseAcceleration: 7
       deceleration: 8
       brakeDeceleration: 20
       maxSpeed: 30
       maxReverseSpeed: 7
-      triggerDeadZone: 0.14
-      stopThreshold: 0.08
+      triggerDeadZone: 0.1
+      stopThreshold: 1
       turnResetSpeed: 6
       stickDeadZone: 0.08
       turnAcceleration: 7
