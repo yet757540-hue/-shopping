@@ -1,0 +1,6 @@
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\obj\Debug\Assembly-CSharp.dll
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\obj\Debug\Assembly-CSharp.pdb

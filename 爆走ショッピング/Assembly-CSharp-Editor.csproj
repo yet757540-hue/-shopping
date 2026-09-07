@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2CE17545-BA6F-5205-E5A0-630D30E69B42}</ProjectGuid>
+    <ProjectGuid>{E7DA5FD0-B1ED-9AC7-9A91-909EE37C394E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -61,7 +61,8 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.4.2f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
+    <Compile Include="Assets\Editor\ProjectStructureMigration.cs" />
+    <Compile Include="Assets\Editor\GameSessionBuildValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1447,20 +1448,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{DF6438F4-67DF-6401-B0C0-68F98B317357}</Project>
+      <Project>{68B34E66-91B5-D3EB-362A-5B64F8383E74}</Project>
       <Name>Assembly-CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.StarterAssets.csproj">
-      <Project>{14A9DC9B-2D61-1FC8-F8F1-485CFAADCE88}</Project>
-      <Name>Unity.StarterAssets</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.StarterAssets.Editor.csproj">
-      <Project>{930D6872-87A2-1277-0C9F-995A9DBBEB8C}</Project>
-      <Name>Unity.StarterAssets.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="URPWizard.csproj">
-      <Project>{C5A01DC7-19EA-08DB-AA4E-EB331A80EA15}</Project>
-      <Name>URPWizard</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

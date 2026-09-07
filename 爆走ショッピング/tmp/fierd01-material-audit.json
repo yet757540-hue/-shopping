@@ -1,0 +1,7057 @@
+{
+  "version": 7700,
+  "objects": [
+    {
+      "name": "Material",
+      "props": [
+        1398879579408,
+        "aiStandardSurface1\u0000\u0001Material",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Version",
+          "props": [
+            102
+          ],
+          "children": []
+        },
+        {
+          "name": "ShadingModel",
+          "props": [
+            "unknown"
+          ],
+          "children": []
+        },
+        {
+          "name": "MultiLayer",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Maya",
+                "Compound",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|TypeId",
+                "int",
+                "Integer",
+                "",
+                1138001
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|outAlpha",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCamera",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiEnableMatte",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColorA",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|base",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|diffuseRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughness",
+                "float",
+                "",
+                "",
+                0.20000000298023224
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|metalness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDepth",
+                "Distance",
+                "",
+                "",
+                0.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatter",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersion",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionExtraRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionShadowDensity",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmitAovs",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurface",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadius",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceScale",
+                "Distance",
+                "",
+                "",
+                1.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceType",
+                "enum",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheen",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenRoughness",
+                "float",
+                "",
+                "",
+                0.30000001192092896
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinWalled",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|tangent",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coat",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughness",
+                "float",
+                "",
+                "",
+                0.10000000149011612
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatNormal",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectColor",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmThickness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|opacity",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|caustics",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|internalReflections",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|exitToBackground",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectDiffuse",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectSpecular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|dielectricPriority",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId1",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id1",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId2",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id2",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId3",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id3",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId4",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id4",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId5",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id5",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId6",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id6",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId7",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id7",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId8",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id8",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraUsedAs",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraFactor",
+                "double",
+                "Number",
+                "",
+                0.0
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Material",
+      "props": [
+        1398879577168,
+        "aiStandardSurface2\u0000\u0001Material",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Version",
+          "props": [
+            102
+          ],
+          "children": []
+        },
+        {
+          "name": "ShadingModel",
+          "props": [
+            "unknown"
+          ],
+          "children": []
+        },
+        {
+          "name": "MultiLayer",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Maya",
+                "Compound",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|TypeId",
+                "int",
+                "Integer",
+                "",
+                1138001
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|outAlpha",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCamera",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiEnableMatte",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColorA",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|base",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|diffuseRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughness",
+                "float",
+                "",
+                "",
+                0.20000000298023224
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|metalness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDepth",
+                "Distance",
+                "",
+                "",
+                0.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatter",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersion",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionExtraRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionShadowDensity",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmitAovs",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurface",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadius",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceScale",
+                "Distance",
+                "",
+                "",
+                1.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceType",
+                "enum",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheen",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenRoughness",
+                "float",
+                "",
+                "",
+                0.30000001192092896
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinWalled",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|tangent",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coat",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughness",
+                "float",
+                "",
+                "",
+                0.10000000149011612
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatNormal",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectColor",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmThickness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|opacity",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|caustics",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|internalReflections",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|exitToBackground",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectDiffuse",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectSpecular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|dielectricPriority",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId1",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id1",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId2",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id2",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId3",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id3",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId4",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id4",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId5",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id5",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId6",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id6",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId7",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id7",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId8",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id8",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraUsedAs",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraFactor",
+                "double",
+                "Number",
+                "",
+                0.0
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Material",
+      "props": [
+        1398879581648,
+        "aiStandardSurface3\u0000\u0001Material",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Version",
+          "props": [
+            102
+          ],
+          "children": []
+        },
+        {
+          "name": "ShadingModel",
+          "props": [
+            "unknown"
+          ],
+          "children": []
+        },
+        {
+          "name": "MultiLayer",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Maya",
+                "Compound",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|TypeId",
+                "int",
+                "Integer",
+                "",
+                1138001
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|outAlpha",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCamera",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiEnableMatte",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColorA",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|base",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|diffuseRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughness",
+                "float",
+                "",
+                "",
+                0.20000000298023224
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|metalness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDepth",
+                "Distance",
+                "",
+                "",
+                0.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatter",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersion",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionExtraRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionShadowDensity",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmitAovs",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurface",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadius",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceScale",
+                "Distance",
+                "",
+                "",
+                1.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceType",
+                "enum",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheen",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenRoughness",
+                "float",
+                "",
+                "",
+                0.30000001192092896
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinWalled",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|tangent",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coat",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughness",
+                "float",
+                "",
+                "",
+                0.10000000149011612
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatNormal",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectColor",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmThickness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|opacity",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|caustics",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|internalReflections",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|exitToBackground",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectDiffuse",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectSpecular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|dielectricPriority",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId1",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id1",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId2",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id2",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId3",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id3",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId4",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id4",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId5",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id5",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId6",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id6",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId7",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id7",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId8",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id8",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraUsedAs",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraFactor",
+                "double",
+                "Number",
+                "",
+                0.0
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Material",
+      "props": [
+        1398879582288,
+        "aiStandardSurface7\u0000\u0001Material",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Version",
+          "props": [
+            102
+          ],
+          "children": []
+        },
+        {
+          "name": "ShadingModel",
+          "props": [
+            "unknown"
+          ],
+          "children": []
+        },
+        {
+          "name": "MultiLayer",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Maya",
+                "Compound",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|TypeId",
+                "int",
+                "Integer",
+                "",
+                1138001
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|outAlpha",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCamera",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiEnableMatte",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColorA",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|base",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|diffuseRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughness",
+                "float",
+                "",
+                "",
+                0.20000000298023224
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|metalness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmission",
+                "float",
+                "",
+                "",
+                0.699999988079071
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDepth",
+                "Distance",
+                "",
+                "",
+                0.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatter",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersion",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionExtraRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionShadowDensity",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmitAovs",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurface",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadius",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceScale",
+                "Distance",
+                "",
+                "",
+                1.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceType",
+                "enum",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheen",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenRoughness",
+                "float",
+                "",
+                "",
+                0.30000001192092896
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinWalled",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|tangent",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coat",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughness",
+                "float",
+                "",
+                "",
+                0.10000000149011612
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatNormal",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectColor",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmThickness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|opacity",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|caustics",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|internalReflections",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|exitToBackground",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectDiffuse",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectSpecular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|dielectricPriority",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId1",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id1",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId2",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id2",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId3",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id3",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId4",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id4",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId5",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id5",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId6",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id6",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId7",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id7",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId8",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id8",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraUsedAs",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraFactor",
+                "double",
+                "Number",
+                "",
+                0.0
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Material",
+      "props": [
+        1398879575888,
+        "openPBR_shader1\u0000\u0001Material",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Version",
+          "props": [
+            102
+          ],
+          "children": []
+        },
+        {
+          "name": "ShadingModel",
+          "props": [
+            "openpbrsurface"
+          ],
+          "children": []
+        },
+        {
+          "name": "MultiLayer",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "ShadingModel",
+                "KString",
+                "",
+                "",
+                "openPBRSurface"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya",
+                "Compound",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|TypeId",
+                "int",
+                "Integer",
+                "",
+                1330659923
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseWeight",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.4000000059604645,
+                0.4000000059604645,
+                0.4000000059604645
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseDiffuseRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseMetalness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularWeight",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughness",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughnessAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionWeight",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDepth",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatter",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersionScale",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersionAbbeNumber",
+                "float",
+                "",
+                "",
+                20.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceWeight",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadius",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadiusScale",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                0.5,
+                0.25
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|fuzzWeight",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|fuzzColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|fuzzRoughness",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatWeight",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughnessAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatIOR",
+                "float",
+                "",
+                "",
+                1.600000023841858
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatDarkening",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmWeight",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmThickness",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmIOR",
+                "float",
+                "",
+                "",
+                1.399999976158142
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionLuminance",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|geometryOpacity",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|geometryThinWalled",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|geometryCoatNormal",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|geometryCoatTangent",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCamera",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|hardwareShader",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraUsedAs",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraFactor",
+                "double",
+                "Number",
+                "",
+                0.0
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Material",
+      "props": [
+        1398879579728,
+        "aiStandardSurface8\u0000\u0001Material",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Version",
+          "props": [
+            102
+          ],
+          "children": []
+        },
+        {
+          "name": "ShadingModel",
+          "props": [
+            "unknown"
+          ],
+          "children": []
+        },
+        {
+          "name": "MultiLayer",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Maya",
+                "Compound",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|TypeId",
+                "int",
+                "Integer",
+                "",
+                1138001
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|outAlpha",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCamera",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiEnableMatte",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColorA",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|base",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|diffuseRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughness",
+                "float",
+                "",
+                "",
+                0.20000000298023224
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|metalness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmission",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDepth",
+                "Distance",
+                "",
+                "",
+                0.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatter",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersion",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionExtraRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionShadowDensity",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmitAovs",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurface",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadius",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceScale",
+                "Distance",
+                "",
+                "",
+                1.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceType",
+                "enum",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheen",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenRoughness",
+                "float",
+                "",
+                "",
+                0.30000001192092896
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinWalled",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|tangent",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coat",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughness",
+                "float",
+                "",
+                "",
+                0.10000000149011612
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatNormal",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectColor",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmThickness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|opacity",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|caustics",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|internalReflections",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|exitToBackground",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectDiffuse",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectSpecular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|dielectricPriority",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId1",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id1",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId2",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id2",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId3",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id3",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId4",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id4",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId5",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id5",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId6",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id6",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId7",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id7",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId8",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id8",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraUsedAs",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraFactor",
+                "double",
+                "Number",
+                "",
+                0.0
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Material",
+      "props": [
+        1398879584048,
+        "aiStandardSurface4\u0000\u0001Material",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Version",
+          "props": [
+            102
+          ],
+          "children": []
+        },
+        {
+          "name": "ShadingModel",
+          "props": [
+            "unknown"
+          ],
+          "children": []
+        },
+        {
+          "name": "MultiLayer",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Maya",
+                "Compound",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|TypeId",
+                "int",
+                "Integer",
+                "",
+                1138001
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|outAlpha",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCamera",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiEnableMatte",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aiMatteColorA",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|base",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|baseColor",
+                "Vector3D",
+                "Vector",
+                "",
+                0.800000011920929,
+                0.800000011920929,
+                0.800000011920929
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|diffuseRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRoughness",
+                "float",
+                "",
+                "",
+                0.20000000298023224
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|specularRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|metalness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmission",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDepth",
+                "Distance",
+                "",
+                "",
+                0.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatter",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionScatterAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionDispersion",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionExtraRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmissionShadowDensity",
+                "float",
+                "",
+                "",
+                0.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|transmitAovs",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurface",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceRadius",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceScale",
+                "Distance",
+                "",
+                "",
+                1.0,
+                "cm"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|subsurfaceType",
+                "enum",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheen",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|sheenRoughness",
+                "float",
+                "",
+                "",
+                0.30000001192092896
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinWalled",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|tangent",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coat",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRoughness",
+                "float",
+                "",
+                "",
+                0.10000000149011612
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAnisotropy",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatRotation",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatNormal",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectColor",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|coatAffectRoughness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmThickness",
+                "float",
+                "",
+                "",
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|thinFilmIOR",
+                "float",
+                "",
+                "",
+                1.5
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emission",
+                "float",
+                "",
+                "",
+                0.699999988079071
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|emissionColor",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|opacity",
+                "Vector3D",
+                "Vector",
+                "",
+                1.0,
+                1.0,
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|caustics",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|internalReflections",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|exitToBackground",
+                "bool",
+                "",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectDiffuse",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|indirectSpecular",
+                "float",
+                "",
+                "",
+                1.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|dielectricPriority",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId1",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id1",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId2",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id2",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId3",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id3",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId4",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id4",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId5",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id5",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId6",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id6",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId7",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id7",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|aovId8",
+                "KString",
+                "",
+                "",
+                ""
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|id8",
+                "Vector3D",
+                "Vector",
+                "",
+                0.0,
+                0.0,
+                0.0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraUsedAs",
+                "int",
+                "Integer",
+                "",
+                0
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "Maya|normalCameraFactor",
+                "double",
+                "Number",
+                "",
+                0.0
+              ],
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "props": [
+        1399077398656,
+        "file1\u0000\u0001Video",
+        "Clip"
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "Clip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Path",
+                "KString",
+                "XRefUrl",
+                "",
+                "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/yuka02.png"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "RelPath",
+                "KString",
+                "XRefUrl",
+                "",
+                "..\\sourceimages\\yuka02.png"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "UseMipMap",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Filename",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/yuka02.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\yuka02.png"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "props": [
+        1399077400576,
+        "file2\u0000\u0001Video",
+        "Clip"
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "Clip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Path",
+                "KString",
+                "XRefUrl",
+                "",
+                "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/wall.png"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "RelPath",
+                "KString",
+                "XRefUrl",
+                "",
+                "..\\sourceimages\\wall.png"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "UseMipMap",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Filename",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/wall.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\wall.png"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "props": [
+        1399077399136,
+        "file3\u0000\u0001Video",
+        "Clip"
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "Clip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Path",
+                "KString",
+                "XRefUrl",
+                "",
+                "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/tenjyou.png"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "RelPath",
+                "KString",
+                "XRefUrl",
+                "",
+                "..\\sourceimages\\tenjyou.png"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "UseMipMap",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Filename",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/tenjyou.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\tenjyou.png"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "props": [
+        1399077398176,
+        "file5\u0000\u0001Video",
+        "Clip"
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "Clip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Path",
+                "KString",
+                "XRefUrl",
+                "",
+                "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/door01.png"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "RelPath",
+                "KString",
+                "XRefUrl",
+                "",
+                "..\\sourceimages\\door01.png"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "UseMipMap",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Filename",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/door01.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\door01.png"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Video",
+      "props": [
+        1399077400096,
+        "file6\u0000\u0001Video",
+        "Clip"
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "Clip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "Path",
+                "KString",
+                "XRefUrl",
+                "",
+                "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/door03.png"
+              ],
+              "children": []
+            },
+            {
+              "name": "P",
+              "props": [
+                "RelPath",
+                "KString",
+                "XRefUrl",
+                "",
+                "..\\sourceimages\\door03.png"
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "UseMipMap",
+          "props": [
+            0
+          ],
+          "children": []
+        },
+        {
+          "name": "Filename",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/door03.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\door03.png"
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Texture",
+      "props": [
+        1398245681344,
+        "file1\u0000\u0001Texture",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "TextureVideoClip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Version",
+          "props": [
+            202
+          ],
+          "children": []
+        },
+        {
+          "name": "TextureName",
+          "props": [
+            "file1\u0000\u0001Texture"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "UseMaterial",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Media",
+          "props": [
+            "file1\u0000\u0001Video"
+          ],
+          "children": []
+        },
+        {
+          "name": "FileName",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/yuka02.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\yuka02.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVTranslation",
+          "props": [
+            0.0,
+            0.0
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVScaling",
+          "props": [
+            1.0,
+            1.0
+          ],
+          "children": []
+        },
+        {
+          "name": "Texture_Alpha_Source",
+          "props": [
+            "None"
+          ],
+          "children": []
+        },
+        {
+          "name": "Cropping",
+          "props": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Texture",
+      "props": [
+        1397980463248,
+        "file2\u0000\u0001Texture",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "TextureVideoClip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Version",
+          "props": [
+            202
+          ],
+          "children": []
+        },
+        {
+          "name": "TextureName",
+          "props": [
+            "file2\u0000\u0001Texture"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "UseMaterial",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Media",
+          "props": [
+            "file2\u0000\u0001Video"
+          ],
+          "children": []
+        },
+        {
+          "name": "FileName",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/wall.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\wall.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVTranslation",
+          "props": [
+            0.0,
+            0.0
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVScaling",
+          "props": [
+            1.0,
+            1.0
+          ],
+          "children": []
+        },
+        {
+          "name": "Texture_Alpha_Source",
+          "props": [
+            "None"
+          ],
+          "children": []
+        },
+        {
+          "name": "Cropping",
+          "props": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Texture",
+      "props": [
+        1397980464208,
+        "file3\u0000\u0001Texture",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "TextureVideoClip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Version",
+          "props": [
+            202
+          ],
+          "children": []
+        },
+        {
+          "name": "TextureName",
+          "props": [
+            "file3\u0000\u0001Texture"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "UseMaterial",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Media",
+          "props": [
+            "file3\u0000\u0001Video"
+          ],
+          "children": []
+        },
+        {
+          "name": "FileName",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/tenjyou.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\tenjyou.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVTranslation",
+          "props": [
+            0.0,
+            0.0
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVScaling",
+          "props": [
+            1.0,
+            1.0
+          ],
+          "children": []
+        },
+        {
+          "name": "Texture_Alpha_Source",
+          "props": [
+            "None"
+          ],
+          "children": []
+        },
+        {
+          "name": "Cropping",
+          "props": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Texture",
+      "props": [
+        1399077399616,
+        "file5\u0000\u0001Texture",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "TextureVideoClip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Version",
+          "props": [
+            202
+          ],
+          "children": []
+        },
+        {
+          "name": "TextureName",
+          "props": [
+            "file5\u0000\u0001Texture"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "UseMaterial",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Media",
+          "props": [
+            "file5\u0000\u0001Video"
+          ],
+          "children": []
+        },
+        {
+          "name": "FileName",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/door01.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\door01.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVTranslation",
+          "props": [
+            0.0,
+            0.0
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVScaling",
+          "props": [
+            1.0,
+            1.0
+          ],
+          "children": []
+        },
+        {
+          "name": "Texture_Alpha_Source",
+          "props": [
+            "None"
+          ],
+          "children": []
+        },
+        {
+          "name": "Cropping",
+          "props": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Texture",
+      "props": [
+        1399077401536,
+        "file6\u0000\u0001Texture",
+        ""
+      ],
+      "children": [
+        {
+          "name": "Type",
+          "props": [
+            "TextureVideoClip"
+          ],
+          "children": []
+        },
+        {
+          "name": "Version",
+          "props": [
+            202
+          ],
+          "children": []
+        },
+        {
+          "name": "TextureName",
+          "props": [
+            "file6\u0000\u0001Texture"
+          ],
+          "children": []
+        },
+        {
+          "name": "Properties70",
+          "props": [],
+          "children": [
+            {
+              "name": "P",
+              "props": [
+                "UseMaterial",
+                "bool",
+                "",
+                "",
+                1
+              ],
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "Media",
+          "props": [
+            "file6\u0000\u0001Video"
+          ],
+          "children": []
+        },
+        {
+          "name": "FileName",
+          "props": [
+            "C:/YamadaMako/Maya_project/game/Project_game/sourceimages/door03.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "RelativeFilename",
+          "props": [
+            "..\\sourceimages\\door03.png"
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVTranslation",
+          "props": [
+            0.0,
+            0.0
+          ],
+          "children": []
+        },
+        {
+          "name": "ModelUVScaling",
+          "props": [
+            1.0,
+            1.0
+          ],
+          "children": []
+        },
+        {
+          "name": "Texture_Alpha_Source",
+          "props": [
+            "None"
+          ],
+          "children": []
+        },
+        {
+          "name": "Cropping",
+          "props": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "children": []
+        }
+      ]
+    }
+  ],
+  "connections": [
+    [
+      "OP",
+      1398245681344,
+      1398879579408,
+      "Maya|baseColor"
+    ],
+    [
+      "OO",
+      1398879579408,
+      1399461304064
+    ],
+    [
+      "OO",
+      1399077398656,
+      1398245681344
+    ],
+    [
+      "OO",
+      1398879579408,
+      1398217744016
+    ],
+    [
+      "OP",
+      1397980463248,
+      1398879577168,
+      "Maya|baseColor"
+    ],
+    [
+      "OO",
+      1398879577168,
+      1399461303616
+    ],
+    [
+      "OO",
+      1399077400576,
+      1397980463248
+    ],
+    [
+      "OO",
+      1398879577168,
+      1398217746336
+    ],
+    [
+      "OO",
+      1398879577168,
+      1398217748656
+    ],
+    [
+      "OP",
+      1397980464208,
+      1398879581648,
+      "Maya|baseColor"
+    ],
+    [
+      "OO",
+      1398879581648,
+      1399461309888
+    ],
+    [
+      "OO",
+      1399077399136,
+      1397980464208
+    ],
+    [
+      "OO",
+      1398879581648,
+      1398209011680
+    ],
+    [
+      "OO",
+      1398879577168,
+      1398209007040
+    ],
+    [
+      "OO",
+      1398879577168,
+      1399141536880
+    ],
+    [
+      "OO",
+      1398879577168,
+      1399141553120
+    ],
+    [
+      "OP",
+      1399077399616,
+      1398879582288,
+      "Maya|baseColor"
+    ],
+    [
+      "OO",
+      1398879582288,
+      1399461314368
+    ],
+    [
+      "OO",
+      1399077398176,
+      1399077399616
+    ],
+    [
+      "OO",
+      1398879582288,
+      1399141546160
+    ],
+    [
+      "OO",
+      1398879575888,
+      1399461312800
+    ],
+    [
+      "OO",
+      1398879575888,
+      1399141543840
+    ],
+    [
+      "OP",
+      1399077401536,
+      1398879579728,
+      "Maya|baseColor"
+    ],
+    [
+      "OO",
+      1398879579728,
+      1399461308768
+    ],
+    [
+      "OO",
+      1399077400096,
+      1399077401536
+    ],
+    [
+      "OO",
+      1398879579728,
+      1399141548480
+    ],
+    [
+      "OO",
+      1398879579728,
+      1399141541520
+    ],
+    [
+      "OO",
+      1398879582288,
+      1399141550800
+    ],
+    [
+      "OO",
+      1398879584048,
+      1399461313696
+    ],
+    [
+      "OO",
+      1398879584048,
+      1399141539200
+    ],
+    [
+      "OO",
+      1398879575888,
+      1399141539200
+    ],
+    [
+      "OO",
+      1398879584048,
+      1399141555440
+    ],
+    [
+      "OO",
+      1398879575888,
+      1399141555440
+    ],
+    [
+      "OO",
+      1398879584048,
+      1399141562400
+    ],
+    [
+      "OO",
+      1398879575888,
+      1399141562400
+    ],
+    [
+      "OO",
+      1398879584048,
+      1399141564720
+    ],
+    [
+      "OO",
+      1398879575888,
+      1399141564720
+    ],
+    [
+      "OO",
+      1398879584048,
+      1399141557760
+    ],
+    [
+      "OO",
+      1398879575888,
+      1399141557760
+    ]
+  ]
+}

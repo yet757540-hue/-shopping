@@ -1,0 +1,2 @@
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\obj\Debug\Unity.StarterAssets.csproj.AssemblyReference.cache
+C:\Users\admin\OneDrive\文档\GitHub\-shopping\爆走ショッピング\obj\Debug\Unity.StarterAssets.csproj.CoreCompileInputs.cache

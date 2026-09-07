@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9095180152302819519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2499009978471421064}
+  - component: {fileID: 8278036566545081382}
+  m_Layer: 0
+  m_Name: CandyRewards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2499009978471421064
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095180152302819519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8278036566545081382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095180152302819519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be3f82a204541309b5b1de767ada184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CandyRewardWindowManager
+  scoreboardManager: {fileID: 0}
+  timerManager: {fileID: 0}
+  inventory: {fileID: 0}
+  player: {fileID: 0}
+  inventoryInfluenceSettings: {fileID: 0}
+  pauseManager: {fileID: 0}
+  candyEffectLibrary: {fileID: 0}
+  rewardRoot: {fileID: 0}
+  rewardContentRoot: {fileID: 0}
+  descriptionText: {fileID: 0}
+  randomEffectOptionCount: 2
+  navigationDeadZone: 0.55
+  navigationReleaseThreshold: 0.3
+  createIfMissing: 1
+  popupSize: {x: 760, y: 420}
+  popupPosition: {x: 0, y: -28}
+  optionItemSize: {x: 360, y: 62}
+  titleFontSize: 38
+  descriptionFontSize: 24
+  optionItemFontSize: 30
+  optionItemSpacing: 70
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.45}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  textColor: {r: 0, g: 0, b: 0, a: 1}
+  focusedBackgroundColor: {r: 0.86, g: 0.92, b: 1, a: 1}
+  activeBackgroundColor: {r: 0.52, g: 0.72, b: 1, a: 1}
+  normalBackgroundColor: {r: 1, g: 1, b: 1, a: 0}
