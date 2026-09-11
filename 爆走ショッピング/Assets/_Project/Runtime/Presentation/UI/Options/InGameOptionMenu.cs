@@ -4,20 +4,24 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/// <summary>ゲーム中に開く一時停止付きオプションメニューです。</summary>
 [DisallowMultipleComponent]
 public class InGameOptionMenu : MonoBehaviour
 {
-    [Header("References")]
+    // 他の機能や表示部品への参照です。設定方法は Initialize または初期化処理を参照してください。
+    [Header("参照")]
     [SerializeField] private GameTimePauseManager pauseManager;
     [SerializeField] private GameRestartManager restartManager;
     [SerializeField] private PlayerManager playerManager;
 
-    [Header("Input")]
+    // 入力を受け付ける条件と、スティックの反応・解除しきい値です。
+    [Header("入力")]
     [SerializeField] private bool listenForInput = true;
     [SerializeField] private float navigationDeadZone = 0.55f;
     [SerializeField] private float navigationReleaseThreshold = 0.3f;
 
-    [Header("Style")]
+    // UI の色・文字サイズ・配置寸法をまとめた設定です。
+    [Header("見た目")]
     [SerializeField] private Color overlayColor = new Color(0f, 0f, 0f, 0.45f);
     [SerializeField] private Color backgroundColor = Color.white;
     [SerializeField] private Color textColor = Color.black;
@@ -32,7 +36,8 @@ public class InGameOptionMenu : MonoBehaviour
     [SerializeField] private float optionItemSpacing = 78f;
     [SerializeField] private float volumeStep = 0.05f;
 
-    [Header("Movement Control Presets")]
+    // 選択可能なボタン配置と、現在の選択番号です。
+    [Header("操作プリセット")]
     [SerializeField] private PlayerMovementControlPreset[] movementControlPresets =
     {
         PlayerMovementControlPreset.CreateTriggers(),
@@ -40,7 +45,8 @@ public class InGameOptionMenu : MonoBehaviour
     };
     [SerializeField] private int selectedMovementControlPresetIndex = 0;
 
-    [Header("Events")]
+    // Inspector から接続する通知用フィールドです。実際の発火条件は各処理で決まります。
+    [Header("イベント")]
     [SerializeField] private UnityEvent optionOpened = new UnityEvent();
     [SerializeField] private UnityEvent optionClosed = new UnityEvent();
 
@@ -55,8 +61,10 @@ public class InGameOptionMenu : MonoBehaviour
     private bool isOptionNavigationHeld;
     private bool isOptionAdjustmentHeld;
 
+    // ゲーム中オプションが開いているかを返します。
     public bool IsOpen => isOpen;
 
+    // 停止・再開・操作設定の変更に使う参照を、GameSessionRoot から受け取ります。
     public void Initialize(GameTimePauseManager configuredPauseManager, GameRestartManager configuredRestartManager, PlayerManager configuredPlayerManager)
     {
         pauseManager = configuredPauseManager;
@@ -64,20 +72,22 @@ public class InGameOptionMenu : MonoBehaviour
         playerManager = configuredPlayerManager;
     }
 
+    // 操作プリセットと現在の選択を同期し、UI を作って非表示にします。
     private void Awake()
     {
-        ResolveReferences();
         EnsureMovementControlPresets();
         SyncSelectionIndexes();
         CreateRuntimeUI();
         SetOptionVisible(false);
     }
 
+    // このメニューが登録した停止依頼を解除します。
     private void OnDisable()
     {
         ReleasePauseRequest();
     }
 
+    // 入力が有効なら開閉操作を読み、開いている間だけ項目操作を処理します。
     private void Update()
     {
         if (!listenForInput)
@@ -107,6 +117,7 @@ public class InGameOptionMenu : MonoBehaviour
         HandleOptionInput(gamepad, keyboard);
     }
 
+    // 現在の開閉状態に応じて、オプションを開くか閉じます。
     public void ToggleOptions()
     {
         if (isOpen)
@@ -118,6 +129,7 @@ public class InGameOptionMenu : MonoBehaviour
         OpenOptions();
     }
 
+    // 選択状態を初期化して表示し、このメニューの停止依頼を追加して開いたことを通知します。
     public void OpenOptions()
     {
         if (isOpen)
@@ -125,21 +137,23 @@ public class InGameOptionMenu : MonoBehaviour
             return;
         }
 
-        ResolveReferences();
         ResetOptionInputState();
         optionMenu?.CancelActiveItem();
         optionMenu?.SelectIndex(0);
         RefreshOptionBackHint();
         SetOptionVisible(true);
+        // このメニューの依頼元 ID を使い、他の停止画面と独立して管理します。
         RequestPause();
         optionOpened.Invoke();
     }
 
+    // 表示と編集状態を解除して停止依頼を取り除き、必要に応じて閉じたことを通知します。
     public void CloseOptions()
     {
         CloseOptions(true);
     }
 
+    // 表示と編集状態を解除して停止依頼を取り除き、必要に応じて閉じたことを通知します。
     private void CloseOptions(bool invokeEvent)
     {
         if (!isOpen)
@@ -158,18 +172,21 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
+    // 編集中の項目は左右入力で変更し、それ以外は上下入力で項目を選びます。
     private void HandleOptionInput(Gamepad gamepad, Keyboard keyboard)
     {
+        // 値の編集中は戻る入力を編集解除に使い、画面全体を閉じません。
         if (optionMenu != null && optionMenu.HasActiveItem)
         {
-            if (IsBackPressed(gamepad, keyboard))
+            if (RuntimeMenuInput.IsBackPressed(gamepad, keyboard))
             {
                 optionMenu.CancelActiveItem();
                 RefreshOptionBackHint();
                 return;
             }
 
-            int adjustment = ReadOptionAdjustment(gamepad, keyboard);
+            int adjustment = RuntimeMenuInput.ReadHorizontalAdjustment(
+                gamepad, keyboard, ref isOptionAdjustmentHeld, navigationDeadZone, navigationReleaseThreshold);
 
             if (adjustment != 0)
             {
@@ -179,142 +196,35 @@ public class InGameOptionMenu : MonoBehaviour
             return;
         }
 
-        if (IsBackPressed(gamepad, keyboard))
+        if (RuntimeMenuInput.IsBackPressed(gamepad, keyboard))
         {
             CloseOptions();
             return;
         }
 
-        int movement = ReadOptionNavigationMovement(gamepad, keyboard);
+        int movement = RuntimeMenuInput.ReadVerticalMovement(
+            gamepad, keyboard, ref isOptionNavigationHeld, navigationDeadZone, navigationReleaseThreshold);
 
         if (movement != 0)
         {
             optionMenu?.MoveFocus(movement);
         }
 
-        if (IsConfirmPressed(gamepad, keyboard))
+        if (RuntimeMenuInput.IsConfirmPressed(gamepad, keyboard))
         {
             optionMenu?.ActivateFocused();
             RefreshOptionBackHint();
         }
     }
 
+    // Start ボタンまたは Escape の押下を、メニュー開閉操作として読みます。
     private bool IsMenuPressed(Gamepad gamepad, Keyboard keyboard)
     {
         return (gamepad != null && gamepad.startButton.wasPressedThisFrame) ||
                (keyboard != null && keyboard.escapeKey.wasPressedThisFrame);
     }
 
-    private bool IsConfirmPressed(Gamepad gamepad, Keyboard keyboard)
-    {
-        return (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame) ||
-               (keyboard != null && (keyboard.enterKey.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame));
-    }
-
-    private bool IsBackPressed(Gamepad gamepad, Keyboard keyboard)
-    {
-        return (gamepad != null && gamepad.buttonEast.wasPressedThisFrame) ||
-               (keyboard != null && keyboard.backspaceKey.wasPressedThisFrame);
-    }
-
-    private int ReadOptionNavigationMovement(Gamepad gamepad, Keyboard keyboard)
-    {
-        if (gamepad != null)
-        {
-            if (gamepad.dpad.up.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (gamepad.dpad.down.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (keyboard != null)
-        {
-            if (keyboard.upArrowKey.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (keyboard.downArrowKey.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (gamepad == null)
-        {
-            return 0;
-        }
-
-        return ReadAnalogAxisStep(gamepad.leftStick.y.ReadValue(), ref isOptionNavigationHeld, false);
-    }
-
-    private int ReadOptionAdjustment(Gamepad gamepad, Keyboard keyboard)
-    {
-        if (gamepad != null)
-        {
-            if (gamepad.dpad.left.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (gamepad.dpad.right.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (keyboard != null)
-        {
-            if (keyboard.leftArrowKey.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (keyboard.rightArrowKey.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (gamepad == null)
-        {
-            return 0;
-        }
-
-        return ReadAnalogAxisStep(gamepad.leftStick.x.ReadValue(), ref isOptionAdjustmentHeld, true);
-    }
-
-    private int ReadAnalogAxisStep(float axisValue, ref bool isHeld, bool positiveMovesNext)
-    {
-        float deadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);
-        float releaseThreshold = Mathf.Clamp(navigationReleaseThreshold, 0.05f, deadZone);
-
-        if (Mathf.Abs(axisValue) <= releaseThreshold)
-        {
-            isHeld = false;
-            return 0;
-        }
-
-        if (isHeld || Mathf.Abs(axisValue) <= deadZone)
-        {
-            return 0;
-        }
-
-        isHeld = true;
-
-        if (axisValue > 0f)
-        {
-            return positiveMovesNext ? 1 : -1;
-        }
-
-        return positiveMovesNext ? -1 : 1;
-    }
-
+    // シーンに専用 UI を置かないため、表示ツリーはここで一度だけ生成します。
     private void CreateRuntimeUI()
     {
         canvas = CreateCanvas();
@@ -323,6 +233,7 @@ public class InGameOptionMenu : MonoBehaviour
         Stretch(rootRect, Vector2.zero, Vector2.zero);
         optionRoot = rootRect.gameObject;
 
+        // 背景を暗くする全画面表示を、中央の設定パネルより後ろに置きます。
         Image overlay = rootRect.gameObject.AddComponent<Image>();
         overlay.color = overlayColor;
         overlay.raycastTarget = false;
@@ -356,6 +267,7 @@ public class InGameOptionMenu : MonoBehaviour
         hintRect.anchoredPosition = new Vector2(-34f, -26f);
         hintRect.sizeDelta = new Vector2(260f, 48f);
 
+        // タイトルと案内の下に、選択項目を並べる領域を確保します。
         optionContentRoot = CreateRect("Option Content Root", popupRect);
         optionContentRoot.anchorMin = Vector2.zero;
         optionContentRoot.anchorMax = Vector2.one;
@@ -367,6 +279,7 @@ public class InGameOptionMenu : MonoBehaviour
         RefreshOptionBackHint();
     }
 
+    // オプション専用の Canvas を生成し、描画順と解像度に応じた拡縮を設定します。
     private Canvas CreateCanvas()
     {
         GameObject canvasObject = new GameObject("In Game Option Canvas");
@@ -383,6 +296,7 @@ public class InGameOptionMenu : MonoBehaviour
         return createdCanvas;
     }
 
+    // Inspector の見た目設定を、共通メニュー用のスタイルにまとめます。
     private RuntimeOptionMenuStyle CreateOptionMenuStyle()
     {
         return new RuntimeOptionMenuStyle
@@ -399,6 +313,7 @@ public class InGameOptionMenu : MonoBehaviour
         };
     }
 
+    // 音量・操作方式・再開・タイトル復帰の項目と、それぞれの処理を登録します。
     private void RegisterOptionItems()
     {
         optionMenu.AddButton("CONTINUE", CloseOptions);
@@ -425,16 +340,19 @@ public class InGameOptionMenu : MonoBehaviour
         optionMenu.SelectIndex(0);
     }
 
+    // 音量設定を AudioListener に反映します。
     private void SetMasterVolume(float value)
     {
         AudioListener.volume = Mathf.Clamp01(value);
     }
 
+    // 音量をメニュー表示用の文字列に変換します。
     private string FormatVolumeValue(float value)
     {
         return Mathf.RoundToInt(Mathf.Clamp01(value) * 100f) + "%";
     }
 
+    // 選択した操作方式を現在のプレイヤーへ適用し、次のシーン用にも保持します。
     private void HandleMovementControlPresetChanged(int index, string _)
     {
         selectedMovementControlPresetIndex = Mathf.Clamp(index, 0, movementControlPresets.Length - 1);
@@ -447,6 +365,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
+    // メニューを閉じてから、再開管理へゲームの再読み込みを依頼します。
     private void RestartGame()
     {
         CloseOptions(false);
@@ -460,6 +379,7 @@ public class InGameOptionMenu : MonoBehaviour
         restartManager.RestartGame();
     }
 
+    // メニューを閉じてから、再開管理へタイトルシーンへの移動を依頼します。
     private void ReturnToStartMenu()
     {
         CloseOptions(false);
@@ -473,6 +393,7 @@ public class InGameOptionMenu : MonoBehaviour
         restartManager.ReturnToStartMenu();
     }
 
+    // このメニュー固有の識別名で停止を要求します。
     private void RequestPause()
     {
         if (pauseManager != null)
@@ -481,6 +402,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
+    // このメニューの停止依頼だけを解除し、他の画面の依頼は保持します。
     private void ReleasePauseRequest()
     {
         if (pauseManager != null)
@@ -489,6 +411,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
+    // 項目の編集中かどうかに応じて、キャンセルと戻るの案内を切り替えます。
     private void RefreshOptionBackHint()
     {
         if (optionBackHint == null)
@@ -499,6 +422,7 @@ public class InGameOptionMenu : MonoBehaviour
         optionBackHint.text = optionMenu != null && optionMenu.HasActiveItem ? "B CANCEL" : "MENU/B BACK";
     }
 
+    // 開閉状態を保存し、メニュー全体の表示を切り替えます。
     private void SetOptionVisible(bool visible)
     {
         isOpen = visible;
@@ -509,16 +433,14 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
+    // スティックの押しっぱなし判定を解除し、次回の入力を受け付けます。
     private void ResetOptionInputState()
     {
         isOptionNavigationHeld = false;
         isOptionAdjustmentHeld = false;
     }
 
-    private void ResolveReferences()
-    {
-    }
-
+    // 保持済みの選択番号を優先し、なければプレイヤーの操作方式に合う候補を探します。
     private void SyncSelectionIndexes()
     {
         if (PlayerMovementPresetApplier.TryGetRetainedControlSchemeIndex(out int retainedControlIndex))
@@ -542,6 +464,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
+    // 補完済みの操作プリセットから、メニューに表示する名前を取り出します。
     private string[] GetMovementControlPresetLabels()
     {
         EnsureMovementControlPresets();
@@ -556,37 +479,10 @@ public class InGameOptionMenu : MonoBehaviour
         return labels;
     }
 
+    // 共通の補完ルールを適用してから、この画面の選択位置を更新します。
     private void EnsureMovementControlPresets()
     {
-        if (movementControlPresets == null || movementControlPresets.Length == 0)
-        {
-            movementControlPresets = new[]
-            {
-                PlayerMovementControlPreset.CreateTriggers(),
-                PlayerMovementControlPreset.CreateFaceButtons()
-            };
-        }
-        else if (movementControlPresets.Length == 1)
-        {
-            movementControlPresets = new[]
-            {
-                movementControlPresets[0] ?? PlayerMovementControlPreset.CreateTriggers(),
-                PlayerMovementControlPreset.CreateFaceButtons()
-            };
-        }
-
-        for (int i = 0; i < movementControlPresets.Length; i++)
-        {
-            if (movementControlPresets[i] == null)
-            {
-                movementControlPresets[i] = i == 1
-                    ? PlayerMovementControlPreset.CreateFaceButtons()
-                    : PlayerMovementControlPreset.CreateTriggers();
-            }
-
-            movementControlPresets[i].Validate();
-        }
-
+        movementControlPresets = PlayerMovementControlPreset.EnsureDefaults(movementControlPresets);
         selectedMovementControlPresetIndex = Mathf.Clamp(selectedMovementControlPresetIndex, 0, movementControlPresets.Length - 1);
 
         if (movementControlChoice != null)
@@ -595,6 +491,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
+    // パネルの上下左右に枠線を配置します。
     private void CreateBorder(RectTransform parent)
     {
         CreateBorderSegment("Option Border Top", parent, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, 2f));
@@ -603,6 +500,7 @@ public class InGameOptionMenu : MonoBehaviour
         CreateBorderSegment("Option Border Right", parent, new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(2f, 0f));
     }
 
+    // 指定した辺の位置と太さで、入力を遮らない枠線を作成します。
     private void CreateBorderSegment(string objectName, RectTransform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 sizeDelta)
     {
         RectTransform borderRect = CreateRect(objectName, parent);
@@ -617,6 +515,7 @@ public class InGameOptionMenu : MonoBehaviour
         border.raycastTarget = false;
     }
 
+    // 日本語フォント・文字色・揃えを設定したメニュー文字を作ります。
     private Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -632,6 +531,7 @@ public class InGameOptionMenu : MonoBehaviour
         return text;
     }
 
+    // 指定した親の下に RectTransform を持つ UI オブジェクトを作成します。
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -639,6 +539,7 @@ public class InGameOptionMenu : MonoBehaviour
         return rectObject.GetComponent<RectTransform>();
     }
 
+    // 親全体へアンカーを広げ、指定した余白を設定します。
     private void Stretch(RectTransform rect, Vector2 offsetMin, Vector2 offsetMax)
     {
         rect.anchorMin = Vector2.zero;
@@ -647,6 +548,7 @@ public class InGameOptionMenu : MonoBehaviour
         rect.offsetMax = offsetMax;
     }
 
+    // Inspector の変更時に、設定値を有効な範囲へ補正します。
     private void OnValidate()
     {
         navigationDeadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);

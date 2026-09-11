@@ -2,13 +2,16 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>ラウンドのカウントダウンと、状態変更イベントを一か所で管理します。</summary>
 public class TimerManager : MonoBehaviour
 {
-    [Header("Settings")]
+    // 動作方針を切り替える Inspector 設定です。
+    [Header("設定")]
     [SerializeField] private float countdownDuration = 180f;
     [SerializeField] private bool showDebugLog = false;
 
-    [Header("Events")]
+    // Inspector から接続する通知用フィールドです。実際の発火条件は各処理で決まります。
+    [Header("イベント")]
     [SerializeField] private UnityEvent timerStarted = new UnityEvent();
     [SerializeField] private UnityEvent timerPaused = new UnityEvent();
     [SerializeField] private UnityEvent timerResumed = new UnityEvent();
@@ -31,14 +34,20 @@ public class TimerManager : MonoBehaviour
     public event Action ResetCompleted;
     public event Action<float> TimeChanged;
 
+    // タイマーに設定された制限時間を秒単位で返します。
     public float Duration => countdownDuration;
+    // 現在の残り時間を秒単位で返します。
     public float RemainingTime => remainingTime;
-    public float ElapsedTime => remainingTime;
+    // タイマーが減算処理を実行する状態かを返します。
     public bool IsRunning => isRunning;
+    // 現在、一時停止状態かを返します。
     public bool IsPaused => isPaused;
+    // 計測開始済みで、停止・終了・リセットされていないかを返します。
     public bool HasStarted => hasStarted;
+    // 時間切れ処理が完了済みかを返します。
     public bool IsComplete => isComplete;
 
+    // 制限時間を補正し、初期の残り時間を表示側へ通知します。
     private void Awake()
     {
         countdownDuration = Mathf.Max(0.01f, countdownDuration);
@@ -46,6 +55,7 @@ public class TimerManager : MonoBehaviour
         NotifyTimeChanged(true);
     }
 
+    // 実行中だけ残り時間を減算します。タイマー単体の停止に加え、Time.timeScale がゼロの間も減算は進みません。
     private void Update()
     {
         if (!isRunning)
@@ -58,6 +68,7 @@ public class TimerManager : MonoBehaviour
         TimeOverCheck();
     }
 
+    // 開始済みのタイマーがゼロに達したら、時間切れ処理を呼びます。
     public void TimeOverCheck()
     {
         if (remainingTime <= 0f && (isRunning || isPaused || hasStarted))
@@ -66,6 +77,7 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    // 実行中なら何もせず、一時停止中なら再開し、それ以外なら新しく開始します。
     public void StartTimer()
     {
         if (isRunning)
@@ -82,11 +94,13 @@ public class TimerManager : MonoBehaviour
         StartNewCountdown();
     }
 
+    // 現在の状態に関係なく、設定された制限時間から計測をやり直します。
     public void RestartTimer()
     {
         StartNewCountdown();
     }
 
+    // 残り時間を保ってタイマー単体の減算を止め、C# イベントを通知します。
     public void PauseTimer()
     {
         if (!isRunning)
@@ -102,6 +116,7 @@ public class TimerManager : MonoBehaviour
         Log("[TimerManager] Timer paused: " + remainingTime);
     }
 
+    // 一時停止中で時間が残っていれば、減算を再開して C# イベントを通知します。
     public void ResumeTimer()
     {
         if (!isPaused || remainingTime <= 0f)
@@ -117,6 +132,7 @@ public class TimerManager : MonoBehaviour
         Log("[TimerManager] Timer resumed: " + remainingTime);
     }
 
+    // タイマー単体の実行と一時停止を切り替えます。
     public void TogglePause()
     {
         if (isRunning)
@@ -131,6 +147,7 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    // 残り時間と状態フラグを初期化し、新しい計測の開始を通知します。
     private void StartNewCountdown()
     {
         countdownDuration = Mathf.Max(0.01f, countdownDuration);
@@ -146,6 +163,7 @@ public class TimerManager : MonoBehaviour
         Log("[TimerManager] Timer started: " + remainingTime);
     }
 
+    // 残り時間を保って開始状態を解除し、停止を通知します。
     public void StopTimer()
     {
         if (!isRunning && !isPaused && !hasStarted)
@@ -163,11 +181,13 @@ public class TimerManager : MonoBehaviour
         Log("[TimerManager] Timer stopped: " + remainingTime);
     }
 
+    // 残り時間によらず、時間切れと同じ終了処理を実行します。
     public void EndTimer()
     {
         CompleteTimer();
     }
 
+    // 減算を止めて残り時間を制限時間に戻し、リセット完了を通知します。
     public void ResetTimer()
     {
         isRunning = false;
@@ -182,12 +202,14 @@ public class TimerManager : MonoBehaviour
         Log("[TimerManager] Timer reset");
     }
 
+    // 制限時間を変更し、タイマー全体をリセットします。
     public void SetDuration(float seconds)
     {
         countdownDuration = Mathf.Max(0.01f, seconds);
         ResetTimer();
     }
 
+    // 残り時間を制限時間内に補正して通知し、必要なら時間切れを処理します。
     public void SetRemainingTime(float seconds)
     {
         remainingTime = Mathf.Clamp(seconds, 0f, countdownDuration);
@@ -197,11 +219,13 @@ public class TimerManager : MonoBehaviour
         TimeOverCheck();
     }
 
+    // 現在の残り時間に指定秒数を加えます。結果はゼロから制限時間までに制限されます。
     public void AddTime(float seconds)
     {
         SetRemainingTime(remainingTime + seconds);
     }
 
+    // 終了を一度だけ処理し、残り時間をゼロにして完了イベントを通知します。
     private void CompleteTimer()
     {
         if (isComplete)
@@ -221,6 +245,7 @@ public class TimerManager : MonoBehaviour
         Log("[TimerManager] Timer completed");
     }
 
+    // 百分の一秒の表示値が変わった場合、または強制更新時に残り時間を通知します。
     private void NotifyTimeChanged(bool force)
     {
         int centiseconds = Mathf.FloorToInt(remainingTime * 100f);
@@ -234,6 +259,7 @@ public class TimerManager : MonoBehaviour
         TimeChanged?.Invoke(remainingTime);
     }
 
+    // デバッグ表示が有効な場合だけ、受け取ったメッセージを出力します。
     private void Log(string message)
     {
         if (showDebugLog)
@@ -242,18 +268,21 @@ public class TimerManager : MonoBehaviour
         }
     }
 
+    // Inspector のコンテキストメニューから、開始動作を確認します。
     [ContextMenu("Test Start Timer")]
     private void TestStartTimer()
     {
         StartTimer();
     }
 
+    // Inspector のコンテキストメニューから、停止動作を確認します。
     [ContextMenu("Test Stop Timer")]
     private void TestStopTimer()
     {
         StopTimer();
     }
 
+    // Inspector の変更時に、設定値を有効な範囲へ補正します。
     private void OnValidate()
     {
         countdownDuration = Mathf.Max(0.01f, countdownDuration);

@@ -8,23 +8,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// One-time, GUID-preserving migration for this project. It intentionally uses
-/// AssetDatabase rather than file-system moves so every serialized reference is
-/// retained by Unity.
+/// 旧フォルダー構成から移行するための、手動実行専用ツールです。
+/// GUID を保つ AssetDatabase 操作を使うため、既存のシリアライズ参照を維持します。
 /// </summary>
-[InitializeOnLoad]
 public static class ProjectStructureMigration
 {
-    private const string SessionKey = "Shopping.ProjectStructureMigration.20260726";
     private const string Root = "Assets/_Project";
     private const string MainMenuScene = Root + "/Scenes/Menu/MainMenu.unity";
     private const string GameplayScene = Root + "/Scenes/Gameplay/ShoppingGameplay.unity";
 
-    static ProjectStructureMigration()
-    {
-        EditorApplication.delayCall += RunOnceAfterCompilation;
-    }
-
+    // Play Mode 中の実行を防ぎ、フォルダー整理・移動・シーン設定を順に行います。
     [MenuItem("Tools/Shopping/Apply Project Structure Migration")]
     public static void Apply()
     {
@@ -41,6 +34,7 @@ public static class ProjectStructureMigration
             CreateFolders();
             MoveOwnedAssets();
         }
+        // 移動処理が途中で失敗しても、アセット一覧の更新は実行します。
         finally
         {
             AssetDatabase.Refresh();
@@ -49,30 +43,10 @@ public static class ProjectStructureMigration
         RemoveEmptyGeneratedDuplicateFolders();
         RemoveEmptyLegacyFolders();
         UpdateScenesAndBuildSettings();
-        SessionState.SetBool(SessionKey, true);
         Debug.Log("[ProjectStructureMigration] Project structure migration completed.");
     }
 
-    private static void RunOnceAfterCompilation()
-    {
-        if (!AssetDatabase.IsValidFolder(Root))
-        {
-            return;
-        }
-
-        if (SessionState.GetBool(SessionKey, false))
-        {
-            RemoveEmptyGeneratedDuplicateFolders();
-            RemoveEmptyLegacyFolders();
-            CreateUiPrefabs();
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-            return;
-        }
-
-        Apply();
-    }
-
+    // 移行先として必要なプロジェクト所有フォルダーを用意します。
     private static void CreateFolders()
     {
         string[] folders =
@@ -80,7 +54,7 @@ public static class ProjectStructureMigration
             Root,
             Root + "/Runtime/Bootstrap", Root + "/Runtime/Flow",
             Root + "/Runtime/Gameplay/Player", Root + "/Runtime/Gameplay/Scoring",
-            Root + "/Runtime/Gameplay/Timer", Root + "/Runtime/Gameplay/Rewards",
+            Root + "/Runtime/Gameplay/Timer",
             Root + "/Runtime/Presentation/UI/Hud", Root + "/Runtime/Presentation/UI/Options",
             Root + "/Runtime/Presentation/UI/Results", Root + "/Runtime/Presentation/UI/Shared",
             Root + "/Runtime/Presentation/Menu", Root + "/Runtime/Presentation/Camera",
@@ -88,8 +62,8 @@ public static class ProjectStructureMigration
             Root + "/Scenes/Gameplay", Root + "/Scenes/Tests", Root + "/Scenes/Archive",
             Root + "/Prefabs/Gameplay/Player", Root + "/Prefabs/Gameplay/Environment",
             Root + "/Prefabs/System/Camera", Root + "/Prefabs/UI/Hud",
-            Root + "/Prefabs/UI/Options", Root + "/Prefabs/UI/Rewards", Root + "/Prefabs/UI/Results",
-            Root + "/Data/CandyEffects", Root + "/Input", Root + "/Art/Models/Player",
+            Root + "/Prefabs/UI/Options", Root + "/Prefabs/UI/Results",
+            Root + "/Input", Root + "/Art/Models/Player",
             Root + "/Art/Models/Environment", Root + "/Art/Materials/World",
             Root + "/Art/Materials/Gameplay", Root + "/Physics/Materials",
             Root + "/Audio/SFX/Collision", Root + "/Rendering/Shaders", Root + "/Settings/Rendering"
@@ -101,6 +75,7 @@ public static class ProjectStructureMigration
         }
     }
 
+    // 番号付きの重複フォルダー候補を調べ、メタデータ以外のファイルがないものだけ削除します。
     private static void RemoveEmptyGeneratedDuplicateFolders()
     {
         List<string> candidates = new List<string>();
@@ -120,6 +95,7 @@ public static class ProjectStructureMigration
         }
     }
 
+    // 旧構成の既知フォルダーを調べ、実データが残っていないものだけ削除します。
     private static void RemoveEmptyLegacyFolders()
     {
         string[] legacyFolders =
@@ -144,6 +120,7 @@ public static class ProjectStructureMigration
         }
     }
 
+    // 旧パスから新パスへの対応表に従ってアセットを移動し、スクリプトと設定も整理します。
     private static void MoveOwnedAssets()
     {
         Dictionary<string, string> moves = new Dictionary<string, string>
@@ -156,12 +133,6 @@ public static class ProjectStructureMigration
             { "Assets/Prefab/Map1.prefab", Root + "/Prefabs/Gameplay/Environment/ShoppingMap_01.prefab" },
             { "Assets/Prefab/CameraRig.prefab", Root + "/Prefabs/System/Camera/CameraRig.prefab" },
             { "Assets/Prefab/Main Camera.prefab", Root + "/Prefabs/System/Camera/MainCamera.prefab" },
-            { "Assets/Resources/CandyEffectLibrary.asset", Root + "/Data/CandyEffects/CandyEffectLibrary.asset" },
-            { "Assets/Resources/CandyEffects/高効率回収.asset", Root + "/Data/CandyEffects/EfficientCollection.asset" },
-            { "Assets/Resources/CandyEffects/走行速度アップ.asset", Root + "/Data/CandyEffects/RunningSpeedUp.asset" },
-            { "Assets/Resources/CandyEffects/目標数ダウン.asset", Root + "/Data/CandyEffects/NextRequiredCountOffset.asset" },
-            { "Assets/Resources/CandyEffects/時間追加.asset", Root + "/Data/CandyEffects/AddTime.asset" },
-            { "Assets/Resources/CandyEffects/慣性軽減.asset", Root + "/Data/CandyEffects/InertiaReduction.asset" },
             { "Assets/Resources/ScoreTargetVisibleOverlay.mat", Root + "/Art/Materials/Gameplay/ScoreTargetVisibleOverlay.mat" },
             { "Assets/Resources/Materials/1.mat", Root + "/Art/Materials/Gameplay/OverlayFallback.mat" },
             { "Assets/InputSystem_Actions.inputactions", Root + "/Input/Shopping.inputactions" },
@@ -202,25 +173,21 @@ public static class ProjectStructureMigration
         }
     }
 
+    // スクリプトの役割ごとに移行先を指定して移動します。
     private static void MoveScripts()
     {
-        MoveScript("GameFlow/GameManager.cs", "Runtime/Bootstrap/GameManager.cs");
         MoveScript("GameFlow/GameSessionRoot.cs", "Runtime/Bootstrap/GameSessionRoot.cs");
-        MoveScript("GameFlow/GameSessionServices.cs", "Runtime/Bootstrap/GameSessionServices.cs");
         MoveScript("GameFlow/GameRestartManager.cs", "Runtime/Flow/GameRestartManager.cs");
         MoveScript("GameFlow/GameTimePauseManager.cs", "Runtime/Flow/GameTimePauseManager.cs");
-        MoveScript("GameFlow/InGameWindowManager.cs", "Runtime/Flow/InGameWindowManager.cs");
         MoveScriptDirectory("Player", "Runtime/Gameplay/Player");
         MoveScriptDirectory("Scoring", "Runtime/Gameplay/Scoring");
         MoveScriptDirectory("Timer", "Runtime/Gameplay/Timer");
-        MoveScriptDirectory("CandyEffects", "Runtime/Gameplay/Rewards");
         MoveScript("Camera/CameraFollowController.cs", "Runtime/Presentation/Camera/CameraFollowController.cs");
         MoveScript("Camera/SpeedFOVController.cs", "Runtime/Presentation/Camera/SpeedFOVController.cs");
         MoveScriptDirectory("Feedback", "Runtime/Presentation/Feedback");
         MoveScript("UI/StartMenuManager.cs", "Runtime/Presentation/Menu/StartMenuManager.cs");
         MoveScript("UI/StartMenuView.cs", "Runtime/Presentation/Menu/StartMenuView.cs");
         MoveScript("UI/InventoryStatusUI.cs", "Runtime/Presentation/UI/Hud/InventoryStatusUI.cs");
-        MoveScript("UI/ControlsGuideUI.cs", "Runtime/Presentation/UI/Hud/ControlsGuideUI.cs");
         MoveScript("UI/ScoreboardView.cs", "Runtime/Presentation/UI/Hud/ScoreboardView.cs");
         MoveScript("UI/InGameOptionMenu.cs", "Runtime/Presentation/UI/Options/InGameOptionMenu.cs");
         MoveScript("UI/RuntimeOptionMenu.cs", "Runtime/Presentation/UI/Shared/RuntimeOptionMenu.cs");
@@ -228,6 +195,7 @@ public static class ProjectStructureMigration
         MoveScript("UI/GameResultScreenManager.cs", "Runtime/Presentation/UI/Results/GameResultScreenManager.cs");
     }
 
+    // 指定した旧フォルダー内のスクリプトを探し、名前を保って移行先へ移動します。
     private static void MoveScriptDirectory(string sourceDirectory, string targetDirectory)
     {
         string source = "Assets/Script/" + sourceDirectory;
@@ -238,11 +206,13 @@ public static class ProjectStructureMigration
         }
     }
 
+    // 旧スクリプトルートと新プロジェクトルートを補って移動処理へ渡します。
     private static void MoveScript(string source, string target)
     {
         Move("Assets/Script/" + source, Root + "/" + target);
     }
 
+    // タイトルとゲームシーンを設定し、ビルド対象の順序を更新してアセットを保存します。
     private static void UpdateScenesAndBuildSettings()
     {
         ConfigureMainMenu();
@@ -255,6 +225,7 @@ public static class ProjectStructureMigration
         AssetDatabase.SaveAssets();
     }
 
+    // タイトルシーンを開き、開始先のゲームシーン名を更新して保存します。
     private static void ConfigureMainMenu()
     {
         Scene scene = EditorSceneManager.OpenScene(MainMenuScene, OpenSceneMode.Single);
@@ -268,37 +239,34 @@ public static class ProjectStructureMigration
         EditorSceneManager.SaveScene(scene);
     }
 
+    // 必須の既存コンポーネントを確認し、不足する補助機能と参照を設定して保存します。
     private static void ConfigureGameplayScene()
     {
         Scene scene = EditorSceneManager.OpenScene(GameplayScene, OpenSceneMode.Single);
-        GameManager gameManager = UnityEngine.Object.FindFirstObjectByType<GameManager>();
+        GameSessionRoot root = UnityEngine.Object.FindFirstObjectByType<GameSessionRoot>();
         PlayerManager player = UnityEngine.Object.FindFirstObjectByType<PlayerManager>();
         TimerManager timer = UnityEngine.Object.FindFirstObjectByType<TimerManager>();
         ScoreboardManager scoreboard = UnityEngine.Object.FindFirstObjectByType<ScoreboardManager>();
         SettlementArea settlement = UnityEngine.Object.FindFirstObjectByType<SettlementArea>();
         CollisionFeedbackManager feedback = UnityEngine.Object.FindFirstObjectByType<CollisionFeedbackManager>();
 
-        if (gameManager == null || player == null || timer == null || scoreboard == null || settlement == null || feedback == null)
+        if (root == null || player == null || timer == null || scoreboard == null || settlement == null || feedback == null)
         {
             Debug.LogError("[ProjectStructureMigration] Gameplay scene is missing one or more required existing components.");
             return;
         }
 
-        GameObject rootObject = gameManager.gameObject;
-        GameSessionRoot root = GetOrAdd<GameSessionRoot>(rootObject);
+        GameObject rootObject = root.gameObject;
         PlayerInventory inventory = GetOrAdd<PlayerInventory>(player.gameObject);
         PlayerCollisionReporter reporter = GetOrAdd<PlayerCollisionReporter>(player.gameObject);
         ImpactSettings impact = GetOrAdd<ImpactSettings>(player.gameObject);
         InventoryInfluenceSettings influence = GetOrAdd<InventoryInfluenceSettings>(player.gameObject);
         GameTimePauseManager pause = GetOrAdd<GameTimePauseManager>(rootObject);
         GameRestartManager restart = GetOrAdd<GameRestartManager>(rootObject);
-        InGameWindowManager windows = GetOrAdd<InGameWindowManager>(rootObject);
         InGameOptionMenu options = GetOrAdd<InGameOptionMenu>(rootObject);
-        CandyRewardWindowManager rewards = GetOrAdd<CandyRewardWindowManager>(rootObject);
         GameResultScreenManager results = GetOrAdd<GameResultScreenManager>(rootObject);
         InventoryStatusUI inventoryHud = GetOrAdd<InventoryStatusUI>(rootObject);
         TimerDisplayUI timerHud = GetOrAdd<TimerDisplayUI>(timer.gameObject);
-        CandyEffectLibrary library = AssetDatabase.LoadAssetAtPath<CandyEffectLibrary>(Root + "/Data/CandyEffects/CandyEffectLibrary.asset");
         Material overlayMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "/Art/Materials/Gameplay/ScoreTargetVisibleOverlay.mat");
         ScoreboardView scoreboardView = EnsureScoreboardView();
 
@@ -307,6 +275,7 @@ public static class ProjectStructureMigration
         restartSerialized.FindProperty("startMenuSceneName").stringValue = "MainMenu";
         restartSerialized.ApplyModifiedPropertiesWithoutUndo();
 
+        // シーンの構成ルートへ接続を集め、実行時の初期化で利用できる状態にします。
         SerializedObject rootSerialized = new SerializedObject(root);
         SetReference(rootSerialized, "player", player);
         SetReference(rootSerialized, "inventory", inventory);
@@ -317,16 +286,14 @@ public static class ProjectStructureMigration
         SetReference(rootSerialized, "scoreboardManager", scoreboard);
         SetReference(rootSerialized, "pauseManager", pause);
         SetReference(rootSerialized, "restartManager", restart);
-        SetReference(rootSerialized, "candyEffectLibrary", library);
         SetReference(rootSerialized, "collisionFeedback", feedback);
         SetReference(rootSerialized, "inventoryInfluence", influence);
         SetReference(rootSerialized, "inventoryHud", inventoryHud);
         SetReference(rootSerialized, "timerHud", timerHud);
         SetReference(rootSerialized, "scoreboardView", scoreboardView);
-        SetReference(rootSerialized, "windowManager", windows);
         SetReference(rootSerialized, "optionMenu", options);
-        SetReference(rootSerialized, "rewardWindow", rewards);
         SetReference(rootSerialized, "resultScreen", results);
+        // シーン内の目標一覧と、それぞれの透視表示用材質を設定します。
         SerializedProperty targets = rootSerialized.FindProperty("scoreTargets");
         ScoreTarget[] scoreTargets = UnityEngine.Object.FindObjectsByType<ScoreTarget>(FindObjectsSortMode.None);
         targets.arraySize = scoreTargets.Length;
@@ -343,6 +310,7 @@ public static class ProjectStructureMigration
         EditorSceneManager.SaveScene(scene);
     }
 
+    // 既存の目標 HUD を探し、なければ Canvas と文字パネルを作って参照を接続します。
     private static ScoreboardView EnsureScoreboardView()
     {
         ScoreboardView existing = UnityEngine.Object.FindFirstObjectByType<ScoreboardView>();
@@ -391,14 +359,15 @@ public static class ProjectStructureMigration
         return view;
     }
 
+    // ゲーム内で使う UI コントローラーの Prefab を用意します。
     private static void CreateUiPrefabs()
     {
         EnsureControllerPrefab<InventoryStatusUI>("Inventory HUD", Root + "/Prefabs/UI/Hud/InventoryHud.prefab");
         EnsureControllerPrefab<InGameOptionMenu>("In-Game Options", Root + "/Prefabs/UI/Options/InGameOptions.prefab");
-        EnsureControllerPrefab<CandyRewardWindowManager>("Candy Rewards", Root + "/Prefabs/UI/Rewards/CandyRewards.prefab");
         EnsureControllerPrefab<GameResultScreenManager>("Game Results", Root + "/Prefabs/UI/Results/GameResults.prefab");
     }
 
+    // 既存 Prefab の構成を確認し、条件を満たさない場合は削除して必要なコントローラーだけで作り直します。
     private static void EnsureControllerPrefab<T>(string displayName, string assetPath) where T : Component
     {
         GameObject existing = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
@@ -407,6 +376,7 @@ public static class ProjectStructureMigration
             return;
         }
 
+        // 構成が条件に合わない既存 Prefab は、手動移行の実行時に置き換えます。
         if (existing != null)
         {
             AssetDatabase.DeleteAsset(assetPath);
@@ -418,12 +388,14 @@ public static class ProjectStructureMigration
         UnityEngine.Object.DestroyImmediate(root);
     }
 
+    // 指定した型のコンポーネントを取得し、存在しなければ追加します。
     private static T GetOrAdd<T>(GameObject owner) where T : Component
     {
         T component = owner.GetComponent<T>();
         return component != null ? component : Undo.AddComponent<T>(owner);
     }
 
+    // SerializedObject の指定フィールドへ、オブジェクト参照を設定します。
     private static void SetReference(SerializedObject serialized, string propertyName, UnityEngine.Object value)
     {
         SerializedProperty property = serialized.FindProperty(propertyName);
@@ -433,6 +405,7 @@ public static class ProjectStructureMigration
         }
     }
 
+    // 移動元と移動先を確認し、AssetDatabase で GUID を保ちながら移動します。
     private static void Move(string source, string destination)
     {
         if ((!System.IO.File.Exists(source) && !System.IO.Directory.Exists(source)) ||
@@ -449,6 +422,7 @@ public static class ProjectStructureMigration
         }
     }
 
+    // 必要な親フォルダーから順に、存在しないフォルダーを作成します。
     private static void EnsureFolder(string folder)
     {
         if (string.IsNullOrEmpty(folder) || System.IO.Directory.Exists(folder))

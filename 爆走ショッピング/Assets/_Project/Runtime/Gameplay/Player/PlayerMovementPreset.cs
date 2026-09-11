@@ -1,19 +1,24 @@
 using System;
 using UnityEngine;
 
+/// <summary>移動パラメータ一式に表示名を付けた、選択用プリセットです。</summary>
 [Serializable]
 public sealed class PlayerMovementPreset
 {
     [SerializeField] private string displayName = "Classic";
     [SerializeField] private PlayerMovementSettings settings = PlayerMovementSettings.CreateClassic();
 
+    // 表示名を返し、未設定ならこのデータで定めた代替名を使用します。
     public string DisplayName => string.IsNullOrWhiteSpace(displayName) ? "Preset" : displayName;
+    // このプリセットが保持している移動設定を公開します。
     public PlayerMovementSettings Settings => settings;
 
+    // 引数なしでは既定値を使い、引数ありでは名前と移動設定を受け取って検証します。
     public PlayerMovementPreset()
     {
     }
 
+    // 引数なしでは既定値を使い、引数ありでは名前と移動設定を受け取って検証します。
     private PlayerMovementPreset(string displayName, PlayerMovementSettings settings)
     {
         this.displayName = displayName;
@@ -21,22 +26,26 @@ public sealed class PlayerMovementPreset
         Validate();
     }
 
+    // 標準操作用の既定パラメータを持つ設定、または選択用プリセットを作ります。
     public static PlayerMovementPreset CreateClassic()
     {
         return new PlayerMovementPreset("Classic", PlayerMovementSettings.CreateClassic());
     }
 
+    // 上級操作用のパラメータを持つ設定、または選択用プリセットを作ります。
     public static PlayerMovementPreset CreateHard()
     {
         return new PlayerMovementPreset("Hard", PlayerMovementSettings.CreateHard());
     }
 
+    // 設定を検証し、元のプリセットを変更せずに使える複製を返します。
     public PlayerMovementSettings CreateSettingsCopy()
     {
         Validate();
         return settings.Clone();
     }
 
+    // 表示名・設定参照・数値のうち、このデータが持つ値を有効な状態へ補正します。
     public void Validate()
     {
         if (string.IsNullOrWhiteSpace(displayName))
@@ -53,10 +62,12 @@ public sealed class PlayerMovementPreset
     }
 }
 
+/// <summary>PlayerManager が受け取る移動・旋回パラメータのデータ本体です。</summary>
 [Serializable]
 public sealed class PlayerMovementSettings
 {
-    [Header("Movement Settings")]
+    // 前進・後退の加減速と速度上限、入力・停止しきい値です。
+    [Header("移動設定")]
     [SerializeField] private float lowSpeedAcceleration = 25f;
     [SerializeField] private float highSpeedAcceleration = 10f;
     [SerializeField] private float accelerationSwitchSpeed = 15f;
@@ -68,32 +79,49 @@ public sealed class PlayerMovementSettings
     [SerializeField] private float triggerDeadZone = 0.1f;
     [SerializeField] private float stopThreshold = 0.1f;
 
-    [Header("Turn Settings")]
+    // 旋回入力への反応、回転力、減衰、角速度上限の設定です。
+    [Header("旋回設定")]
     [SerializeField] private float turnResetSpeed = 8f;
     [SerializeField] private float stickDeadZone = 0.1f;
     [SerializeField] private float turnAcceleration = 8f;
     [SerializeField] private float maxAngularSpeed = 3f;
 
+    // 低速域の前進加速力を返します。
     public float LowSpeedAcceleration => lowSpeedAcceleration;
+    // 高速域の前進加速力を返します。
     public float HighSpeedAcceleration => highSpeedAcceleration;
+    // 低速用から高速用の加速力へ切り替える前進速度を返します。
     public float AccelerationSwitchSpeed => accelerationSwitchSpeed;
+    // 後退時の加速力を返します。
     public float ReverseAcceleration => reverseAcceleration;
+    // 通常減速と横滑り抑制に使用する減速力を返します。
     public float Deceleration => deceleration;
+    // ブレーキ入力時の減速力を返します。
     public float BrakeDeceleration => brakeDeceleration;
+    // 通常走行時の水平速度上限を返します。
     public float MaxSpeed => maxSpeed;
+    // 後退中の水平速度上限を返します。
     public float MaxReverseSpeed => maxReverseSpeed;
+    // 加速・ブレーキ入力を有効とするしきい値を返します。
     public float TriggerDeadZone => triggerDeadZone;
+    // 速度を停止と見なすしきい値を返します。
     public float StopThreshold => stopThreshold;
+    // 旋回入力がないときの回転減衰の強さを返します。
     public float TurnResetSpeed => turnResetSpeed;
+    // 旋回入力を無視するスティック範囲を返します。
     public float StickDeadZone => stickDeadZone;
+    // 旋回入力に掛ける回転力を返します。
     public float TurnAcceleration => turnAcceleration;
+    // 水平旋回の角速度上限を返します。
     public float MaxAngularSpeed => maxAngularSpeed;
 
+    // 標準操作用の既定パラメータを持つ設定、または選択用プリセットを作ります。
     public static PlayerMovementSettings CreateClassic()
     {
         return new PlayerMovementSettings();
     }
 
+    // 上級操作用のパラメータを持つ設定、または選択用プリセットを作ります。
     public static PlayerMovementSettings CreateHard()
     {
         return new PlayerMovementSettings
@@ -115,6 +143,7 @@ public sealed class PlayerMovementSettings
         };
     }
 
+    // 全ての移動・旋回パラメータを、新しい設定オブジェクトへ複製します。
     public PlayerMovementSettings Clone()
     {
         return new PlayerMovementSettings
@@ -136,6 +165,7 @@ public sealed class PlayerMovementSettings
         };
     }
 
+    // 表示名・設定参照・数値のうち、このデータが持つ値を有効な状態へ補正します。
     public void Validate()
     {
         lowSpeedAcceleration = Mathf.Max(0f, lowSpeedAcceleration);

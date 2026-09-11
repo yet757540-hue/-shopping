@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>タイトル画面の選択、オプション設定、ゲーム開始を管理します。</summary>
 public class StartMenuManager : MonoBehaviour
 {
+    // メインメニューから実行できる三つの操作を表します。
     private enum MenuOption
     {
         Start,
@@ -15,24 +17,29 @@ public class StartMenuManager : MonoBehaviour
         Exit
     }
 
+    // メニューの操作種別と、選択色を反映する背景を保持します。
     private sealed class MenuItem
     {
         public MenuOption option;
         public Image background;
     }
 
-    [Header("Scene")]
+    // 開始時に読み込むゲームシーンです。
+    [Header("シーン")]
     [SerializeField] private string gameSceneName = "idou";
 
-    [Header("Prefab View")]
+    // 既存シーンのビューと、生成に使う任意の Prefab を指定します。
+    [Header("事前作成ビュー")]
     [SerializeField] private StartMenuView sceneMenuView;
     [SerializeField] private StartMenuView menuViewPrefab;
 
-    [Header("Input")]
+    // 入力を受け付ける条件と、スティックの反応・解除しきい値です。
+    [Header("入力")]
     [SerializeField] private float navigationDeadZone = 0.55f;
     [SerializeField] private float navigationReleaseThreshold = 0.3f;
 
-    [Header("Style")]
+    // UI の色・文字サイズ・配置寸法をまとめた設定です。
+    [Header("見た目")]
     [SerializeField] private int menuFontSize = 52;
     [SerializeField] private int optionHintFontSize = 30;
     [SerializeField] private Color backgroundColor = Color.white;
@@ -48,7 +55,8 @@ public class StartMenuManager : MonoBehaviour
     [SerializeField] private float optionItemSpacing = 92f;
     [SerializeField] private float volumeStep = 0.05f;
 
-    [Header("Movement Presets")]
+    // 選択可能な走行パラメータ一式と、現在の選択番号です。
+    [Header("移動プリセット")]
     [SerializeField] private PlayerMovementPreset[] movementPresets =
     {
         PlayerMovementPreset.CreateClassic(),
@@ -56,7 +64,8 @@ public class StartMenuManager : MonoBehaviour
     };
     [SerializeField] private int selectedMovementPresetIndex = 0;
 
-    [Header("Movement Control Presets")]
+    // 選択可能なボタン配置と、現在の選択番号です。
+    [Header("操作プリセット")]
     [SerializeField] private PlayerMovementControlPreset[] movementControlPresets =
     {
         PlayerMovementControlPreset.CreateTriggers(),
@@ -64,7 +73,8 @@ public class StartMenuManager : MonoBehaviour
     };
     [SerializeField] private int selectedMovementControlPresetIndex = 0;
 
-    [Header("Events")]
+    // Inspector から接続する通知用フィールドです。実際の発火条件は各処理で決まります。
+    [Header("イベント")]
     [SerializeField] private UnityEvent startSelected = new UnityEvent();
     [SerializeField] private UnityEvent optionOpened = new UnityEvent();
     [SerializeField] private UnityEvent optionClosed = new UnityEvent();
@@ -91,11 +101,16 @@ public class StartMenuManager : MonoBehaviour
     public event Action OptionClosed;
     public event Action ExitSelected;
 
+    // オプション項目を配置する領域を公開します。
     public RectTransform OptionContentRoot => optionContentRoot;
+    // タイトル画面のオプションが開いているかを返します。
     public bool IsOptionOpen => isOptionOpen;
+    // 現在選択しているメインメニューの番号を返します。
     public int SelectedMenuIndex => selectedMenuIndex;
+    // 接続中の事前作成ビューを返します。自動生成 UI の場合は null です。
     public StartMenuView ActiveMenuView => activeMenuView;
 
+    // プリセットと UI を準備し、先頭項目を選んでオプションを閉じた状態にします。
     private void Awake()
     {
         EnsureMovementPresets();
@@ -105,6 +120,7 @@ public class StartMenuManager : MonoBehaviour
         SetOptionVisible(false);
     }
 
+    // オプション表示中はオプション入力、それ以外はメインメニュー入力だけを処理します。
     private void Update()
     {
         Gamepad gamepad = Gamepad.current;
@@ -124,6 +140,7 @@ public class StartMenuManager : MonoBehaviour
         HandleMainMenuInput(gamepad, keyboard);
     }
 
+    // 方向入力で選択行を移動し、決定入力で選択中の処理を実行します。
     private void HandleMainMenuInput(Gamepad gamepad, Keyboard keyboard)
     {
         int movement = ReadNavigationMovement(gamepad, keyboard);
@@ -133,14 +150,16 @@ public class StartMenuManager : MonoBehaviour
             MoveSelection(movement);
         }
 
-        if (IsConfirmPressed(gamepad, keyboard))
+        if (RuntimeMenuInput.IsConfirmPressed(gamepad, keyboard))
         {
             ActivateSelectedOption();
         }
     }
 
+    // 編集中は左右で値を変更し、未編集中は上下選択・決定・メニューを閉じる操作を扱います。
     private void HandleOptionInput(Gamepad gamepad, Keyboard keyboard)
     {
+        // 編集中の戻る操作は項目編集だけを終了し、オプション画面は開いたままにします。
         if (optionMenu != null && optionMenu.HasActiveItem)
         {
             if (IsBackPressed(gamepad, keyboard))
@@ -150,7 +169,8 @@ public class StartMenuManager : MonoBehaviour
                 return;
             }
 
-            int adjustment = ReadOptionAdjustment(gamepad, keyboard);
+            int adjustment = RuntimeMenuInput.ReadHorizontalAdjustment(
+                gamepad, keyboard, ref isOptionAdjustmentHeld, navigationDeadZone, navigationReleaseThreshold);
 
             if (adjustment != 0)
             {
@@ -166,20 +186,22 @@ public class StartMenuManager : MonoBehaviour
             return;
         }
 
-        int movement = ReadOptionNavigationMovement(gamepad, keyboard);
+        int movement = RuntimeMenuInput.ReadVerticalMovement(
+            gamepad, keyboard, ref isOptionNavigationHeld, navigationDeadZone, navigationReleaseThreshold);
 
         if (movement != 0)
         {
             optionMenu?.MoveFocus(movement);
         }
 
-        if (IsConfirmPressed(gamepad, keyboard))
+        if (RuntimeMenuInput.IsConfirmPressed(gamepad, keyboard))
         {
             optionMenu?.ActivateFocused();
             RefreshOptionBackHint();
         }
     }
 
+    // 十字キー・矢印キー・左スティックから移動方向を返し、スティックの連続反応を抑えます。
     private int ReadNavigationMovement(Gamepad gamepad, Keyboard keyboard)
     {
         if (gamepad != null)
@@ -213,6 +235,7 @@ public class StartMenuManager : MonoBehaviour
             return 0;
         }
 
+        // スティックは中央へ戻るまで一度だけ反応させ、意図しない連続選択を防ぎます。
         Vector2 stick = gamepad.leftStick.ReadValue();
         float deadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);
         float releaseThreshold = Mathf.Clamp(navigationReleaseThreshold, 0.05f, deadZone);
@@ -243,126 +266,26 @@ public class StartMenuManager : MonoBehaviour
         return 0;
     }
 
-    private int ReadOptionNavigationMovement(Gamepad gamepad, Keyboard keyboard)
-    {
-        if (gamepad != null)
-        {
-            if (gamepad.dpad.up.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (gamepad.dpad.down.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (keyboard != null)
-        {
-            if (keyboard.upArrowKey.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (keyboard.downArrowKey.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (gamepad == null)
-        {
-            return 0;
-        }
-
-        return ReadAnalogAxisStep(gamepad.leftStick.y.ReadValue(), ref isOptionNavigationHeld, false);
-    }
-
-    private int ReadOptionAdjustment(Gamepad gamepad, Keyboard keyboard)
-    {
-        if (gamepad != null)
-        {
-            if (gamepad.dpad.left.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (gamepad.dpad.right.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (keyboard != null)
-        {
-            if (keyboard.leftArrowKey.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (keyboard.rightArrowKey.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (gamepad == null)
-        {
-            return 0;
-        }
-
-        return ReadAnalogAxisStep(gamepad.leftStick.x.ReadValue(), ref isOptionAdjustmentHeld, true);
-    }
-
-    private int ReadAnalogAxisStep(float axisValue, ref bool isHeld, bool positiveMovesNext)
-    {
-        float deadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);
-        float releaseThreshold = Mathf.Clamp(navigationReleaseThreshold, 0.05f, deadZone);
-
-        if (Mathf.Abs(axisValue) <= releaseThreshold)
-        {
-            isHeld = false;
-            return 0;
-        }
-
-        if (isHeld || Mathf.Abs(axisValue) <= deadZone)
-        {
-            return 0;
-        }
-
-        isHeld = true;
-
-        if (axisValue > 0f)
-        {
-            return positiveMovesNext ? 1 : -1;
-        }
-
-        return positiveMovesNext ? -1 : 1;
-    }
-
-    private bool IsConfirmPressed(Gamepad gamepad, Keyboard keyboard)
-    {
-        return (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame) ||
-               (keyboard != null && (keyboard.enterKey.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame));
-    }
-
+    // ゲームパッドの右フェイスボタン、または Escape の押下を戻る操作として読みます。
     private bool IsBackPressed(Gamepad gamepad, Keyboard keyboard)
     {
         return (gamepad != null && gamepad.buttonEast.wasPressedThisFrame) ||
                (keyboard != null && keyboard.escapeKey.wasPressedThisFrame);
     }
 
+    // 次のメインメニュー項目へ移動します。
     public void SelectNext()
     {
         MoveSelection(1);
     }
 
+    // 前のメインメニュー項目へ移動します。
     public void SelectPrevious()
     {
         MoveSelection(-1);
     }
 
+    // 選択中の項目に応じて、開始・オプション・終了を実行します。
     public void ActivateSelectedOption()
     {
         if (menuItems.Count == 0)
@@ -384,6 +307,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
+    // 選択番号を増減し、一覧の端を越えたら反対側へ戻します。
     private void MoveSelection(int delta)
     {
         if (menuItems.Count == 0)
@@ -401,6 +325,7 @@ public class StartMenuManager : MonoBehaviour
         SelectMenuIndex(nextIndex % menuItems.Count);
     }
 
+    // 選択番号を有効範囲に補正し、選択色を更新します。
     private void SelectMenuIndex(int index)
     {
         if (menuItems.Count == 0)
@@ -413,6 +338,7 @@ public class StartMenuManager : MonoBehaviour
         RefreshSelectionVisuals();
     }
 
+    // 選択中の行だけを強調色にし、他の行を通常色に戻します。
     private void RefreshSelectionVisuals()
     {
         for (int i = 0; i < menuItems.Count; i++)
@@ -427,6 +353,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
+    // 遷移先を検証して設定を保持し、開始通知の後にゲームシーンを読み込みます。
     public void StartGame()
     {
         if (string.IsNullOrWhiteSpace(gameSceneName))
@@ -441,12 +368,14 @@ public class StartMenuManager : MonoBehaviour
             return;
         }
 
+        // 新シーンで PlayerManager が見つかったときに適用できるよう、選択内容を先に保存します。
         QueueSelectedMovementPreset();
         startSelected.Invoke();
         StartSelected?.Invoke();
         SceneManager.LoadScene(gameSceneName);
     }
 
+    // 入力状態と選択行を初期化してオプションを表示し、開いたことを通知します。
     public void OpenOptions()
     {
         if (isOptionOpen)
@@ -463,6 +392,7 @@ public class StartMenuManager : MonoBehaviour
         OptionOpened?.Invoke();
     }
 
+    // 項目の編集状態を解除してオプションを隠し、閉じたことを通知します。
     public void CloseOptions()
     {
         if (!isOptionOpen)
@@ -478,6 +408,7 @@ public class StartMenuManager : MonoBehaviour
         OptionClosed?.Invoke();
     }
 
+    // 終了通知の後、エディターでは Play Mode を終了し、ビルドではアプリを終了します。
     public void ExitGame()
     {
         exitSelected.Invoke();
@@ -490,6 +421,7 @@ public class StartMenuManager : MonoBehaviour
 #endif
     }
 
+    // 利用できる事前作成ビューを探し、見つからない場合に基本メニュー UI を生成します。
     private void CreateRuntimeUI()
     {
         menuItems.Clear();
@@ -502,6 +434,7 @@ public class StartMenuManager : MonoBehaviour
         RegisterDefaultOptionItems();
     }
 
+    // シーン参照・指定 Prefab・既存ビューの順に探し、必須参照がそろうビューを接続します。
     private bool TryCreatePrefabUI()
     {
         StartMenuView view = sceneMenuView;
@@ -524,6 +457,7 @@ public class StartMenuManager : MonoBehaviour
             return false;
         }
 
+        // 必須参照が欠けたビューは使用せず、自分で生成した Prefab だけを破棄します。
         if (!view.HasRequiredReferences)
         {
             Debug.LogWarning("[StartMenuManager] Start menu prefab/view is missing required references. Falling back to default UI.");
@@ -540,6 +474,7 @@ public class StartMenuManager : MonoBehaviour
         return true;
     }
 
+    // 事前作成ビューの参照を保持し、三つの行と共通オプションメニューを接続します。
     private void BindPrefabView(StartMenuView view)
     {
         activeMenuView = view;
@@ -556,6 +491,7 @@ public class StartMenuManager : MonoBehaviour
         optionMenu = new RuntimeOptionMenu(optionContentRoot, CreateOptionMenuStyle());
     }
 
+    // 既存行のラベルと背景色を設定し、実行する項目を登録します。
     private void BindPrefabMenuRow(StartMenuView.MenuRowReference row, string label, MenuOption option)
     {
         row.SetLabel(label);
@@ -568,6 +504,7 @@ public class StartMenuManager : MonoBehaviour
         });
     }
 
+    // Canvas、背景、メインメニュー、オプションを順に生成します。
     private void CreateDefaultRuntimeUI()
     {
         activeMenuView = null;
@@ -577,6 +514,7 @@ public class StartMenuManager : MonoBehaviour
         CreateOptionPopup(canvas.transform);
     }
 
+    // タイトル画面専用の Canvas を生成し、解像度に応じた拡縮と描画順を設定します。
     private Canvas CreateCanvas()
     {
         GameObject canvasObject = new GameObject("Start Menu Canvas");
@@ -584,6 +522,7 @@ public class StartMenuManager : MonoBehaviour
         createdCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         createdCanvas.sortingOrder = 1000;
 
+        // 基準解像度に対して拡縮し、画面サイズが変わっても UI の比率を保ちます。
         CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920f, 1080f);
@@ -592,6 +531,7 @@ public class StartMenuManager : MonoBehaviour
         return createdCanvas;
     }
 
+    // 画面全体を覆う背景を作り、設定色を適用します。
     private void CreateBackground(Transform parent)
     {
         RectTransform backgroundRect = CreateRect("White Background", parent);
@@ -602,6 +542,7 @@ public class StartMenuManager : MonoBehaviour
         background.raycastTarget = false;
     }
 
+    // メインメニューの領域を用意し、開始・オプション・終了の行を配置します。
     private void CreateMainMenu(Transform parent)
     {
         menuItems.Clear();
@@ -619,6 +560,7 @@ public class StartMenuManager : MonoBehaviour
         CreateMenuRow("Exit Row", "EXIT", MenuOption.Exit, -rowSpacing);
     }
 
+    // 指定位置にメニュー行の背景とラベルを作り、選択管理へ登録します。
     private void CreateMenuRow(string objectName, string label, MenuOption option, float yPosition)
     {
         RectTransform row = CreateRect(objectName, mainMenuRoot);
@@ -646,6 +588,7 @@ public class StartMenuManager : MonoBehaviour
         });
     }
 
+    // オプションの背景・枠・案内・項目用の領域を配置します。
     private void CreateOptionPopup(Transform parent)
     {
         RectTransform popupRect = CreateRect("Option Popup", parent);
@@ -679,6 +622,7 @@ public class StartMenuManager : MonoBehaviour
         optionMenu = new RuntimeOptionMenu(optionContentRoot, CreateOptionMenuStyle());
     }
 
+    // 共通メニューへ数値調整行を追加し、値変更時の処理と表示書式を渡します。
     public RuntimeOptionSlider AddSliderOption(
         string label,
         float minValue,
@@ -709,6 +653,7 @@ public class StartMenuManager : MonoBehaviour
         return slider;
     }
 
+    // Inspector の見た目設定を、共通メニュー用のスタイルにまとめます。
     private RuntimeOptionMenuStyle CreateOptionMenuStyle()
     {
         return new RuntimeOptionMenuStyle
@@ -725,6 +670,7 @@ public class StartMenuManager : MonoBehaviour
         };
     }
 
+    // 音量・移動設定・操作方式の標準項目を登録します。
     private void RegisterDefaultOptionItems()
     {
         AddSliderOption(
@@ -752,6 +698,7 @@ public class StartMenuManager : MonoBehaviour
         );
     }
 
+    // 共通メニューへ候補選択行を追加し、選択変更時の処理を渡します。
     public RuntimeOptionChoice AddChoiceOption(
         string label,
         string[] choices,
@@ -770,26 +717,31 @@ public class StartMenuManager : MonoBehaviour
         return choice;
     }
 
+    // 音量設定を AudioListener に反映します。
     private void SetMasterVolume(float value)
     {
         AudioListener.volume = Mathf.Clamp01(value);
     }
 
+    // 音量をメニュー表示用の文字列に変換します。
     private string FormatVolumeValue(float value)
     {
         return Mathf.RoundToInt(Mathf.Clamp01(value) * 100f) + "%";
     }
 
+    // 選択した移動プリセット番号を有効範囲に収めて保持します。実際の設定保存はゲーム開始時です。
     private void HandleMovementPresetChanged(int index, string _)
     {
         selectedMovementPresetIndex = Mathf.Clamp(index, 0, movementPresets.Length - 1);
     }
 
+    // 選択した操作プリセット番号を有効範囲に収めて保持します。実際の設定保存はゲーム開始時です。
     private void HandleMovementControlPresetChanged(int index, string _)
     {
         selectedMovementControlPresetIndex = Mathf.Clamp(index, 0, movementControlPresets.Length - 1);
     }
 
+    // 補完済みの移動プリセットから、表示する名前の一覧を作ります。
     private string[] GetMovementPresetLabels()
     {
         EnsureMovementPresets();
@@ -804,6 +756,7 @@ public class StartMenuManager : MonoBehaviour
         return labels;
     }
 
+    // 補完済みの操作プリセットから、メニューに表示する名前を取り出します。
     private string[] GetMovementControlPresetLabels()
     {
         EnsureMovementControlPresets();
@@ -818,6 +771,7 @@ public class StartMenuManager : MonoBehaviour
         return labels;
     }
 
+    // 選択中の移動設定と操作方式を、シーンをまたいで保持するクラスへ渡します。
     private void QueueSelectedMovementPreset()
     {
         EnsureMovementPresets();
@@ -830,6 +784,7 @@ public class StartMenuManager : MonoBehaviour
         PlayerMovementPresetApplier.SetPendingControlScheme(controlPreset.ControlScheme, selectedMovementControlPresetIndex);
     }
 
+    // 移動プリセットの不足と未設定要素を補い、選択番号と表示を同期します。
     private void EnsureMovementPresets()
     {
         if (movementPresets == null || movementPresets.Length == 0)
@@ -867,37 +822,10 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
+    // 共通の補完ルールを適用してから、この画面の選択位置を更新します。
     private void EnsureMovementControlPresets()
     {
-        if (movementControlPresets == null || movementControlPresets.Length == 0)
-        {
-            movementControlPresets = new[]
-            {
-                PlayerMovementControlPreset.CreateTriggers(),
-                PlayerMovementControlPreset.CreateFaceButtons()
-            };
-        }
-        else if (movementControlPresets.Length == 1)
-        {
-            movementControlPresets = new[]
-            {
-                movementControlPresets[0] ?? PlayerMovementControlPreset.CreateTriggers(),
-                PlayerMovementControlPreset.CreateFaceButtons()
-            };
-        }
-
-        for (int i = 0; i < movementControlPresets.Length; i++)
-        {
-            if (movementControlPresets[i] == null)
-            {
-                movementControlPresets[i] = i == 1
-                    ? PlayerMovementControlPreset.CreateFaceButtons()
-                    : PlayerMovementControlPreset.CreateTriggers();
-            }
-
-            movementControlPresets[i].Validate();
-        }
-
+        movementControlPresets = PlayerMovementControlPreset.EnsureDefaults(movementControlPresets);
         selectedMovementControlPresetIndex = Mathf.Clamp(selectedMovementControlPresetIndex, 0, movementControlPresets.Length - 1);
 
         if (movementControlChoice != null)
@@ -906,6 +834,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
+    // 項目の編集中かどうかに応じて、キャンセルと戻るの案内を切り替えます。
     private void RefreshOptionBackHint()
     {
         if (optionBackHint == null)
@@ -916,12 +845,14 @@ public class StartMenuManager : MonoBehaviour
         optionBackHint.text = optionMenu != null && optionMenu.HasActiveItem ? "B CANCEL" : "B BACK";
     }
 
+    // スティックの押しっぱなし判定を解除し、次回の入力を受け付けます。
     private void ResetOptionInputState()
     {
         isOptionNavigationHeld = false;
         isOptionAdjustmentHeld = false;
     }
 
+    // パネルの上下左右に枠線を配置します。
     private void CreateBorder(RectTransform parent)
     {
         CreateBorderSegment("Option Border Top", parent, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, 2f));
@@ -930,6 +861,7 @@ public class StartMenuManager : MonoBehaviour
         CreateBorderSegment("Option Border Right", parent, new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(2f, 0f));
     }
 
+    // 指定した辺の位置と太さで、入力を遮らない枠線を作成します。
     private void CreateBorderSegment(string objectName, RectTransform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 sizeDelta)
     {
         RectTransform borderRect = CreateRect(objectName, parent);
@@ -944,6 +876,7 @@ public class StartMenuManager : MonoBehaviour
         border.raycastTarget = false;
     }
 
+    // 日本語フォントとメニューの色・揃えを設定した文字オブジェクトを作ります。
     private Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -959,6 +892,7 @@ public class StartMenuManager : MonoBehaviour
         return text;
     }
 
+    // 指定した親の下に RectTransform を持つ UI オブジェクトを作成します。
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -966,6 +900,7 @@ public class StartMenuManager : MonoBehaviour
         return rectObject.GetComponent<RectTransform>();
     }
 
+    // 親全体へアンカーを広げ、指定した余白を設定します。
     private void Stretch(RectTransform rect, Vector2 offsetMin, Vector2 offsetMax)
     {
         rect.anchorMin = Vector2.zero;
@@ -974,6 +909,7 @@ public class StartMenuManager : MonoBehaviour
         rect.offsetMax = offsetMax;
     }
 
+    // オプションの開閉状態を保存し、メインメニューとオプションの表示を切り替えます。
     private void SetOptionVisible(bool visible)
     {
         isOptionOpen = visible;
@@ -989,6 +925,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
+    // Inspector の変更時に、設定値を有効な範囲へ補正します。
     private void OnValidate()
     {
         if (string.IsNullOrWhiteSpace(gameSceneName))

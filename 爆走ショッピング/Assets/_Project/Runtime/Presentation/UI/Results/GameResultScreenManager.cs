@@ -3,10 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+/// <summary>時間切れ後の得点表示と、再開・タイトル復帰の選択を管理します。</summary>
 [DisallowMultipleComponent]
 public class GameResultScreenManager : MonoBehaviour
 {
-    [Header("References")]
+    // 他の機能や表示部品への参照です。設定方法は Initialize または初期化処理を参照してください。
+    [Header("参照")]
     [SerializeField] private TimerManager timerManager;
     [SerializeField] private ScoreboardManager scoreboardManager;
     [SerializeField] private GameRestartManager restartManager;
@@ -16,11 +18,13 @@ public class GameResultScreenManager : MonoBehaviour
     [SerializeField] private Text totalScoreText;
     [SerializeField] private Text detailText;
 
-    [Header("Input")]
+    // 入力を受け付ける条件と、スティックの反応・解除しきい値です。
+    [Header("入力")]
     [SerializeField] private float navigationDeadZone = 0.55f;
     [SerializeField] private float navigationReleaseThreshold = 0.3f;
 
-    [Header("Runtime UI")]
+    // 結果 UI の自動生成可否と、得点・メニューの配置や書式です。
+    [Header("実行時 UI")]
     [SerializeField] private bool createIfMissing = true;
     [SerializeField] private Vector2 scoreBlockSize = new Vector2(900f, 260f);
     [SerializeField] private Vector2 scoreBlockPosition = new Vector2(0f, 160f);
@@ -45,8 +49,10 @@ public class GameResultScreenManager : MonoBehaviour
     private bool isShown;
     private bool isNavigationHeld;
 
+    // 結果画面が表示されているかを返します。
     public bool IsShown => isShown;
 
+    // 時間・得点・シーン遷移・停止の参照を受け取ります。
     public void Initialize(TimerManager configuredTimer, ScoreboardManager configuredScoreboard, GameRestartManager configuredRestart, GameTimePauseManager configuredPause)
     {
         timerManager = configuredTimer;
@@ -55,23 +61,20 @@ public class GameResultScreenManager : MonoBehaviour
         pauseManager = configuredPause;
     }
 
+    // 必要に応じて結果 UI を準備し、開始時は非表示にします。
     private void Awake()
     {
-        ResolveReferences();
         EnsureResultView();
         SetResultVisible(false);
     }
 
-    private void OnEnable()
-    {
-        ResolveReferences();
-    }
-
+    // 結果画面が登録した停止依頼を解除します。
     private void OnDisable()
     {
         ReleasePauseRequest();
     }
 
+    // 結果画面が表示されている間だけ、選択と決定の入力を処理します。
     private void Update()
     {
         if (!isShown)
@@ -82,9 +85,9 @@ public class GameResultScreenManager : MonoBehaviour
         HandleResultInput(Gamepad.current, Keyboard.current);
     }
 
+    // 得点を表示して目標 HUD を消し、メニューを初期選択にしてゲームを停止します。
     public void ShowResultScreen()
     {
-        ResolveReferences();
         EnsureResultView();
 
         if (resultRoot == null)
@@ -92,6 +95,7 @@ public class GameResultScreenManager : MonoBehaviour
             return;
         }
 
+        // 目標 HUD を消す前に得点を文字へ反映し、結果画面に残します。
         RefreshScoreText();
 
         if (scoreboardManager != null)
@@ -106,6 +110,7 @@ public class GameResultScreenManager : MonoBehaviour
         RequestPause();
     }
 
+    // 結果画面の停止依頼を解除し、再開管理へゲーム再読み込みを依頼します。
     public void RestartGame()
     {
         ReleasePauseRequest();
@@ -119,6 +124,7 @@ public class GameResultScreenManager : MonoBehaviour
         restartManager.RestartGame();
     }
 
+    // 結果画面の停止依頼を解除し、再開管理へタイトル復帰を依頼します。
     public void ReturnToStartMenu()
     {
         ReleasePauseRequest();
@@ -132,92 +138,30 @@ public class GameResultScreenManager : MonoBehaviour
         restartManager.ReturnToStartMenu();
     }
 
+    // 上下入力で項目を移動し、決定入力で選択中のボタンを実行します。
     private void HandleResultInput(Gamepad gamepad, Keyboard keyboard)
     {
-        int movement = ReadNavigationMovement(gamepad, keyboard);
+        int movement = RuntimeMenuInput.ReadVerticalMovement(
+            gamepad, keyboard, ref isNavigationHeld, navigationDeadZone, navigationReleaseThreshold);
 
         if (movement != 0)
         {
             resultMenu?.MoveFocus(movement);
         }
 
-        if (IsConfirmPressed(gamepad, keyboard))
+        if (RuntimeMenuInput.IsConfirmPressed(gamepad, keyboard))
         {
             resultMenu?.ActivateFocused();
         }
     }
 
-    private bool IsConfirmPressed(Gamepad gamepad, Keyboard keyboard)
-    {
-        return (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame) ||
-               (keyboard != null && (keyboard.enterKey.wasPressedThisFrame || keyboard.spaceKey.wasPressedThisFrame));
-    }
-
-    private int ReadNavigationMovement(Gamepad gamepad, Keyboard keyboard)
-    {
-        if (gamepad != null)
-        {
-            if (gamepad.dpad.up.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (gamepad.dpad.down.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (keyboard != null)
-        {
-            if (keyboard.upArrowKey.wasPressedThisFrame)
-            {
-                return -1;
-            }
-
-            if (keyboard.downArrowKey.wasPressedThisFrame)
-            {
-                return 1;
-            }
-        }
-
-        if (gamepad == null)
-        {
-            return 0;
-        }
-
-        return ReadAnalogAxisStep(gamepad.leftStick.y.ReadValue(), ref isNavigationHeld);
-    }
-
-    private int ReadAnalogAxisStep(float axisValue, ref bool isHeld)
-    {
-        float deadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);
-        float releaseThreshold = Mathf.Clamp(navigationReleaseThreshold, 0.05f, deadZone);
-
-        if (Mathf.Abs(axisValue) <= releaseThreshold)
-        {
-            isHeld = false;
-            return 0;
-        }
-
-        if (isHeld || Mathf.Abs(axisValue) <= deadZone)
-        {
-            return 0;
-        }
-
-        isHeld = true;
-        return axisValue > 0f ? -1 : 1;
-    }
-
+    // 結果画面を開き直したときに、方向入力を再び受け付ける状態にします。
     private void ResetResultInputState()
     {
         isNavigationHeld = false;
     }
 
-    private void ResolveReferences()
-    {
-    }
-
+    // ScoreboardManager の集計値を、結果画面用の文言へ変換します。
     private void RefreshScoreText()
     {
         int totalScore = scoreboardManager != null ? scoreboardManager.TotalScore : 0;
@@ -242,6 +186,7 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
+    // 結果画面を依頼元として、ゲーム時間の停止を要求します。
     private void RequestPause()
     {
         if (pauseManager != null)
@@ -250,6 +195,7 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
+    // 結果画面の停止依頼だけを解除します。
     private void ReleasePauseRequest()
     {
         if (pauseManager != null)
@@ -258,6 +204,7 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
+    // 結果表示の状態を保存し、ルートオブジェクトの表示を切り替えます。
     private void SetResultVisible(bool visible)
     {
         isShown = visible;
@@ -268,8 +215,10 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
+    // 既存 UI を優先し、不足時の生成が許可されていれば背景・得点・メニューを作ります。
     private void EnsureResultView()
     {
+        // 作成済みルートや生成禁止設定を尊重し、必要なら選択メニューだけを補います。
         if (resultRoot != null || !createIfMissing)
         {
             if (resultMenu == null && resultContentRoot != null)
@@ -295,6 +244,7 @@ public class GameResultScreenManager : MonoBehaviour
         CreateResultMenu();
     }
 
+    // 結果タイトル、合計得点、得点内訳を縦に並べる領域を作ります。
     private void CreateScoreBlock(Transform parent)
     {
         RectTransform scoreRect = CreateRect("Result Score Block", parent);
@@ -304,6 +254,7 @@ public class GameResultScreenManager : MonoBehaviour
         scoreRect.anchoredPosition = scoreBlockPosition;
         scoreRect.sizeDelta = scoreBlockSize;
 
+        // タイトル・合計・内訳を、個別の高さを保ちながら縦に並べます。
         VerticalLayoutGroup layout = scoreRect.gameObject.AddComponent<VerticalLayoutGroup>();
         layout.spacing = 10f;
         layout.childAlignment = TextAnchor.MiddleCenter;
@@ -317,6 +268,7 @@ public class GameResultScreenManager : MonoBehaviour
         detailText = CreateText("Score Detail Text", scoreRect, string.Empty, detailFontSize, TextAnchor.MiddleCenter, scoreTextColor, 116f);
     }
 
+    // 結果メニューの背景と枠を作り、項目を並べる領域を確保します。
     private void CreateResultPopup(Transform parent)
     {
         RectTransform popupRect = CreateRect("Result Option Popup", parent);
@@ -340,6 +292,7 @@ public class GameResultScreenManager : MonoBehaviour
         titleRect.anchoredPosition = new Vector2(28f, -16f);
         titleRect.sizeDelta = new Vector2(-56f, 46f);
 
+        // メニュー見出しの下にボタン配置用の余白を確保します。
         resultContentRoot = CreateRect("Result Option Content Root", popupRect);
         resultContentRoot.anchorMin = Vector2.zero;
         resultContentRoot.anchorMax = Vector2.one;
@@ -347,6 +300,7 @@ public class GameResultScreenManager : MonoBehaviour
         resultContentRoot.offsetMax = new Vector2(-44f, -66f);
     }
 
+    // やり直しとタイトル復帰のボタンを登録し、先頭を選択します。
     private void CreateResultMenu()
     {
         resultMenu = new RuntimeOptionMenu(resultContentRoot, CreateResultMenuStyle());
@@ -355,6 +309,7 @@ public class GameResultScreenManager : MonoBehaviour
         resultMenu.SelectIndex(0);
     }
 
+    // 結果メニュー用の色・フォント・行サイズを共通スタイルへまとめます。
     private RuntimeOptionMenuStyle CreateResultMenuStyle()
     {
         return new RuntimeOptionMenuStyle
@@ -371,6 +326,7 @@ public class GameResultScreenManager : MonoBehaviour
         };
     }
 
+    // 結果画面専用の Canvas を生成し、描画順と解像度に応じた拡縮を設定します。
     private Canvas CreateCanvas()
     {
         GameObject canvasObject = new GameObject("Result Screen Canvas");
@@ -387,6 +343,7 @@ public class GameResultScreenManager : MonoBehaviour
         return canvas;
     }
 
+    // パネルの上下左右に枠線を配置します。
     private void CreateBorder(RectTransform parent)
     {
         CreateBorderSegment("Result Border Top", parent, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, 2f));
@@ -395,6 +352,7 @@ public class GameResultScreenManager : MonoBehaviour
         CreateBorderSegment("Result Border Right", parent, new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(2f, 0f));
     }
 
+    // 指定した辺の位置と太さで、入力を遮らない枠線を作成します。
     private void CreateBorderSegment(string objectName, RectTransform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 sizeDelta)
     {
         RectTransform borderRect = CreateRect(objectName, parent);
@@ -409,6 +367,7 @@ public class GameResultScreenManager : MonoBehaviour
         border.raycastTarget = false;
     }
 
+    // 日本語フォントと指定書式の文字を作り、レイアウト用の高さを設定します。
     private Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment, Color color, float preferredHeight)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -428,6 +387,7 @@ public class GameResultScreenManager : MonoBehaviour
         return text;
     }
 
+    // 指定した親の下に RectTransform を持つ UI オブジェクトを作成します。
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -435,6 +395,7 @@ public class GameResultScreenManager : MonoBehaviour
         return rectObject.GetComponent<RectTransform>();
     }
 
+    // 親全体へアンカーを広げ、指定した余白を設定します。
     private void Stretch(RectTransform rect, Vector2 offsetMin, Vector2 offsetMax)
     {
         rect.anchorMin = Vector2.zero;
@@ -443,6 +404,7 @@ public class GameResultScreenManager : MonoBehaviour
         rect.offsetMax = offsetMax;
     }
 
+    // Inspector の変更時に、設定値を有効な範囲へ補正します。
     private void OnValidate()
     {
         navigationDeadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);

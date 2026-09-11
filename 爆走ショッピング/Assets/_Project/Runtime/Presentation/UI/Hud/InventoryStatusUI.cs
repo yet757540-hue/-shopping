@@ -3,19 +3,23 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>所持品の個数・総重量・性能補正を HUD に表示します。</summary>
 public class InventoryStatusUI : MonoBehaviour
 {
+    // 同じアイテム ID の表示名と合計個数をまとめます。
     private class ItemSummary
     {
         public string displayName;
         public int count;
     }
 
-    [Header("References")]
+    // 他の機能や表示部品への参照です。設定方法は Initialize または初期化処理を参照してください。
+    [Header("参照")]
     [SerializeField] private PlayerInventory inventory;
     [SerializeField] private InventoryInfluenceSettings influenceSettings;
 
-    [Header("Layout")]
+    // HUD の位置・サイズ・文字サイズと、種類別一覧の表示上限です。
+    [Header("レイアウト")]
     [SerializeField] private Vector2 anchoredPosition = new Vector2(24f, 24f);
     [SerializeField] private Vector2 size = new Vector2(390f, 250f);
     [SerializeField] private int titleFontSize = 24;
@@ -24,7 +28,8 @@ public class InventoryStatusUI : MonoBehaviour
     [SerializeField] private int maxVisibleItems = 3;
     [SerializeField] private float influenceHeight = 82f;
 
-    [Header("Style")]
+    // UI の色・文字サイズ・配置寸法をまとめた設定です。
+    [Header("見た目")]
     [SerializeField] private Color backgroundColor = new Color(0f, 0f, 0f, 0.45f);
     [SerializeField] private Color titleColor = Color.white;
     [SerializeField] private Color bodyColor = new Color(1f, 1f, 1f, 0.92f);
@@ -37,6 +42,7 @@ public class InventoryStatusUI : MonoBehaviour
     private readonly StringBuilder influenceBuilder = new StringBuilder();
     private readonly Dictionary<string, ItemSummary> itemSummaries = new Dictionary<string, ItemSummary>();
 
+    // 所持品と重量補正の参照を受け取り、通知の購読と表示更新を行います。
     public void Initialize(PlayerInventory configuredInventory, InventoryInfluenceSettings configuredInfluenceSettings)
     {
         inventory = configuredInventory;
@@ -45,6 +51,7 @@ public class InventoryStatusUI : MonoBehaviour
         RefreshText();
     }
 
+    // 参照確認の入口を呼び、所持情報パネルを作って初期表示します。
     private void Awake()
     {
         ResolveReferences();
@@ -52,6 +59,7 @@ public class InventoryStatusUI : MonoBehaviour
         RefreshText();
     }
 
+    // 所持品通知を購読し、再有効化時の表示を同期します。
     private void OnEnable()
     {
         ResolveReferences();
@@ -59,6 +67,7 @@ public class InventoryStatusUI : MonoBehaviour
         RefreshText();
     }
 
+    // この HUD が登録した所持品通知を解除します。
     private void OnDisable()
     {
         if (inventory != null)
@@ -67,6 +76,7 @@ public class InventoryStatusUI : MonoBehaviour
         }
     }
 
+    // 参照が不足していれば購読を試み、現在の所持品と重量補正を表示します。
     private void Update()
     {
         if (inventory == null || influenceSettings == null)
@@ -78,10 +88,12 @@ public class InventoryStatusUI : MonoBehaviour
         RefreshText();
     }
 
+    // 現在は処理を行いません。参照は Initialize から受け取ります。
     private void ResolveReferences()
     {
     }
 
+    // 重複登録を防いで所持品変更イベントを購読します。
     private void SubscribeInventory()
     {
         if (inventory == null)
@@ -93,6 +105,7 @@ public class InventoryStatusUI : MonoBehaviour
         inventory.InventoryChanged += RefreshText;
     }
 
+    // 既存 Canvas を利用し、所持数・一覧・重量補正を表示するパネルを一度だけ作ります。
     private void CreateRuntimePanel()
     {
         if (panelRect != null)
@@ -100,6 +113,7 @@ public class InventoryStatusUI : MonoBehaviour
             return;
         }
 
+        // 既存 Canvas を再利用し、存在しない場合だけ描画先を作ります。
         Canvas canvas = FindAnyObjectByType<Canvas>();
 
         if (canvas == null)
@@ -124,6 +138,7 @@ public class InventoryStatusUI : MonoBehaviour
         Image background = panelObject.AddComponent<Image>();
         background.color = backgroundColor;
 
+        // 上部に所持情報の見出しを配置します。
         titleText = CreateText("Inventory Status Title", panelObject.transform);
         RectTransform titleRect = titleText.GetComponent<RectTransform>();
         titleRect.anchorMin = new Vector2(0f, 1f);
@@ -138,6 +153,7 @@ public class InventoryStatusUI : MonoBehaviour
         titleText.color = titleColor;
         titleText.fontStyle = FontStyle.Bold;
 
+        // 中央に種類別の所持数を表示する領域を確保します。
         inventoryText = CreateText("Inventory Item List", panelObject.transform);
         RectTransform inventoryRect = inventoryText.GetComponent<RectTransform>();
         inventoryRect.anchorMin = Vector2.zero;
@@ -150,6 +166,7 @@ public class InventoryStatusUI : MonoBehaviour
         inventoryText.color = bodyColor;
         inventoryText.lineSpacing = 1.1f;
 
+        // 下部に重量による性能倍率を表示します。
         influenceText = CreateText("Inventory Influence", panelObject.transform);
         RectTransform influenceRect = influenceText.GetComponent<RectTransform>();
         influenceRect.anchorMin = Vector2.zero;
@@ -164,6 +181,7 @@ public class InventoryStatusUI : MonoBehaviour
         influenceText.lineSpacing = 1.05f;
     }
 
+    // 親の下に左上揃えの文字を作り、表示範囲を超えた縦方向の文字を切り詰めます。
     private Text CreateText(string objectName, Transform parent)
     {
         GameObject textObject = new GameObject(objectName);
@@ -177,6 +195,7 @@ public class InventoryStatusUI : MonoBehaviour
         return text;
     }
 
+    // 表示先がそろっていれば、所持品と重量補正の文字列を作って反映します。
     private void RefreshText()
     {
         if (inventoryText == null || influenceText == null)
@@ -190,6 +209,7 @@ public class InventoryStatusUI : MonoBehaviour
         influenceText.text = influenceBuilder.ToString().TrimEnd();
     }
 
+    // 総数と総重量を表示し、種類別一覧は表示上限まで並べ、残り種類数を末尾に付けます。
     private void BuildInventoryText()
     {
         inventoryBuilder.Clear();
@@ -229,6 +249,7 @@ public class InventoryStatusUI : MonoBehaviour
             shown++;
         }
 
+        // 表示上限を超えた種類は、詳細の代わりに残りの種類数を表示します。
         int hiddenCount = itemSummaries.Count - shown;
         if (hiddenCount > 0)
         {
@@ -239,6 +260,7 @@ public class InventoryStatusUI : MonoBehaviour
         }
     }
 
+    // 加速・減速・旋回・衝突の重量補正倍率を表示用の文章にまとめます。
     private void BuildInfluenceText()
     {
         influenceBuilder.Clear();
@@ -270,6 +292,7 @@ public class InventoryStatusUI : MonoBehaviour
             .AppendLine();
     }
 
+    // 同じアイテム ID をまとめ、HUD には短い一覧だけを表示します。
     private void BuildItemSummaries()
     {
         itemSummaries.Clear();
@@ -296,11 +319,13 @@ public class InventoryStatusUI : MonoBehaviour
         }
     }
 
+    // 性能倍率を小数二桁の文字列に整えます。
     private string FormatMultiplier(float value)
     {
         return "x" + value.ToString("0.00");
     }
 
+    // Inspector の変更時に、設定値を有効な範囲へ補正します。
     private void OnValidate()
     {
         size.x = Mathf.Max(220f, size.x);
