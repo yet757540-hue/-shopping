@@ -13,7 +13,7 @@ public enum PlayerMovementControlScheme
 public sealed class PlayerMovementControlPreset
 {
     [SerializeField] private string displayName = "LT/RT";
-    [SerializeField] private PlayerMovementControlScheme controlScheme = PlayerMovementControlScheme.Triggers;
+    [SerializeField] private PlayerMovementControlScheme controlScheme = PlayerMovementControlScheme.FaceButtons;
 
     // 表示名を返し、未設定ならこのデータで定めた代替名を使用します。
     public string DisplayName => string.IsNullOrWhiteSpace(displayName) ? "Control" : displayName;
