@@ -11,7 +11,6 @@ Unity 製アクションゲーム「爆走ショッピング」のリポジト�
 │   ├── Packages/
 │   ├── ProjectSettings/
 │   └── .gitignore
-├── ゲーム制作企画書.pdf          ← 企画書
 ├── setup-dev.cmd                ← 最初にこれをダブルクリック
 ├── setup-dev.ps1
 ├── .gitconfig-unity             ← UnityYAMLMerge の設定
@@ -21,7 +20,7 @@ Unity 製アクションゲーム「爆走ショッピング」のリポジト�
 ```
 
 Unity プロジェクトは **リポジトリ直下の `爆走ショッピング/` サブフォルダ**にあります。
-リポジトリのルート（企画書 PDF がある階層）を Unity で開かないでください。
+リポジトリのルート（`爆走ショッピング/` の一つ上の階層）を Unity で開かないでください。
 
 ## 動作環境
 
@@ -54,8 +53,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\setup-dev.ps1
 
 ```powershell
 git config --local --get core.hooksPath                 # → .githooks
-git config --local --get merge.unityyamlmerge.driver     # → UnityYAMLMerge.exe のパス
+git config --get merge.unityyamlmerge.driver             # → UnityYAMLMerge.exe のパス
 ```
+
+（2 つ目だけ `--local` を付けないのは、設定を `include.path` で読み込んでいるためです。
+`--local` を付けると git が include を展開せず、空が表示されてしまいます）
 
 新しい PC やクローンし直したときは、もう一度実行してください（設定は clone ごと）。
 

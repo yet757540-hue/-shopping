@@ -100,7 +100,7 @@ if ($mergeTool -and -not $useLocal) {
 Write-Host ''
 Write-Host '--- 設定の確認 ---'
 Write-Host ('core.hooksPath              = ' + (git config --local --get core.hooksPath))
-Write-Host ('merge.unityyamlmerge.driver = ' + (git config --local --get merge.unityyamlmerge.driver))
+Write-Host ('merge.unityyamlmerge.driver = ' + (git config --get merge.unityyamlmerge.driver))
 Write-Host ''
 Write-Host '完了です。以後は Logs/obj/.vs などの生成物や、.meta を付け忘れたアセットを'
 Write-Host 'コミットしようとすると、その場で止まります。'
