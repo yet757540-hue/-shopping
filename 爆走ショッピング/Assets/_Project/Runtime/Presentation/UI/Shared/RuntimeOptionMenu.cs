@@ -115,6 +115,12 @@ public sealed class RuntimeOptionSlider : RuntimeOptionItem
     public float Value => value;
     // バー表示用に、現在値をゼロから一へ変換します。
     public float NormalizedValue => Mathf.InverseLerp(minValue, maxValue, value);
+    // ポインター入力で位置から値を求めるときに使う下限です。
+    public float MinValue => minValue;
+    // ポインター入力で位置から値を求めるときに使う上限です。
+    public float MaxValue => maxValue;
+    // 値をクリックで変更するときに基準にするバーの領域です。
+    internal RectTransform TrackRect => fillRect == null ? null : fillRect.parent as RectTransform;
 
     // 方向入力に応じた値変更を各行で実装します。ボタン行では何もしません。
     public override void Adjust(int direction)
@@ -443,6 +449,54 @@ public sealed class RuntimeOptionMenu
         }
 
         SelectIndex(nextIndex % items.Count);
+    }
+
+    // 画面上の位置にある行の番号を返します。どの行にも当たらない場合は -1 です。
+    public int FindIndexAtScreenPoint(Vector2 screenPoint)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            RectTransform row = items[i].Row;
+
+            if (row != null && RectTransformUtility.RectangleContainsScreenPoint(row, screenPoint, null))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    // クリック位置を値へ反映します。
+    // 数値行はクリックした位置の値へ移動し、候補行は次の候補へ進みます。
+    public bool TrySetValueAtScreenPoint(int index, Vector2 screenPoint)
+    {
+        if (index < 0 || index >= items.Count)
+        {
+            return false;
+        }
+
+        if (items[index] is RuntimeOptionSlider slider)
+        {
+            RectTransform track = slider.TrackRect;
+
+            if (track == null || !RectTransformUtility.ScreenPointToLocalPointInRectangle(track, screenPoint, null, out Vector2 localPoint))
+            {
+                return false;
+            }
+
+            float normalized = Mathf.InverseLerp(track.rect.xMin, track.rect.xMax, localPoint.x);
+            slider.SetValue(Mathf.Lerp(slider.MinValue, slider.MaxValue, Mathf.Clamp01(normalized)), true);
+            return true;
+        }
+
+        if (items[index] is RuntimeOptionChoice choice)
+        {
+            choice.Adjust(1);
+            return true;
+        }
+
+        return false;
     }
 
     // 前の編集を解除してから、選択中の行を決定状態にします。

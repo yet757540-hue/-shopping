@@ -125,7 +125,7 @@ MonoBehaviour:
   turnAcceleration: 8
   maxAngularSpeed: 3
   readGamepadDirectly: 1
-  controlScheme: 0
+  controlScheme: 1
 --- !u!54 &658734645768193305
 Rigidbody:
   m_ObjectHideFlags: 0

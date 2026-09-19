@@ -72,7 +72,7 @@ MonoBehaviour:
     controlScheme: 0
   - displayName: A/B
     controlScheme: 1
-  selectedMovementControlPresetIndex: 0
+  selectedMovementControlPresetIndex: 1
   optionOpened:
     m_PersistentCalls:
       m_Calls: []

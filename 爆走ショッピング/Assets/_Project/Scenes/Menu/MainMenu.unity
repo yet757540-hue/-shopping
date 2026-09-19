@@ -166,16 +166,155 @@ MonoBehaviour:
   gameSceneName: ShoppingGameplay
   sceneMenuView: {fileID: 0}
   menuViewPrefab: {fileID: 0}
+  useThemedStartScreen: 1
+  titleLogoTexture: {fileID: 2800000, guid: 7319b0bf8f407be48a6c99aad8cff141, type: 3}
+  characterTexture: {fileID: 2800000, guid: 99167f679739c904c8f6f1dbf43f12ce, type: 3}
+  theme:
+    backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+    topFilmStrip:
+      enabled: 1
+      angleDegrees: 10.6
+      innerEdgePoint: {x: 0, y: 845}
+      edgeOffset: 470
+      length: 1700
+      thickness: 250
+      outwardSign: 1
+      holeSize: 30
+      holePitch: 75
+      holeInset: 30
+      bandColor: {r: 0.14117648, g: 0.078431375, b: 0.02745098, a: 1}
+      holeColor: {r: 1, g: 1, b: 1, a: 1}
+      scrollSpeed: 340
+      scrollDirection: 1
+      startPhase: 0
+    bottomFilmStrip:
+      enabled: 1
+      angleDegrees: 16
+      innerEdgePoint: {x: 1917, y: 237}
+      edgeOffset: -200
+      length: 1405
+      thickness: 250
+      outwardSign: -1
+      holeSize: 30
+      holePitch: 75
+      holeInset: 30
+      bandColor: {r: 0.14117648, g: 0.078431375, b: 0.02745098, a: 1}
+      holeColor: {r: 1, g: 1, b: 1, a: 1}
+      scrollSpeed: 340
+      scrollDirection: 1
+      startPhase: 0.5
+    characterLayer:
+      enabled: 1
+      offset: {x: 747, y: 0}
+      size: {x: 1070, y: 1032}
+      rotation: 0
+      tint: {r: 1, g: 1, b: 1, a: 1}
+      outlineEnabled: 0
+      outlineWidth: 8
+      outlineColor: {r: 1, g: 1, b: 1, a: 1}
+      outlineSteps: 16
+    titleLogoLayer:
+      enabled: 1
+      offset: {x: 99, y: 444}
+      size: {x: 1002, y: 573}
+      rotation: 0
+      tint: {r: 1, g: 1, b: 1, a: 1}
+      outlineEnabled: 1
+      outlineWidth: 9
+      outlineColor: {r: 1, g: 1, b: 1, a: 1}
+      outlineSteps: 16
+    cartButtons:
+      size: {x: 440, y: 132}
+      firstCenter: {x: 350, y: 376}
+      spacing: 145
+      labelFontSize: 52
+      labelOffset: {x: -86, y: 26}
+      textureWidth: 1024
+      strokeWidth: 15
+      deckThickness: 14
+      hookThickness: 13
+      dashThickness: 6.5
+      bodyColor: {r: 1, g: 1, b: 1, a: 0}
+      lineColor: {r: 0.05, g: 0.04, b: 0.03, a: 1}
+      deckStart: {x: 0.005, y: 0.345}
+      deckEnd: {x: 0.79, y: 0.345}
+      leftPostBottom: {x: 0.041, y: 0.345}
+      leftPostTop: {x: 0.108, y: 0.968}
+      rightPostBottom: {x: 0.772, y: 0.345}
+      rightPostTop: {x: 0.824, y: 0.8}
+      hookEnd: {x: 0.995, y: 0.762}
+      wheelCenters:
+      - {x: 0.145, y: 0.196}
+      - {x: 0.635, y: 0.168}
+      wheelRadius: {x: 0.069, y: 0.099}
+      wheelDashCount: 3
+      wheelDashLength: 0.058
+      wheelDashSpacing: 0.078
+      wheelDashGap: 0.03
+      trailStartX: 0.895
+      trailStartY: 0.46
+      trailEndY: 0.66
+      trailLengthMin: 0.062
+      trailLengthMax: 0.04
+      trailCount: 3
+      normalLineColor: {r: 0.05, g: 0.04, b: 0.03, a: 1}
+      selectedLineColor: {r: 0.925, g: 0.29, b: 0.055, a: 1}
+      pressedLineColor: {r: 0.72, g: 0.13, b: 0.03, a: 1}
+      selectedOffsetX: 22
+      selectedScale: 1.06
+      pressedOffsetX: 10
+      pressedScale: 1.02
+    cartLabels:
+    - "\u958B\u59CB"
+    - "\u8A2D\u5B9A"
+    - "\u7D42\u4E86"
+    titleRush:
+      enabled: 1
+      startOffsetX: 1180
+      startScaleX: 1.22
+      startScaleY: 0.88
+      delay: 0
+      duration: 0.62
+      overshoot: 0.36
+      fadeIn: 1
+      fadePortion: 0.45
+      startAlpha: 0
+    characterRush:
+      enabled: 1
+      startOffsetX: 520
+      startScaleX: 1.06
+      startScaleY: 0.96
+      delay: 0.06
+      duration: 0.55
+      overshoot: 0.18
+      fadeIn: 1
+      fadePortion: 0.45
+      startAlpha: 0
+    cartRush:
+      enabled: 1
+      startOffsetX: 1500
+      startScaleX: 1.3
+      startScaleY: 0.86
+      delay: 0.18
+      duration: 0.48
+      overshoot: 0.4
+      fadeIn: 1
+      fadePortion: 0.45
+      startAlpha: 0
+    cartStagger: 0.12
+  cartLabelColor: {r: 0.05, g: 0.04, b: 0.03, a: 1}
   navigationDeadZone: 0.55
   navigationReleaseThreshold: 0.3
+  pointerHoverSelects: 1
   menuFontSize: 52
   optionHintFontSize: 30
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   textColor: {r: 0, g: 0, b: 0, a: 1}
   selectedBackgroundColor: {r: 0.86, g: 0.92, b: 1, a: 1}
   normalBackgroundColor: {r: 1, g: 1, b: 1, a: 0}
-  optionFocusedBackgroundColor: {r: 0.86, g: 0.92, b: 1, a: 1}
-  optionActiveBackgroundColor: {r: 0.52, g: 0.72, b: 1, a: 1}
+  optionFocusedBackgroundColor: {r: 1, g: 0.925, b: 0.72, a: 1}
+  optionActiveBackgroundColor: {r: 1, g: 0.79, b: 0.36, a: 1}
+  optionBorderThickness: 5
   menuSize: {x: 520, y: 260}
   optionPopupSize: {x: 760, y: 420}
   optionItemSize: {x: 640, y: 78}
@@ -221,7 +360,7 @@ MonoBehaviour:
     controlScheme: 0
   - displayName: A/B
     controlScheme: 1
-  selectedMovementControlPresetIndex: 0
+  selectedMovementControlPresetIndex: 1
   startSelected:
     m_PersistentCalls:
       m_Calls: []

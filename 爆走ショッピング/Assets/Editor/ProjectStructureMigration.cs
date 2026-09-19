@@ -14,6 +14,8 @@ using UnityEngine.UI;
 public static class ProjectStructureMigration
 {
     private const string Root = "Assets/_Project";
+    private const string LegacyScriptFolder = "Assets/Script";
+    private const string LegacySettingsFolder = "Assets/Settings";
     private const string MainMenuScene = Root + "/Scenes/Menu/MainMenu.unity";
     private const string GameplayScene = Root + "/Scenes/Gameplay/ShoppingGameplay.unity";
 
@@ -78,21 +80,64 @@ public static class ProjectStructureMigration
     // 番号付きの重複フォルダー候補を調べ、メタデータ以外のファイルがないものだけ削除します。
     private static void RemoveEmptyGeneratedDuplicateFolders()
     {
-        List<string> candidates = new List<string>();
-        candidates.AddRange(System.IO.Directory.GetDirectories("Assets")
-            .Where(folder => System.Text.RegularExpressions.Regex.IsMatch(System.IO.Path.GetFileName(folder), @"^_Project \d+$")));
-        candidates.AddRange(System.IO.Directory.GetDirectories(Root)
-            .Where(folder => System.Text.RegularExpressions.Regex.IsMatch(System.IO.Path.GetFileName(folder), @" \d+$")));
-
-        foreach (string folder in candidates.OrderByDescending(path => path.Length))
+        foreach (string folder in FindGeneratedDuplicateFolders())
         {
-            bool containsNonMetaFile = System.IO.Directory.EnumerateFiles(folder, "*", System.IO.SearchOption.AllDirectories)
-                .Any(path => !path.EndsWith(".meta", StringComparison.OrdinalIgnoreCase));
-            if (!containsNonMetaFile)
+            if (!ContainsOnlyMetaFiles(folder))
             {
-                AssetDatabase.DeleteAsset(folder.Replace('\\', '/'));
+                continue;
             }
+
+            AssetDatabase.DeleteAsset(folder.Replace('\\', '/'));
         }
+    }
+
+    // 番号付きの重複フォルダーは階層のどの深さにもできるため、Assets 全体を走査します。
+    private static List<string> FindGeneratedDuplicateFolders()
+    {
+        List<string> results = new List<string>();
+
+        if (!System.IO.Directory.Exists("Assets"))
+        {
+            return results;
+        }
+
+        CollectGeneratedDuplicateFolders("Assets", results);
+        return results.OrderByDescending(path => path.Length).ToList();
+    }
+
+    private static void CollectGeneratedDuplicateFolders(string folder, List<string> results)
+    {
+        string[] children;
+
+        try
+        {
+            children = System.IO.Directory.GetDirectories(folder);
+        }
+        catch (System.IO.IOException)
+        {
+            return;
+        }
+
+        foreach (string child in children)
+        {
+            string name = System.IO.Path.GetFileName(child);
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(name, @"^_Project \d+$") ||
+                System.Text.RegularExpressions.Regex.IsMatch(name, @" \d+$"))
+            {
+                results.Add(child);
+                continue;
+            }
+
+            CollectGeneratedDuplicateFolders(child, results);
+        }
+    }
+
+    // フォルダー内にメタデータ以外のファイルが無いかを返します。
+    private static bool ContainsOnlyMetaFiles(string folder)
+    {
+        return !System.IO.Directory.EnumerateFiles(folder, "*", System.IO.SearchOption.AllDirectories)
+            .Any(path => !path.EndsWith(".meta", StringComparison.OrdinalIgnoreCase));
     }
 
     // 旧構成の既知フォルダーを調べ、実データが残っていないものだけ削除します。
@@ -111,9 +156,7 @@ public static class ProjectStructureMigration
                 continue;
             }
 
-            bool containsNonMetaFile = System.IO.Directory.EnumerateFiles(folder, "*", System.IO.SearchOption.AllDirectories)
-                .Any(path => !path.EndsWith(".meta", StringComparison.OrdinalIgnoreCase));
-            if (!containsNonMetaFile)
+            if (ContainsOnlyMetaFiles(folder))
             {
                 AssetDatabase.DeleteAsset(folder);
             }
@@ -163,7 +206,14 @@ public static class ProjectStructureMigration
 
         MoveScripts();
 
-        foreach (string asset in AssetDatabase.FindAssets(string.Empty, new[] { "Assets/Settings" }))
+        // 移行済みなら旧フォルダーは残っていないため、存在するときだけ検索します。
+        // 存在しないフォルダーを渡すと FindAssets が警告を出すためです。
+        if (!AssetDatabase.IsValidFolder(LegacySettingsFolder))
+        {
+            return;
+        }
+
+        foreach (string asset in AssetDatabase.FindAssets(string.Empty, new[] { LegacySettingsFolder }))
         {
             string path = AssetDatabase.GUIDToAssetPath(asset);
             if (!AssetDatabase.IsValidFolder(path))
@@ -198,7 +248,14 @@ public static class ProjectStructureMigration
     // 指定した旧フォルダー内のスクリプトを探し、名前を保って移行先へ移動します。
     private static void MoveScriptDirectory(string sourceDirectory, string targetDirectory)
     {
-        string source = "Assets/Script/" + sourceDirectory;
+        string source = LegacyScriptFolder + "/" + sourceDirectory;
+
+        // 旧スクリプトフォルダーは移行後に消えるため、無い場合は検索しません。
+        if (!AssetDatabase.IsValidFolder(source))
+        {
+            return;
+        }
+
         foreach (string guid in AssetDatabase.FindAssets("t:MonoScript", new[] { source }))
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
@@ -209,7 +266,7 @@ public static class ProjectStructureMigration
     // 旧スクリプトルートと新プロジェクトルートを補って移動処理へ渡します。
     private static void MoveScript(string source, string target)
     {
-        Move("Assets/Script/" + source, Root + "/" + target);
+        Move(LegacyScriptFolder + "/" + source, Root + "/" + target);
     }
 
     // タイトルとゲームシーンを設定し、ビルド対象の順序を更新してアセットを保存します。
@@ -229,7 +286,7 @@ public static class ProjectStructureMigration
     private static void ConfigureMainMenu()
     {
         Scene scene = EditorSceneManager.OpenScene(MainMenuScene, OpenSceneMode.Single);
-        StartMenuManager menu = UnityEngine.Object.FindFirstObjectByType<StartMenuManager>();
+        StartMenuManager menu = UnityEngine.Object.FindAnyObjectByType<StartMenuManager>();
         if (menu != null)
         {
             SerializedObject serialized = new SerializedObject(menu);
@@ -243,12 +300,12 @@ public static class ProjectStructureMigration
     private static void ConfigureGameplayScene()
     {
         Scene scene = EditorSceneManager.OpenScene(GameplayScene, OpenSceneMode.Single);
-        GameSessionRoot root = UnityEngine.Object.FindFirstObjectByType<GameSessionRoot>();
-        PlayerManager player = UnityEngine.Object.FindFirstObjectByType<PlayerManager>();
-        TimerManager timer = UnityEngine.Object.FindFirstObjectByType<TimerManager>();
-        ScoreboardManager scoreboard = UnityEngine.Object.FindFirstObjectByType<ScoreboardManager>();
-        SettlementArea settlement = UnityEngine.Object.FindFirstObjectByType<SettlementArea>();
-        CollisionFeedbackManager feedback = UnityEngine.Object.FindFirstObjectByType<CollisionFeedbackManager>();
+        GameSessionRoot root = UnityEngine.Object.FindAnyObjectByType<GameSessionRoot>();
+        PlayerManager player = UnityEngine.Object.FindAnyObjectByType<PlayerManager>();
+        TimerManager timer = UnityEngine.Object.FindAnyObjectByType<TimerManager>();
+        ScoreboardManager scoreboard = UnityEngine.Object.FindAnyObjectByType<ScoreboardManager>();
+        SettlementArea settlement = UnityEngine.Object.FindAnyObjectByType<SettlementArea>();
+        CollisionFeedbackManager feedback = UnityEngine.Object.FindAnyObjectByType<CollisionFeedbackManager>();
 
         if (root == null || player == null || timer == null || scoreboard == null || settlement == null || feedback == null)
         {
@@ -295,7 +352,7 @@ public static class ProjectStructureMigration
         SetReference(rootSerialized, "resultScreen", results);
         // シーン内の目標一覧と、それぞれの透視表示用材質を設定します。
         SerializedProperty targets = rootSerialized.FindProperty("scoreTargets");
-        ScoreTarget[] scoreTargets = UnityEngine.Object.FindObjectsByType<ScoreTarget>(FindObjectsSortMode.None);
+        ScoreTarget[] scoreTargets = UnityEngine.Object.FindObjectsByType<ScoreTarget>(FindObjectsInactive.Exclude);
         targets.arraySize = scoreTargets.Length;
         for (int i = 0; i < scoreTargets.Length; i++)
         {
@@ -313,13 +370,13 @@ public static class ProjectStructureMigration
     // 既存の目標 HUD を探し、なければ Canvas と文字パネルを作って参照を接続します。
     private static ScoreboardView EnsureScoreboardView()
     {
-        ScoreboardView existing = UnityEngine.Object.FindFirstObjectByType<ScoreboardView>();
+        ScoreboardView existing = UnityEngine.Object.FindAnyObjectByType<ScoreboardView>();
         if (existing != null)
         {
             return existing;
         }
 
-        Canvas canvas = UnityEngine.Object.FindFirstObjectByType<Canvas>();
+        Canvas canvas = UnityEngine.Object.FindAnyObjectByType<Canvas>();
         if (canvas == null)
         {
             GameObject canvasObject = new GameObject("Gameplay UI", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -425,12 +482,22 @@ public static class ProjectStructureMigration
     // 必要な親フォルダーから順に、存在しないフォルダーを作成します。
     private static void EnsureFolder(string folder)
     {
-        if (string.IsNullOrEmpty(folder) || System.IO.Directory.Exists(folder))
+        folder = folder?.Replace('\\', '/');
+
+        // AssetDatabase 基準で存在確認します。作業ディレクトリに左右されず、
+        // 既存フォルダーに対して CreateFolder が「名前 1」を作ることも防げます。
+        if (string.IsNullOrEmpty(folder) || AssetDatabase.IsValidFolder(folder))
         {
             return;
         }
 
         string parent = System.IO.Path.GetDirectoryName(folder)?.Replace('\\', '/');
+
+        if (string.IsNullOrEmpty(parent) || parent == folder)
+        {
+            return;
+        }
+
         EnsureFolder(parent);
         AssetDatabase.CreateFolder(parent, System.IO.Path.GetFileName(folder));
     }

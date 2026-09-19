@@ -43,7 +43,7 @@ public class InGameOptionMenu : MonoBehaviour
         PlayerMovementControlPreset.CreateTriggers(),
         PlayerMovementControlPreset.CreateFaceButtons()
     };
-    [SerializeField] private int selectedMovementControlPresetIndex = 0;
+    [SerializeField] private int selectedMovementControlPresetIndex = PlayerMovementControlPreset.DefaultIndex;
 
     // Inspector から接続する通知用フィールドです。実際の発火条件は各処理で決まります。
     [Header("イベント")]

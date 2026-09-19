@@ -12,7 +12,10 @@ public enum PlayerMovementControlScheme
 [Serializable]
 public sealed class PlayerMovementControlPreset
 {
-    [SerializeField] private string displayName = "LT/RT";
+    // 既定で選ばれる操作方式はフェイスボタン（A/B）です。プリセット配列の 2 番目に置いています。
+    public const int DefaultIndex = 1;
+
+    [SerializeField] private string displayName = "A/B";
     [SerializeField] private PlayerMovementControlScheme controlScheme = PlayerMovementControlScheme.FaceButtons;
 
     // 表示名を返し、未設定ならこのデータで定めた代替名を使用します。

@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
     // ゲームパッドを直接読むかどうかと、加速・ブレーキのボタン配置です。
     [Header("入力設定")]
     [SerializeField] private bool readGamepadDirectly = true;
-    [SerializeField] private PlayerMovementControlScheme controlScheme = PlayerMovementControlScheme.Triggers;
+    [SerializeField] private PlayerMovementControlScheme controlScheme = PlayerMovementControlScheme.FaceButtons;
 
     private Rigidbody rb;
     private float steerInput;

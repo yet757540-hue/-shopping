@@ -38,7 +38,7 @@ public sealed class GameSessionBuildValidator : IPreprocessBuildWithReport
             }
 
             Scene scene = EditorSceneManager.OpenScene(buildScene.path, OpenSceneMode.Single);
-            GameSessionRoot root = Object.FindFirstObjectByType<GameSessionRoot>();
+            GameSessionRoot root = Object.FindAnyObjectByType<GameSessionRoot>();
 
             // タイトル専用シーンにはゲーム進行サービスを要求しません。
             if (root == null)
@@ -51,7 +51,7 @@ public sealed class GameSessionBuildValidator : IPreprocessBuildWithReport
                 throw new BuildFailedException("[GameSessionBuildValidator] Invalid GameSessionRoot in " + scene.path);
             }
 
-            if (Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Length != 1)
+            if (Object.FindObjectsByType<Canvas>(FindObjectsInactive.Exclude).Length != 1)
             {
                 throw new BuildFailedException("[GameSessionBuildValidator] Gameplay scene must contain exactly one authored Canvas: " + scene.path);
             }
