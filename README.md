@@ -1,0 +1,97 @@
+# 爆走ショッピング
+
+Unity 製アクションゲーム「爆走ショッピング」のリポジトリです。
+
+## リポジトリ構成
+
+```
+-shopping/                      ← リポジトリのルート
+├── 爆走ショッピング/            ← Unity プロジェクト本体（Unity で開くのはここ）
+│   ├── Assets/
+│   ├── Packages/
+│   ├── ProjectSettings/
+│   └── .gitignore
+├── ゲーム制作企画書.pdf          ← 企画書
+├── .gitattributes
+└── .github/PULL_REQUEST_TEMPLATE.md
+```
+
+Unity プロジェクトは **リポジトリ直下の `爆走ショッピング/` サブフォルダ**にあります。
+リポジトリのルート（企画書 PDF がある階層）を Unity で開かないでください。
+
+## 動作環境
+
+| 項目 | 値 |
+| --- | --- |
+| Unity | **6000.4.2f1**（このバージョンで作業してください） |
+| レンダリング | Universal Render Pipeline (URP) |
+| 入力 | Input System / Starter Assets |
+
+Unity Hub の「Add project from disk」で `爆走ショッピング/` を指定して開きます。
+`Library/` は各自の環境で生成されるためリポジトリには含まれません（初回オープンには数分かかります）。
+
+## ブランチ運用
+
+| ブランチ | 役割 |
+| --- | --- |
+| `main` | 常に動く状態。**直接 push しない**。PR 経由でのみ更新する |
+| `feature/<内容>` | 機能追加・作業用。例: `feature/player-model` |
+| `fix/<内容>` | 不具合修正用。例: `fix/dash-collision` |
+
+1. `main` から作業ブランチを切る
+2. 作業して push する
+3. PR を作成する（テンプレートに沿って動作確認を書く）
+4. レビュー後にマージし、**マージ済みの作業ブランチは削除する**
+
+マージ済みのブランチを残さないでください。「どれが最新か分からない」状態が一番事故を生みます。
+
+## コミットメッセージ
+
+`<種類>: <内容>` の形式で書きます。
+
+- `feat: プレイヤーモデルを差し替え`
+- `fix: ダッシュ中に壁をすり抜ける問題を修正`
+- `art: レジのモデルを追加`
+- `scene: タイトルシーンに BGM を設定`
+- `docs: README を追加`
+- `chore: 生成物を追跡から除外`
+
+`1` `いろいろ` `test` のようなメッセージは避けてください。後から原因を追えなくなります。
+
+## コミットしてはいけないもの
+
+以下は Unity / IDE が自動生成するもので、**コミットすると全員の作業と衝突します**。
+
+- `Library/` `Temp/` `obj/` `Logs/` `UserSettings/` `ProfilerCaptures/`
+- `.vs/` `*.csproj` `*.sln` `*.suo`
+- ビルド成果物（`Build/` や、`*.exe` を含む配布フォルダ一式）
+- 100MB を超えるファイル
+
+`.gitignore` で除外済みです。もし `git status` にこれらが現れたら、コミットせずに報告してください。
+
+## シーン・Prefab の同時編集について
+
+`.unity` / `.prefab` は中身が YAML ですが、二人が同時に同じファイルを編集するとほぼ確実に競合します。
+
+- 同じシーン / Prefab を同時に触らない（声を掛け合う）
+- 編集が終わったらすぐ push する
+- 競合したら手で YAML を直さず、UnityYAMLMerge（SmartMerge）を使う
+
+### UnityYAMLMerge の設定（各自 1 回だけ）
+
+```powershell
+cd <リポジトリのパス>
+git config --local merge.unityyamlmerge.name "Unity SmartMerge"
+git config --local merge.unityyamlmerge.driver '"C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Tools/UnityYAMLMerge.exe" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"'
+```
+
+## 大きなファイル（LFS）
+
+`.gitattributes` に Git LFS の設定をコメントで用意してあります。
+PSD / TIF / FBX / 音声などを本格的に追加する前に、LFS の有効化を相談してください。
+**一度コミットした大きなファイルは、後から削除しても履歴に残り続けます。**
+
+## リポジトリの履歴について（既知の課題）
+
+過去にビルド成果物・ログ・旧プロジェクト（`seisaku(kari)/`）がコミットされたため、履歴が大きくなっています。
+整理する場合は全員の再 clone が必要になるので、必ず事前に相談してください。

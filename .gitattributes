@@ -1,0 +1,70 @@
+# 既定: テキストは正規化する（リポジトリ内は LF、作業ツリーは各 OS の設定に従う）
+* text=auto
+
+# 明示的にテキスト扱いするもの
+*.cs       text diff=csharp
+*.shader   text
+*.cginc    text
+*.hlsl     text
+*.compute  text
+*.json     text
+*.txt      text
+*.md       text
+*.xml      text
+*.yml      text
+*.yaml     text
+
+# Unity の YAML アセットは UnityYAMLMerge (SmartMerge) でマージする。
+# 各メンバーのローカルにドライバ登録が必要（README 参照）。
+*.unity              merge=unityyamlmerge
+*.prefab             merge=unityyamlmerge
+*.asset              merge=unityyamlmerge
+*.meta               merge=unityyamlmerge
+*.mat                merge=unityyamlmerge
+*.anim               merge=unityyamlmerge
+*.controller         merge=unityyamlmerge
+*.playable           merge=unityyamlmerge
+*.mask               merge=unityyamlmerge
+*.overrideController merge=unityyamlmerge
+*.physicMaterial     merge=unityyamlmerge
+
+# バイナリ（テキスト変換・改行変換をしない）
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.tga    binary
+*.psd    binary
+*.tif    binary
+*.tiff   binary
+*.exr    binary
+*.hdr    binary
+*.fbx    binary
+*.obj    binary
+*.blend  binary
+*.mp3    binary
+*.wav    binary
+*.ogg    binary
+*.a      binary
+*.dll    binary
+*.so     binary
+*.dylib  binary
+*.bundle binary
+*.pdf    binary
+*.ttf    binary
+*.otf    binary
+*.ttc    binary
+*.bytes  binary
+
+# ---------------------------------------------------------------
+# Git LFS（大きなバイナリ資産を本格的に追加する前に有効化する）
+#   1) git lfs install --local
+#   2) 下の行のコメントを外す
+#   3) 既存ファイルを移行: git lfs migrate import --include="*.psd,*.tif,*.fbx"
+# 注意: GitHub の無料枠はストレージ 1GB / 帯域 1GB 月。
+# ---------------------------------------------------------------
+# *.psd  filter=lfs diff=lfs merge=lfs -text
+# *.tif  filter=lfs diff=lfs merge=lfs -text
+# *.tiff filter=lfs diff=lfs merge=lfs -text
+# *.fbx  filter=lfs diff=lfs merge=lfs -text
+# *.wav  filter=lfs diff=lfs merge=lfs -text
