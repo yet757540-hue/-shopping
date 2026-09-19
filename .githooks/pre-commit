@@ -1,0 +1,57 @@
+#!/bin/sh
+# =====================================================================
+# commit 前に「コミットしてはいけないもの」を検査するフック
+#
+#   有効化: git config --local core.hooksPath .githooks
+#   回避  : SKIP_HOOKS=1 git commit ...
+# =====================================================================
+
+[ "$SKIP_HOOKS" = "1" ] && exit 0
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR -z | tr '\0' '\n')
+[ -z "$staged" ] && exit 0
+
+# ---- 1) Unity / IDE が自動生成するパス ------------------------------
+bad_paths=$(printf '%s\n' "$staged" | grep -Ei '(^|/)(library|temp|obj|logs|usersettings|memorycaptures|recordings|profilercaptures|build|builds|\.vs|\.idea)/|\.(csproj|sln|suo|userprefs|pidb|booproj|svd)$|(^|/)tmp/')
+
+# ---- 2) 50MB を超えるファイル --------------------------------------
+big_files=""
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  size=$(git cat-file -s ":$f" 2>/dev/null) || continue
+  [ -n "$size" ] || continue
+  if [ "$size" -gt 52428800 ]; then
+    big_files="${big_files}    $f ($((size / 1048576)) MB)
+"
+  fi
+done <<EOF
+$staged
+EOF
+
+if [ -n "$bad_paths" ] || [ -n "$big_files" ]; then
+  echo "" >&2
+  echo "==========================================================" >&2
+  echo " コミットを中止しました（生成物チェックに引っかかりました）" >&2
+  echo "==========================================================" >&2
+  if [ -n "$bad_paths" ]; then
+    echo "" >&2
+    echo "■ Unity / IDE が自動生成するファイルが含まれています:" >&2
+    printf '%s\n' "$bad_paths" | sed 's/^/    /' >&2
+    echo "" >&2
+    echo "  対処: git rm --cached -- <ファイル名>" >&2
+    echo "  (Library/ Logs/ obj/ .vs/ UserSettings/ tmp/ は追跡しない)" >&2
+  fi
+  if [ -n "$big_files" ]; then
+    echo "" >&2
+    echo "■ 50MB を超えるファイルが含まれています:" >&2
+    printf '%s' "$big_files" >&2
+    echo "" >&2
+    echo "  対処: Git LFS か外部ストレージを検討してください" >&2
+  fi
+  echo "" >&2
+  echo "  どうしても通したい場合: SKIP_HOOKS=1 git commit ..." >&2
+  echo "" >&2
+  exit 1
+fi
+
+exit 0

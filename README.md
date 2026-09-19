@@ -13,6 +13,7 @@ Unity 製アクションゲーム「爆走ショッピング」のリポジト�
 │   └── .gitignore
 ├── ゲーム制作企画書.pdf          ← 企画書
 ├── .gitattributes
+├── .githooks/pre-commit
 └── .github/PULL_REQUEST_TEMPLATE.md
 ```
 
@@ -29,6 +30,21 @@ Unity プロジェクトは **リポジトリ直下の `爆走ショッピング
 
 Unity Hub の「Add project from disk」で `爆走ショッピング/` を指定して開きます。
 `Library/` は各自の環境で生成されるためリポジトリには含まれません（初回オープンには数分かかります）。
+
+## 最初にやること（クローンしたら 1 回だけ）
+
+```powershell
+cd <リポジトリのパス>
+
+# 1) Unity のシーン/Prefab を自動マージできるようにする
+git config --local merge.unityyamlmerge.name "Unity SmartMerge"
+git config --local merge.unityyamlmerge.driver '"C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Tools/UnityYAMLMerge.exe" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"'
+
+# 2) 生成物をコミット前に止めるフックを有効化する
+git config --local core.hooksPath .githooks
+```
+
+どちらも「設定した本人の環境」にだけ効きます。新しい PC やクローンし直したときは再実行してください。
 
 ## ブランチ運用
 
@@ -65,9 +81,10 @@ Unity Hub の「Add project from disk」で `爆走ショッピング/` を指�
 - `Library/` `Temp/` `obj/` `Logs/` `UserSettings/` `ProfilerCaptures/`
 - `.vs/` `*.csproj` `*.sln` `*.suo`
 - ビルド成果物（`Build/` や、`*.exe` を含む配布フォルダ一式）
-- 100MB を超えるファイル
+- 50MB を超えるファイル
 
-`.gitignore` で除外済みです。もし `git status` にこれらが現れたら、コミットせずに報告してください。
+`.gitignore` で除外済みで、さらに `.githooks/pre-commit` がコミット自体を止めます。
+フックに引っかかったときは、表示されたパスを `git rm --cached -- <パス>` で追跡から外してください。
 
 ## シーン・Prefab の同時編集について
 
@@ -76,14 +93,6 @@ Unity Hub の「Add project from disk」で `爆走ショッピング/` を指�
 - 同じシーン / Prefab を同時に触らない（声を掛け合う）
 - 編集が終わったらすぐ push する
 - 競合したら手で YAML を直さず、UnityYAMLMerge（SmartMerge）を使う
-
-### UnityYAMLMerge の設定（各自 1 回だけ）
-
-```powershell
-cd <リポジトリのパス>
-git config --local merge.unityyamlmerge.name "Unity SmartMerge"
-git config --local merge.unityyamlmerge.driver '"C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Tools/UnityYAMLMerge.exe" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"'
-```
 
 ## 大きなファイル（LFS）
 
