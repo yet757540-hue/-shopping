@@ -12,8 +12,11 @@ Unity 製アクションゲーム「爆走ショッピング」のリポジト�
 │   ├── ProjectSettings/
 │   └── .gitignore
 ├── ゲーム制作企画書.pdf          ← 企画書
+├── setup-dev.cmd                ← 最初にこれをダブルクリック
+├── setup-dev.ps1
+├── .gitconfig-unity             ← UnityYAMLMerge の設定
+├── .githooks/pre-commit         ← コミット前チェック
 ├── .gitattributes
-├── .githooks/pre-commit
 └── .github/PULL_REQUEST_TEMPLATE.md
 ```
 
@@ -33,18 +36,38 @@ Unity Hub の「Add project from disk」で `爆走ショッピング/` を指�
 
 ## 最初にやること（クローンしたら 1 回だけ）
 
+**`setup-dev.cmd` をダブルクリックするだけです。**
+
+PowerShell から実行する場合:
+
 ```powershell
 cd <リポジトリのパス>
-
-# 1) Unity のシーン/Prefab を自動マージできるようにする
-git config --local merge.unityyamlmerge.name "Unity SmartMerge"
-git config --local merge.unityyamlmerge.driver '"C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Tools/UnityYAMLMerge.exe" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"'
-
-# 2) 生成物をコミット前に止めるフックを有効化する
-git config --local core.hooksPath .githooks
+powershell -NoProfile -ExecutionPolicy Bypass -File .\setup-dev.ps1
 ```
 
-どちらも「設定した本人の環境」にだけ効きます。新しい PC やクローンし直したときは再実行してください。
+これで次の 2 つが設定されます（その人自身の環境にだけ効きます）。
+
+1. シーン / Prefab を自動マージする UnityYAMLMerge（`.gitconfig-unity` を include）
+2. 生成物をコミット前に止めるフック（`core.hooksPath = .githooks`）
+
+確認する場合:
+
+```powershell
+git config --local --get core.hooksPath                 # → .githooks
+git config --local --get merge.unityyamlmerge.driver     # → UnityYAMLMerge.exe のパス
+```
+
+新しい PC やクローンし直したときは、もう一度実行してください（設定は clone ごと）。
+
+### 手動で設定する場合
+
+```powershell
+git config --local core.hooksPath .githooks
+git config --local include.path ../.gitconfig-unity
+```
+
+Unity のインストール先が標準（`C:\Program Files\Unity\Hub\Editor\<バージョン>\`）でない場合は、
+`.gitconfig-unity` の中の exe パスを自分の環境に合わせて書き換えてください。
 
 ## ブランチ運用
 

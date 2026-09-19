@@ -1,0 +1,8 @@
+# Unity のシーン / Prefab / .asset を自動マージするための設定。
+# setup-dev.cmd / setup-dev.ps1 から次の 1 行で読み込まれる:
+#     git config --local include.path ../.gitconfig-unity
+# Unity のバージョンを上げたときは、下の exe のパスを書き換える。
+
+[merge "unityyamlmerge"]
+	name = Unity SmartMerge
+	driver = \"C:/Program Files/Unity/Hub/Editor/6000.4.2f1/Editor/Data/Tools/UnityYAMLMerge.exe\" merge -p \"$BASE\" \"$REMOTE\" \"$LOCAL\" \"$MERGED\"
