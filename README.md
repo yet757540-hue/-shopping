@@ -84,7 +84,15 @@ git config --local core.hooksPath .githooks
 - 50MB を超えるファイル
 
 `.gitignore` で除外済みで、さらに `.githooks/pre-commit` がコミット自体を止めます。
-フックに引っかかったときは、表示されたパスを `git rm --cached -- <パス>` で追跡から外してください。
+
+## `.meta` は必ずセットでコミットする
+
+Unity は `.meta` に書かれた GUID でアセット同士の参照を解決します。
+**アセットを追加したのに `.meta` をコミットし忘れると、他のメンバーの環境で参照が全部切れます。**
+（フォルダにも `.meta` が必要です）
+
+フックが「`.meta` が含まれていないファイル」を検出してコミットを止めます。
+引っかかったら、Unity で一度インポートして `.meta` を生成し、アセットと一緒にステージしてください。
 
 ## シーン・Prefab の同時編集について
 
@@ -100,7 +108,38 @@ git config --local core.hooksPath .githooks
 PSD / TIF / FBX / 音声などを本格的に追加する前に、LFS の有効化を相談してください。
 **一度コミットした大きなファイルは、後から削除しても履歴に残り続けます。**
 
-## リポジトリの履歴について（既知の課題）
+## リポジトリのメンテナンス（管理者向け）
+
+### マージ済みブランチの削除
+
+```powershell
+git branch --merged main              # main にマージ済みの一覧
+git branch -d <ブランチ名>             # ローカルを削除
+git push origin --delete <ブランチ名>  # リモートを削除
+```
+
+### `.git` が肥大化したとき
+
+**不可逆な操作です。** どのブランチからも辿れない古いオブジェクトが消えます。
+実行前にリポジトリ全体をバックアップするか、新しいクローンを作っておいてください。
+
+```powershell
+git count-objects -vH        # 現在のサイズを確認
+git fsck --unreachable       # 消える対象を確認（任意）
+
+git reflog expire --expire=now --all
+git gc --prune=now
+```
+
+### Git LFS を有効化するとき
+
+```powershell
+git lfs install --local
+# .gitattributes の LFS 行（コメントアウト済み）を有効化してから
+git lfs migrate import --include="*.psd,*.tif,*.fbx,*.wav"
+```
+
+### 既知の課題
 
 過去にビルド成果物・ログ・旧プロジェクト（`seisaku(kari)/`）がコミットされたため、履歴が大きくなっています。
-整理する場合は全員の再 clone が必要になるので、必ず事前に相談してください。
+履歴を整理する場合は全員の再 clone が必要になるので、必ず事前に相談してください。

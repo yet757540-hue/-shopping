@@ -28,10 +28,45 @@ done <<EOF
 $staged
 EOF
 
-if [ -n "$bad_paths" ] || [ -n "$big_files" ]; then
+# ---- 3) Assets 配下で .meta が無いもの -----------------------------
+# Unity は .meta の GUID で参照を解決する。.meta を付け忘れてコミットすると
+# 他のメンバー側で参照が全部切れるため、必ずセットでコミットさせる。
+missing_meta=""
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  case "$f" in
+    */Assets/*|Assets/*) ;;
+    *) continue ;;
+  esac
+  case "$f" in
+    *.meta) continue ;;
+    */.*|.*) continue ;;
+    *~) continue ;;
+  esac
+  # ファイル自身の .meta
+  git cat-file -e ":$f.meta" 2>/dev/null || missing_meta="${missing_meta}$f.meta
+"
+  # 親フォルダの .meta（Assets まで遡る）
+  d=$(dirname "$f")
+  while :; do
+    # Assets フォルダ自身は .meta を持たないので、そこで止める
+    case "$d" in
+      Assets|*/Assets) break ;;
+      .|/|"") break ;;
+    esac
+    git cat-file -e ":$d.meta" 2>/dev/null || missing_meta="${missing_meta}$d.meta
+"
+    d=$(dirname "$d")
+  done
+done <<EOF
+$staged
+EOF
+missing_meta=$(printf '%s\n' "$missing_meta" | sed '/^$/d' | sort -u)
+
+if [ -n "$bad_paths" ] || [ -n "$big_files" ] || [ -n "$missing_meta" ]; then
   echo "" >&2
   echo "==========================================================" >&2
-  echo " コミットを中止しました（生成物チェックに引っかかりました）" >&2
+  echo " コミットを中止しました（コミット前チェックに引っかかりました）" >&2
   echo "==========================================================" >&2
   if [ -n "$bad_paths" ]; then
     echo "" >&2
@@ -40,6 +75,13 @@ if [ -n "$bad_paths" ] || [ -n "$big_files" ]; then
     echo "" >&2
     echo "  対処: git rm --cached -- <ファイル名>" >&2
     echo "  (Library/ Logs/ obj/ .vs/ UserSettings/ tmp/ は追跡しない)" >&2
+  fi
+  if [ -n "$missing_meta" ]; then
+    echo "" >&2
+    echo "■ .meta がコミットに含まれていないものがあります:" >&2
+    printf '%s\n' "$missing_meta" | sed 's/^/    /' >&2
+    echo "" >&2
+    echo "  対処: Unity で一度インポートして .meta を生成し、必ずセットでコミットする" >&2
   fi
   if [ -n "$big_files" ]; then
     echo "" >&2
