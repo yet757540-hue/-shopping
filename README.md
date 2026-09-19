@@ -193,9 +193,3 @@ git lfs install --local
 git lfs migrate import --include="*.psd,*.tif,*.fbx,*.wav"
 ```
 
-### 既知の課題
-
-- 過去にビルド成果物・ログ・旧プロジェクト（`seisaku(kari)/`）がコミットされたため、履歴が大きくなっています。
-  整理する場合は全員の再 clone が必要になるので、必ず事前に相談してください。
-- 作業フォルダを OneDrive の同期対象に置くと、`Camera 1.meta` のような**重複 `.meta` が混入する事故**が実際に起きています（2026-09 に 24 個を削除）。
-  可能なら `C:\Git\` など OneDrive の外に置いてください。
