@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>Prefab-owned visual for the score objectives.</summary>
+/// <summary>スコア目標の表示だけを担当する、Prefab 側のビューです。</summary>
 [DisallowMultipleComponent]
 public sealed class ScoreboardView : MonoBehaviour
 {
@@ -11,8 +11,10 @@ public sealed class ScoreboardView : MonoBehaviour
 
     private ScoreboardManager scoreboard;
 
+    // 目標文字と警告色の設定先となる Text を公開します。
     public Text Text => text;
 
+    // 管理クラスを差し替える時は、古いイベント登録を先に解除します。
     public void Initialize(ScoreboardManager source)
     {
         if (scoreboard == source)
@@ -36,6 +38,7 @@ public sealed class ScoreboardView : MonoBehaviour
         Refresh();
     }
 
+    // 無効化中の更新を避けるため、スコア管理の通知を解除します。
     private void OnDisable()
     {
         if (scoreboard != null)
@@ -44,6 +47,7 @@ public sealed class ScoreboardView : MonoBehaviour
         }
     }
 
+    // スコア管理の通知を登録し、再表示時の文字を同期します。
     private void OnEnable()
     {
         if (scoreboard != null)
@@ -55,6 +59,7 @@ public sealed class ScoreboardView : MonoBehaviour
         Refresh();
     }
 
+    // 警告状態に応じて、文字表示の色を切り替えます。
     public void SetWarning(bool warning)
     {
         if (text != null)
@@ -63,6 +68,7 @@ public sealed class ScoreboardView : MonoBehaviour
         }
     }
 
+    // スコア管理から現在の表示文字列を取得し、Text に反映します。
     private void Refresh()
     {
         if (text != null)

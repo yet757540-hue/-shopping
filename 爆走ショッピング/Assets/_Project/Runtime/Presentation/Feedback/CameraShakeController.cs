@@ -1,9 +1,11 @@
 using UnityEngine;
 
+/// <summary>カメラのローカル座標へ一時的な揺れを加えます。</summary>
 [DisallowMultipleComponent]
 public class CameraShakeController : MonoBehaviour
 {
-    [Header("Shake Settings")]
+    // 揺れの細かさと、奥行き方向の揺れの割合です。
+    [Header("揺れ設定")]
     [SerializeField] private float shakeFrequency = 35f;
     [SerializeField] private float zMultiplier = 0.2f;
 
@@ -13,6 +15,7 @@ public class CameraShakeController : MonoBehaviour
     private float shakeRemainingDuration;
     private Vector3 noiseSeed;
 
+    // 揺れを戻す基準となるカメラのローカル位置を記録します。
     private void Awake()
     {
         originalLocalPosition = transform.localPosition;
@@ -23,6 +26,7 @@ public class CameraShakeController : MonoBehaviour
         );
     }
 
+    // 揺れの残り時間を進め、基準位置に一時的な揺れを加えます。
     private void LateUpdate()
     {
         if (shakeRemainingDuration <= 0f)
@@ -42,6 +46,7 @@ public class CameraShakeController : MonoBehaviour
         }
     }
 
+    // 指定強度と持続時間でカメラ揺れを要求します。
     public void Shake(float strength, float duration)
     {
         strength = Mathf.Max(0f, strength);
@@ -60,6 +65,7 @@ public class CameraShakeController : MonoBehaviour
         }
     }
 
+    // 揺れの状態をクリアし、カメラを基準のローカル位置へ戻します。
     public void StopShake()
     {
         shakeStrength = 0f;
@@ -68,6 +74,7 @@ public class CameraShakeController : MonoBehaviour
         transform.localPosition = originalLocalPosition;
     }
 
+    // ノイズから連続的な揺れ方向を作り、指定強度を掛けて返します。
     private Vector3 GetSmoothShakeOffset(float strength)
     {
         float time = Time.time * shakeFrequency;
@@ -84,11 +91,13 @@ public class CameraShakeController : MonoBehaviour
         return offset * strength;
     }
 
+    // 無効化時にカメラを揺れのない基準位置へ戻します。
     private void OnDisable()
     {
         StopShake();
     }
 
+    // Inspector の変更時に、設定値を有効な範囲へ補正します。
     private void OnValidate()
     {
         shakeFrequency = Mathf.Max(1f, shakeFrequency);

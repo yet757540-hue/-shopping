@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>結算エリアへの最初の入場と最後の退出だけを通知します。</summary>
 [RequireComponent(typeof(Collider))]
 public class SettlementArea : MonoBehaviour
 {
-    [Header("Trigger Rules")]
+    // 結算エリアがプレイヤーとして受け付けるタグを指定します。
+    [Header("トリガー条件")]
     [SerializeField] private string playerTag = "Player";
 
     private int lastEnterFrame = -1;
@@ -14,8 +16,10 @@ public class SettlementArea : MonoBehaviour
 
     public event Action PlayerEntered;
     public event Action PlayerExited;
+    // プレイヤーの Collider が一つ以上エリア内に登録されているかを返します。
     public bool HasPlayerInside => playerCollidersInside.Count > 0;
 
+    // エリアの Collider を確認し、トリガー設定が無効なら警告します。
     private void Awake()
     {
         Collider zoneCollider = GetComponent<Collider>();
@@ -26,6 +30,7 @@ public class SettlementArea : MonoBehaviour
         }
     }
 
+    // プレイヤーが複数 Collider を持っても、イベントは一度だけ発生させます。
     private void OnTriggerEnter(Collider other)
     {
         if (!IsPlayer(other))
@@ -42,6 +47,7 @@ public class SettlementArea : MonoBehaviour
         }
     }
 
+    // 内部のプレイヤー Collider を取り除き、最後の退出時だけ通知します。
     private void OnTriggerExit(Collider other)
     {
         if (!IsPlayer(other))
@@ -60,6 +66,7 @@ public class SettlementArea : MonoBehaviour
         }
     }
 
+    // 同じフレームの重複を防ぎ、入場イベントを通知します。
     public void HandleEnter()
     {
         if (lastEnterFrame == Time.frameCount)
@@ -71,6 +78,7 @@ public class SettlementArea : MonoBehaviour
         PlayerEntered?.Invoke();
     }
 
+    // 同じフレームの重複を防ぎ、退出イベントを通知します。
     public void HandleExit()
     {
         if (lastExitFrame == Time.frameCount)
@@ -82,6 +90,7 @@ public class SettlementArea : MonoBehaviour
         PlayerExited?.Invoke();
     }
 
+    // 指定タグとの一致を確認します。タグが空なら全 Collider を受け付けます。
     private bool IsPlayer(Collider other)
     {
         if (string.IsNullOrEmpty(playerTag))

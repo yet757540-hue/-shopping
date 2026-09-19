@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>取得済みアイテムの明細・個数・総重量を一貫して保持します。</summary>
 [DisallowMultipleComponent]
 public class PlayerInventory : MonoBehaviour
 {
+    // 取得した一個分の ID・表示名・重量・取得元を保持します。
     [Serializable]
     public class CarriedItem
     {
@@ -20,14 +22,18 @@ public class PlayerInventory : MonoBehaviour
 
     public event Action InventoryChanged;
 
+    // 取得したアイテム一個ごとの明細を、読み取り専用の一覧として公開します。
     public IReadOnlyList<CarriedItem> CarriedItems => carriedItems;
+    // 所持している全アイテムの合計重量を返します。
     public float TotalWeight => totalWeight;
 
+    // 目標の明細・重量・個数を所持品へ追加し、変更を通知します。個数省略時は一個です。
     public bool TryAddItem(ScoreTarget target)
     {
         return TryAddItem(target, 1);
     }
 
+    // 同一アイテムの個数は Dictionary、個別の重量明細は List に保存します。
     public bool TryAddItem(ScoreTarget target, int amount)
     {
         if (target == null)
@@ -57,16 +63,13 @@ public class PlayerInventory : MonoBehaviour
             totalWeight += item.weight;
         }
 
-        if (!itemCounts.ContainsKey(itemId))
-        {
-            itemCounts[itemId] = 0;
-        }
-
-        itemCounts[itemId] += amount;
+        itemCounts.TryGetValue(itemId, out int currentCount);
+        itemCounts[itemId] = currentCount + amount;
         InventoryChanged?.Invoke();
         return true;
     }
 
+    // 目標またはアイテム ID に対応する所持数を返し、未登録・無効な指定ならゼロを返します。
     public int GetCount(ScoreTarget target)
     {
         if (target == null)
@@ -77,6 +80,7 @@ public class PlayerInventory : MonoBehaviour
         return GetCount(target.ItemId);
     }
 
+    // 目標またはアイテム ID に対応する所持数を返し、未登録・無効な指定ならゼロを返します。
     public int GetCount(string itemId)
     {
         if (string.IsNullOrWhiteSpace(itemId))
@@ -87,6 +91,7 @@ public class PlayerInventory : MonoBehaviour
         return itemCounts.TryGetValue(itemId, out int count) ? count : 0;
     }
 
+    // 次のラウンド用に、表示の元になるすべての所持データを同時に初期化します。
     public void ClearInventory()
     {
         carriedItems.Clear();

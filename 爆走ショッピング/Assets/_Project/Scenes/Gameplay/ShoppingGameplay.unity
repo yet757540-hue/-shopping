@@ -1447,52 +1447,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: triggerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 684323247}
     - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 851096312}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 684323248}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: triggerEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayFeedback
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RegisterCollision
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CollisionFeedbackManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: ScoreboardManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543527137078668913, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
-      propertyPath: collisionEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5707856932140349517, guid: bf42b90b3fa3eab4097a2ad37616e99d, type: 3}
       propertyPath: maxSpeed
@@ -2417,35 +2377,20 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1480146379}
-  - component: {fileID: 1480146378}
   - component: {fileID: 1480146380}
   - component: {fileID: 1480146388}
   - component: {fileID: 1480146387}
   - component: {fileID: 1480146386}
-  - component: {fileID: 1480146385}
   - component: {fileID: 1480146384}
-  - component: {fileID: 1480146383}
   - component: {fileID: 1480146382}
   - component: {fileID: 1480146381}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameSession
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1480146378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480146377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f83b69ab73433d84aa62cb47af0e1195, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
 --- !u!4 &1480146379
 Transform:
   m_ObjectHideFlags: 0
@@ -2623,45 +2568,6 @@ MonoBehaviour:
   focusedBackgroundColor: {r: 0.86, g: 0.92, b: 1, a: 1}
   activeBackgroundColor: {r: 0.52, g: 0.72, b: 1, a: 1}
   normalBackgroundColor: {r: 1, g: 1, b: 1, a: 0}
---- !u!114 &1480146383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480146377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4be3f82a204541309b5b1de767ada184, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CandyRewardWindowManager
-  scoreboardManager: {fileID: 0}
-  timerManager: {fileID: 0}
-  inventory: {fileID: 0}
-  player: {fileID: 0}
-  inventoryInfluenceSettings: {fileID: 0}
-  pauseManager: {fileID: 0}
-  candyEffectLibrary: {fileID: 0}
-  rewardRoot: {fileID: 0}
-  rewardContentRoot: {fileID: 0}
-  descriptionText: {fileID: 0}
-  randomEffectOptionCount: 2
-  navigationDeadZone: 0.55
-  navigationReleaseThreshold: 0.3
-  createIfMissing: 1
-  popupSize: {x: 760, y: 420}
-  popupPosition: {x: 0, y: -28}
-  optionItemSize: {x: 360, y: 62}
-  titleFontSize: 38
-  descriptionFontSize: 24
-  optionItemFontSize: 30
-  optionItemSpacing: 70
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.45}
-  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
-  textColor: {r: 0, g: 0, b: 0, a: 1}
-  focusedBackgroundColor: {r: 0.86, g: 0.92, b: 1, a: 1}
-  activeBackgroundColor: {r: 0.52, g: 0.72, b: 1, a: 1}
-  normalBackgroundColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &1480146384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2703,29 +2609,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   optionClosed:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1480146385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1480146377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 062588f373574f05b021315d8e99de28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InGameWindowManager
-  pauseManager: {fileID: 0}
-  windows: []
-  hideWindowsOnAwake: 1
-  allowMultipleOpenWindows: 0
-  pauseUnregisteredWindows: 1
-  anyWindowOpened:
-    m_PersistentCalls:
-      m_Calls: []
-  anyWindowClosed:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1480146386
@@ -2797,7 +2680,6 @@ MonoBehaviour:
   scoreboardManager: {fileID: 684323248}
   pauseManager: {fileID: 1480146387}
   restartManager: {fileID: 1480146386}
-  candyEffectLibrary: {fileID: 11400000, guid: 8a6e9dfea8194691b1d8f42463c795fb, type: 2}
   scoreTargets:
   - {fileID: 688180069}
   - {fileID: 1006148700}
@@ -2857,7 +2739,6 @@ MonoBehaviour:
   scoreboardView: {fileID: 1869446626}
   windowManager: {fileID: 1480146385}
   optionMenu: {fileID: 1480146384}
-  rewardWindow: {fileID: 1480146383}
   resultScreen: {fileID: 1480146382}
 --- !u!1 &1486261476 stripped
 GameObject:
@@ -2921,19 +2802,7 @@ MonoBehaviour:
   showDebugLog: 0
   timerStarted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 684323248}
-        m_TargetAssemblyTypeName: ScoreboardManager, Assembly-CSharp
-        m_MethodName: StartScoreboard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   timerPaused:
     m_PersistentCalls:
       m_Calls: []
@@ -2942,37 +2811,13 @@ MonoBehaviour:
       m_Calls: []
   timerStopped:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 684323248}
-        m_TargetAssemblyTypeName: ScoreboardManager, Assembly-CSharp
-        m_MethodName: StartScoreboard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   timerCompleted:
     m_PersistentCalls:
       m_Calls: []
   timerReset:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 684323248}
-        m_TargetAssemblyTypeName: ScoreboardManager, Assembly-CSharp
-        m_MethodName: ClearScoreboard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &1569092310
 Transform:
   m_ObjectHideFlags: 0
