@@ -100,6 +100,9 @@ public sealed class RushInStyle
 {
     public bool enabled = true;
 
+    [Tooltip("開始位置を画面右の外まで自動的に広げます。")]
+    public bool startOutsideCanvas = true;
+
     [Tooltip("右から入ってくるときの横移動量。")]
     public float startOffsetX = 900f;
 
@@ -210,6 +213,14 @@ public sealed class CartButtonStyle
     public float selectedScale = 1.06f;
     public float pressedOffsetX = 10f;
     public float pressedScale = 1.02f;
+
+    [Header("待機・選択アニメーション")]
+    public bool idleMotion = true;
+    [Min(0f)] public float idleBob = 2.5f;
+    [Min(0f)] public float idleTilt = 0.65f;
+    [Min(0.1f)] public float idlePeriod = 2.2f;
+    [Min(0f)] public float selectedPulse = 0.015f;
+    [Min(0.1f)] public float responseSpeed = 14f;
 }
 
 // タイトル画面の見た目をまとめた設定です。既定値はアートボードの指示に合わせています。
@@ -265,7 +276,7 @@ public sealed class StartMenuTheme
         enabled = true,
         offset = new Vector2(99f, 444f),
         size = new Vector2(1002f, 573f),
-        outlineEnabled = true,
+        outlineEnabled = false,
         outlineWidth = 9f,
         outlineColor = Color.white
     };
@@ -279,12 +290,13 @@ public sealed class StartMenuTheme
     [Header("登場演出")]
     public RushInStyle titleRush = new RushInStyle
     {
-        startOffsetX = 1180f,
+        startOffsetX = 1960f,
         startScaleX = 1.22f,
         startScaleY = 0.88f,
         delay = 0f,
         duration = 0.62f,
-        overshoot = 0.36f
+        overshoot = 0.24f,
+        fadeIn = false
     };
 
     public RushInStyle characterRush = new RushInStyle

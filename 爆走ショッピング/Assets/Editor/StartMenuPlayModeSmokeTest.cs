@@ -33,6 +33,9 @@ public static class StartMenuPlayModeSmokeTest
     private static bool startClicked;
     private static float startClickTime;
     private static int menuPhaseErrorCount;
+    private static float sampleTime;
+    private static Vector2 idlePosition;
+    private static bool idleSampleTaken;
 
     static StartMenuPlayModeSmokeTest()
     {
@@ -64,6 +67,9 @@ public static class StartMenuPlayModeSmokeTest
         finished = false;
         firstUv = 0f;
         secondUv = 0f;
+        firstSampleTaken = false;
+        secondSampleTaken = false;
+        idleSampleTaken = false;
         startClicked = false;
         menuPhaseErrorCount = 0;
         stopwatch = Stopwatch.StartNew();
@@ -102,17 +108,18 @@ public static class StartMenuPlayModeSmokeTest
             return;
         }
 
-        if (!firstSampleTaken && elapsed < 0.8f)
+        if (!firstSampleTaken)
         {
             firstUv = SampleFilmStripUv();
             firstSampleTaken = true;
+            sampleTime = elapsed;
             Notes.Add("film strip uv sample A: " + firstUv.ToString("0.0000"));
             StartMenuSetup.CaptureCanvas(EntranceScreenshotPath, out string captureMessage);
             Notes.Add("entrance capture: " + captureMessage);
             return;
         }
 
-        if (!secondSampleTaken && elapsed < 1.2f)
+        if (!secondSampleTaken && elapsed >= sampleTime + 0.13f)
         {
             secondUv = SampleFilmStripUv();
             secondSampleTaken = true;
@@ -120,13 +127,27 @@ public static class StartMenuPlayModeSmokeTest
             return;
         }
 
-        if (elapsed < 2.6f)
+        if (elapsed >= 1.6f && !idleSampleTaken)
+        {
+            MenuCartButton cart = UnityEngine.Object.FindAnyObjectByType<MenuCartButton>();
+            if (cart != null) idlePosition = cart.Visual.anchoredPosition;
+            idleSampleTaken = true;
+            sampleTime = elapsed;
+            return;
+        }
+
+        if (elapsed < 2.6f || elapsed < sampleTime + 0.3f)
         {
             return;
         }
 
         if (!startClicked)
         {
+            MenuCartButton cart = UnityEngine.Object.FindAnyObjectByType<MenuCartButton>();
+            if (cart == null || Mathf.Abs(cart.Visual.anchoredPosition.y - idlePosition.y) < 0.001f)
+                Failures.Add("Cart idle animation did not move after entrance.");
+            else
+                Notes.Add("cart idle motion continues after entrance");
             Evaluate();
 
             // ここまではタイトル画面での記録です。以降のログは「開始」で読み込む
@@ -177,6 +198,26 @@ public static class StartMenuPlayModeSmokeTest
             if (animator.IsPlaying)
             {
                 stillPlaying++;
+            }
+            if (animator.name == "Title Logo")
+            {
+                RectTransform rect = (RectTransform)animator.transform;
+                Vector2 settled = rect.anchoredPosition;
+                animator.Play();
+                Canvas.ForceUpdateCanvases();
+                Vector3[] corners = new Vector3[4];
+                RectTransform canvasRect = (RectTransform)animator.GetComponentInParent<Canvas>().rootCanvas.transform;
+                rect.GetWorldCorners(corners);
+                foreach (Vector3 corner in corners)
+                    if (canvasRect.InverseTransformPoint(corner).x <= canvasRect.rect.xMax)
+                    {
+                        Failures.Add("Title entrance begins inside the canvas.");
+                        break;
+                    }
+                animator.CompleteNow();
+                if (Vector2.Distance(settled, rect.anchoredPosition) > 0.01f)
+                    Failures.Add("Title replay drifted from its settled position.");
+                Notes.Add("checked title offscreen start and replay endpoint");
             }
         }
 

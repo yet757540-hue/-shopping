@@ -30,10 +30,8 @@ public static class MenuProceduralSprites
         Color32 band = bandColor;
         Color32 hole = holeColor;
 
-        float radius = Mathf.Clamp(holeSize * 0.3f, 0f, holeSize * 0.5f);
         float centerX = pitch * 0.5f;
         float centerY = holeInsetFromBottom + holeSize * 0.5f;
-        Vector2 half = new Vector2(holeSize * 0.5f - radius, holeSize * 0.5f - radius);
 
         for (int y = 0; y < thickness; y++)
         {
@@ -41,8 +39,8 @@ public static class MenuProceduralSprites
             {
                 float dx = Mathf.Abs(x + 0.5f - centerX);
                 dx = Mathf.Min(dx, pitch - dx);
-                Vector2 local = new Vector2(dx, Mathf.Abs(y + 0.5f - centerY)) - half;
-                float distance = RoundedBoxDistance(local, radius);
+                // Equal half extents and no corner radius: square sprocket holes.
+                float distance = Mathf.Max(dx, Mathf.Abs(y + 0.5f - centerY)) - holeSize * 0.5f;
                 float coverage = Mathf.Clamp01(0.5f - distance);
                 pixels[y * pitch + x] = Lerp(band, hole, coverage);
             }
@@ -329,13 +327,6 @@ public static class MenuProceduralSprites
 
         float t = Mathf.Clamp01(Vector2.Dot(point - a, ab) / lengthSquared);
         return Vector2.Distance(point, a + ab * t);
-    }
-
-    private static float RoundedBoxDistance(Vector2 local, float radius)
-    {
-        Vector2 q = new Vector2(Mathf.Abs(local.x), Mathf.Abs(local.y));
-        float outside = new Vector2(Mathf.Max(q.x, 0f), Mathf.Max(q.y, 0f)).magnitude;
-        return Mathf.Min(Mathf.Max(q.x, q.y), 0f) + outside - radius;
     }
 
     private static void Composite(Color[] buffer, int index, Color source, float coverage)

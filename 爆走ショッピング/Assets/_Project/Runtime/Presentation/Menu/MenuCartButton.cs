@@ -16,6 +16,9 @@ public sealed class MenuCartButton : MonoBehaviour
     private Sprite pressedSprite;
     private bool selected;
     private bool pressed;
+    private float motionTime;
+    private float currentOffset;
+    private float currentScale = 1f;
 
     public RectTransform Root => root;
     public RectTransform Visual => visual;
@@ -107,12 +110,6 @@ public sealed class MenuCartButton : MonoBehaviour
             return;
         }
 
-        float offsetX = pressed ? style.pressedOffsetX : selected ? style.selectedOffsetX : 0f;
-        float scale = pressed ? style.pressedScale : selected ? style.selectedScale : 1f;
-
-        visual.anchoredPosition = new Vector2(offsetX, 0f);
-        visual.localScale = new Vector3(scale, scale, 1f);
-
         if (frameImage != null)
         {
             frameImage.sprite = pressed ? pressedSprite : selected ? selectedSprite : normalSprite;
@@ -122,6 +119,26 @@ public sealed class MenuCartButton : MonoBehaviour
         {
             labelText.fontStyle = selected || pressed ? FontStyle.BoldAndItalic : FontStyle.Bold;
         }
+    }
+
+    private void Update()
+    {
+        if (visual == null || style == null) return;
+
+        float blend = 1f - Mathf.Exp(-Mathf.Max(0.1f, style.responseSpeed) * Time.unscaledDeltaTime);
+        currentOffset = Mathf.Lerp(currentOffset,
+            pressed ? style.pressedOffsetX : selected ? style.selectedOffsetX : 0f, blend);
+        currentScale = Mathf.Lerp(currentScale,
+            pressed ? style.pressedScale : selected ? style.selectedScale : 1f, blend);
+
+        bool idle = style.idleMotion && !pressed && (rush == null || !rush.IsPlaying);
+        if (idle) motionTime += Time.unscaledDeltaTime;
+        float phase = motionTime * Mathf.PI * 2f / Mathf.Max(0.1f, style.idlePeriod);
+        float wave = idle ? Mathf.Sin(phase) : 0f;
+        float pulse = idle && selected ? style.selectedPulse * (1f - Mathf.Cos(phase)) * 0.5f : 0f;
+        visual.anchoredPosition = new Vector2(currentOffset, wave * style.idleBob);
+        visual.localRotation = Quaternion.Euler(0f, 0f, wave * style.idleTilt);
+        visual.localScale = Vector3.one * (currentScale + pulse);
     }
 
     private static RectTransform CreateRect(string objectName, Transform parent)
