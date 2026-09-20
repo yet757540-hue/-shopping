@@ -219,7 +219,7 @@ MonoBehaviour:
       size: {x: 1002, y: 573}
       rotation: 0
       tint: {r: 1, g: 1, b: 1, a: 1}
-      outlineEnabled: 1
+      outlineEnabled: 0
       outlineWidth: 9
       outlineColor: {r: 1, g: 1, b: 1, a: 1}
       outlineSteps: 16
@@ -264,23 +264,31 @@ MonoBehaviour:
       selectedScale: 1.06
       pressedOffsetX: 10
       pressedScale: 1.02
+      idleMotion: 1
+      idleBob: 2.5
+      idleTilt: 0.65
+      idlePeriod: 2.2
+      selectedPulse: 0.015
+      responseSpeed: 14
     cartLabels:
     - "\u958B\u59CB"
     - "\u8A2D\u5B9A"
     - "\u7D42\u4E86"
     titleRush:
       enabled: 1
-      startOffsetX: 1180
+      startOutsideCanvas: 1
+      startOffsetX: 1960
       startScaleX: 1.22
       startScaleY: 0.88
       delay: 0
       duration: 0.62
-      overshoot: 0.36
-      fadeIn: 1
+      overshoot: 0.24
+      fadeIn: 0
       fadePortion: 0.45
       startAlpha: 0
     characterRush:
       enabled: 1
+      startOutsideCanvas: 1
       startOffsetX: 520
       startScaleX: 1.06
       startScaleY: 0.96
@@ -292,6 +300,7 @@ MonoBehaviour:
       startAlpha: 0
     cartRush:
       enabled: 1
+      startOutsideCanvas: 1
       startOffsetX: 1500
       startScaleX: 1.3
       startScaleY: 0.86

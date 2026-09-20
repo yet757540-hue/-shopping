@@ -14,6 +14,7 @@ public sealed class MenuRushInAnimator : MonoBehaviour
     private bool playing;
     private bool initialized;
     private bool hasCompleted;
+    private float startOffset;
 
     public bool IsPlaying => playing;
     public RushInStyle Style => style;
@@ -61,6 +62,30 @@ public sealed class MenuRushInAnimator : MonoBehaviour
         elapsed = 0f;
         playing = style.enabled;
         hasCompleted = false;
+        startOffset = style.startOffsetX;
+
+        if (style.startOutsideCanvas && target.parent is RectTransform parent)
+        {
+            // Resolve the viewport in the animated element's parent space, including
+            // CanvasScaler and the element's pivot, rotation and initial stretch.
+            Canvas canvas = GetComponentInParent<Canvas>();
+            if (canvas != null)
+            {
+                target.anchoredPosition = settledPosition;
+                target.localScale = Vector3.Scale(settledScale,
+                    new Vector3(style.startScaleX, style.startScaleY, 1f));
+                Vector3[] corners = new Vector3[4];
+                ((RectTransform)canvas.rootCanvas.transform).GetWorldCorners(corners);
+                float right = float.NegativeInfinity;
+                foreach (Vector3 corner in corners)
+                    right = Mathf.Max(right, parent.InverseTransformPoint(corner).x);
+                target.GetWorldCorners(corners);
+                float left = float.PositiveInfinity;
+                foreach (Vector3 corner in corners)
+                    left = Mathf.Min(left, parent.InverseTransformPoint(corner).x);
+                startOffset = Mathf.Max(startOffset, right - left + 32f);
+            }
+        }
 
         if (!playing)
         {
@@ -131,7 +156,7 @@ public sealed class MenuRushInAnimator : MonoBehaviour
         float clamped = Mathf.Clamp01(t);
         float eased = EaseOutBack(clamped, style.overshoot);
 
-        target.anchoredPosition = settledPosition + new Vector2(style.startOffsetX * (1f - eased), 0f);
+        target.anchoredPosition = settledPosition + new Vector2(startOffset * (1f - eased), 0f);
 
         Vector3 scale = settledScale;
         scale.x *= Mathf.LerpUnclamped(style.startScaleX, 1f, eased);
