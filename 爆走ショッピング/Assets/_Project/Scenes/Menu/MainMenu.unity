@@ -312,6 +312,9 @@ MonoBehaviour:
       startAlpha: 0
     cartStagger: 0.12
   cartLabelColor: {r: 0.05, g: 0.04, b: 0.03, a: 1}
+  showStartupLoading: 1
+  startupMinimumSeconds: 0.5
+  startupFadeSeconds: 0.25
   navigationDeadZone: 0.55
   navigationReleaseThreshold: 0.3
   pointerHoverSelects: 1

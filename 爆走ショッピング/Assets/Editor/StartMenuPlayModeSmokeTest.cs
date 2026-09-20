@@ -36,6 +36,8 @@ public static class StartMenuPlayModeSmokeTest
     private static float sampleTime;
     private static Vector2 idlePosition;
     private static bool idleSampleTaken;
+    private static bool startupFinished;
+    private static bool returnRequested;
 
     static StartMenuPlayModeSmokeTest()
     {
@@ -48,9 +50,49 @@ public static class StartMenuPlayModeSmokeTest
     [MenuItem("Tools/Start Screen/Run Play Mode Smoke Test")]
     public static void Run()
     {
+        VerifyColdStartTiming();
         SessionState.SetBool(PendingKey, true);
         EditorSceneManager.OpenScene(MenuScenePath, OpenSceneMode.Single);
         EditorApplication.isPlaying = true;
+    }
+
+    private static void VerifyColdStartTiming()
+    {
+        GameObject probe = new GameObject("Cold Start Animation Probe", typeof(RectTransform));
+        try
+        {
+            RectTransform rect = (RectTransform)probe.transform;
+            MenuRushInAnimator animator = probe.AddComponent<MenuRushInAnimator>();
+            animator.Initialize(new RushInStyle { fadeIn = false, delay = 0.18f });
+            var advance = typeof(MenuRushInAnimator).GetMethod("AdvanceAnimation",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            // Cover a cold loading frame, another warmup stall, and a replay
+            // equivalent to opening a fresh menu after returning from gameplay.
+            for (int replay = 0; replay < 2; replay++)
+            {
+                animator.Play();
+                Vector2 initial = rect.anchoredPosition;
+                advance.Invoke(animator, new object[] { 2f });
+                if (!animator.IsPlaying || rect.anchoredPosition != initial)
+                    throw new InvalidOperationException("Cold loading frame consumed the entrance.");
+                advance.Invoke(animator, new object[] { 2f });
+                if (!animator.IsPlaying || rect.anchoredPosition != initial)
+                    throw new InvalidOperationException("Warmup stall skipped the entrance delay.");
+                bool moved = false;
+                for (int frame = 0; frame < 90; frame++)
+                {
+                    advance.Invoke(animator, new object[] { 1f / 60f });
+                    moved |= animator.IsPlaying && rect.anchoredPosition != initial;
+                }
+                if (!moved || animator.IsPlaying || rect.anchoredPosition != Vector2.zero)
+                    throw new InvalidOperationException("Entrance did not visibly progress and settle.");
+            }
+            Debug.Log("Cold-start timing regression PASS: loading frame, warmup stall, visible progression and replay.");
+        }
+        finally
+        {
+            UnityEngine.Object.DestroyImmediate(probe);
+        }
     }
 
     private static void ResumeAfterPlayModeReload()
@@ -70,6 +112,8 @@ public static class StartMenuPlayModeSmokeTest
         firstSampleTaken = false;
         secondSampleTaken = false;
         idleSampleTaken = false;
+        startupFinished = false;
+        returnRequested = false;
         startClicked = false;
         menuPhaseErrorCount = 0;
         stopwatch = Stopwatch.StartNew();
@@ -102,6 +146,35 @@ public static class StartMenuPlayModeSmokeTest
         }
 
         float elapsed = (float)stopwatch.Elapsed.TotalSeconds;
+
+        if (!startupFinished)
+        {
+            StartMenuManager menu = UnityEngine.Object.FindAnyObjectByType<StartMenuManager>();
+            if (menu == null || menu.IsStartupLoading)
+            {
+                if (elapsed > 30f)
+                {
+                    Failures.Add("Startup loading did not finish within 30 seconds.");
+                    Finish();
+                }
+                return;
+            }
+            startupFinished = true;
+            Notes.Add("startup black loading completed before entrance sampling");
+            stopwatch.Restart();
+            return;
+        }
+
+        if (returnRequested)
+        {
+            StartMenuManager menu = UnityEngine.Object.FindAnyObjectByType<StartMenuManager>();
+            if (menu == null || menu.IsStartupLoading)
+                Failures.Add("Returning from gameplay repeated startup loading or lost the menu.");
+            else
+                Notes.Add("return from gameplay shows menu without repeating startup black loading");
+            Finish();
+            return;
+        }
 
         if (elapsed < 0.4f)
         {
@@ -165,7 +238,8 @@ public static class StartMenuPlayModeSmokeTest
         }
 
         VerifyStartLoadedGameScene();
-        Finish();
+        returnRequested = true;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     private static bool firstSampleTaken;

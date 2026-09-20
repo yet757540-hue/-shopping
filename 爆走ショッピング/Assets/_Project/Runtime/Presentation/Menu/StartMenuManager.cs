@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -42,6 +43,18 @@ public class StartMenuManager : MonoBehaviour
     [SerializeField] private Texture2D characterTexture;
     [SerializeField] private StartMenuTheme theme = new StartMenuTheme();
     [SerializeField] private Color cartLabelColor = new Color(0.05f, 0.04f, 0.03f, 1f);
+
+    [Header("初回起動の黒画面")]
+    [SerializeField] private bool showStartupLoading = true;
+    [SerializeField, Min(0f)] private float startupMinimumSeconds = 0.5f;
+    [SerializeField, Min(0f)] private float startupFadeSeconds = 0.25f;
+    private static bool startupPresented;
+    private bool startupLoading;
+    private GameObject startupOverlay;
+    public bool IsStartupLoading => startupLoading;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStartupState() => startupPresented = false;
 
     // 入力を受け付ける条件と、スティックの反応・解除しきい値です。
     [Header("入力")]
@@ -133,6 +146,18 @@ public class StartMenuManager : MonoBehaviour
     // プリセットと UI を準備し、先頭項目を選んでオプションを閉じた状態にします。
     private void Awake()
     {
+        if (showStartupLoading && !startupPresented)
+        {
+            startupLoading = true;
+            StartCoroutine(LoadStartupMenu());
+            return;
+        }
+
+        InitializeMenu();
+    }
+
+    private void InitializeMenu()
+    {
         EnsureMovementPresets();
         EnsureMovementControlPresets();
         CreateRuntimeUI();
@@ -140,9 +165,52 @@ public class StartMenuManager : MonoBehaviour
         SetOptionVisible(false);
     }
 
+    private IEnumerator LoadStartupMenu()
+    {
+        startupOverlay = new GameObject("Startup Loading", typeof(RectTransform), typeof(Canvas),
+            typeof(UnityEngine.UI.GraphicRaycaster), typeof(CanvasGroup));
+        startupOverlay.transform.SetParent(transform, false);
+        Canvas overlayCanvas = startupOverlay.GetComponent<Canvas>();
+        overlayCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        overlayCanvas.sortingOrder = short.MaxValue;
+        RectTransform black = CreateRect("Black", startupOverlay.transform);
+        Stretch(black, Vector2.zero, Vector2.zero);
+        black.gameObject.AddComponent<Image>().color = Color.black;
+        CanvasGroup overlayGroup = startupOverlay.GetComponent<CanvasGroup>();
+        double shownAt = Time.realtimeSinceStartupAsDouble;
+
+        // Present black before generating textures/fonts and laying out the menu.
+        yield return null;
+        InitializeMenu();
+        MenuRushInAnimator[] entrances = canvas.GetComponentsInChildren<MenuRushInAnimator>(true);
+        foreach (MenuRushInAnimator entrance in entrances) entrance.enabled = false;
+        Canvas.ForceUpdateCanvases();
+        yield return null;
+        while (Time.realtimeSinceStartupAsDouble - shownAt < startupMinimumSeconds)
+            yield return null;
+
+        float fadeElapsed = 0f;
+        while (fadeElapsed < startupFadeSeconds)
+        {
+            fadeElapsed += Mathf.Min(Time.unscaledDeltaTime, 0.05f);
+            overlayGroup.alpha = 1f - Mathf.Clamp01(fadeElapsed / startupFadeSeconds);
+            yield return null;
+        }
+
+        Destroy(startupOverlay);
+        foreach (MenuRushInAnimator entrance in entrances)
+        {
+            entrance.enabled = true;
+            entrance.Play();
+        }
+        startupPresented = true;
+        startupLoading = false;
+    }
+
     // オプション表示中はオプション入力、それ以外はメインメニュー入力だけを処理します。
     private void Update()
     {
+        if (startupLoading) return;
         // ポインターは入力デバイスが無くても毎フレーム読むため、先に処理します。
         bool pointerActive = UpdatePointer();
 
@@ -191,6 +259,7 @@ public class StartMenuManager : MonoBehaviour
     // エディターの検証ツールからも同じ経路を呼べるように公開しています。
     public void ProcessPointerInput(Vector2 screenPosition, bool moved, bool pressedThisFrame, bool releasedThisFrame)
     {
+        if (startupLoading) return;
         lastPointerPosition = screenPosition;
 
         if (isOptionOpen)

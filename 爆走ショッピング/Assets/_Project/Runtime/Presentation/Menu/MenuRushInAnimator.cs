@@ -15,6 +15,9 @@ public sealed class MenuRushInAnimator : MonoBehaviour
     private bool initialized;
     private bool hasCompleted;
     private float startOffset;
+    private bool waitingForFirstUpdate;
+    // Loading and shader warmup must not consume the whole visible entrance.
+    private const float MaxAnimationStep = 1f / 20f;
 
     public bool IsPlaying => playing;
     public RushInStyle Style => style;
@@ -60,6 +63,7 @@ public sealed class MenuRushInAnimator : MonoBehaviour
         }
 
         elapsed = 0f;
+        waitingForFirstUpdate = true;
         playing = style.enabled;
         hasCompleted = false;
         startOffset = style.startOffsetX;
@@ -126,12 +130,26 @@ public sealed class MenuRushInAnimator : MonoBehaviour
 
     private void Update()
     {
+        AdvanceAnimation(Time.unscaledDeltaTime);
+    }
+
+    private void AdvanceAnimation(float deltaTime)
+    {
         if (!playing || style == null)
         {
             return;
         }
 
-        elapsed += Time.unscaledDeltaTime;
+        // Awake can run during a long loading frame. Present the initial pose
+        // before counting time, including when Play is called again later.
+        if (waitingForFirstUpdate)
+        {
+            waitingForFirstUpdate = false;
+            Apply(0f);
+            return;
+        }
+
+        elapsed += Mathf.Clamp(deltaTime, 0f, MaxAnimationStep);
 
         float duration = Mathf.Max(0.0001f, style.duration);
         float t = (elapsed - style.delay) / duration;
