@@ -636,7 +636,7 @@ public class StartMenuManager : MonoBehaviour
         QueueSelectedMovementPreset();
         startSelected.Invoke();
         StartSelected?.Invoke();
-        SceneManager.LoadScene(gameScenePath);
+        SceneController.Instance.MoveScene(gameScenePath);
     }
 
     // 入力状態と選択行を初期化してオプションを表示し、開いたことを通知します。

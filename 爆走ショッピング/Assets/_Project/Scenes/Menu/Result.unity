@@ -280,7 +280,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 134796422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1936751903}
+        m_TargetAssemblyTypeName: GetSceneScript, Assembly-CSharp
+        m_MethodName: callGameScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &134796422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,7 +1253,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1827766343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1936751903}
+        m_TargetAssemblyTypeName: GetSceneScript, Assembly-CSharp
+        m_MethodName: callMainScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1827766343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,27 +1313,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1936751902}
-  - component: {fileID: 1936751901}
+  - component: {fileID: 1936751903}
   m_Layer: 0
-  m_Name: ReStartManager
+  m_Name: SceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1936751901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936751900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd1a985c598ccbf41b4752b8e012383a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReStartScript
-  SceneName: Scene
 --- !u!4 &1936751902
 Transform:
   m_ObjectHideFlags: 0
@@ -1325,6 +1336,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936751903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936751900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3943e426261686249a088998f7855232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GetSceneScript
+  gameScenePath: Assets/_Project/Scenes/Gameplay/TESTSCENE.unity
+  mainScenePath: Assets/_Project/Scenes/Menu/MainMenu.unity
 --- !u!1 &2113323951
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 /// <summary>ラウンドのカウントダウンと、状態変更イベントを一か所で管理します。</summary>
 public class TimerManager : MonoBehaviour
@@ -18,6 +19,10 @@ public class TimerManager : MonoBehaviour
     [SerializeField] private UnityEvent timerStopped = new UnityEvent();
     [SerializeField] private UnityEvent timerCompleted = new UnityEvent();
     [SerializeField] private UnityEvent timerReset = new UnityEvent();
+
+    [Header("シーン")]
+    [SerializeField, SceneAssetPath, FormerlySerializedAs("resultSceneName")]
+    private string resultScenePath;
 
     private float remainingTime;
     private bool isRunning = false;
@@ -243,6 +248,7 @@ public class TimerManager : MonoBehaviour
         NotifyTimeChanged(true);
         Completed?.Invoke();
         Log("[TimerManager] Timer completed");
+        SceneController.Instance.MoveScene(resultScenePath);
     }
 
     // 百分の一秒の表示値が変わった場合、または強制更新時に残り時間を通知します。
