@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 /// <summary>現在の目標、獲得数、結算得点を管理し、HUD 用の文字列を提供します。</summary>
 public class ScoreboardManager : MonoBehaviour
@@ -21,7 +21,7 @@ public class ScoreboardManager : MonoBehaviour
     [Header("参照")]
     [SerializeField] private ImpactSettings impactSettings;
     [SerializeField] private PlayerInventory inventory;
-    [SerializeField] private Text scoreboardText;
+    [SerializeField] private TMP_Text scoreboardText;
     [SerializeField] private SettlementArea settlementArea;
     [SerializeField] private ScoreboardView scoreboardView;
 

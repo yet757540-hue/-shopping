@@ -1,11 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
-
+using TMPro;
 /// <summary>スコア目標の表示だけを担当する、Prefab 側のビューです。</summary>
 [DisallowMultipleComponent]
 public sealed class ScoreboardView : MonoBehaviour
 {
-    [SerializeField] private Text text;
+    [SerializeField] private TMP_Text text;
     [SerializeField] private Color incompleteColor = Color.red;
     [SerializeField] private Color normalColor = Color.white;
     [Header("納品・カート表示")]
@@ -15,7 +14,7 @@ public sealed class ScoreboardView : MonoBehaviour
     private ScoreboardManager scoreboard;
 
     // 目標文字と警告色の設定先となる Text を公開します。
-    public Text Text => text;
+    public TMP_Text Text => text;
 
     // 管理クラスを差し替える時は、古いイベント登録を先に解除します。
     public void Initialize(ScoreboardManager source)
@@ -89,11 +88,9 @@ public sealed class ScoreboardView : MonoBehaviour
     private void ConfigureLayout()
     {
         if (text == null) return;
-        text.font = JapaneseUIFont.Get(statusFontSize);
         text.fontSize = statusFontSize;
-        text.alignment = TextAnchor.UpperLeft;
-        text.horizontalOverflow = HorizontalWrapMode.Wrap;
-        text.verticalOverflow = VerticalWrapMode.Overflow;
+        text.alignment = TextAlignmentOptions.TopLeft;
+        text.overflowMode = TextOverflowModes.Overflow;
         text.lineSpacing = 1.15f;
         text.raycastTarget = false;
 

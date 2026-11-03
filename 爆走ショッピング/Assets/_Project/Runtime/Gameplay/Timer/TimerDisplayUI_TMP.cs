@@ -205,9 +205,9 @@ public class TimerDisplayUI_TMP : MonoBehaviour
 
         int minutes = Mathf.FloorToInt(remainingTime / 60f);
         int seconds = Mathf.FloorToInt(remainingTime % 60f);
-        int milliseconds = centiseconds % 100;
+        //int milliseconds = centiseconds % 100;
 
-        timerText.text = $"{minutes:00}:{seconds:00}.{milliseconds:00}";
+        timerText.text = $"{minutes:00}:{seconds:00}";
     }
 
     private void DestroyTimerView()

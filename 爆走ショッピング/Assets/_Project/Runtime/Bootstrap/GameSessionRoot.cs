@@ -27,7 +27,7 @@ public sealed class GameSessionRoot : MonoBehaviour
     [SerializeField] private CollisionFeedbackManager collisionFeedback;
     [SerializeField] private InventoryInfluenceSettings inventoryInfluence;
     [SerializeField] private InventoryStatusUI inventoryHud;
-    [SerializeField] private TimerDisplayUI timerHud;
+    [SerializeField] private TimerDisplayUI_TMP timerHud;
     [SerializeField] private ScoreboardView scoreboardView;
     [SerializeField] private InGameOptionMenu optionMenu;
     [SerializeField] private GameResultScreenManager resultScreen;
