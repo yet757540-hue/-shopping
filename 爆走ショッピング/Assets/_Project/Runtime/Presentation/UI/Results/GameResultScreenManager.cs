@@ -3,12 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-/// <summary>æ™‚é–“åˆ‡ã‚Œå¾Œã®å¾—ç‚¹è¡¨ç¤ºã¨ã€å†é–‹ãƒ»ã‚¿ã‚¤ãƒˆãƒ«å¾©å¸°ã®é¸æŠã‚’ç®¡ç†ã—ã¾ã™ã€‚</summary>
+/// <summary>ŠÔØ‚êŒã‚Ì“¾“_•\¦‚ÆAÄŠJEƒ^ƒCƒgƒ‹•œ‹A‚Ì‘I‘ğ‚ğŠÇ—‚µ‚Ü‚·B</summary>
 [DisallowMultipleComponent]
 public class GameResultScreenManager : MonoBehaviour
 {
-    // ä»–ã®æ©Ÿèƒ½ã‚„è¡¨ç¤ºéƒ¨å“ã¸ã®å‚ç…§ã§ã™ã€‚è¨­å®šæ–¹æ³•ã¯ Initialize ã¾ãŸã¯åˆæœŸåŒ–å‡¦ç†ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
-    [Header("å‚ç…§")]
+    // ‘¼‚Ì‹@”\‚â•\¦•”•i‚Ö‚ÌQÆ‚Å‚·Bİ’è•û–@‚Í Initialize ‚Ü‚½‚Í‰Šú‰»ˆ—‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+    [Header("QÆ")]
     [SerializeField] private TimerManager timerManager;
     [SerializeField] private ScoreboardManager scoreboardManager;
     [SerializeField] private GameRestartManager restartManager;
@@ -18,13 +18,13 @@ public class GameResultScreenManager : MonoBehaviour
     [SerializeField] private Text totalScoreText;
     [SerializeField] private Text detailText;
 
-    // å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã‚‹æ¡ä»¶ã¨ã€ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®åå¿œãƒ»è§£é™¤ã—ãã„å€¤ã§ã™ã€‚
-    [Header("å…¥åŠ›")]
+    // “ü—Í‚ğó‚¯•t‚¯‚éğŒ‚ÆAƒXƒeƒBƒbƒN‚Ì”½‰E‰ğœ‚µ‚«‚¢’l‚Å‚·B
+    [Header("“ü—Í")]
     [SerializeField] private float navigationDeadZone = 0.55f;
     [SerializeField] private float navigationReleaseThreshold = 0.3f;
 
-    // çµæœ UI ã®è‡ªå‹•ç”Ÿæˆå¯å¦ã¨ã€å¾—ç‚¹ãƒ»ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é…ç½®ã‚„æ›¸å¼ã§ã™ã€‚
-    [Header("å®Ÿè¡Œæ™‚ UI")]
+    // Œ‹‰Ê UI ‚Ì©“®¶¬‰Â”Û‚ÆA“¾“_Eƒƒjƒ…[‚Ì”z’u‚â‘®‚Å‚·B
+    [Header("Às UI")]
     [SerializeField] private bool createIfMissing = true;
     [SerializeField] private Vector2 scoreBlockSize = new Vector2(900f, 260f);
     [SerializeField] private Vector2 scoreBlockPosition = new Vector2(0f, 160f);
@@ -49,10 +49,10 @@ public class GameResultScreenManager : MonoBehaviour
     private bool isShown;
     private bool isNavigationHeld;
 
-    // çµæœç”»é¢ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚ª•\¦‚³‚ê‚Ä‚¢‚é‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool IsShown => isShown;
 
-    // æ™‚é–“ãƒ»å¾—ç‚¹ãƒ»ã‚·ãƒ¼ãƒ³é·ç§»ãƒ»åœæ­¢ã®å‚ç…§ã‚’å—ã‘å–ã‚Šã¾ã™ã€‚
+    // ŠÔE“¾“_EƒV[ƒ“‘JˆÚE’â~‚ÌQÆ‚ğó‚¯æ‚è‚Ü‚·B
     public void Initialize(TimerManager configuredTimer, ScoreboardManager configuredScoreboard, GameRestartManager configuredRestart, GameTimePauseManager configuredPause)
     {
         timerManager = configuredTimer;
@@ -61,20 +61,20 @@ public class GameResultScreenManager : MonoBehaviour
         pauseManager = configuredPause;
     }
 
-    // å¿…è¦ã«å¿œã˜ã¦çµæœ UI ã‚’æº–å‚™ã—ã€é–‹å§‹æ™‚ã¯éè¡¨ç¤ºã«ã—ã¾ã™ã€‚
+    // •K—v‚É‰‚¶‚ÄŒ‹‰Ê UI ‚ğ€”õ‚µAŠJn‚Í”ñ•\¦‚É‚µ‚Ü‚·B
     private void Awake()
     {
         EnsureResultView();
         SetResultVisible(false);
     }
 
-    // çµæœç”»é¢ãŒç™»éŒ²ã—ãŸåœæ­¢ä¾é ¼ã‚’è§£é™¤ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚ª“o˜^‚µ‚½’â~ˆË—Š‚ğ‰ğœ‚µ‚Ü‚·B
     private void OnDisable()
     {
         ReleasePauseRequest();
     }
 
-    // çµæœç”»é¢ãŒè¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹é–“ã ã‘ã€é¸æŠã¨æ±ºå®šã®å…¥åŠ›ã‚’å‡¦ç†ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚ª•\¦‚³‚ê‚Ä‚¢‚éŠÔ‚¾‚¯A‘I‘ğ‚ÆŒˆ’è‚Ì“ü—Í‚ğˆ—‚µ‚Ü‚·B
     private void Update()
     {
         if (!isShown)
@@ -85,7 +85,7 @@ public class GameResultScreenManager : MonoBehaviour
         HandleResultInput(Gamepad.current, Keyboard.current);
     }
 
-    // å¾—ç‚¹ã‚’è¡¨ç¤ºã—ã¦ç›®æ¨™ HUD ã‚’æ¶ˆã—ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’åˆæœŸé¸æŠã«ã—ã¦ã‚²ãƒ¼ãƒ ã‚’åœæ­¢ã—ã¾ã™ã€‚
+    // “¾“_‚ğ•\¦‚µ‚Ä–Ú•W HUD ‚ğÁ‚µAƒƒjƒ…[‚ğ‰Šú‘I‘ğ‚É‚µ‚ÄƒQ[ƒ€‚ğ’â~‚µ‚Ü‚·B
     public void ShowResultScreen()
     {
         EnsureResultView();
@@ -95,7 +95,7 @@ public class GameResultScreenManager : MonoBehaviour
             return;
         }
 
-        // ç›®æ¨™ HUD ã‚’æ¶ˆã™å‰ã«å¾—ç‚¹ã‚’æ–‡å­—ã¸åæ˜ ã—ã€çµæœç”»é¢ã«æ®‹ã—ã¾ã™ã€‚
+        // –Ú•W HUD ‚ğÁ‚·‘O‚É“¾“_‚ğ•¶š‚Ö”½‰f‚µAŒ‹‰Ê‰æ–Ê‚Éc‚µ‚Ü‚·B
         RefreshScoreText();
 
         if (scoreboardManager != null)
@@ -110,7 +110,7 @@ public class GameResultScreenManager : MonoBehaviour
         RequestPause();
     }
 
-    // çµæœç”»é¢ã®åœæ­¢ä¾é ¼ã‚’è§£é™¤ã—ã€å†é–‹ç®¡ç†ã¸ã‚²ãƒ¼ãƒ å†èª­ã¿è¾¼ã¿ã‚’ä¾é ¼ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚Ì’â~ˆË—Š‚ğ‰ğœ‚µAÄŠJŠÇ—‚ÖƒQ[ƒ€Ä“Ç‚İ‚İ‚ğˆË—Š‚µ‚Ü‚·B
     public void RestartGame()
     {
         ReleasePauseRequest();
@@ -124,7 +124,7 @@ public class GameResultScreenManager : MonoBehaviour
         restartManager.RestartGame();
     }
 
-    // çµæœç”»é¢ã®åœæ­¢ä¾é ¼ã‚’è§£é™¤ã—ã€å†é–‹ç®¡ç†ã¸ã‚¿ã‚¤ãƒˆãƒ«å¾©å¸°ã‚’ä¾é ¼ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚Ì’â~ˆË—Š‚ğ‰ğœ‚µAÄŠJŠÇ—‚Öƒ^ƒCƒgƒ‹•œ‹A‚ğˆË—Š‚µ‚Ü‚·B
     public void ReturnToStartMenu()
     {
         ReleasePauseRequest();
@@ -138,7 +138,7 @@ public class GameResultScreenManager : MonoBehaviour
         restartManager.ReturnToStartMenu();
     }
 
-    // ä¸Šä¸‹å…¥åŠ›ã§é …ç›®ã‚’ç§»å‹•ã—ã€æ±ºå®šå…¥åŠ›ã§é¸æŠä¸­ã®ãƒœã‚¿ãƒ³ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
+    // ã‰º“ü—Í‚Å€–Ú‚ğˆÚ“®‚µAŒˆ’è“ü—Í‚Å‘I‘ğ’†‚Ìƒ{ƒ^ƒ“‚ğÀs‚µ‚Ü‚·B
     private void HandleResultInput(Gamepad gamepad, Keyboard keyboard)
     {
         int movement = RuntimeMenuInput.ReadVerticalMovement(
@@ -155,13 +155,13 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
-    // çµæœç”»é¢ã‚’é–‹ãç›´ã—ãŸã¨ãã«ã€æ–¹å‘å…¥åŠ›ã‚’å†ã³å—ã‘ä»˜ã‘ã‚‹çŠ¶æ…‹ã«ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚ğŠJ‚«’¼‚µ‚½‚Æ‚«‚ÉA•ûŒü“ü—Í‚ğÄ‚Ñó‚¯•t‚¯‚éó‘Ô‚É‚µ‚Ü‚·B
     private void ResetResultInputState()
     {
         isNavigationHeld = false;
     }
 
-    // ScoreboardManager ã®é›†è¨ˆå€¤ã‚’ã€çµæœç”»é¢ç”¨ã®æ–‡è¨€ã¸å¤‰æ›ã—ã¾ã™ã€‚
+    // ScoreboardManager ‚ÌWŒv’l‚ğAŒ‹‰Ê‰æ–Ê—p‚Ì•¶Œ¾‚Ö•ÏŠ·‚µ‚Ü‚·B
     private void RefreshScoreText()
     {
         int totalScore = scoreboardManager != null ? scoreboardManager.TotalScore : 0;
@@ -174,19 +174,19 @@ public class GameResultScreenManager : MonoBehaviour
 
         if (totalScoreText != null)
         {
-            totalScoreText.text = "ç·å¾—ç‚¹ " + totalScore;
+            totalScoreText.text = "‘“¾“_ " + totalScore;
         }
 
         if (detailText != null)
         {
             detailText.text =
-                "å¾—ç‚¹å†…è¨³\n" +
-                "é”æˆå›æ•°ã«ã‚ˆã‚‹å¾—ç‚¹: " + passScore + " (" + passCount + "å› Ã— " + passScorePerSettlement + ")\n" +
-                "è¶…éå“æ•°ã«ã‚ˆã‚‹å¾—ç‚¹: " + itemScore + " (" + itemCount + "å€‹ Ã— " + itemScoreMultiplier + ")";
+                "“¾“_“à–ó\n" +
+                "’B¬‰ñ”‚É‚æ‚é“¾“_: " + passScore + " (" + passCount + "‰ñ ~ " + passScorePerSettlement + ")\n" +
+                "’´‰ß•i”‚É‚æ‚é“¾“_: " + itemScore + " (" + itemCount + "ŒÂ ~ " + itemScoreMultiplier + ")";
         }
     }
 
-    // çµæœç”»é¢ã‚’ä¾é ¼å…ƒã¨ã—ã¦ã€ã‚²ãƒ¼ãƒ æ™‚é–“ã®åœæ­¢ã‚’è¦æ±‚ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚ğˆË—ŠŒ³‚Æ‚µ‚ÄAƒQ[ƒ€ŠÔ‚Ì’â~‚ğ—v‹‚µ‚Ü‚·B
     private void RequestPause()
     {
         if (pauseManager != null)
@@ -195,7 +195,7 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
-    // çµæœç”»é¢ã®åœæ­¢ä¾é ¼ã ã‘ã‚’è§£é™¤ã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Ê‚Ì’â~ˆË—Š‚¾‚¯‚ğ‰ğœ‚µ‚Ü‚·B
     private void ReleasePauseRequest()
     {
         if (pauseManager != null)
@@ -204,7 +204,7 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
-    // çµæœè¡¨ç¤ºã®çŠ¶æ…‹ã‚’ä¿å­˜ã—ã€ãƒ«ãƒ¼ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®è¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+    // Œ‹‰Ê•\¦‚Ìó‘Ô‚ğ•Û‘¶‚µAƒ‹[ƒgƒIƒuƒWƒFƒNƒg‚Ì•\¦‚ğØ‚è‘Ö‚¦‚Ü‚·B
     private void SetResultVisible(bool visible)
     {
         isShown = visible;
@@ -215,10 +215,10 @@ public class GameResultScreenManager : MonoBehaviour
         }
     }
 
-    // æ—¢å­˜ UI ã‚’å„ªå…ˆã—ã€ä¸è¶³æ™‚ã®ç”ŸæˆãŒè¨±å¯ã•ã‚Œã¦ã„ã‚Œã°èƒŒæ™¯ãƒ»å¾—ç‚¹ãƒ»ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œã‚Šã¾ã™ã€‚
+    // Šù‘¶ UI ‚ğ—Dæ‚µA•s‘«‚Ì¶¬‚ª‹–‰Â‚³‚ê‚Ä‚¢‚ê‚Î”wŒiE“¾“_Eƒƒjƒ…[‚ğì‚è‚Ü‚·B
     private void EnsureResultView()
     {
-        // ä½œæˆæ¸ˆã¿ãƒ«ãƒ¼ãƒˆã‚„ç”Ÿæˆç¦æ­¢è¨­å®šã‚’å°Šé‡ã—ã€å¿…è¦ãªã‚‰é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã ã‘ã‚’è£œã„ã¾ã™ã€‚
+        // ì¬Ï‚İƒ‹[ƒg‚â¶¬‹Ö~İ’è‚ğ‘¸d‚µA•K—v‚È‚ç‘I‘ğƒƒjƒ…[‚¾‚¯‚ğ•â‚¢‚Ü‚·B
         if (resultRoot != null || !createIfMissing)
         {
             if (resultMenu == null && resultContentRoot != null)
@@ -244,7 +244,7 @@ public class GameResultScreenManager : MonoBehaviour
         CreateResultMenu();
     }
 
-    // çµæœã‚¿ã‚¤ãƒˆãƒ«ã€åˆè¨ˆå¾—ç‚¹ã€å¾—ç‚¹å†…è¨³ã‚’ç¸¦ã«ä¸¦ã¹ã‚‹é ˜åŸŸã‚’ä½œã‚Šã¾ã™ã€‚
+    // Œ‹‰Êƒ^ƒCƒgƒ‹A‡Œv“¾“_A“¾“_“à–ó‚ğc‚É•À‚×‚é—Ìˆæ‚ğì‚è‚Ü‚·B
     private void CreateScoreBlock(Transform parent)
     {
         RectTransform scoreRect = CreateRect("Result Score Block", parent);
@@ -254,7 +254,7 @@ public class GameResultScreenManager : MonoBehaviour
         scoreRect.anchoredPosition = scoreBlockPosition;
         scoreRect.sizeDelta = scoreBlockSize;
 
-        // ã‚¿ã‚¤ãƒˆãƒ«ãƒ»åˆè¨ˆãƒ»å†…è¨³ã‚’ã€å€‹åˆ¥ã®é«˜ã•ã‚’ä¿ã¡ãªãŒã‚‰ç¸¦ã«ä¸¦ã¹ã¾ã™ã€‚
+        // ƒ^ƒCƒgƒ‹E‡ŒvE“à–ó‚ğAŒÂ•Ê‚Ì‚‚³‚ğ•Û‚¿‚È‚ª‚çc‚É•À‚×‚Ü‚·B
         VerticalLayoutGroup layout = scoreRect.gameObject.AddComponent<VerticalLayoutGroup>();
         layout.spacing = 10f;
         layout.childAlignment = TextAnchor.MiddleCenter;
@@ -263,12 +263,12 @@ public class GameResultScreenManager : MonoBehaviour
         layout.childForceExpandWidth = true;
         layout.childForceExpandHeight = false;
 
-        CreateText("Result Title", scoreRect, "çµæœ", titleFontSize, TextAnchor.MiddleCenter, scoreTextColor, 68f);
+        CreateText("Result Title", scoreRect, "Œ‹‰Ê", titleFontSize, TextAnchor.MiddleCenter, scoreTextColor, 68f);
         totalScoreText = CreateText("Total Score Text", scoreRect, string.Empty, scoreFontSize, TextAnchor.MiddleCenter, scoreTextColor, 58f);
         detailText = CreateText("Score Detail Text", scoreRect, string.Empty, detailFontSize, TextAnchor.MiddleCenter, scoreTextColor, 116f);
     }
 
-    // çµæœãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®èƒŒæ™¯ã¨æ ã‚’ä½œã‚Šã€é …ç›®ã‚’ä¸¦ã¹ã‚‹é ˜åŸŸã‚’ç¢ºä¿ã—ã¾ã™ã€‚
+    // Œ‹‰Êƒƒjƒ…[‚Ì”wŒi‚Æ˜g‚ğì‚èA€–Ú‚ğ•À‚×‚é—Ìˆæ‚ğŠm•Û‚µ‚Ü‚·B
     private void CreateResultPopup(Transform parent)
     {
         RectTransform popupRect = CreateRect("Result Option Popup", parent);
@@ -284,7 +284,7 @@ public class GameResultScreenManager : MonoBehaviour
 
         CreateBorder(popupRect);
 
-        Text title = CreateText("Result Menu Title", popupRect, "ãƒ¡ãƒ‹ãƒ¥ãƒ¼", optionItemFontSize, TextAnchor.UpperLeft, textColor, 46f);
+        Text title = CreateText("Result Menu Title", popupRect, "ƒƒjƒ…[", optionItemFontSize, TextAnchor.UpperLeft, textColor, 46f);
         RectTransform titleRect = title.GetComponent<RectTransform>();
         titleRect.anchorMin = new Vector2(0f, 1f);
         titleRect.anchorMax = new Vector2(1f, 1f);
@@ -292,7 +292,7 @@ public class GameResultScreenManager : MonoBehaviour
         titleRect.anchoredPosition = new Vector2(28f, -16f);
         titleRect.sizeDelta = new Vector2(-56f, 46f);
 
-        // ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¦‹å‡ºã—ã®ä¸‹ã«ãƒœã‚¿ãƒ³é…ç½®ç”¨ã®ä½™ç™½ã‚’ç¢ºä¿ã—ã¾ã™ã€‚
+        // ƒƒjƒ…[Œ©o‚µ‚Ì‰º‚Éƒ{ƒ^ƒ“”z’u—p‚Ì—]”’‚ğŠm•Û‚µ‚Ü‚·B
         resultContentRoot = CreateRect("Result Option Content Root", popupRect);
         resultContentRoot.anchorMin = Vector2.zero;
         resultContentRoot.anchorMax = Vector2.one;
@@ -300,16 +300,16 @@ public class GameResultScreenManager : MonoBehaviour
         resultContentRoot.offsetMax = new Vector2(-44f, -66f);
     }
 
-    // ã‚„ã‚Šç›´ã—ã¨ã‚¿ã‚¤ãƒˆãƒ«å¾©å¸°ã®ãƒœã‚¿ãƒ³ã‚’ç™»éŒ²ã—ã€å…ˆé ­ã‚’é¸æŠã—ã¾ã™ã€‚
+    // ‚â‚è’¼‚µ‚Æƒ^ƒCƒgƒ‹•œ‹A‚Ìƒ{ƒ^ƒ“‚ğ“o˜^‚µAæ“ª‚ğ‘I‘ğ‚µ‚Ü‚·B
     private void CreateResultMenu()
     {
         resultMenu = new RuntimeOptionMenu(resultContentRoot, CreateResultMenuStyle());
-        resultMenu.AddButton("ã‚„ã‚Šç›´ã™", RestartGame);
-        resultMenu.AddButton("é–‹å§‹ç”»é¢ã¸", ReturnToStartMenu);
+        resultMenu.AddButton("‚â‚è’¼‚·", RestartGame);
+        resultMenu.AddButton("ŠJn‰æ–Ê‚Ö", ReturnToStartMenu);
         resultMenu.SelectIndex(0);
     }
 
-    // çµæœãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã®è‰²ãƒ»ãƒ•ã‚©ãƒ³ãƒˆãƒ»è¡Œã‚µã‚¤ã‚ºã‚’å…±é€šã‚¹ã‚¿ã‚¤ãƒ«ã¸ã¾ã¨ã‚ã¾ã™ã€‚
+    // Œ‹‰Êƒƒjƒ…[—p‚ÌFEƒtƒHƒ“ƒgEsƒTƒCƒY‚ğ‹¤’ÊƒXƒ^ƒCƒ‹‚Ö‚Ü‚Æ‚ß‚Ü‚·B
     private RuntimeOptionMenuStyle CreateResultMenuStyle()
     {
         return new RuntimeOptionMenuStyle
@@ -326,7 +326,7 @@ public class GameResultScreenManager : MonoBehaviour
         };
     }
 
-    // çµæœç”»é¢å°‚ç”¨ã® Canvas ã‚’ç”Ÿæˆã—ã€æç”»é †ã¨è§£åƒåº¦ã«å¿œã˜ãŸæ‹¡ç¸®ã‚’è¨­å®šã—ã¾ã™ã€‚
+    // Œ‹‰Ê‰æ–Êê—p‚Ì Canvas ‚ğ¶¬‚µA•`‰æ‡‚Æ‰ğ‘œ“x‚É‰‚¶‚½Šgk‚ğİ’è‚µ‚Ü‚·B
     private Canvas CreateCanvas()
     {
         GameObject canvasObject = new GameObject("Result Screen Canvas");
@@ -343,7 +343,7 @@ public class GameResultScreenManager : MonoBehaviour
         return canvas;
     }
 
-    // ãƒ‘ãƒãƒ«ã®ä¸Šä¸‹å·¦å³ã«æ ç·šã‚’é…ç½®ã—ã¾ã™ã€‚
+    // ƒpƒlƒ‹‚Ìã‰º¶‰E‚É˜gü‚ğ”z’u‚µ‚Ü‚·B
     private void CreateBorder(RectTransform parent)
     {
         CreateBorderSegment("Result Border Top", parent, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, 2f));
@@ -352,7 +352,7 @@ public class GameResultScreenManager : MonoBehaviour
         CreateBorderSegment("Result Border Right", parent, new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(2f, 0f));
     }
 
-    // æŒ‡å®šã—ãŸè¾ºã®ä½ç½®ã¨å¤ªã•ã§ã€å…¥åŠ›ã‚’é®ã‚‰ãªã„æ ç·šã‚’ä½œæˆã—ã¾ã™ã€‚
+    // w’è‚µ‚½•Ó‚ÌˆÊ’u‚Æ‘¾‚³‚ÅA“ü—Í‚ğÕ‚ç‚È‚¢˜gü‚ğì¬‚µ‚Ü‚·B
     private void CreateBorderSegment(string objectName, RectTransform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 sizeDelta)
     {
         RectTransform borderRect = CreateRect(objectName, parent);
@@ -367,7 +367,7 @@ public class GameResultScreenManager : MonoBehaviour
         border.raycastTarget = false;
     }
 
-    // æ—¥æœ¬èªãƒ•ã‚©ãƒ³ãƒˆã¨æŒ‡å®šæ›¸å¼ã®æ–‡å­—ã‚’ä½œã‚Šã€ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆç”¨ã®é«˜ã•ã‚’è¨­å®šã—ã¾ã™ã€‚
+    // “ú–{ŒêƒtƒHƒ“ƒg‚Æw’è‘®‚Ì•¶š‚ğì‚èAƒŒƒCƒAƒEƒg—p‚Ì‚‚³‚ğİ’è‚µ‚Ü‚·B
     private Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment, Color color, float preferredHeight)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -387,7 +387,7 @@ public class GameResultScreenManager : MonoBehaviour
         return text;
     }
 
-    // æŒ‡å®šã—ãŸè¦ªã®ä¸‹ã« RectTransform ã‚’æŒã¤ UI ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚
+    // w’è‚µ‚½e‚Ì‰º‚É RectTransform ‚ğ‚Â UI ƒIƒuƒWƒFƒNƒg‚ğì¬‚µ‚Ü‚·B
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -395,7 +395,7 @@ public class GameResultScreenManager : MonoBehaviour
         return rectObject.GetComponent<RectTransform>();
     }
 
-    // è¦ªå…¨ä½“ã¸ã‚¢ãƒ³ã‚«ãƒ¼ã‚’åºƒã’ã€æŒ‡å®šã—ãŸä½™ç™½ã‚’è¨­å®šã—ã¾ã™ã€‚
+    // e‘S‘Ì‚ÖƒAƒ“ƒJ[‚ğL‚°Aw’è‚µ‚½—]”’‚ğİ’è‚µ‚Ü‚·B
     private void Stretch(RectTransform rect, Vector2 offsetMin, Vector2 offsetMax)
     {
         rect.anchorMin = Vector2.zero;
@@ -404,7 +404,7 @@ public class GameResultScreenManager : MonoBehaviour
         rect.offsetMax = offsetMax;
     }
 
-    // Inspector ã®å¤‰æ›´æ™‚ã«ã€è¨­å®šå€¤ã‚’æœ‰åŠ¹ãªç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // Inspector ‚Ì•ÏX‚ÉAİ’è’l‚ğ—LŒø‚È”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private void OnValidate()
     {
         navigationDeadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);

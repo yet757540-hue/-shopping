@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>å®Ÿè¡Œæ™‚ç”Ÿæˆã™ã‚‹é¸æŠãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®å…±é€šè¦‹ãŸç›®ã§ã™ã€‚</summary>
+/// <summary>Às¶¬‚·‚é‘I‘ğƒƒjƒ…[‚Ì‹¤’ÊŒ©‚½–Ú‚Å‚·B</summary>
 public sealed class RuntimeOptionMenuStyle
 {
     public Font Font;
@@ -18,24 +18,24 @@ public sealed class RuntimeOptionMenuStyle
     public float RowSpacing = 92f;
 }
 
-/// <summary>ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ãƒ»é¸æŠè‚¢ãƒ»ãƒœã‚¿ãƒ³ã«å…±é€šã™ã‚‹ã€ãƒ•ã‚©ãƒ¼ã‚«ã‚¹å¯èƒ½ãª 1 è¡Œã§ã™ã€‚</summary>
+/// <summary>ƒXƒ‰ƒCƒ_[E‘I‘ğˆEƒ{ƒ^ƒ“‚É‹¤’Ê‚·‚éAƒtƒH[ƒJƒX‰Â”\‚È 1 s‚Å‚·B</summary>
 public abstract class RuntimeOptionItem
 {
-    // è¡¨ç¤ºè¡Œã¨èƒŒæ™¯ã¸ã®å‚ç…§ã‚’ä¿æŒã—ã¾ã™ã€‚
+    // •\¦s‚Æ”wŒi‚Ö‚ÌQÆ‚ğ•Û‚µ‚Ü‚·B
     protected RuntimeOptionItem(RectTransform row, Image background)
     {
         Row = row;
         Background = background;
     }
 
-    // ã“ã®è¡Œã®é…ç½®ã«ä½¿ç”¨ã™ã‚‹ RectTransform ã‚’å…¬é–‹ã—ã¾ã™ã€‚
+    // ‚±‚Ìs‚Ì”z’u‚Ég—p‚·‚é RectTransform ‚ğŒöŠJ‚µ‚Ü‚·B
     internal RectTransform Row { get; }
-    // é¸æŠè‰²ã‚„ç·¨é›†è‰²ã‚’åæ˜ ã™ã‚‹èƒŒæ™¯ç”»åƒã‚’å…¬é–‹ã—ã¾ã™ã€‚
+    // ‘I‘ğF‚â•ÒWF‚ğ”½‰f‚·‚é”wŒi‰æ‘œ‚ğŒöŠJ‚µ‚Ü‚·B
     internal Image Background { get; }
-    // ã“ã®è¡ŒãŒç·¨é›†çŠ¶æ…‹ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // ‚±‚Ìs‚ª•ÒWó‘Ô‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool IsActive { get; private set; }
 
-    // ç·¨é›†ä¸­ãƒ»é¸æŠä¸­ãƒ»é€šå¸¸ã®å„ªå…ˆé †ã§èƒŒæ™¯è‰²ã‚’æ±ºã‚ã¾ã™ã€‚
+    // •ÒW’†E‘I‘ğ’†E’Êí‚Ì—Dæ‡‚Å”wŒiF‚ğŒˆ‚ß‚Ü‚·B
     public void SetVisualState(bool isFocused, Color normalColor, Color focusedColor, Color activeColor)
     {
         if (Background == null)
@@ -46,35 +46,35 @@ public abstract class RuntimeOptionItem
         Background.color = IsActive ? activeColor : isFocused ? focusedColor : normalColor;
     }
 
-    // ç·¨é›†çŠ¶æ…‹ã«ã—ã¦ã€è¡Œã®ç¨®é¡ã«å¿œã˜ãŸæ±ºå®šå‡¦ç†ã‚’å‘¼ã³ã¾ã™ã€‚
+    // •ÒWó‘Ô‚É‚µ‚ÄAs‚Ìí—Ş‚É‰‚¶‚½Œˆ’èˆ—‚ğŒÄ‚Ñ‚Ü‚·B
     public void Activate()
     {
         IsActive = true;
         OnActivated();
     }
 
-    // ç·¨é›†çŠ¶æ…‹ã‚’è§£é™¤ã—ã€è¡Œã®ç¨®é¡ã«å¿œã˜ãŸè§£é™¤å‡¦ç†ã‚’å‘¼ã³ã¾ã™ã€‚
+    // •ÒWó‘Ô‚ğ‰ğœ‚µAs‚Ìí—Ş‚É‰‚¶‚½‰ğœˆ—‚ğŒÄ‚Ñ‚Ü‚·B
     public void Cancel()
     {
         IsActive = false;
         OnCanceled();
     }
 
-    // æ–¹å‘å…¥åŠ›ã«å¿œã˜ãŸå€¤å¤‰æ›´ã‚’å„è¡Œã§å®Ÿè£…ã—ã¾ã™ã€‚ãƒœã‚¿ãƒ³è¡Œã§ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
+    // •ûŒü“ü—Í‚É‰‚¶‚½’l•ÏX‚ğŠes‚ÅÀ‘•‚µ‚Ü‚·Bƒ{ƒ^ƒ“s‚Å‚Í‰½‚à‚µ‚Ü‚¹‚ñB
     public abstract void Adjust(int direction);
 
-    // è¡Œã®æ±ºå®šæ™‚ã«å®Ÿè¡Œã™ã‚‹å‡¦ç†ã§ã™ã€‚åŸºåº•å®Ÿè£…ã¯ç©ºã§ã€ãƒœã‚¿ãƒ³ã¯ç™»éŒ²ã•ã‚ŒãŸå‡¦ç†ã‚’å‘¼ã³ã¾ã™ã€‚
+    // s‚ÌŒˆ’è‚ÉÀs‚·‚éˆ—‚Å‚·BŠî’êÀ‘•‚Í‹ó‚ÅAƒ{ƒ^ƒ“‚Í“o˜^‚³‚ê‚½ˆ—‚ğŒÄ‚Ñ‚Ü‚·B
     protected virtual void OnActivated()
     {
     }
 
-    // ç·¨é›†çµ‚äº†æ™‚ã«æ´¾ç”Ÿã‚¯ãƒ©ã‚¹ãŒè¿½åŠ å‡¦ç†ã‚’è¡Œã†ãŸã‚ã®å…¥å£ã§ã™ã€‚åŸºåº•å®Ÿè£…ã¯ç©ºã§ã™ã€‚
+    // •ÒWI—¹‚É”h¶ƒNƒ‰ƒX‚ª’Ç‰Áˆ—‚ğs‚¤‚½‚ß‚Ì“üŒû‚Å‚·BŠî’êÀ‘•‚Í‹ó‚Å‚·B
     protected virtual void OnCanceled()
     {
     }
 }
 
-/// <summary>å·¦å³å…¥åŠ›ã§æ•°å€¤ã‚’å¤‰æ›´ã™ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡Œã§ã™ã€‚</summary>
+/// <summary>¶‰E“ü—Í‚Å”’l‚ğ•ÏX‚·‚éƒƒjƒ…[s‚Å‚·B</summary>
 public sealed class RuntimeOptionSlider : RuntimeOptionItem
 {
     private readonly Text valueText;
@@ -86,7 +86,7 @@ public sealed class RuntimeOptionSlider : RuntimeOptionItem
     private readonly Func<float, string> formatValue;
     private float value;
 
-    // è¡¨ç¤ºå‚ç…§ã¨æ•°å€¤ç¯„å›²ãƒ»åˆ»ã¿å¹…ãƒ»é€šçŸ¥å…ˆã‚’ä¿æŒã—ã€åˆæœŸå€¤ã‚’é€šçŸ¥ãªã—ã§è¨­å®šã—ã¾ã™ã€‚
+    // •\¦QÆ‚Æ”’l”ÍˆÍE‚İ•E’Ê’mæ‚ğ•Û‚µA‰Šú’l‚ğ’Ê’m‚È‚µ‚Åİ’è‚µ‚Ü‚·B
     internal RuntimeOptionSlider(
         RectTransform row,
         Image background,
@@ -111,18 +111,18 @@ public sealed class RuntimeOptionSlider : RuntimeOptionItem
         SetValue(initialValue, false);
     }
 
-    // è£œæ­£ã¨åˆ»ã¿å¹…ã®é©ç”¨å¾Œã®ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼å€¤ã‚’è¿”ã—ã¾ã™ã€‚
+    // •â³‚Æ‚İ•‚Ì“K—pŒã‚ÌƒXƒ‰ƒCƒ_[’l‚ğ•Ô‚µ‚Ü‚·B
     public float Value => value;
-    // ãƒãƒ¼è¡¨ç¤ºç”¨ã«ã€ç¾åœ¨å€¤ã‚’ã‚¼ãƒ­ã‹ã‚‰ä¸€ã¸å¤‰æ›ã—ã¾ã™ã€‚
+    // ƒo[•\¦—p‚ÉAŒ»İ’l‚ğƒ[ƒ‚©‚çˆê‚Ö•ÏŠ·‚µ‚Ü‚·B
     public float NormalizedValue => Mathf.InverseLerp(minValue, maxValue, value);
-    // ãƒã‚¤ãƒ³ã‚¿ãƒ¼å…¥åŠ›ã§ä½ç½®ã‹ã‚‰å€¤ã‚’æ±‚ã‚ã‚‹ã¨ãã«ä½¿ã†ä¸‹é™ã§ã™ã€‚
+    // ƒ|ƒCƒ“ƒ^[“ü—Í‚ÅˆÊ’u‚©‚ç’l‚ğ‹‚ß‚é‚Æ‚«‚Ég‚¤‰ºŒÀ‚Å‚·B
     public float MinValue => minValue;
-    // ãƒã‚¤ãƒ³ã‚¿ãƒ¼å…¥åŠ›ã§ä½ç½®ã‹ã‚‰å€¤ã‚’æ±‚ã‚ã‚‹ã¨ãã«ä½¿ã†ä¸Šé™ã§ã™ã€‚
+    // ƒ|ƒCƒ“ƒ^[“ü—Í‚ÅˆÊ’u‚©‚ç’l‚ğ‹‚ß‚é‚Æ‚«‚Ég‚¤ãŒÀ‚Å‚·B
     public float MaxValue => maxValue;
-    // å€¤ã‚’ã‚¯ãƒªãƒƒã‚¯ã§å¤‰æ›´ã™ã‚‹ã¨ãã«åŸºæº–ã«ã™ã‚‹ãƒãƒ¼ã®é ˜åŸŸã§ã™ã€‚
+    // ’l‚ğƒNƒŠƒbƒN‚Å•ÏX‚·‚é‚Æ‚«‚ÉŠî€‚É‚·‚éƒo[‚Ì—Ìˆæ‚Å‚·B
     internal RectTransform TrackRect => fillRect == null ? null : fillRect.parent as RectTransform;
 
-    // æ–¹å‘å…¥åŠ›ã«å¿œã˜ãŸå€¤å¤‰æ›´ã‚’å„è¡Œã§å®Ÿè£…ã—ã¾ã™ã€‚ãƒœã‚¿ãƒ³è¡Œã§ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
+    // •ûŒü“ü—Í‚É‰‚¶‚½’l•ÏX‚ğŠes‚ÅÀ‘•‚µ‚Ü‚·Bƒ{ƒ^ƒ“s‚Å‚Í‰½‚à‚µ‚Ü‚¹‚ñB
     public override void Adjust(int direction)
     {
         if (direction == 0)
@@ -133,10 +133,10 @@ public sealed class RuntimeOptionSlider : RuntimeOptionItem
         SetValue(value + step * Math.Sign(direction), true);
     }
 
-    // å€¤ã‚’ç¯„å›²ã¨åˆ»ã¿å¹…ã«åˆã‚ã›ã¦è¡¨ç¤ºã—ã€æŒ‡å®šã•ã‚ŒãŸå ´åˆã ã‘å¤‰æ›´ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // ’l‚ğ”ÍˆÍ‚Æ‚İ•‚É‡‚í‚¹‚Ä•\¦‚µAw’è‚³‚ê‚½ê‡‚¾‚¯•ÏX‚ğ’Ê’m‚µ‚Ü‚·B
     public void SetValue(float nextValue, bool notify)
     {
-        // ç¯„å›²å†…ã«åã‚ã¦ã‹ã‚‰åˆ»ã¿å¹…ã¸ä¸¸ã‚ã€ä¸¸ã‚ã«ã‚ˆã‚‹ç¯„å›²è¶…éã‚‚è£œæ­£ã—ã¾ã™ã€‚
+        // ”ÍˆÍ“à‚Éû‚ß‚Ä‚©‚ç‚İ•‚ÖŠÛ‚ßAŠÛ‚ß‚É‚æ‚é”ÍˆÍ’´‰ß‚à•â³‚µ‚Ü‚·B
         float clamped = Mathf.Clamp(nextValue, minValue, maxValue);
         float steppedValue = minValue + Mathf.Round((clamped - minValue) / step) * step;
         value = Mathf.Clamp(steppedValue, minValue, maxValue);
@@ -149,7 +149,7 @@ public sealed class RuntimeOptionSlider : RuntimeOptionItem
         }
     }
 
-    // ç¾åœ¨ã®æ•°å€¤ã¾ãŸã¯é¸æŠå€™è£œã‚’æ–‡å­—ã¸åæ˜ ã—ã€ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã§ã¯ãƒãƒ¼ã®é•·ã•ã‚‚æ›´æ–°ã—ã¾ã™ã€‚
+    // Œ»İ‚Ì”’l‚Ü‚½‚Í‘I‘ğŒó•â‚ğ•¶š‚Ö”½‰f‚µAƒXƒ‰ƒCƒ_[‚Å‚Íƒo[‚Ì’·‚³‚àXV‚µ‚Ü‚·B
     private void RefreshDisplay()
     {
         if (valueText != null)
@@ -164,14 +164,14 @@ public sealed class RuntimeOptionSlider : RuntimeOptionItem
         }
     }
 
-    // ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼å€¤ã‚’å››æ¨äº”å…¥ã—ãŸæ•´æ•°æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
+    // ƒXƒ‰ƒCƒ_[’l‚ğlÌŒÜ“ü‚µ‚½®”•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
     private static string DefaultFormatValue(float sliderValue)
     {
         return Mathf.RoundToInt(sliderValue).ToString();
     }
 }
 
-/// <summary>å·¦å³å…¥åŠ›ã§å€™è£œã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡Œã§ã™ã€‚</summary>
+/// <summary>¶‰E“ü—Í‚ÅŒó•â‚ğØ‚è‘Ö‚¦‚éƒƒjƒ…[s‚Å‚·B</summary>
 public sealed class RuntimeOptionChoice : RuntimeOptionItem
 {
     private readonly Text valueText;
@@ -179,7 +179,7 @@ public sealed class RuntimeOptionChoice : RuntimeOptionItem
     private readonly Action<int, string> selectionChanged;
     private int selectedIndex;
 
-    // é¸æŠå€™è£œã¨é€šçŸ¥å…ˆã‚’ä¿æŒã—ã€å€™è£œãŒç©ºãªã‚‰ä»£æ›¿é …ç›®ã‚’ç”¨æ„ã—ã¦åˆæœŸé¸æŠã‚’è¨­å®šã—ã¾ã™ã€‚
+    // ‘I‘ğŒó•â‚Æ’Ê’mæ‚ğ•Û‚µAŒó•â‚ª‹ó‚È‚ç‘ã‘Ö€–Ú‚ğ—pˆÓ‚µ‚Ä‰Šú‘I‘ğ‚ğİ’è‚µ‚Ü‚·B
     internal RuntimeOptionChoice(
         RectTransform row,
         Image background,
@@ -196,12 +196,12 @@ public sealed class RuntimeOptionChoice : RuntimeOptionItem
         SetIndex(initialIndex, false);
     }
 
-    // ç¾åœ¨é¸æŠã—ã¦ã„ã‚‹å€™è£œã®ç•ªå·ã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ»İ‘I‘ğ‚µ‚Ä‚¢‚éŒó•â‚Ì”Ô†‚ğ•Ô‚µ‚Ü‚·B
     public int SelectedIndex => selectedIndex;
-    // ç¾åœ¨é¸æŠã—ã¦ã„ã‚‹å€™è£œã®è¡¨ç¤ºæ–‡å­—ã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ»İ‘I‘ğ‚µ‚Ä‚¢‚éŒó•â‚Ì•\¦•¶š‚ğ•Ô‚µ‚Ü‚·B
     public string SelectedValue => choices[selectedIndex];
 
-    // æ–¹å‘å…¥åŠ›ã«å¿œã˜ãŸå€¤å¤‰æ›´ã‚’å„è¡Œã§å®Ÿè£…ã—ã¾ã™ã€‚ãƒœã‚¿ãƒ³è¡Œã§ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
+    // •ûŒü“ü—Í‚É‰‚¶‚½’l•ÏX‚ğŠes‚ÅÀ‘•‚µ‚Ü‚·Bƒ{ƒ^ƒ“s‚Å‚Í‰½‚à‚µ‚Ü‚¹‚ñB
     public override void Adjust(int direction)
     {
         if (direction == 0)
@@ -212,10 +212,10 @@ public sealed class RuntimeOptionChoice : RuntimeOptionItem
         SetIndex(selectedIndex + Math.Sign(direction), true);
     }
 
-    // ç«¯ã§å¾ªç’°ã™ã‚‹ã‚ˆã†é¸æŠç•ªå·ã‚’è£œæ­£ã—ã€è¡¨ç¤ºã¨å¿…è¦ã«å¿œã˜ãŸé€šçŸ¥ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ’[‚ÅzŠÂ‚·‚é‚æ‚¤‘I‘ğ”Ô†‚ğ•â³‚µA•\¦‚Æ•K—v‚É‰‚¶‚½’Ê’m‚ğXV‚µ‚Ü‚·B
     public void SetIndex(int index, bool notify)
     {
-        // å€™è£œã¯åˆæœŸåŒ–æ™‚ã«å¿…ãš 1 ä»¶ä»¥ä¸Šã«ã—ã¾ã™ã€‚ç«¯ã‚’è¶ŠãˆãŸã‚‰åå¯¾å´ã¸æˆ»ã‚Šã¾ã™ã€‚
+        // Œó•â‚Í‰Šú‰»‚É•K‚¸ 1 ŒˆÈã‚É‚µ‚Ü‚·B’[‚ğ‰z‚¦‚½‚ç”½‘Î‘¤‚Ö–ß‚è‚Ü‚·B
         selectedIndex = index % choices.Length;
         if (selectedIndex < 0)
         {
@@ -229,7 +229,7 @@ public sealed class RuntimeOptionChoice : RuntimeOptionItem
         }
     }
 
-    // ç¾åœ¨ã®æ•°å€¤ã¾ãŸã¯é¸æŠå€™è£œã‚’æ–‡å­—ã¸åæ˜ ã—ã€ã‚¹ãƒ©ã‚¤ãƒ€ãƒ¼ã§ã¯ãƒãƒ¼ã®é•·ã•ã‚‚æ›´æ–°ã—ã¾ã™ã€‚
+    // Œ»İ‚Ì”’l‚Ü‚½‚Í‘I‘ğŒó•â‚ğ•¶š‚Ö”½‰f‚µAƒXƒ‰ƒCƒ_[‚Å‚Íƒo[‚Ì’·‚³‚àXV‚µ‚Ü‚·B
     private void RefreshDisplay()
     {
         if (valueText != null)
@@ -239,23 +239,23 @@ public sealed class RuntimeOptionChoice : RuntimeOptionItem
     }
 }
 
-/// <summary>æ±ºå®šå…¥åŠ›ã§ç™»éŒ²æ¸ˆã¿ã®å‡¦ç†ã‚’å‘¼ã¶ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡Œã§ã™ã€‚</summary>
+/// <summary>Œˆ’è“ü—Í‚Å“o˜^Ï‚İ‚Ìˆ—‚ğŒÄ‚Ôƒƒjƒ…[s‚Å‚·B</summary>
 public sealed class RuntimeOptionButton : RuntimeOptionItem
 {
     private readonly Action selected;
 
-    // ãƒœã‚¿ãƒ³è¡Œã®è¡¨ç¤ºå‚ç…§ã¨ã€æ±ºå®šæ™‚ã«å‘¼ã¶å‡¦ç†ã‚’ä¿æŒã—ã¾ã™ã€‚
+    // ƒ{ƒ^ƒ“s‚Ì•\¦QÆ‚ÆAŒˆ’è‚ÉŒÄ‚Ôˆ—‚ğ•Û‚µ‚Ü‚·B
     internal RuntimeOptionButton(RectTransform row, Image background, Action selected) : base(row, background)
     {
         this.selected = selected;
     }
 
-    // æ–¹å‘å…¥åŠ›ã«å¿œã˜ãŸå€¤å¤‰æ›´ã‚’å„è¡Œã§å®Ÿè£…ã—ã¾ã™ã€‚ãƒœã‚¿ãƒ³è¡Œã§ã¯ä½•ã‚‚ã—ã¾ã›ã‚“ã€‚
+    // •ûŒü“ü—Í‚É‰‚¶‚½’l•ÏX‚ğŠes‚ÅÀ‘•‚µ‚Ü‚·Bƒ{ƒ^ƒ“s‚Å‚Í‰½‚à‚µ‚Ü‚¹‚ñB
     public override void Adjust(int direction)
     {
     }
 
-    // è¡Œã®æ±ºå®šæ™‚ã«å®Ÿè¡Œã™ã‚‹å‡¦ç†ã§ã™ã€‚åŸºåº•å®Ÿè£…ã¯ç©ºã§ã€ãƒœã‚¿ãƒ³ã¯ç™»éŒ²ã•ã‚ŒãŸå‡¦ç†ã‚’å‘¼ã³ã¾ã™ã€‚
+    // s‚ÌŒˆ’è‚ÉÀs‚·‚éˆ—‚Å‚·BŠî’êÀ‘•‚Í‹ó‚ÅAƒ{ƒ^ƒ“‚Í“o˜^‚³‚ê‚½ˆ—‚ğŒÄ‚Ñ‚Ü‚·B
     protected override void OnActivated()
     {
         selected?.Invoke();
@@ -263,7 +263,7 @@ public sealed class RuntimeOptionButton : RuntimeOptionItem
     }
 }
 
-/// <summary>è¤‡æ•°ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡Œã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ã€æ±ºå®šã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã‚’ã¾ã¨ã‚ã¾ã™ã€‚</summary>
+/// <summary>•¡”‚Ìƒƒjƒ…[s‚ÌƒtƒH[ƒJƒXAŒˆ’èAƒLƒƒƒ“ƒZƒ‹‚ğ‚Ü‚Æ‚ß‚Ü‚·B</summary>
 public sealed class RuntimeOptionMenu
 {
     private readonly RectTransform root;
@@ -271,23 +271,23 @@ public sealed class RuntimeOptionMenu
     private readonly List<RuntimeOptionItem> items = new List<RuntimeOptionItem>();
     private int focusedIndex;
 
-    // é…ç½®å…ˆã¨å…±é€šã‚¹ã‚¿ã‚¤ãƒ«ã‚’å—ã‘å–ã‚Šã€è¡Œã‚’ç®¡ç†ã§ãã‚‹çŠ¶æ…‹ã«ã—ã¾ã™ã€‚
+    // ”z’uæ‚Æ‹¤’ÊƒXƒ^ƒCƒ‹‚ğó‚¯æ‚èAs‚ğŠÇ—‚Å‚«‚éó‘Ô‚É‚µ‚Ü‚·B
     public RuntimeOptionMenu(RectTransform root, RuntimeOptionMenuStyle style)
     {
         this.root = root;
         this.style = style;
     }
 
-    // ç™»éŒ²æ¸ˆã¿ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡Œæ•°ã‚’è¿”ã—ã¾ã™ã€‚
+    // “o˜^Ï‚İ‚Ìƒƒjƒ…[s”‚ğ•Ô‚µ‚Ü‚·B
     public int Count => items.Count;
-    // ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ä¸­ã®è¡Œç•ªå·ã‚’è¿”ã—ã¾ã™ã€‚è¡ŒãŒãªã‘ã‚Œã°ãƒã‚¤ãƒŠã‚¹ä¸€ã§ã™ã€‚
+    // ƒtƒH[ƒJƒX’†‚Ìs”Ô†‚ğ•Ô‚µ‚Ü‚·Bs‚ª‚È‚¯‚ê‚Îƒ}ƒCƒiƒXˆê‚Å‚·B
     public int FocusedIndex => items.Count == 0 ? -1 : focusedIndex;
-    // ç·¨é›†ä¸­ã®è¡ŒãŒå­˜åœ¨ã™ã‚‹ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // •ÒW’†‚Ìs‚ª‘¶İ‚·‚é‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool HasActiveItem => ActiveItem != null;
-    // ç·¨é›†ä¸­ã®è¡Œã‚’æ¢ã—ã¦è¿”ã—ã¾ã™ã€‚ãªã‘ã‚Œã° null ã§ã™ã€‚
+    // •ÒW’†‚Ìs‚ğ’T‚µ‚Ä•Ô‚µ‚Ü‚·B‚È‚¯‚ê‚Î null ‚Å‚·B
     public RuntimeOptionItem ActiveItem => items.Find(item => item.IsActive);
 
-    // ãƒ©ãƒ™ãƒ«ãƒ»æ•°å€¤ãƒ»ãƒãƒ¼ã‚’æŒã¤èª¿æ•´è¡Œã‚’ä½œã‚Šã€ä¸€è¦§ã¸è¿½åŠ ã—ã¦é…ç½®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ƒ‰ƒxƒ‹E”’lEƒo[‚ğ‚Â’²®s‚ğì‚èAˆê——‚Ö’Ç‰Á‚µ‚Ä”z’u‚ğXV‚µ‚Ü‚·B
     public RuntimeOptionSlider AddSlider(
         string label,
         float minValue,
@@ -315,7 +315,7 @@ public sealed class RuntimeOptionMenu
         valueRect.offsetMin = new Vector2(8f, 10f);
         valueRect.offsetMax = new Vector2(-20f, -10f);
 
-        // ãƒ©ãƒ™ãƒ«ã¨æ•°å€¤ã®é–“ã«ãƒãƒ¼ã‚’ç½®ãã€å­ã®å¡—ã‚Šã¤ã¶ã—å¹…ã§å€¤ã‚’è¡¨ã—ã¾ã™ã€‚
+        // ƒ‰ƒxƒ‹‚Æ”’l‚ÌŠÔ‚Éƒo[‚ğ’u‚«Aq‚Ì“h‚è‚Â‚Ô‚µ•‚Å’l‚ğ•\‚µ‚Ü‚·B
         RectTransform trackRect = CreateRect(label + " Track", row);
         trackRect.anchorMin = new Vector2(0.46f, 0.5f);
         trackRect.anchorMax = new Vector2(0.72f, 0.5f);
@@ -350,14 +350,14 @@ public sealed class RuntimeOptionMenu
             formatValue
         );
 
-        // è¿½åŠ ã—ãŸè¡Œã‚’é¸æŠã—ã€ä¸€è¦§å…¨ä½“ã®ä½ç½®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+        // ’Ç‰Á‚µ‚½s‚ğ‘I‘ğ‚µAˆê——‘S‘Ì‚ÌˆÊ’u‚ğXV‚µ‚Ü‚·B
         items.Add(slider);
         SelectIndex(items.Count - 1);
         RefreshLayout();
         return slider;
     }
 
-    // ãƒ©ãƒ™ãƒ«ã¨å€™è£œåã‚’æŒã¤é¸æŠè¡Œã‚’ä½œã‚Šã€ä¸€è¦§ã¸è¿½åŠ ã—ã¦é…ç½®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ƒ‰ƒxƒ‹‚ÆŒó•â–¼‚ğ‚Â‘I‘ğs‚ğì‚èAˆê——‚Ö’Ç‰Á‚µ‚Ä”z’u‚ğXV‚µ‚Ü‚·B
     public RuntimeOptionChoice AddChoice(
         string label,
         string[] choices,
@@ -391,14 +391,14 @@ public sealed class RuntimeOptionMenu
             selectionChanged
         );
 
-        // è¿½åŠ ã—ãŸå€™è£œè¡Œã‚’é¸æŠã—ã€ä¸€è¦§å…¨ä½“ã®ä½ç½®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+        // ’Ç‰Á‚µ‚½Œó•âs‚ğ‘I‘ğ‚µAˆê——‘S‘Ì‚ÌˆÊ’u‚ğXV‚µ‚Ü‚·B
         items.Add(choice);
         SelectIndex(items.Count - 1);
         RefreshLayout();
         return choice;
     }
 
-    // ä¸­å¤®æƒãˆã®ãƒœã‚¿ãƒ³è¡Œã‚’ä½œã‚Šã€æ±ºå®šæ™‚ã®å‡¦ç†ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
+    // ’†‰›‘µ‚¦‚Ìƒ{ƒ^ƒ“s‚ğì‚èAŒˆ’è‚Ìˆ—‚ğ“o˜^‚µ‚Ü‚·B
     public RuntimeOptionButton AddButton(string label, Action selected)
     {
         RectTransform row = CreateRow(label + " Row");
@@ -413,14 +413,14 @@ public sealed class RuntimeOptionMenu
 
         RuntimeOptionButton button = new RuntimeOptionButton(row, background, selected);
 
-        // è¿½åŠ ã—ãŸãƒœã‚¿ãƒ³ã‚’é¸æŠã—ã€ä¸€è¦§å…¨ä½“ã®ä½ç½®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+        // ’Ç‰Á‚µ‚½ƒ{ƒ^ƒ“‚ğ‘I‘ğ‚µAˆê——‘S‘Ì‚ÌˆÊ’u‚ğXV‚µ‚Ü‚·B
         items.Add(button);
         SelectIndex(items.Count - 1);
         RefreshLayout();
         return button;
     }
 
-    // é¸æŠç•ªå·ã‚’ä¸€è¦§ã®æœ‰åŠ¹ç¯„å›²ã«åã‚ã€å„è¡Œã®è¦‹ãŸç›®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ‘I‘ğ”Ô†‚ğˆê——‚Ì—LŒø”ÍˆÍ‚Éû‚ßAŠes‚ÌŒ©‚½–Ú‚ğXV‚µ‚Ü‚·B
     public void SelectIndex(int index)
     {
         if (items.Count == 0)
@@ -433,7 +433,7 @@ public sealed class RuntimeOptionMenu
         RefreshVisuals();
     }
 
-    // ç·¨é›†ä¸­ã§ãªã‘ã‚Œã°é¸æŠã‚’ç§»å‹•ã—ã€ä¸€è¦§ã®ç«¯ã‚’è¶ŠãˆãŸã‚‰åå¯¾å´ã¸æˆ»ã—ã¾ã™ã€‚
+    // •ÒW’†‚Å‚È‚¯‚ê‚Î‘I‘ğ‚ğˆÚ“®‚µAˆê——‚Ì’[‚ğ‰z‚¦‚½‚ç”½‘Î‘¤‚Ö–ß‚µ‚Ü‚·B
     public void MoveFocus(int delta)
     {
         if (items.Count == 0 || HasActiveItem)
@@ -451,7 +451,7 @@ public sealed class RuntimeOptionMenu
         SelectIndex(nextIndex % items.Count);
     }
 
-    // ç”»é¢ä¸Šã®ä½ç½®ã«ã‚ã‚‹è¡Œã®ç•ªå·ã‚’è¿”ã—ã¾ã™ã€‚ã©ã®è¡Œã«ã‚‚å½“ãŸã‚‰ãªã„å ´åˆã¯ -1 ã§ã™ã€‚
+    // ‰æ–Êã‚ÌˆÊ’u‚É‚ ‚és‚Ì”Ô†‚ğ•Ô‚µ‚Ü‚·B‚Ç‚Ìs‚É‚à“–‚½‚ç‚È‚¢ê‡‚Í -1 ‚Å‚·B
     public int FindIndexAtScreenPoint(Vector2 screenPoint)
     {
         for (int i = 0; i < items.Count; i++)
@@ -467,8 +467,8 @@ public sealed class RuntimeOptionMenu
         return -1;
     }
 
-    // ã‚¯ãƒªãƒƒã‚¯ä½ç½®ã‚’å€¤ã¸åæ˜ ã—ã¾ã™ã€‚
-    // æ•°å€¤è¡Œã¯ã‚¯ãƒªãƒƒã‚¯ã—ãŸä½ç½®ã®å€¤ã¸ç§»å‹•ã—ã€å€™è£œè¡Œã¯æ¬¡ã®å€™è£œã¸é€²ã¿ã¾ã™ã€‚
+    // ƒNƒŠƒbƒNˆÊ’u‚ğ’l‚Ö”½‰f‚µ‚Ü‚·B
+    // ”’ls‚ÍƒNƒŠƒbƒN‚µ‚½ˆÊ’u‚Ì’l‚ÖˆÚ“®‚µAŒó•âs‚ÍŸ‚ÌŒó•â‚Öi‚İ‚Ü‚·B
     public bool TrySetValueAtScreenPoint(int index, Vector2 screenPoint)
     {
         if (index < 0 || index >= items.Count)
@@ -499,7 +499,7 @@ public sealed class RuntimeOptionMenu
         return false;
     }
 
-    // å‰ã®ç·¨é›†ã‚’è§£é™¤ã—ã¦ã‹ã‚‰ã€é¸æŠä¸­ã®è¡Œã‚’æ±ºå®šçŠ¶æ…‹ã«ã—ã¾ã™ã€‚
+    // ‘O‚Ì•ÒW‚ğ‰ğœ‚µ‚Ä‚©‚çA‘I‘ğ’†‚Ìs‚ğŒˆ’èó‘Ô‚É‚µ‚Ü‚·B
     public void ActivateFocused()
     {
         if (items.Count == 0)
@@ -512,7 +512,7 @@ public sealed class RuntimeOptionMenu
         RefreshVisuals();
     }
 
-    // ç·¨é›†ä¸­ã®è¡ŒãŒã‚ã‚Œã°è§£é™¤ã—ã¦è¡¨ç¤ºã‚’æ›´æ–°ã—ã€è§£é™¤ã§ããŸã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // •ÒW’†‚Ìs‚ª‚ ‚ê‚Î‰ğœ‚µ‚Ä•\¦‚ğXV‚µA‰ğœ‚Å‚«‚½‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool CancelActiveItem()
     {
         RuntimeOptionItem activeItem = ActiveItem;
@@ -527,7 +527,7 @@ public sealed class RuntimeOptionMenu
         return true;
     }
 
-    // ç·¨é›†ä¸­ã®è¡ŒãŒã‚ã‚‹å ´åˆã ã‘ã€å·¦å³æ–¹å‘ã®å€¤å¤‰æ›´ã‚’æ¸¡ã—ã¾ã™ã€‚
+    // •ÒW’†‚Ìs‚ª‚ ‚éê‡‚¾‚¯A¶‰E•ûŒü‚Ì’l•ÏX‚ğ“n‚µ‚Ü‚·B
     public void AdjustActive(int direction)
     {
         RuntimeOptionItem activeItem = ActiveItem;
@@ -540,7 +540,7 @@ public sealed class RuntimeOptionMenu
         activeItem.Adjust(direction);
     }
 
-    // å…¨ã¦ã®è¡Œã«ã€é¸æŠä½ç½®ã¨ç·¨é›†çŠ¶æ…‹ã«å¯¾å¿œã™ã‚‹è‰²ã‚’é©ç”¨ã—ã¾ã™ã€‚
+    // ‘S‚Ä‚Ìs‚ÉA‘I‘ğˆÊ’u‚Æ•ÒWó‘Ô‚É‘Î‰‚·‚éF‚ğ“K—p‚µ‚Ü‚·B
     public void RefreshVisuals()
     {
         for (int i = 0; i < items.Count; i++)
@@ -554,7 +554,7 @@ public sealed class RuntimeOptionMenu
         }
     }
 
-    // å…¨ç¨®é¡ã®è¡Œã«å…±é€šã™ã‚‹ä½ç½®ãƒ»ã‚µã‚¤ã‚ºãƒ»èƒŒæ™¯ã‚’ä¸€ã‹æ‰€ã§è¨­å®šã—ã¾ã™ã€‚
+    // ‘Sí—Ş‚Ìs‚É‹¤’Ê‚·‚éˆÊ’uEƒTƒCƒYE”wŒi‚ğˆê‚©Š‚Åİ’è‚µ‚Ü‚·B
     private RectTransform CreateRow(string objectName)
     {
         RectTransform row = CreateRect(objectName, root);
@@ -568,7 +568,7 @@ public sealed class RuntimeOptionMenu
         return row;
     }
 
-    // å…±é€šã‚¹ã‚¿ã‚¤ãƒ«ã®ãƒ•ã‚©ãƒ³ãƒˆãƒ»è‰²ãƒ»æƒãˆã‚’ä½¿ã„ã€å…¥åŠ›ã‚’é®ã‚‰ãªã„æ–‡å­—ã‚’ä½œã‚Šã¾ã™ã€‚
+    // ‹¤’ÊƒXƒ^ƒCƒ‹‚ÌƒtƒHƒ“ƒgEFE‘µ‚¦‚ğg‚¢A“ü—Í‚ğÕ‚ç‚È‚¢•¶š‚ğì‚è‚Ü‚·B
     private Text CreateText(string objectName, Transform parent, string value, TextAnchor alignment)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -584,7 +584,7 @@ public sealed class RuntimeOptionMenu
         return text;
     }
 
-    // æŒ‡å®šã—ãŸè¦ªã®ä¸‹ã« RectTransform ã‚’æŒã¤ UI ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚
+    // w’è‚µ‚½e‚Ì‰º‚É RectTransform ‚ğ‚Â UI ƒIƒuƒWƒFƒNƒg‚ğì¬‚µ‚Ü‚·B
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -592,7 +592,7 @@ public sealed class RuntimeOptionMenu
         return rectObject.GetComponent<RectTransform>();
     }
 
-    // ç™»éŒ²é †ã«å„è¡Œã‚’ç¸¦æ–¹å‘ã¸ä¸¦ã¹ã€è¨­å®šã—ãŸé–“éš”ã‚’é©ç”¨ã—ã¾ã™ã€‚
+    // “o˜^‡‚ÉŠes‚ğc•ûŒü‚Ö•À‚×Aİ’è‚µ‚½ŠÔŠu‚ğ“K—p‚µ‚Ü‚·B
     private void RefreshLayout()
     {
         for (int i = 0; i < items.Count; i++)

@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-/// <summary>ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã®é¸æŠã€ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®šã€ã‚²ãƒ¼ãƒ é–‹å§‹ã‚’ç®¡ç†ã—ã¾ã™ã€‚</summary>
+/// <summary>ƒ^ƒCƒgƒ‹‰æ–Ê‚Ì‘I‘ğAƒIƒvƒVƒ‡ƒ“İ’èAƒQ[ƒ€ŠJn‚ğŠÇ—‚µ‚Ü‚·B</summary>
 public class StartMenuManager : MonoBehaviour
 {
-    // ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰å®Ÿè¡Œã§ãã‚‹ä¸‰ã¤ã®æ“ä½œã‚’è¡¨ã—ã¾ã™ã€‚
+    // ƒƒCƒ“ƒƒjƒ…[‚©‚çÀs‚Å‚«‚éO‚Â‚Ì‘€ì‚ğ•\‚µ‚Ü‚·B
     private enum MenuOption
     {
         Start,
@@ -19,34 +19,34 @@ public class StartMenuManager : MonoBehaviour
         Exit
     }
 
-    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®æ“ä½œç¨®åˆ¥ã¨ã€é¸æŠè‰²ã‚’åæ˜ ã™ã‚‹èƒŒæ™¯ã‚’ä¿æŒã—ã¾ã™ã€‚
+    // ƒƒjƒ…[‚Ì‘€ìí•Ê‚ÆA‘I‘ğF‚ğ”½‰f‚·‚é”wŒi‚ğ•Û‚µ‚Ü‚·B
     private sealed class MenuItem
     {
         public MenuOption option;
         public Image background;
-        // ãƒ†ãƒ¼ãƒ UI ã®ã¨ãã ã‘ä½¿ã†ã€ã‚«ãƒ¼ãƒˆå‹ãƒœã‚¿ãƒ³ã¸ã®å‚ç…§ã§ã™ã€‚
+        // ƒe[ƒ} UI ‚Ì‚Æ‚«‚¾‚¯g‚¤AƒJ[ƒgŒ^ƒ{ƒ^ƒ“‚Ö‚ÌQÆ‚Å‚·B
         public MenuCartButton cart;
     }
 
-    // é–‹å§‹æ™‚ã«èª­ã¿è¾¼ã‚€ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã§ã™ã€‚
-    [Header("ã‚·ãƒ¼ãƒ³")]
+    // ŠJn‚É“Ç‚İ‚ŞƒQ[ƒ€ƒV[ƒ“‚Å‚·B
+    [Header("ƒV[ƒ“")]
     [SerializeField, SceneAssetPath, FormerlySerializedAs("gameSceneName")]
     private string gameScenePath;
 
-    // æ—¢å­˜ã‚·ãƒ¼ãƒ³ã®ãƒ“ãƒ¥ãƒ¼ã¨ã€ç”Ÿæˆã«ä½¿ã†ä»»æ„ã® Prefab ã‚’æŒ‡å®šã—ã¾ã™ã€‚
-    [Header("äº‹å‰ä½œæˆãƒ“ãƒ¥ãƒ¼")]
+    // Šù‘¶ƒV[ƒ“‚Ìƒrƒ…[‚ÆA¶¬‚Ég‚¤”CˆÓ‚Ì Prefab ‚ğw’è‚µ‚Ü‚·B
+    [Header("–‘Oì¬ƒrƒ…[")]
     [SerializeField] private StartMenuView sceneMenuView;
     [SerializeField] private StartMenuView menuViewPrefab;
 
-    // ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã®ãƒ†ãƒ¼ãƒç´ æã¨ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã§ã™ã€‚ç„¡åŠ¹ã«ã™ã‚‹ã¨å¾“æ¥ã®ç°¡æ˜“ UI ã‚’ç”Ÿæˆã—ã¾ã™ã€‚
-    [Header("ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ãƒ†ãƒ¼ãƒ")]
+    // ƒ^ƒCƒgƒ‹‰æ–Ê‚Ìƒe[ƒ}‘fŞ‚ÆƒŒƒCƒAƒEƒg‚Å‚·B–³Œø‚É‚·‚é‚Æ]—ˆ‚ÌŠÈˆÕ UI ‚ğ¶¬‚µ‚Ü‚·B
+    [Header("ƒXƒ^[ƒg‰æ–Êƒe[ƒ}")]
     [SerializeField] private bool useThemedStartScreen = true;
     [SerializeField] private Texture2D titleLogoTexture;
     [SerializeField] private Texture2D characterTexture;
     [SerializeField] private StartMenuTheme theme = new StartMenuTheme();
     [SerializeField] private Color cartLabelColor = new Color(0.05f, 0.04f, 0.03f, 1f);
 
-    [Header("åˆå›èµ·å‹•ã®é»’ç”»é¢")]
+    [Header("‰‰ñ‹N“®‚Ì•‰æ–Ê")]
     [SerializeField] private bool showStartupLoading = true;
     [SerializeField, Min(0f)] private float startupMinimumSeconds = 0.5f;
     [SerializeField, Min(0f)] private float startupFadeSeconds = 0.25f;
@@ -58,15 +58,15 @@ public class StartMenuManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStartupState() => startupPresented = false;
 
-    // å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã‚‹æ¡ä»¶ã¨ã€ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®åå¿œãƒ»è§£é™¤ã—ãã„å€¤ã§ã™ã€‚
-    [Header("å…¥åŠ›")]
+    // “ü—Í‚ğó‚¯•t‚¯‚éğŒ‚ÆAƒXƒeƒBƒbƒN‚Ì”½‰E‰ğœ‚µ‚«‚¢’l‚Å‚·B
+    [Header("“ü—Í")]
     [SerializeField] private float navigationDeadZone = 0.55f;
     [SerializeField] private float navigationReleaseThreshold = 0.3f;
-    // ãƒã‚¤ãƒ³ã‚¿ãƒ¼ï¼ˆãƒã‚¦ã‚¹ãƒ»ã‚¿ãƒƒãƒï¼‰ã®é‡ãªã‚Šã§é¸æŠè¡Œã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã‹ã‚’æ±ºã‚ã¾ã™ã€‚
+    // ƒ|ƒCƒ“ƒ^[iƒ}ƒEƒXEƒ^ƒbƒ`j‚Ìd‚È‚è‚Å‘I‘ğs‚ğØ‚è‘Ö‚¦‚é‚©‚ğŒˆ‚ß‚Ü‚·B
     [SerializeField] private bool pointerHoverSelects = true;
 
-    // UI ã®è‰²ãƒ»æ–‡å­—ã‚µã‚¤ã‚ºãƒ»é…ç½®å¯¸æ³•ã‚’ã¾ã¨ã‚ãŸè¨­å®šã§ã™ã€‚
-    [Header("è¦‹ãŸç›®")]
+    // UI ‚ÌFE•¶šƒTƒCƒYE”z’u¡–@‚ğ‚Ü‚Æ‚ß‚½İ’è‚Å‚·B
+    [Header("Œ©‚½–Ú")]
     [SerializeField] private int menuFontSize = 52;
     [SerializeField] private int optionHintFontSize = 30;
     [SerializeField] private Color backgroundColor = Color.white;
@@ -75,7 +75,7 @@ public class StartMenuManager : MonoBehaviour
     [SerializeField] private Color normalBackgroundColor = new Color(1f, 1f, 1f, 0f);
     [SerializeField] private Color optionFocusedBackgroundColor = new Color(1f, 0.925f, 0.72f, 1f);
     [SerializeField] private Color optionActiveBackgroundColor = new Color(1f, 0.79f, 0.36f, 1f);
-    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³æ ã®å¤ªã•ï¼ˆåŸºæº–è§£åƒåº¦ã§ã®ãƒ”ã‚¯ã‚»ãƒ«æ•°ï¼‰ã§ã™ã€‚
+    // ƒIƒvƒVƒ‡ƒ“˜g‚Ì‘¾‚³iŠî€‰ğ‘œ“x‚Å‚ÌƒsƒNƒZƒ‹”j‚Å‚·B
     [SerializeField] private float optionBorderThickness = 5f;
     [SerializeField] private Vector2 menuSize = new Vector2(520f, 260f);
     [SerializeField] private Vector2 optionPopupSize = new Vector2(760f, 420f);
@@ -84,8 +84,8 @@ public class StartMenuManager : MonoBehaviour
     [SerializeField] private float optionItemSpacing = 92f;
     [SerializeField] private float volumeStep = 0.05f;
 
-    // é¸æŠå¯èƒ½ãªèµ°è¡Œãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ä¸€å¼ã¨ã€ç¾åœ¨ã®é¸æŠç•ªå·ã§ã™ã€‚
-    [Header("ç§»å‹•ãƒ—ãƒªã‚»ãƒƒãƒˆ")]
+    // ‘I‘ğ‰Â”\‚È‘–sƒpƒ‰ƒ[ƒ^ˆê®‚ÆAŒ»İ‚Ì‘I‘ğ”Ô†‚Å‚·B
+    [Header("ˆÚ“®ƒvƒŠƒZƒbƒg")]
     [SerializeField] private PlayerMovementPreset[] movementPresets =
     {
         PlayerMovementPreset.CreateClassic(),
@@ -93,8 +93,8 @@ public class StartMenuManager : MonoBehaviour
     };
     [SerializeField] private int selectedMovementPresetIndex = 0;
 
-    // é¸æŠå¯èƒ½ãªãƒœã‚¿ãƒ³é…ç½®ã¨ã€ç¾åœ¨ã®é¸æŠç•ªå·ã§ã™ã€‚
-    [Header("æ“ä½œãƒ—ãƒªã‚»ãƒƒãƒˆ")]
+    // ‘I‘ğ‰Â”\‚Èƒ{ƒ^ƒ“”z’u‚ÆAŒ»İ‚Ì‘I‘ğ”Ô†‚Å‚·B
+    [Header("‘€ìƒvƒŠƒZƒbƒg")]
     [SerializeField] private PlayerMovementControlPreset[] movementControlPresets =
     {
         PlayerMovementControlPreset.CreateTriggers(),
@@ -102,8 +102,8 @@ public class StartMenuManager : MonoBehaviour
     };
     [SerializeField] private int selectedMovementControlPresetIndex = PlayerMovementControlPreset.DefaultIndex;
 
-    // Inspector ã‹ã‚‰æ¥ç¶šã™ã‚‹é€šçŸ¥ç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã™ã€‚å®Ÿéš›ã®ç™ºç«æ¡ä»¶ã¯å„å‡¦ç†ã§æ±ºã¾ã‚Šã¾ã™ã€‚
-    [Header("ã‚¤ãƒ™ãƒ³ãƒˆ")]
+    // Inspector ‚©‚çÚ‘±‚·‚é’Ê’m—pƒtƒB[ƒ‹ƒh‚Å‚·BÀÛ‚Ì”­‰ÎğŒ‚ÍŠeˆ—‚ÅŒˆ‚Ü‚è‚Ü‚·B
+    [Header("ƒCƒxƒ“ƒg")]
     [SerializeField] private UnityEvent startSelected = new UnityEvent();
     [SerializeField] private UnityEvent optionOpened = new UnityEvent();
     [SerializeField] private UnityEvent optionClosed = new UnityEvent();
@@ -124,7 +124,7 @@ public class StartMenuManager : MonoBehaviour
     private bool isStickNavigationHeld;
     private bool isOptionNavigationHeld;
     private bool isOptionAdjustmentHeld;
-    // å®Ÿè¡Œæ™‚ã«ç”Ÿæˆã—ãŸ UI ã®ãƒ«ãƒ¼ãƒˆã§ã™ã€‚ä½œã‚Šç›´ã™ã¨ãã«ã¾ã¨ã‚ã¦ç ´æ£„ã—ã¾ã™ã€‚
+    // Às‚É¶¬‚µ‚½ UI ‚Ìƒ‹[ƒg‚Å‚·Bì‚è’¼‚·‚Æ‚«‚É‚Ü‚Æ‚ß‚Ä”jŠü‚µ‚Ü‚·B
     private GameObject createdUiRoot;
     private RectTransform optionPopupRect;
     private int pointerPressIndex = -1;
@@ -136,16 +136,16 @@ public class StartMenuManager : MonoBehaviour
     public event Action OptionClosed;
     public event Action ExitSelected;
 
-    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³é …ç›®ã‚’é…ç½®ã™ã‚‹é ˜åŸŸã‚’å…¬é–‹ã—ã¾ã™ã€‚
+    // ƒIƒvƒVƒ‡ƒ“€–Ú‚ğ”z’u‚·‚é—Ìˆæ‚ğŒöŠJ‚µ‚Ü‚·B
     public RectTransform OptionContentRoot => optionContentRoot;
-    // ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒé–‹ã„ã¦ã„ã‚‹ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // ƒ^ƒCƒgƒ‹‰æ–Ê‚ÌƒIƒvƒVƒ‡ƒ“‚ªŠJ‚¢‚Ä‚¢‚é‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool IsOptionOpen => isOptionOpen;
-    // ç¾åœ¨é¸æŠã—ã¦ã„ã‚‹ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ç•ªå·ã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ»İ‘I‘ğ‚µ‚Ä‚¢‚éƒƒCƒ“ƒƒjƒ…[‚Ì”Ô†‚ğ•Ô‚µ‚Ü‚·B
     public int SelectedMenuIndex => selectedMenuIndex;
-    // æ¥ç¶šä¸­ã®äº‹å‰ä½œæˆãƒ“ãƒ¥ãƒ¼ã‚’è¿”ã—ã¾ã™ã€‚è‡ªå‹•ç”Ÿæˆ UI ã®å ´åˆã¯ null ã§ã™ã€‚
+    // Ú‘±’†‚Ì–‘Oì¬ƒrƒ…[‚ğ•Ô‚µ‚Ü‚·B©“®¶¬ UI ‚Ìê‡‚Í null ‚Å‚·B
     public StartMenuView ActiveMenuView => activeMenuView;
 
-    // ãƒ—ãƒªã‚»ãƒƒãƒˆã¨ UI ã‚’æº–å‚™ã—ã€å…ˆé ­é …ç›®ã‚’é¸ã‚“ã§ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ãŸçŠ¶æ…‹ã«ã—ã¾ã™ã€‚
+    // ƒvƒŠƒZƒbƒg‚Æ UI ‚ğ€”õ‚µAæ“ª€–Ú‚ğ‘I‚ñ‚ÅƒIƒvƒVƒ‡ƒ“‚ğ•Â‚¶‚½ó‘Ô‚É‚µ‚Ü‚·B
     private void Awake()
     {
         if (showStartupLoading && !startupPresented)
@@ -209,11 +209,11 @@ public class StartMenuManager : MonoBehaviour
         startupLoading = false;
     }
 
-    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¡¨ç¤ºä¸­ã¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³å…¥åŠ›ã€ãã‚Œä»¥å¤–ã¯ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼å…¥åŠ›ã ã‘ã‚’å‡¦ç†ã—ã¾ã™ã€‚
+    // ƒIƒvƒVƒ‡ƒ“•\¦’†‚ÍƒIƒvƒVƒ‡ƒ““ü—ÍA‚»‚êˆÈŠO‚ÍƒƒCƒ“ƒƒjƒ…[“ü—Í‚¾‚¯‚ğˆ—‚µ‚Ü‚·B
     private void Update()
     {
         if (startupLoading) return;
-        // ãƒã‚¤ãƒ³ã‚¿ãƒ¼ã¯å…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹ãŒç„¡ãã¦ã‚‚æ¯ãƒ•ãƒ¬ãƒ¼ãƒ èª­ã‚€ãŸã‚ã€å…ˆã«å‡¦ç†ã—ã¾ã™ã€‚
+        // ƒ|ƒCƒ“ƒ^[‚Í“ü—ÍƒfƒoƒCƒX‚ª–³‚­‚Ä‚à–ˆƒtƒŒ[ƒ€“Ç‚Ş‚½‚ßAæ‚Éˆ—‚µ‚Ü‚·B
         bool pointerActive = UpdatePointer();
 
         Gamepad gamepad = Gamepad.current;
@@ -233,8 +233,8 @@ public class StartMenuManager : MonoBehaviour
         HandleMainMenuInput(gamepad, keyboard);
     }
 
-    // ãƒã‚¤ãƒ³ã‚¿ãƒ¼ä½ç½®ã¨æŠ¼ä¸‹ã‚’èª­ã¿å–ã‚Šã€è©²å½“ã™ã‚‹ç”»é¢ã¸æ¸¡ã—ã¾ã™ã€‚
-    // ã‚¤ãƒ™ãƒ³ãƒˆã‚·ã‚¹ãƒ†ãƒ ã‚’ä½¿ã‚ãšã€è‡ªå‰ã®çŸ©å½¢åˆ¤å®šã§ãƒã‚¦ã‚¹ã¨ã‚¿ãƒƒãƒã®ä¸¡æ–¹ã«å¯¾å¿œã—ã¾ã™ã€‚
+    // ƒ|ƒCƒ“ƒ^[ˆÊ’u‚Æ‰Ÿ‰º‚ğ“Ç‚İæ‚èAŠY“–‚·‚é‰æ–Ê‚Ö“n‚µ‚Ü‚·B
+    // ƒCƒxƒ“ƒgƒVƒXƒeƒ€‚ğg‚í‚¸A©‘O‚Ì‹éŒ`”»’è‚Åƒ}ƒEƒX‚Æƒ^ƒbƒ`‚Ì—¼•û‚É‘Î‰‚µ‚Ü‚·B
     private bool UpdatePointer()
     {
         Pointer pointer = Pointer.current;
@@ -257,8 +257,8 @@ public class StartMenuManager : MonoBehaviour
         return true;
     }
 
-    // 1 ã‚µãƒ³ãƒ—ãƒ«åˆ†ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼å…¥åŠ›ã‚’å‡¦ç†ã—ã¾ã™ã€‚
-    // ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼ã®æ¤œè¨¼ãƒ„ãƒ¼ãƒ«ã‹ã‚‰ã‚‚åŒã˜çµŒè·¯ã‚’å‘¼ã¹ã‚‹ã‚ˆã†ã«å…¬é–‹ã—ã¦ã„ã¾ã™ã€‚
+    // 1 ƒTƒ“ƒvƒ‹•ª‚Ìƒ|ƒCƒ“ƒ^[“ü—Í‚ğˆ—‚µ‚Ü‚·B
+    // ƒGƒfƒBƒ^[‚ÌŒŸØƒc[ƒ‹‚©‚ç‚à“¯‚¶Œo˜H‚ğŒÄ‚×‚é‚æ‚¤‚ÉŒöŠJ‚µ‚Ä‚¢‚Ü‚·B
     public void ProcessPointerInput(Vector2 screenPosition, bool moved, bool pressedThisFrame, bool releasedThisFrame)
     {
         if (startupLoading) return;
@@ -273,7 +273,7 @@ public class StartMenuManager : MonoBehaviour
         HandleMainMenuPointer(screenPosition, moved, pressedThisFrame, releasedThisFrame);
     }
 
-    // ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä¸Šã§ã¯ã€é‡ãªã‚Šã§é¸æŠã—ã€æŠ¼ã—ã¦é›¢ã—ãŸä½ç½®ãŒåŒã˜ãªã‚‰æ±ºå®šã—ã¾ã™ã€‚
+    // ƒƒCƒ“ƒƒjƒ…[ã‚Å‚ÍAd‚È‚è‚Å‘I‘ğ‚µA‰Ÿ‚µ‚Ä—£‚µ‚½ˆÊ’u‚ª“¯‚¶‚È‚çŒˆ’è‚µ‚Ü‚·B
     private void HandleMainMenuPointer(Vector2 position, bool moved, bool pressedThisFrame, bool releasedThisFrame)
     {
         int hovered = HitTestCart(position);
@@ -312,8 +312,8 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ä¸Šã§ã¯ã€é‡ãªã‚Šã§é …ç›®ã‚’é¸ã³ã€é›¢ã—ãŸä½ç½®ãŒåŒã˜ãªã‚‰å€¤ã‚’å¤‰æ›´ãƒ»æ±ºå®šã—ã¾ã™ã€‚
-    // æ ã®å¤–ã§é›¢ã—ãŸã¨ãã¯ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’é–‰ã˜ã¾ã™ã€‚
+    // ƒIƒvƒVƒ‡ƒ“ã‚Å‚ÍAd‚È‚è‚Å€–Ú‚ğ‘I‚ÑA—£‚µ‚½ˆÊ’u‚ª“¯‚¶‚È‚ç’l‚ğ•ÏXEŒˆ’è‚µ‚Ü‚·B
+    // ˜g‚ÌŠO‚Å—£‚µ‚½‚Æ‚«‚ÍƒIƒvƒVƒ‡ƒ“‚ğ•Â‚¶‚Ü‚·B
     private void HandleOptionPointer(Vector2 position, bool pressedThisFrame, bool releasedThisFrame)
     {
         if (optionMenu == null)
@@ -368,7 +368,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // ç”»é¢ä¸Šã®ä½ç½®ã«ã‚ã‚‹ã‚«ãƒ¼ãƒˆå‹ãƒœã‚¿ãƒ³ã®ç•ªå·ã‚’è¿”ã—ã¾ã™ã€‚ç„¡ã„å ´åˆã¯ -1 ã§ã™ã€‚
+    // ‰æ–Êã‚ÌˆÊ’u‚É‚ ‚éƒJ[ƒgŒ^ƒ{ƒ^ƒ“‚Ì”Ô†‚ğ•Ô‚µ‚Ü‚·B–³‚¢ê‡‚Í -1 ‚Å‚·B
     private int HitTestCart(Vector2 screenPosition)
     {
         for (int i = 0; i < menuItems.Count; i++)
@@ -389,7 +389,7 @@ public class StartMenuManager : MonoBehaviour
         return -1;
     }
 
-    // æŒ‡å®šã—ãŸã‚«ãƒ¼ãƒˆã®æŠ¼ä¸‹è¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+    // w’è‚µ‚½ƒJ[ƒg‚Ì‰Ÿ‰º•\¦‚ğØ‚è‘Ö‚¦‚Ü‚·B
     private void SetCartPressed(int index, bool pressed)
     {
         if (index >= 0 && index < menuItems.Count && menuItems[index].cart != null)
@@ -398,7 +398,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // æ–¹å‘å…¥åŠ›ã§é¸æŠè¡Œã‚’ç§»å‹•ã—ã€æ±ºå®šå…¥åŠ›ã§é¸æŠä¸­ã®å‡¦ç†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
+    // •ûŒü“ü—Í‚Å‘I‘ğs‚ğˆÚ“®‚µAŒˆ’è“ü—Í‚Å‘I‘ğ’†‚Ìˆ—‚ğÀs‚µ‚Ü‚·B
     private void HandleMainMenuInput(Gamepad gamepad, Keyboard keyboard)
     {
         int movement = ReadNavigationMovement(gamepad, keyboard);
@@ -414,10 +414,10 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // ç·¨é›†ä¸­ã¯å·¦å³ã§å€¤ã‚’å¤‰æ›´ã—ã€æœªç·¨é›†ä¸­ã¯ä¸Šä¸‹é¸æŠãƒ»æ±ºå®šãƒ»ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‰ã˜ã‚‹æ“ä½œã‚’æ‰±ã„ã¾ã™ã€‚
+    // •ÒW’†‚Í¶‰E‚Å’l‚ğ•ÏX‚µA–¢•ÒW’†‚Íã‰º‘I‘ğEŒˆ’èEƒƒjƒ…[‚ğ•Â‚¶‚é‘€ì‚ğˆµ‚¢‚Ü‚·B
     private void HandleOptionInput(Gamepad gamepad, Keyboard keyboard)
     {
-        // ç·¨é›†ä¸­ã®æˆ»ã‚‹æ“ä½œã¯é …ç›®ç·¨é›†ã ã‘ã‚’çµ‚äº†ã—ã€ã‚ªãƒ—ã‚·ãƒ§ãƒ³ç”»é¢ã¯é–‹ã„ãŸã¾ã¾ã«ã—ã¾ã™ã€‚
+        // •ÒW’†‚Ì–ß‚é‘€ì‚Í€–Ú•ÒW‚¾‚¯‚ğI—¹‚µAƒIƒvƒVƒ‡ƒ“‰æ–Ê‚ÍŠJ‚¢‚½‚Ü‚Ü‚É‚µ‚Ü‚·B
         if (optionMenu != null && optionMenu.HasActiveItem)
         {
             if (IsBackPressed(gamepad, keyboard))
@@ -459,7 +459,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // åå­—ã‚­ãƒ¼ãƒ»çŸ¢å°ã‚­ãƒ¼ãƒ»å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‹ã‚‰ç§»å‹•æ–¹å‘ã‚’è¿”ã—ã€ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®é€£ç¶šåå¿œã‚’æŠ‘ãˆã¾ã™ã€‚
+    // \šƒL[E–îˆóƒL[E¶ƒXƒeƒBƒbƒN‚©‚çˆÚ“®•ûŒü‚ğ•Ô‚µAƒXƒeƒBƒbƒN‚Ì˜A‘±”½‰‚ğ—}‚¦‚Ü‚·B
     private int ReadNavigationMovement(Gamepad gamepad, Keyboard keyboard)
     {
         if (gamepad != null)
@@ -493,7 +493,7 @@ public class StartMenuManager : MonoBehaviour
             return 0;
         }
 
-        // ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã¯ä¸­å¤®ã¸æˆ»ã‚‹ã¾ã§ä¸€åº¦ã ã‘åå¿œã•ã›ã€æ„å›³ã—ãªã„é€£ç¶šé¸æŠã‚’é˜²ãã¾ã™ã€‚
+        // ƒXƒeƒBƒbƒN‚Í’†‰›‚Ö–ß‚é‚Ü‚Åˆê“x‚¾‚¯”½‰‚³‚¹AˆÓ}‚µ‚È‚¢˜A‘±‘I‘ğ‚ğ–h‚¬‚Ü‚·B
         Vector2 stick = gamepad.leftStick.ReadValue();
         float deadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);
         float releaseThreshold = Mathf.Clamp(navigationReleaseThreshold, 0.05f, deadZone);
@@ -524,26 +524,26 @@ public class StartMenuManager : MonoBehaviour
         return 0;
     }
 
-    // ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ã®å³ãƒ•ã‚§ã‚¤ã‚¹ãƒœã‚¿ãƒ³ã€ã¾ãŸã¯ Escape ã®æŠ¼ä¸‹ã‚’æˆ»ã‚‹æ“ä½œã¨ã—ã¦èª­ã¿ã¾ã™ã€‚
+  // Xbox‚Ì‰ºƒ{ƒ^ƒ“AA‚Ü‚½‚Í Escape ‚ğ–ß‚é‘€ì‚Æ‚µ‚Äˆµ‚¤
     private bool IsBackPressed(Gamepad gamepad, Keyboard keyboard)
     {
-        return (gamepad != null && gamepad.buttonEast.wasPressedThisFrame) ||
-               (keyboard != null && keyboard.escapeKey.wasPressedThisFrame);
+        return (gamepad != null && gamepad.buttonSouth.wasPressedThisFrame) ||
+          (keyboard != null && keyboard.escapeKey.wasPressedThisFrame);
     }
 
-    // æ¬¡ã®ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã¸ç§»å‹•ã—ã¾ã™ã€‚
+    // Ÿ‚ÌƒƒCƒ“ƒƒjƒ…[€–Ú‚ÖˆÚ“®‚µ‚Ü‚·B
     public void SelectNext()
     {
         MoveSelection(1);
     }
 
-    // å‰ã®ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã¸ç§»å‹•ã—ã¾ã™ã€‚
+    // ‘O‚ÌƒƒCƒ“ƒƒjƒ…[€–Ú‚ÖˆÚ“®‚µ‚Ü‚·B
     public void SelectPrevious()
     {
         MoveSelection(-1);
     }
 
-    // é¸æŠä¸­ã®é …ç›®ã«å¿œã˜ã¦ã€é–‹å§‹ãƒ»ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ»çµ‚äº†ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
+    // ‘I‘ğ’†‚Ì€–Ú‚É‰‚¶‚ÄAŠJnEƒIƒvƒVƒ‡ƒ“EI—¹‚ğÀs‚µ‚Ü‚·B
     public void ActivateSelectedOption()
     {
         if (menuItems.Count == 0)
@@ -565,7 +565,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // é¸æŠç•ªå·ã‚’å¢—æ¸›ã—ã€ä¸€è¦§ã®ç«¯ã‚’è¶ŠãˆãŸã‚‰åå¯¾å´ã¸æˆ»ã—ã¾ã™ã€‚
+    // ‘I‘ğ”Ô†‚ğ‘Œ¸‚µAˆê——‚Ì’[‚ğ‰z‚¦‚½‚ç”½‘Î‘¤‚Ö–ß‚µ‚Ü‚·B
     private void MoveSelection(int delta)
     {
         if (menuItems.Count == 0)
@@ -583,7 +583,7 @@ public class StartMenuManager : MonoBehaviour
         SelectMenuIndex(nextIndex % menuItems.Count);
     }
 
-    // é¸æŠç•ªå·ã‚’æœ‰åŠ¹ç¯„å›²ã«è£œæ­£ã—ã€é¸æŠè‰²ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ‘I‘ğ”Ô†‚ğ—LŒø”ÍˆÍ‚É•â³‚µA‘I‘ğF‚ğXV‚µ‚Ü‚·B
     private void SelectMenuIndex(int index)
     {
         if (menuItems.Count == 0)
@@ -596,7 +596,7 @@ public class StartMenuManager : MonoBehaviour
         RefreshSelectionVisuals();
     }
 
-    // é¸æŠä¸­ã®è¡Œã ã‘ã‚’å¼·èª¿è‰²ã«ã—ã€ä»–ã®è¡Œã‚’é€šå¸¸è‰²ã«æˆ»ã—ã¾ã™ã€‚
+    // ‘I‘ğ’†‚Ìs‚¾‚¯‚ğ‹­’²F‚É‚µA‘¼‚Ìs‚ğ’ÊíF‚É–ß‚µ‚Ü‚·B
     private void RefreshSelectionVisuals()
     {
         for (int i = 0; i < menuItems.Count; i++)
@@ -604,7 +604,7 @@ public class StartMenuManager : MonoBehaviour
             MenuItem item = menuItems[i];
             bool isSelected = i == selectedMenuIndex;
 
-            // ãƒ†ãƒ¼ãƒ UI ã®ã‚«ãƒ¼ãƒˆã¯ã€è‰²ã¨ä½ç½®ã§é¸æŠçŠ¶æ…‹ã‚’è¡¨ã—ã¾ã™ã€‚
+            // ƒe[ƒ} UI ‚ÌƒJ[ƒg‚ÍAF‚ÆˆÊ’u‚Å‘I‘ğó‘Ô‚ğ•\‚µ‚Ü‚·B
             if (item.cart != null)
             {
                 item.cart.SetSelected(isSelected);
@@ -617,7 +617,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // é·ç§»å…ˆã‚’æ¤œè¨¼ã—ã¦è¨­å®šã‚’ä¿æŒã—ã€é–‹å§‹é€šçŸ¥ã®å¾Œã«ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‚’èª­ã¿è¾¼ã¿ã¾ã™ã€‚
+    // ‘JˆÚæ‚ğŒŸØ‚µ‚Äİ’è‚ğ•Û‚µAŠJn’Ê’m‚ÌŒã‚ÉƒQ[ƒ€ƒV[ƒ“‚ğ“Ç‚İ‚İ‚Ü‚·B
     public void StartGame()
     {
         if (string.IsNullOrWhiteSpace(gameScenePath))
@@ -632,14 +632,14 @@ public class StartMenuManager : MonoBehaviour
             return;
         }
 
-        // æ–°ã‚·ãƒ¼ãƒ³ã§ PlayerManager ãŒè¦‹ã¤ã‹ã£ãŸã¨ãã«é©ç”¨ã§ãã‚‹ã‚ˆã†ã€é¸æŠå†…å®¹ã‚’å…ˆã«ä¿å­˜ã—ã¾ã™ã€‚
+        // VƒV[ƒ“‚Å PlayerManager ‚ªŒ©‚Â‚©‚Á‚½‚Æ‚«‚É“K—p‚Å‚«‚é‚æ‚¤A‘I‘ğ“à—e‚ğæ‚É•Û‘¶‚µ‚Ü‚·B
         QueueSelectedMovementPreset();
         startSelected.Invoke();
         StartSelected?.Invoke();
         SceneController.Instance.MoveScene(gameScenePath);
     }
 
-    // å…¥åŠ›çŠ¶æ…‹ã¨é¸æŠè¡Œã‚’åˆæœŸåŒ–ã—ã¦ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¡¨ç¤ºã—ã€é–‹ã„ãŸã“ã¨ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // “ü—Íó‘Ô‚Æ‘I‘ğs‚ğ‰Šú‰»‚µ‚ÄƒIƒvƒVƒ‡ƒ“‚ğ•\¦‚µAŠJ‚¢‚½‚±‚Æ‚ğ’Ê’m‚µ‚Ü‚·B
     public void OpenOptions()
     {
         if (isOptionOpen)
@@ -656,7 +656,7 @@ public class StartMenuManager : MonoBehaviour
         OptionOpened?.Invoke();
     }
 
-    // é …ç›®ã®ç·¨é›†çŠ¶æ…‹ã‚’è§£é™¤ã—ã¦ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’éš ã—ã€é–‰ã˜ãŸã“ã¨ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // €–Ú‚Ì•ÒWó‘Ô‚ğ‰ğœ‚µ‚ÄƒIƒvƒVƒ‡ƒ“‚ğ‰B‚µA•Â‚¶‚½‚±‚Æ‚ğ’Ê’m‚µ‚Ü‚·B
     public void CloseOptions()
     {
         if (!isOptionOpen)
@@ -672,7 +672,7 @@ public class StartMenuManager : MonoBehaviour
         OptionClosed?.Invoke();
     }
 
-    // çµ‚äº†é€šçŸ¥ã®å¾Œã€ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼ã§ã¯ Play Mode ã‚’çµ‚äº†ã—ã€ãƒ“ãƒ«ãƒ‰ã§ã¯ã‚¢ãƒ—ãƒªã‚’çµ‚äº†ã—ã¾ã™ã€‚
+    // I—¹’Ê’m‚ÌŒãAƒGƒfƒBƒ^[‚Å‚Í Play Mode ‚ğI—¹‚µAƒrƒ‹ƒh‚Å‚ÍƒAƒvƒŠ‚ğI—¹‚µ‚Ü‚·B
     public void ExitGame()
     {
         exitSelected.Invoke();
@@ -685,7 +685,7 @@ public class StartMenuManager : MonoBehaviour
 #endif
     }
 
-    // åˆ©ç”¨ã§ãã‚‹äº‹å‰ä½œæˆãƒ“ãƒ¥ãƒ¼ã‚’æ¢ã—ã€è¦‹ã¤ã‹ã‚‰ãªã„å ´åˆã«åŸºæœ¬ãƒ¡ãƒ‹ãƒ¥ãƒ¼ UI ã‚’ç”Ÿæˆã—ã¾ã™ã€‚
+    // —˜—p‚Å‚«‚é–‘Oì¬ƒrƒ…[‚ğ’T‚µAŒ©‚Â‚©‚ç‚È‚¢ê‡‚ÉŠî–{ƒƒjƒ…[ UI ‚ğ¶¬‚µ‚Ü‚·B
     private void CreateRuntimeUI()
     {
         DestroyCreatedUI();
@@ -706,7 +706,7 @@ public class StartMenuManager : MonoBehaviour
         RegisterDefaultOptionItems();
     }
 
-    // ç”Ÿæˆæ¸ˆã¿ã® UI ã‚’ç ´æ£„ã—ã€ç¶šã‘ã¦ä½œã‚Šç›´ã›ã‚‹çŠ¶æ…‹ã«æˆ»ã—ã¾ã™ã€‚
+    // ¶¬Ï‚İ‚Ì UI ‚ğ”jŠü‚µA‘±‚¯‚Äì‚è’¼‚¹‚éó‘Ô‚É–ß‚µ‚Ü‚·B
     private void DestroyCreatedUI()
     {
         pointerPressIndex = -1;
@@ -717,7 +717,7 @@ public class StartMenuManager : MonoBehaviour
             return;
         }
 
-        // Play Mode ã§ã¯ Destroyã€ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼ã§ã¯å³æ™‚ç ´æ£„ã‚’ä½¿ã„ã¾ã™ã€‚
+        // Play Mode ‚Å‚Í DestroyAƒGƒfƒBƒ^[‚Å‚Í‘¦”jŠü‚ğg‚¢‚Ü‚·B
         if (Application.isPlaying)
         {
             Destroy(createdUiRoot);
@@ -738,7 +738,7 @@ public class StartMenuManager : MonoBehaviour
         activeMenuView = null;
     }
 
-    // ãƒ†ãƒ¼ãƒãŒæœªè¨­å®šãƒ»æ¬ è½ã—ã¦ã„ã‚‹å ´åˆã«ã€æ—¢å®šå€¤ã§è£œå®Œã—ã¾ã™ã€‚
+    // ƒe[ƒ}‚ª–¢İ’èEŒ‡—‚µ‚Ä‚¢‚éê‡‚ÉAŠù’è’l‚Å•âŠ®‚µ‚Ü‚·B
     private void EnsureTheme()
     {
         if (theme == null)
@@ -769,11 +769,11 @@ public class StartMenuManager : MonoBehaviour
 
         if (theme.cartLabels == null || theme.cartLabels.Length == 0)
         {
-            theme.cartLabels = new[] { "é–‹å§‹", "è¨­å®š", "çµ‚äº†" };
+            theme.cartLabels = new[] { "ŠJn", "İ’è", "I—¹" };
         }
     }
 
-    // ã‚·ãƒ¼ãƒ³å‚ç…§ãƒ»æŒ‡å®š Prefabãƒ»æ—¢å­˜ãƒ“ãƒ¥ãƒ¼ã®é †ã«æ¢ã—ã€å¿…é ˆå‚ç…§ãŒãã‚ã†ãƒ“ãƒ¥ãƒ¼ã‚’æ¥ç¶šã—ã¾ã™ã€‚
+    // ƒV[ƒ“QÆEw’è PrefabEŠù‘¶ƒrƒ…[‚Ì‡‚É’T‚µA•K{QÆ‚ª‚»‚ë‚¤ƒrƒ…[‚ğÚ‘±‚µ‚Ü‚·B
     private bool TryCreatePrefabUI()
     {
         StartMenuView view = sceneMenuView;
@@ -796,7 +796,7 @@ public class StartMenuManager : MonoBehaviour
             return false;
         }
 
-        // å¿…é ˆå‚ç…§ãŒæ¬ ã‘ãŸãƒ“ãƒ¥ãƒ¼ã¯ä½¿ç”¨ã›ãšã€è‡ªåˆ†ã§ç”Ÿæˆã—ãŸ Prefab ã ã‘ã‚’ç ´æ£„ã—ã¾ã™ã€‚
+        // •K{QÆ‚ªŒ‡‚¯‚½ƒrƒ…[‚Íg—p‚¹‚¸A©•ª‚Å¶¬‚µ‚½ Prefab ‚¾‚¯‚ğ”jŠü‚µ‚Ü‚·B
         if (!view.HasRequiredReferences)
         {
             Debug.LogWarning("[StartMenuManager] Start menu prefab/view is missing required references. Falling back to default UI.");
@@ -813,7 +813,7 @@ public class StartMenuManager : MonoBehaviour
         return true;
     }
 
-    // äº‹å‰ä½œæˆãƒ“ãƒ¥ãƒ¼ã®å‚ç…§ã‚’ä¿æŒã—ã€ä¸‰ã¤ã®è¡Œã¨å…±é€šã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’æ¥ç¶šã—ã¾ã™ã€‚
+    // –‘Oì¬ƒrƒ…[‚ÌQÆ‚ğ•Û‚µAO‚Â‚Ìs‚Æ‹¤’ÊƒIƒvƒVƒ‡ƒ“ƒƒjƒ…[‚ğÚ‘±‚µ‚Ü‚·B
     private void BindPrefabView(StartMenuView view)
     {
         activeMenuView = view;
@@ -830,7 +830,7 @@ public class StartMenuManager : MonoBehaviour
         optionMenu = new RuntimeOptionMenu(optionContentRoot, CreateOptionMenuStyle());
     }
 
-    // æ—¢å­˜è¡Œã®ãƒ©ãƒ™ãƒ«ã¨èƒŒæ™¯è‰²ã‚’è¨­å®šã—ã€å®Ÿè¡Œã™ã‚‹é …ç›®ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
+    // Šù‘¶s‚Ìƒ‰ƒxƒ‹‚Æ”wŒiF‚ğİ’è‚µAÀs‚·‚é€–Ú‚ğ“o˜^‚µ‚Ü‚·B
     private void BindPrefabMenuRow(StartMenuView.MenuRowReference row, string label, MenuOption option)
     {
         row.SetLabel(label);
@@ -843,7 +843,7 @@ public class StartMenuManager : MonoBehaviour
         });
     }
 
-    // Canvasã€èƒŒæ™¯ã€ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’é †ã«ç”Ÿæˆã—ã¾ã™ã€‚
+    // CanvasA”wŒiAƒƒCƒ“ƒƒjƒ…[AƒIƒvƒVƒ‡ƒ“‚ğ‡‚É¶¬‚µ‚Ü‚·B
     private void CreateDefaultRuntimeUI()
     {
         activeMenuView = null;
@@ -853,7 +853,7 @@ public class StartMenuManager : MonoBehaviour
         CreateOptionPopup(canvas.transform);
     }
 
-    // ãƒ•ã‚£ãƒ«ãƒ ãƒ»ã‚¿ã‚¤ãƒˆãƒ«ãƒ­ã‚´ãƒ»ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ãƒ»ã‚«ãƒ¼ãƒˆãƒœã‚¿ãƒ³ã‚’é‡ã­ã¦ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚’çµ„ã¿ç«‹ã¦ã¾ã™ã€‚
+    // ƒtƒBƒ‹ƒ€Eƒ^ƒCƒgƒ‹ƒƒSEƒLƒƒƒ‰ƒNƒ^[EƒJ[ƒgƒ{ƒ^ƒ“‚ğd‚Ë‚Äƒ^ƒCƒgƒ‹‰æ–Ê‚ğ‘g‚İ—§‚Ä‚Ü‚·B
     private void CreateThemedRuntimeUI()
     {
         EnsureTheme();
@@ -871,7 +871,7 @@ public class StartMenuManager : MonoBehaviour
         CreateOptionPopup(canvasRoot);
     }
 
-    // å†…å´ã®ç¸ã¨åšã¿ã‹ã‚‰é…ç½®ã‚’æ±ºã‚ã€ç©´ã ã‘ãŒæµã‚Œã‚‹ãƒ•ã‚£ãƒ«ãƒ ã‚’ä½œã‚Šã¾ã™ã€‚
+    // “à‘¤‚Ì‰‚ÆŒú‚İ‚©‚ç”z’u‚ğŒˆ‚ßAŒŠ‚¾‚¯‚ª—¬‚ê‚éƒtƒBƒ‹ƒ€‚ğì‚è‚Ü‚·B
     private void CreateFilmStrip(Transform parent, FilmStripStyle style, string objectName, bool alwaysVisible)
     {
         if (style == null || (!style.enabled && !alwaysVisible))
@@ -882,7 +882,7 @@ public class StartMenuManager : MonoBehaviour
         RectTransform rect = CreateRect(objectName, parent);
         rect.anchorMin = Vector2.zero;
         rect.anchorMax = Vector2.zero;
-        // å†…å´ã®ç¸ãŒåŸºæº–ã«ãªã‚‹ã‚ˆã†ã€ãƒ•ã‚£ãƒ«ãƒ ãŒä¼¸ã³ã‚‹å´ã¸ãƒ”ãƒœãƒƒãƒˆã‚’å¯„ã›ã¾ã™ã€‚
+        // “à‘¤‚Ì‰‚ªŠî€‚É‚È‚é‚æ‚¤AƒtƒBƒ‹ƒ€‚ªL‚Ñ‚é‘¤‚Öƒsƒ{ƒbƒg‚ğŠñ‚¹‚Ü‚·B
         rect.pivot = new Vector2(0.5f, style.BodyIsAboveEdge ? 0f : 1f);
         rect.anchoredPosition = style.PivotPosition;
         rect.sizeDelta = new Vector2(Mathf.Max(1f, style.length), Mathf.Max(1f, style.thickness));
@@ -896,7 +896,7 @@ public class StartMenuManager : MonoBehaviour
         int thickness = Mathf.Max(8, Mathf.RoundToInt(style.thickness));
         int holeSize = Mathf.Max(2, Mathf.RoundToInt(style.holeSize));
         int inset = Mathf.RoundToInt(style.holeInset);
-        // ç©´ã¯å¸¸ã«å†…å´ã®ç¸ã‹ã‚‰åŒã˜è·é›¢ã¸ç½®ãã¾ã™ã€‚
+        // ŒŠ‚Íí‚É“à‘¤‚Ì‰‚©‚ç“¯‚¶‹——£‚Ö’u‚«‚Ü‚·B
         int holeInsetFromBottom = style.BodyIsAboveEdge ? inset : thickness - inset - holeSize;
 
         rawImage.texture = MenuProceduralSprites.CreateFilmStripTexture(
@@ -912,7 +912,7 @@ public class StartMenuManager : MonoBehaviour
         scroller.Initialize(rawImage, style.length / pitch, pitch, style.scrollSpeed, style.scrollDirection, style.startPhase);
     }
 
-    // é€éç´ æã‚’é…ç½®ã—ã€å¿…è¦ãªã‚‰ç¸å–ã‚Šã¨å³ã‹ã‚‰ã®çªå…¥æ¼”å‡ºã‚’ä»˜ã‘ã¾ã™ã€‚
+    // “§‰ß‘fŞ‚ğ”z’u‚µA•K—v‚È‚ç‰æ‚è‚Æ‰E‚©‚ç‚Ì“Ë“ü‰‰o‚ğ•t‚¯‚Ü‚·B
     private RectTransform CreateSpriteLayer(Transform parent, MenuLayerStyle style, Texture2D texture, string objectName, RushInStyle rushStyle)
     {
         if (style == null || !style.enabled || texture == null)
@@ -932,7 +932,7 @@ public class StartMenuManager : MonoBehaviour
 
         if (style.outlineEnabled && style.outlineWidth > 0.01f)
         {
-            // åŒã˜çµµã‚’å††çŠ¶ã«ãšã‚‰ã—ã¦é‡ã­ã€ã‚¹ãƒ†ãƒƒã‚«ãƒ¼ã®ã‚ˆã†ãªç™½ãƒ•ãƒã‚’ä½œã‚Šã¾ã™ã€‚
+            // “¯‚¶ŠG‚ğ‰~ó‚É‚¸‚ç‚µ‚Äd‚ËAƒXƒeƒbƒJ[‚Ì‚æ‚¤‚È”’ƒtƒ`‚ğì‚è‚Ü‚·B
             int steps = Mathf.Clamp(style.outlineSteps, 6, 32);
 
             for (int i = 0; i < steps; i++)
@@ -950,7 +950,7 @@ public class StartMenuManager : MonoBehaviour
         return container;
     }
 
-    // è¦ªã„ã£ã±ã„ã«åºƒãŒã‚‹ç”»åƒã‚’ä½œã‚Šã€è‰²ã¨ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’è¨­å®šã—ã¾ã™ã€‚
+    // e‚¢‚Á‚Ï‚¢‚ÉL‚ª‚é‰æ‘œ‚ğì‚èAF‚ÆƒXƒvƒ‰ƒCƒg‚ğİ’è‚µ‚Ü‚·B
     private static Image CreateLayerImage(RectTransform parent, Sprite sprite, Color color, string objectName)
     {
         GameObject imageObject = new GameObject(objectName, typeof(RectTransform));
@@ -971,7 +971,7 @@ public class StartMenuManager : MonoBehaviour
         return image;
     }
 
-    // èª­ã¿è¾¼ã‚“ã ãƒ†ã‚¯ã‚¹ãƒãƒ£å…¨ä½“ã‚’ 1 æšã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã«å¤‰æ›ã—ã¾ã™ã€‚
+    // “Ç‚İ‚ñ‚¾ƒeƒNƒXƒ`ƒƒ‘S‘Ì‚ğ 1 –‡‚ÌƒXƒvƒ‰ƒCƒg‚É•ÏŠ·‚µ‚Ü‚·B
     private static Sprite CreateRuntimeSprite(Texture2D texture, string objectName)
     {
         Sprite sprite = Sprite.Create(
@@ -987,7 +987,7 @@ public class StartMenuManager : MonoBehaviour
         return sprite;
     }
 
-    // ã‚«ãƒ¼ãƒˆå‹ãƒœã‚¿ãƒ³ã‚’ç¸¦ã«ä¸¦ã¹ã€é¸æŠè‰²ä»˜ãã®ã‚¹ãƒ—ãƒ©ã‚¤ãƒˆã‚’ 3 çŠ¶æ…‹åˆ†ç”¨æ„ã—ã¾ã™ã€‚
+    // ƒJ[ƒgŒ^ƒ{ƒ^ƒ“‚ğc‚É•À‚×A‘I‘ğF•t‚«‚ÌƒXƒvƒ‰ƒCƒg‚ğ 3 ó‘Ô•ª—pˆÓ‚µ‚Ü‚·B
     private void CreateThemedMainMenu(Transform parent, StartMenuTheme activeTheme)
     {
         menuItems.Clear();
@@ -1025,7 +1025,7 @@ public class StartMenuManager : MonoBehaviour
                 cartStyle.firstCenter.y - cartStyle.spacing * i
             );
 
-            // ã‚«ãƒ¼ãƒˆã”ã¨ã«å°‘ã—ãšã¤é…ã‚‰ã›ã€é †ç•ªã«é£›ã³è¾¼ã‚“ã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚
+            // ƒJ[ƒg‚²‚Æ‚É­‚µ‚¸‚Â’x‚ç‚¹A‡”Ô‚É”ò‚Ñ‚ñ‚Å‚­‚é‚æ‚¤‚É‚µ‚Ü‚·B
             RushInStyle rush = activeTheme.cartRush != null ? activeTheme.cartRush.Clone() : null;
 
             if (rush != null)
@@ -1045,7 +1045,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢å°‚ç”¨ã® Canvas ã‚’ç”Ÿæˆã—ã€è§£åƒåº¦ã«å¿œã˜ãŸæ‹¡ç¸®ã¨æç”»é †ã‚’è¨­å®šã—ã¾ã™ã€‚
+    // ƒ^ƒCƒgƒ‹‰æ–Êê—p‚Ì Canvas ‚ğ¶¬‚µA‰ğ‘œ“x‚É‰‚¶‚½Šgk‚Æ•`‰æ‡‚ğİ’è‚µ‚Ü‚·B
     private Canvas CreateCanvas()
     {
         GameObject canvasObject = new GameObject("Start Menu Canvas");
@@ -1054,7 +1054,7 @@ public class StartMenuManager : MonoBehaviour
         createdCanvas.renderMode = RenderMode.ScreenSpaceOverlay;
         createdCanvas.sortingOrder = 1000;
 
-        // åŸºæº–è§£åƒåº¦ã«å¯¾ã—ã¦æ‹¡ç¸®ã—ã€ç”»é¢ã‚µã‚¤ã‚ºãŒå¤‰ã‚ã£ã¦ã‚‚ UI ã®æ¯”ç‡ã‚’ä¿ã¡ã¾ã™ã€‚
+        // Šî€‰ğ‘œ“x‚É‘Î‚µ‚ÄŠgk‚µA‰æ–ÊƒTƒCƒY‚ª•Ï‚í‚Á‚Ä‚à UI ‚Ì”ä—¦‚ğ•Û‚¿‚Ü‚·B
         CanvasScaler scaler = canvasObject.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920f, 1080f);
@@ -1063,13 +1063,13 @@ public class StartMenuManager : MonoBehaviour
         return createdCanvas;
     }
 
-    // ç”»é¢å…¨ä½“ã‚’è¦†ã†èƒŒæ™¯ã‚’ä½œã‚Šã€è¨­å®šè‰²ã‚’é©ç”¨ã—ã¾ã™ã€‚
+    // ‰æ–Ê‘S‘Ì‚ğ•¢‚¤”wŒi‚ğì‚èAİ’èF‚ğ“K—p‚µ‚Ü‚·B
     private void CreateBackground(Transform parent)
     {
         CreateBackground(parent, backgroundColor);
     }
 
-    // æŒ‡å®šè‰²ã§ç”»é¢å…¨ä½“ã‚’è¦†ã†èƒŒæ™¯ã‚’ä½œã‚Šã¾ã™ã€‚
+    // w’èF‚Å‰æ–Ê‘S‘Ì‚ğ•¢‚¤”wŒi‚ğì‚è‚Ü‚·B
     private void CreateBackground(Transform parent, Color color)
     {
         RectTransform backgroundRect = CreateRect("White Background", parent);
@@ -1080,7 +1080,7 @@ public class StartMenuManager : MonoBehaviour
         background.raycastTarget = false;
     }
 
-    // ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®é ˜åŸŸã‚’ç”¨æ„ã—ã€é–‹å§‹ãƒ»ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ»çµ‚äº†ã®è¡Œã‚’é…ç½®ã—ã¾ã™ã€‚
+    // ƒƒCƒ“ƒƒjƒ…[‚Ì—Ìˆæ‚ğ—pˆÓ‚µAŠJnEƒIƒvƒVƒ‡ƒ“EI—¹‚Ìs‚ğ”z’u‚µ‚Ü‚·B
     private void CreateMainMenu(Transform parent)
     {
         menuItems.Clear();
@@ -1098,7 +1098,7 @@ public class StartMenuManager : MonoBehaviour
         CreateMenuRow("Exit Row", "EXIT", MenuOption.Exit, -rowSpacing);
     }
 
-    // æŒ‡å®šä½ç½®ã«ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡Œã®èƒŒæ™¯ã¨ãƒ©ãƒ™ãƒ«ã‚’ä½œã‚Šã€é¸æŠç®¡ç†ã¸ç™»éŒ²ã—ã¾ã™ã€‚
+    // w’èˆÊ’u‚Éƒƒjƒ…[s‚Ì”wŒi‚Æƒ‰ƒxƒ‹‚ğì‚èA‘I‘ğŠÇ—‚Ö“o˜^‚µ‚Ü‚·B
     private void CreateMenuRow(string objectName, string label, MenuOption option, float yPosition)
     {
         RectTransform row = CreateRect(objectName, mainMenuRoot);
@@ -1126,7 +1126,7 @@ public class StartMenuManager : MonoBehaviour
         });
     }
 
-    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®èƒŒæ™¯ãƒ»æ ãƒ»æ¡ˆå†…ãƒ»é …ç›®ç”¨ã®é ˜åŸŸã‚’é…ç½®ã—ã¾ã™ã€‚
+    // ƒIƒvƒVƒ‡ƒ“‚Ì”wŒiE˜gEˆÄ“àE€–Ú—p‚Ì—Ìˆæ‚ğ”z’u‚µ‚Ü‚·B
     private void CreateOptionPopup(Transform parent)
     {
         RectTransform popupRect = CreateRect("Option Popup", parent);
@@ -1161,7 +1161,7 @@ public class StartMenuManager : MonoBehaviour
         optionMenu = new RuntimeOptionMenu(optionContentRoot, CreateOptionMenuStyle());
     }
 
-    // å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸æ•°å€¤èª¿æ•´è¡Œã‚’è¿½åŠ ã—ã€å€¤å¤‰æ›´æ™‚ã®å‡¦ç†ã¨è¡¨ç¤ºæ›¸å¼ã‚’æ¸¡ã—ã¾ã™ã€‚
+    // ‹¤’Êƒƒjƒ…[‚Ö”’l’²®s‚ğ’Ç‰Á‚µA’l•ÏX‚Ìˆ—‚Æ•\¦‘®‚ğ“n‚µ‚Ü‚·B
     public RuntimeOptionSlider AddSliderOption(
         string label,
         float minValue,
@@ -1192,7 +1192,7 @@ public class StartMenuManager : MonoBehaviour
         return slider;
     }
 
-    // Inspector ã®è¦‹ãŸç›®è¨­å®šã‚’ã€å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã®ã‚¹ã‚¿ã‚¤ãƒ«ã«ã¾ã¨ã‚ã¾ã™ã€‚
+    // Inspector ‚ÌŒ©‚½–Úİ’è‚ğA‹¤’Êƒƒjƒ…[—p‚ÌƒXƒ^ƒCƒ‹‚É‚Ü‚Æ‚ß‚Ü‚·B
     private RuntimeOptionMenuStyle CreateOptionMenuStyle()
     {
         return new RuntimeOptionMenuStyle
@@ -1209,7 +1209,7 @@ public class StartMenuManager : MonoBehaviour
         };
     }
 
-    // éŸ³é‡ãƒ»ç§»å‹•è¨­å®šãƒ»æ“ä½œæ–¹å¼ã®æ¨™æº–é …ç›®ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
+    // ‰¹—ÊEˆÚ“®İ’èE‘€ì•û®‚Ì•W€€–Ú‚ğ“o˜^‚µ‚Ü‚·B
     private void RegisterDefaultOptionItems()
     {
         AddSliderOption(
@@ -1237,7 +1237,7 @@ public class StartMenuManager : MonoBehaviour
         );
     }
 
-    // å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¸å€™è£œé¸æŠè¡Œã‚’è¿½åŠ ã—ã€é¸æŠå¤‰æ›´æ™‚ã®å‡¦ç†ã‚’æ¸¡ã—ã¾ã™ã€‚
+    // ‹¤’Êƒƒjƒ…[‚ÖŒó•â‘I‘ğs‚ğ’Ç‰Á‚µA‘I‘ğ•ÏX‚Ìˆ—‚ğ“n‚µ‚Ü‚·B
     public RuntimeOptionChoice AddChoiceOption(
         string label,
         string[] choices,
@@ -1256,31 +1256,31 @@ public class StartMenuManager : MonoBehaviour
         return choice;
     }
 
-    // éŸ³é‡è¨­å®šã‚’ AudioListener ã«åæ˜ ã—ã¾ã™ã€‚
+    // ‰¹—Êİ’è‚ğ AudioListener ‚É”½‰f‚µ‚Ü‚·B
     private void SetMasterVolume(float value)
     {
         AudioListener.volume = Mathf.Clamp01(value);
     }
 
-    // éŸ³é‡ã‚’ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºç”¨ã®æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
+    // ‰¹—Ê‚ğƒƒjƒ…[•\¦—p‚Ì•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
     private string FormatVolumeValue(float value)
     {
         return Mathf.RoundToInt(Mathf.Clamp01(value) * 100f) + "%";
     }
 
-    // é¸æŠã—ãŸç§»å‹•ãƒ—ãƒªã‚»ãƒƒãƒˆç•ªå·ã‚’æœ‰åŠ¹ç¯„å›²ã«åã‚ã¦ä¿æŒã—ã¾ã™ã€‚å®Ÿéš›ã®è¨­å®šä¿å­˜ã¯ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã§ã™ã€‚
+    // ‘I‘ğ‚µ‚½ˆÚ“®ƒvƒŠƒZƒbƒg”Ô†‚ğ—LŒø”ÍˆÍ‚Éû‚ß‚Ä•Û‚µ‚Ü‚·BÀÛ‚Ìİ’è•Û‘¶‚ÍƒQ[ƒ€ŠJn‚Å‚·B
     private void HandleMovementPresetChanged(int index, string _)
     {
         selectedMovementPresetIndex = Mathf.Clamp(index, 0, movementPresets.Length - 1);
     }
 
-    // é¸æŠã—ãŸæ“ä½œãƒ—ãƒªã‚»ãƒƒãƒˆç•ªå·ã‚’æœ‰åŠ¹ç¯„å›²ã«åã‚ã¦ä¿æŒã—ã¾ã™ã€‚å®Ÿéš›ã®è¨­å®šä¿å­˜ã¯ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã§ã™ã€‚
+    // ‘I‘ğ‚µ‚½‘€ìƒvƒŠƒZƒbƒg”Ô†‚ğ—LŒø”ÍˆÍ‚Éû‚ß‚Ä•Û‚µ‚Ü‚·BÀÛ‚Ìİ’è•Û‘¶‚ÍƒQ[ƒ€ŠJn‚Å‚·B
     private void HandleMovementControlPresetChanged(int index, string _)
     {
         selectedMovementControlPresetIndex = Mathf.Clamp(index, 0, movementControlPresets.Length - 1);
     }
 
-    // è£œå®Œæ¸ˆã¿ã®ç§»å‹•ãƒ—ãƒªã‚»ãƒƒãƒˆã‹ã‚‰ã€è¡¨ç¤ºã™ã‚‹åå‰ã®ä¸€è¦§ã‚’ä½œã‚Šã¾ã™ã€‚
+    // •âŠ®Ï‚İ‚ÌˆÚ“®ƒvƒŠƒZƒbƒg‚©‚çA•\¦‚·‚é–¼‘O‚Ìˆê——‚ğì‚è‚Ü‚·B
     private string[] GetMovementPresetLabels()
     {
         EnsureMovementPresets();
@@ -1295,7 +1295,7 @@ public class StartMenuManager : MonoBehaviour
         return labels;
     }
 
-    // è£œå®Œæ¸ˆã¿ã®æ“ä½œãƒ—ãƒªã‚»ãƒƒãƒˆã‹ã‚‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¡¨ç¤ºã™ã‚‹åå‰ã‚’å–ã‚Šå‡ºã—ã¾ã™ã€‚
+    // •âŠ®Ï‚İ‚Ì‘€ìƒvƒŠƒZƒbƒg‚©‚çAƒƒjƒ…[‚É•\¦‚·‚é–¼‘O‚ğæ‚èo‚µ‚Ü‚·B
     private string[] GetMovementControlPresetLabels()
     {
         EnsureMovementControlPresets();
@@ -1310,7 +1310,7 @@ public class StartMenuManager : MonoBehaviour
         return labels;
     }
 
-    // é¸æŠä¸­ã®ç§»å‹•è¨­å®šã¨æ“ä½œæ–¹å¼ã‚’ã€ã‚·ãƒ¼ãƒ³ã‚’ã¾ãŸã„ã§ä¿æŒã™ã‚‹ã‚¯ãƒ©ã‚¹ã¸æ¸¡ã—ã¾ã™ã€‚
+    // ‘I‘ğ’†‚ÌˆÚ“®İ’è‚Æ‘€ì•û®‚ğAƒV[ƒ“‚ğ‚Ü‚½‚¢‚Å•Û‚·‚éƒNƒ‰ƒX‚Ö“n‚µ‚Ü‚·B
     private void QueueSelectedMovementPreset()
     {
         EnsureMovementPresets();
@@ -1323,7 +1323,7 @@ public class StartMenuManager : MonoBehaviour
         PlayerMovementPresetApplier.SetPendingControlScheme(controlPreset.ControlScheme, selectedMovementControlPresetIndex);
     }
 
-    // ç§»å‹•ãƒ—ãƒªã‚»ãƒƒãƒˆã®ä¸è¶³ã¨æœªè¨­å®šè¦ç´ ã‚’è£œã„ã€é¸æŠç•ªå·ã¨è¡¨ç¤ºã‚’åŒæœŸã—ã¾ã™ã€‚
+    // ˆÚ“®ƒvƒŠƒZƒbƒg‚Ì•s‘«‚Æ–¢İ’è—v‘f‚ğ•â‚¢A‘I‘ğ”Ô†‚Æ•\¦‚ğ“¯Šú‚µ‚Ü‚·B
     private void EnsureMovementPresets()
     {
         if (movementPresets == null || movementPresets.Length == 0)
@@ -1361,7 +1361,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // å…±é€šã®è£œå®Œãƒ«ãƒ¼ãƒ«ã‚’é©ç”¨ã—ã¦ã‹ã‚‰ã€ã“ã®ç”»é¢ã®é¸æŠä½ç½®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ‹¤’Ê‚Ì•âŠ®ƒ‹[ƒ‹‚ğ“K—p‚µ‚Ä‚©‚çA‚±‚Ì‰æ–Ê‚Ì‘I‘ğˆÊ’u‚ğXV‚µ‚Ü‚·B
     private void EnsureMovementControlPresets()
     {
         movementControlPresets = PlayerMovementControlPreset.EnsureDefaults(movementControlPresets);
@@ -1373,7 +1373,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // é …ç›®ã®ç·¨é›†ä¸­ã‹ã©ã†ã‹ã«å¿œã˜ã¦ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã¨æˆ»ã‚‹ã®æ¡ˆå†…ã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+    // €–Ú‚Ì•ÒW’†‚©‚Ç‚¤‚©‚É‰‚¶‚ÄAƒLƒƒƒ“ƒZƒ‹‚Æ–ß‚é‚ÌˆÄ“à‚ğØ‚è‘Ö‚¦‚Ü‚·B
     private void RefreshOptionBackHint()
     {
         if (optionBackHint == null)
@@ -1381,17 +1381,17 @@ public class StartMenuManager : MonoBehaviour
             return;
         }
 
-        optionBackHint.text = optionMenu != null && optionMenu.HasActiveItem ? "B CANCEL" : "B BACK";
+        optionBackHint.text = optionMenu != null && optionMenu.HasActiveItem ? "A CANCEL" : "A BACK";
     }
 
-    // ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®æŠ¼ã—ã£ã±ãªã—åˆ¤å®šã‚’è§£é™¤ã—ã€æ¬¡å›ã®å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã¾ã™ã€‚
+    // ƒXƒeƒBƒbƒN‚Ì‰Ÿ‚µ‚Á‚Ï‚È‚µ”»’è‚ğ‰ğœ‚µAŸ‰ñ‚Ì“ü—Í‚ğó‚¯•t‚¯‚Ü‚·B
     private void ResetOptionInputState()
     {
         isOptionNavigationHeld = false;
         isOptionAdjustmentHeld = false;
     }
 
-    // ãƒ‘ãƒãƒ«ã®ä¸Šä¸‹å·¦å³ã«æ ç·šã‚’é…ç½®ã—ã¾ã™ã€‚
+    // ƒpƒlƒ‹‚Ìã‰º¶‰E‚É˜gü‚ğ”z’u‚µ‚Ü‚·B
     private void CreateBorder(RectTransform parent)
     {
         float thickness = Mathf.Max(1f, optionBorderThickness);
@@ -1402,7 +1402,7 @@ public class StartMenuManager : MonoBehaviour
         CreateBorderSegment("Option Border Right", parent, new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(thickness, 0f));
     }
 
-    // æŒ‡å®šã—ãŸè¾ºã®ä½ç½®ã¨å¤ªã•ã§ã€å…¥åŠ›ã‚’é®ã‚‰ãªã„æ ç·šã‚’ä½œæˆã—ã¾ã™ã€‚
+    // w’è‚µ‚½•Ó‚ÌˆÊ’u‚Æ‘¾‚³‚ÅA“ü—Í‚ğÕ‚ç‚È‚¢˜gü‚ğì¬‚µ‚Ü‚·B
     private void CreateBorderSegment(string objectName, RectTransform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 sizeDelta)
     {
         RectTransform borderRect = CreateRect(objectName, parent);
@@ -1417,7 +1417,7 @@ public class StartMenuManager : MonoBehaviour
         border.raycastTarget = false;
     }
 
-    // æ—¥æœ¬èªãƒ•ã‚©ãƒ³ãƒˆã¨ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è‰²ãƒ»æƒãˆã‚’è¨­å®šã—ãŸæ–‡å­—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œã‚Šã¾ã™ã€‚
+    // “ú–{ŒêƒtƒHƒ“ƒg‚Æƒƒjƒ…[‚ÌFE‘µ‚¦‚ğİ’è‚µ‚½•¶šƒIƒuƒWƒFƒNƒg‚ğì‚è‚Ü‚·B
     private Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -1433,7 +1433,7 @@ public class StartMenuManager : MonoBehaviour
         return text;
     }
 
-    // æŒ‡å®šã—ãŸè¦ªã®ä¸‹ã« RectTransform ã‚’æŒã¤ UI ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚
+    // w’è‚µ‚½e‚Ì‰º‚É RectTransform ‚ğ‚Â UI ƒIƒuƒWƒFƒNƒg‚ğì¬‚µ‚Ü‚·B
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -1441,7 +1441,7 @@ public class StartMenuManager : MonoBehaviour
         return rectObject.GetComponent<RectTransform>();
     }
 
-    // è¦ªå…¨ä½“ã¸ã‚¢ãƒ³ã‚«ãƒ¼ã‚’åºƒã’ã€æŒ‡å®šã—ãŸä½™ç™½ã‚’è¨­å®šã—ã¾ã™ã€‚
+    // e‘S‘Ì‚ÖƒAƒ“ƒJ[‚ğL‚°Aw’è‚µ‚½—]”’‚ğİ’è‚µ‚Ü‚·B
     private void Stretch(RectTransform rect, Vector2 offsetMin, Vector2 offsetMax)
     {
         rect.anchorMin = Vector2.zero;
@@ -1450,7 +1450,7 @@ public class StartMenuManager : MonoBehaviour
         rect.offsetMax = offsetMax;
     }
 
-    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®é–‹é–‰çŠ¶æ…‹ã‚’ä¿å­˜ã—ã€ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã¨ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+    // ƒIƒvƒVƒ‡ƒ“‚ÌŠJ•Âó‘Ô‚ğ•Û‘¶‚µAƒƒCƒ“ƒƒjƒ…[‚ÆƒIƒvƒVƒ‡ƒ“‚Ì•\¦‚ğØ‚è‘Ö‚¦‚Ü‚·B
     private void SetOptionVisible(bool visible)
     {
         isOptionOpen = visible;
@@ -1466,7 +1466,7 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // Inspector ã®å¤‰æ›´æ™‚ã«ã€è¨­å®šå€¤ã‚’æœ‰åŠ¹ãªç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // Inspector ‚Ì•ÏX‚ÉAİ’è’l‚ğ—LŒø‚È”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private void OnValidate()
     {
         menuFontSize = Mathf.Max(12, menuFontSize);
@@ -1488,8 +1488,8 @@ public class StartMenuManager : MonoBehaviour
         ValidateTheme();
     }
 
-    // å®Ÿè¡Œæ™‚ã«ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã‚’ä½œã‚Šç›´ã—ã¾ã™ã€‚Inspector ã®å³ã‚¯ãƒªãƒƒã‚¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã‚‚å®Ÿè¡Œã§ãã¾ã™ã€‚
-    [ContextMenu("ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ã‚’ä½œã‚Šç›´ã™")]
+    // Às‚Éƒ^ƒCƒgƒ‹‰æ–Ê‚ğì‚è’¼‚µ‚Ü‚·BInspector ‚Ì‰EƒNƒŠƒbƒNƒƒjƒ…[‚©‚ç‚àÀs‚Å‚«‚Ü‚·B
+    [ContextMenu("ƒXƒ^[ƒg‰æ–Ê‚ğì‚è’¼‚·")]
     public void RebuildStartScreen()
     {
         EnsureMovementPresets();
@@ -1499,22 +1499,22 @@ public class StartMenuManager : MonoBehaviour
         SetOptionVisible(false);
     }
 
-    // ãƒ†ãƒ¼ãƒè¨­å®šã‚’ã‚³ãƒ¼ãƒ‰å´ã®æ—¢å®šå€¤ã¸æˆ»ã—ã€ç¶šã‘ã¦ä½œã‚Šç›´ã—ã¾ã™ã€‚
-    [ContextMenu("ãƒ†ãƒ¼ãƒã‚’æ—¢å®šå€¤ã¸æˆ»ã™")]
+    // ƒe[ƒ}İ’è‚ğƒR[ƒh‘¤‚ÌŠù’è’l‚Ö–ß‚µA‘±‚¯‚Äì‚è’¼‚µ‚Ü‚·B
+    [ContextMenu("ƒe[ƒ}‚ğŠù’è’l‚Ö–ß‚·")]
     public void ResetThemeToDefaults()
     {
         ApplyThemeCodeDefaults();
         RebuildStartScreen();
     }
 
-    // ãƒ†ãƒ¼ãƒè¨­å®šã ã‘ã‚’ã‚³ãƒ¼ãƒ‰å´ã®æ—¢å®šå€¤ã¸ç½®ãæ›ãˆã¾ã™ã€‚UI ã®ä½œã‚Šç›´ã—ã¯è¡Œã„ã¾ã›ã‚“ã€‚
+    // ƒe[ƒ}İ’è‚¾‚¯‚ğƒR[ƒh‘¤‚ÌŠù’è’l‚Ö’u‚«Š·‚¦‚Ü‚·BUI ‚Ìì‚è’¼‚µ‚Ís‚¢‚Ü‚¹‚ñB
     public void ApplyThemeCodeDefaults()
     {
         theme = new StartMenuTheme();
         ValidateTheme();
     }
 
-    // å³ã‹ã‚‰é£›ã³è¾¼ã‚€æ¼”å‡ºã‚’ã€å¾…ãŸãšã«çµ‚äº†ä½ç½®ã¸ãã‚ãˆã¾ã™ã€‚
+    // ‰E‚©‚ç”ò‚Ñ‚Ş‰‰o‚ğA‘Ò‚½‚¸‚ÉI—¹ˆÊ’u‚Ö‚»‚ë‚¦‚Ü‚·B
     public void CompleteEntranceAnimations()
     {
         MenuRushInAnimator[] animators = FindObjectsByType<MenuRushInAnimator>(FindObjectsInactive.Exclude);
@@ -1525,13 +1525,13 @@ public class StartMenuManager : MonoBehaviour
         }
     }
 
-    // å®Ÿè¡Œæ™‚ã«ç”Ÿæˆã—ãŸã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ UI ã‚’ç ´æ£„ã—ã¾ã™ã€‚ã‚¨ãƒ‡ã‚£ã‚¿ãƒ¼ã®ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼æ•´ç†ã«ä½¿ã„ã¾ã™ã€‚
+    // Às‚É¶¬‚µ‚½ƒ^ƒCƒgƒ‹‰æ–Ê UI ‚ğ”jŠü‚µ‚Ü‚·BƒGƒfƒBƒ^[‚ÌƒvƒŒƒrƒ…[®—‚Ég‚¢‚Ü‚·B
     public void ClearStartScreenUI()
     {
         DestroyCreatedUI();
     }
 
-    // ãƒ†ãƒ¼ãƒã®å„å€¤ã‚’æœ‰åŠ¹ãªç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚æ¬ è½ã—ã¦ã„ã‚‹è¦ç´ ã¯æ—¢å®šå€¤ã§è£œã„ã¾ã™ã€‚
+    // ƒe[ƒ}‚ÌŠe’l‚ğ—LŒø‚È”ÍˆÍ‚Ö•â³‚µ‚Ü‚·BŒ‡—‚µ‚Ä‚¢‚é—v‘f‚ÍŠù’è’l‚Å•â‚¢‚Ü‚·B
     private void ValidateTheme()
     {
         EnsureTheme();
@@ -1569,7 +1569,7 @@ public class StartMenuManager : MonoBehaviour
         ValidateRush(theme.cartRush);
     }
 
-    // ãƒ•ã‚£ãƒ«ãƒ ã®å¯¸æ³•é–¢ä¿‚ã‚’å£Šã•ãªã„ç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // ƒtƒBƒ‹ƒ€‚Ì¡–@ŠÖŒW‚ğ‰ó‚³‚È‚¢”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private static void ValidateFilmStrip(FilmStripStyle strip)
     {
         if (strip == null)
@@ -1586,7 +1586,7 @@ public class StartMenuManager : MonoBehaviour
         strip.scrollDirection = strip.scrollDirection >= 0f ? 1f : -1f;
     }
 
-    // çªå…¥æ¼”å‡ºã®æ™‚é–“ã¨æ‹¡ç¸®ã‚’ã€ç ´ç¶»ã—ãªã„ç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // “Ë“ü‰‰o‚ÌŠÔ‚ÆŠgk‚ğA”j’]‚µ‚È‚¢”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private static void ValidateRush(RushInStyle rush)
     {
         if (rush == null)

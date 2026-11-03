@@ -4,24 +4,24 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-/// <summary>ã‚²ãƒ¼ãƒ ä¸­ã«é–‹ãä¸€æ™‚åœæ­¢ä»˜ãã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§ã™ã€‚</summary>
+/// <summary>ƒQ[ƒ€’†‚ÉŠJ‚­ˆê’â~•t‚«ƒIƒvƒVƒ‡ƒ“ƒƒjƒ…[‚Å‚·B</summary>
 [DisallowMultipleComponent]
 public class InGameOptionMenu : MonoBehaviour
 {
-    // ä»–ã®æ©Ÿèƒ½ã‚„è¡¨ç¤ºéƒ¨å“ã¸ã®å‚ç…§ã§ã™ã€‚è¨­å®šæ–¹æ³•ã¯ Initialize ã¾ãŸã¯åˆæœŸåŒ–å‡¦ç†ã‚’å‚ç…§ã—ã¦ãã ã•ã„ã€‚
-    [Header("å‚ç…§")]
+    // ‘¼‚Ì‹@”\‚â•\¦•”•i‚Ö‚ÌQÆ‚Å‚·Bİ’è•û–@‚Í Initialize ‚Ü‚½‚Í‰Šú‰»ˆ—‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
+    [Header("QÆ")]
     [SerializeField] private GameTimePauseManager pauseManager;
     [SerializeField] private GameRestartManager restartManager;
     [SerializeField] private PlayerManager playerManager;
 
-    // å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã‚‹æ¡ä»¶ã¨ã€ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®åå¿œãƒ»è§£é™¤ã—ãã„å€¤ã§ã™ã€‚
-    [Header("å…¥åŠ›")]
+    // “ü—Í‚ğó‚¯•t‚¯‚éğŒ‚ÆAƒXƒeƒBƒbƒN‚Ì”½‰E‰ğœ‚µ‚«‚¢’l‚Å‚·B
+    [Header("“ü—Í")]
     [SerializeField] private bool listenForInput = true;
     [SerializeField] private float navigationDeadZone = 0.55f;
     [SerializeField] private float navigationReleaseThreshold = 0.3f;
 
-    // UI ã®è‰²ãƒ»æ–‡å­—ã‚µã‚¤ã‚ºãƒ»é…ç½®å¯¸æ³•ã‚’ã¾ã¨ã‚ãŸè¨­å®šã§ã™ã€‚
-    [Header("è¦‹ãŸç›®")]
+    // UI ‚ÌFE•¶šƒTƒCƒYE”z’u¡–@‚ğ‚Ü‚Æ‚ß‚½İ’è‚Å‚·B
+    [Header("Œ©‚½–Ú")]
     [SerializeField] private Color overlayColor = new Color(0f, 0f, 0f, 0.45f);
     [SerializeField] private Color backgroundColor = Color.white;
     [SerializeField] private Color textColor = Color.black;
@@ -36,8 +36,8 @@ public class InGameOptionMenu : MonoBehaviour
     [SerializeField] private float optionItemSpacing = 78f;
     [SerializeField] private float volumeStep = 0.05f;
 
-    // é¸æŠå¯èƒ½ãªãƒœã‚¿ãƒ³é…ç½®ã¨ã€ç¾åœ¨ã®é¸æŠç•ªå·ã§ã™ã€‚
-    [Header("æ“ä½œãƒ—ãƒªã‚»ãƒƒãƒˆ")]
+    // ‘I‘ğ‰Â”\‚Èƒ{ƒ^ƒ“”z’u‚ÆAŒ»İ‚Ì‘I‘ğ”Ô†‚Å‚·B
+    [Header("‘€ìƒvƒŠƒZƒbƒg")]
     [SerializeField] private PlayerMovementControlPreset[] movementControlPresets =
     {
         PlayerMovementControlPreset.CreateTriggers(),
@@ -45,8 +45,8 @@ public class InGameOptionMenu : MonoBehaviour
     };
     [SerializeField] private int selectedMovementControlPresetIndex = PlayerMovementControlPreset.DefaultIndex;
 
-    // Inspector ã‹ã‚‰æ¥ç¶šã™ã‚‹é€šçŸ¥ç”¨ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã™ã€‚å®Ÿéš›ã®ç™ºç«æ¡ä»¶ã¯å„å‡¦ç†ã§æ±ºã¾ã‚Šã¾ã™ã€‚
-    [Header("ã‚¤ãƒ™ãƒ³ãƒˆ")]
+    // Inspector ‚©‚çÚ‘±‚·‚é’Ê’m—pƒtƒB[ƒ‹ƒh‚Å‚·BÀÛ‚Ì”­‰ÎğŒ‚ÍŠeˆ—‚ÅŒˆ‚Ü‚è‚Ü‚·B
+    [Header("ƒCƒxƒ“ƒg")]
     [SerializeField] private UnityEvent optionOpened = new UnityEvent();
     [SerializeField] private UnityEvent optionClosed = new UnityEvent();
 
@@ -61,10 +61,10 @@ public class InGameOptionMenu : MonoBehaviour
     private bool isOptionNavigationHeld;
     private bool isOptionAdjustmentHeld;
 
-    // ã‚²ãƒ¼ãƒ ä¸­ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãŒé–‹ã„ã¦ã„ã‚‹ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // ƒQ[ƒ€’†ƒIƒvƒVƒ‡ƒ“‚ªŠJ‚¢‚Ä‚¢‚é‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool IsOpen => isOpen;
 
-    // åœæ­¢ãƒ»å†é–‹ãƒ»æ“ä½œè¨­å®šã®å¤‰æ›´ã«ä½¿ã†å‚ç…§ã‚’ã€GameSessionRoot ã‹ã‚‰å—ã‘å–ã‚Šã¾ã™ã€‚
+    // ’â~EÄŠJE‘€ìİ’è‚Ì•ÏX‚Ég‚¤QÆ‚ğAGameSessionRoot ‚©‚çó‚¯æ‚è‚Ü‚·B
     public void Initialize(GameTimePauseManager configuredPauseManager, GameRestartManager configuredRestartManager, PlayerManager configuredPlayerManager)
     {
         pauseManager = configuredPauseManager;
@@ -72,7 +72,7 @@ public class InGameOptionMenu : MonoBehaviour
         playerManager = configuredPlayerManager;
     }
 
-    // æ“ä½œãƒ—ãƒªã‚»ãƒƒãƒˆã¨ç¾åœ¨ã®é¸æŠã‚’åŒæœŸã—ã€UI ã‚’ä½œã£ã¦éè¡¨ç¤ºã«ã—ã¾ã™ã€‚
+    // ‘€ìƒvƒŠƒZƒbƒg‚ÆŒ»İ‚Ì‘I‘ğ‚ğ“¯Šú‚µAUI ‚ğì‚Á‚Ä”ñ•\¦‚É‚µ‚Ü‚·B
     private void Awake()
     {
         EnsureMovementControlPresets();
@@ -81,13 +81,13 @@ public class InGameOptionMenu : MonoBehaviour
         SetOptionVisible(false);
     }
 
-    // ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒç™»éŒ²ã—ãŸåœæ­¢ä¾é ¼ã‚’è§£é™¤ã—ã¾ã™ã€‚
+    // ‚±‚Ìƒƒjƒ…[‚ª“o˜^‚µ‚½’â~ˆË—Š‚ğ‰ğœ‚µ‚Ü‚·B
     private void OnDisable()
     {
         ReleasePauseRequest();
     }
 
-    // å…¥åŠ›ãŒæœ‰åŠ¹ãªã‚‰é–‹é–‰æ“ä½œã‚’èª­ã¿ã€é–‹ã„ã¦ã„ã‚‹é–“ã ã‘é …ç›®æ“ä½œã‚’å‡¦ç†ã—ã¾ã™ã€‚
+    // “ü—Í‚ª—LŒø‚È‚çŠJ•Â‘€ì‚ğ“Ç‚İAŠJ‚¢‚Ä‚¢‚éŠÔ‚¾‚¯€–Ú‘€ì‚ğˆ—‚µ‚Ü‚·B
     private void Update()
     {
         if (!listenForInput)
@@ -117,7 +117,7 @@ public class InGameOptionMenu : MonoBehaviour
         HandleOptionInput(gamepad, keyboard);
     }
 
-    // ç¾åœ¨ã®é–‹é–‰çŠ¶æ…‹ã«å¿œã˜ã¦ã€ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’é–‹ãã‹é–‰ã˜ã¾ã™ã€‚
+    // Œ»İ‚ÌŠJ•Âó‘Ô‚É‰‚¶‚ÄAƒIƒvƒVƒ‡ƒ“‚ğŠJ‚­‚©•Â‚¶‚Ü‚·B
     public void ToggleOptions()
     {
         if (isOpen)
@@ -129,7 +129,7 @@ public class InGameOptionMenu : MonoBehaviour
         OpenOptions();
     }
 
-    // é¸æŠçŠ¶æ…‹ã‚’åˆæœŸåŒ–ã—ã¦è¡¨ç¤ºã—ã€ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åœæ­¢ä¾é ¼ã‚’è¿½åŠ ã—ã¦é–‹ã„ãŸã“ã¨ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // ‘I‘ğó‘Ô‚ğ‰Šú‰»‚µ‚Ä•\¦‚µA‚±‚Ìƒƒjƒ…[‚Ì’â~ˆË—Š‚ğ’Ç‰Á‚µ‚ÄŠJ‚¢‚½‚±‚Æ‚ğ’Ê’m‚µ‚Ü‚·B
     public void OpenOptions()
     {
         if (isOpen)
@@ -142,18 +142,18 @@ public class InGameOptionMenu : MonoBehaviour
         optionMenu?.SelectIndex(0);
         RefreshOptionBackHint();
         SetOptionVisible(true);
-        // ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ä¾é ¼å…ƒ ID ã‚’ä½¿ã„ã€ä»–ã®åœæ­¢ç”»é¢ã¨ç‹¬ç«‹ã—ã¦ç®¡ç†ã—ã¾ã™ã€‚
+        // ‚±‚Ìƒƒjƒ…[‚ÌˆË—ŠŒ³ ID ‚ğg‚¢A‘¼‚Ì’â~‰æ–Ê‚Æ“Æ—§‚µ‚ÄŠÇ—‚µ‚Ü‚·B
         RequestPause();
         optionOpened.Invoke();
     }
 
-    // è¡¨ç¤ºã¨ç·¨é›†çŠ¶æ…‹ã‚’è§£é™¤ã—ã¦åœæ­¢ä¾é ¼ã‚’å–ã‚Šé™¤ãã€å¿…è¦ã«å¿œã˜ã¦é–‰ã˜ãŸã“ã¨ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // •\¦‚Æ•ÒWó‘Ô‚ğ‰ğœ‚µ‚Ä’â~ˆË—Š‚ğæ‚èœ‚«A•K—v‚É‰‚¶‚Ä•Â‚¶‚½‚±‚Æ‚ğ’Ê’m‚µ‚Ü‚·B
     public void CloseOptions()
     {
         CloseOptions(true);
     }
 
-    // è¡¨ç¤ºã¨ç·¨é›†çŠ¶æ…‹ã‚’è§£é™¤ã—ã¦åœæ­¢ä¾é ¼ã‚’å–ã‚Šé™¤ãã€å¿…è¦ã«å¿œã˜ã¦é–‰ã˜ãŸã“ã¨ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // •\¦‚Æ•ÒWó‘Ô‚ğ‰ğœ‚µ‚Ä’â~ˆË—Š‚ğæ‚èœ‚«A•K—v‚É‰‚¶‚Ä•Â‚¶‚½‚±‚Æ‚ğ’Ê’m‚µ‚Ü‚·B
     private void CloseOptions(bool invokeEvent)
     {
         if (!isOpen)
@@ -172,10 +172,10 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // ç·¨é›†ä¸­ã®é …ç›®ã¯å·¦å³å…¥åŠ›ã§å¤‰æ›´ã—ã€ãã‚Œä»¥å¤–ã¯ä¸Šä¸‹å…¥åŠ›ã§é …ç›®ã‚’é¸ã³ã¾ã™ã€‚
+    // •ÒW’†‚Ì€–Ú‚Í¶‰E“ü—Í‚Å•ÏX‚µA‚»‚êˆÈŠO‚Íã‰º“ü—Í‚Å€–Ú‚ğ‘I‚Ñ‚Ü‚·B
     private void HandleOptionInput(Gamepad gamepad, Keyboard keyboard)
     {
-        // å€¤ã®ç·¨é›†ä¸­ã¯æˆ»ã‚‹å…¥åŠ›ã‚’ç·¨é›†è§£é™¤ã«ä½¿ã„ã€ç”»é¢å…¨ä½“ã‚’é–‰ã˜ã¾ã›ã‚“ã€‚
+        // ’l‚Ì•ÒW’†‚Í–ß‚é“ü—Í‚ğ•ÒW‰ğœ‚Ég‚¢A‰æ–Ê‘S‘Ì‚ğ•Â‚¶‚Ü‚¹‚ñB
         if (optionMenu != null && optionMenu.HasActiveItem)
         {
             if (RuntimeMenuInput.IsBackPressed(gamepad, keyboard))
@@ -217,14 +217,14 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // Start ãƒœã‚¿ãƒ³ã¾ãŸã¯ Escape ã®æŠ¼ä¸‹ã‚’ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼é–‹é–‰æ“ä½œã¨ã—ã¦èª­ã¿ã¾ã™ã€‚
+    // Start ƒ{ƒ^ƒ“‚Ü‚½‚Í Escape ‚Ì‰Ÿ‰º‚ğAƒƒjƒ…[ŠJ•Â‘€ì‚Æ‚µ‚Ä“Ç‚İ‚Ü‚·B
     private bool IsMenuPressed(Gamepad gamepad, Keyboard keyboard)
     {
         return (gamepad != null && gamepad.startButton.wasPressedThisFrame) ||
                (keyboard != null && keyboard.escapeKey.wasPressedThisFrame);
     }
 
-    // ã‚·ãƒ¼ãƒ³ã«å°‚ç”¨ UI ã‚’ç½®ã‹ãªã„ãŸã‚ã€è¡¨ç¤ºãƒ„ãƒªãƒ¼ã¯ã“ã“ã§ä¸€åº¦ã ã‘ç”Ÿæˆã—ã¾ã™ã€‚
+    // ƒV[ƒ“‚Éê—p UI ‚ğ’u‚©‚È‚¢‚½‚ßA•\¦ƒcƒŠ[‚Í‚±‚±‚Åˆê“x‚¾‚¯¶¬‚µ‚Ü‚·B
     private void CreateRuntimeUI()
     {
         canvas = CreateCanvas();
@@ -233,7 +233,7 @@ public class InGameOptionMenu : MonoBehaviour
         Stretch(rootRect, Vector2.zero, Vector2.zero);
         optionRoot = rootRect.gameObject;
 
-        // èƒŒæ™¯ã‚’æš—ãã™ã‚‹å…¨ç”»é¢è¡¨ç¤ºã‚’ã€ä¸­å¤®ã®è¨­å®šãƒ‘ãƒãƒ«ã‚ˆã‚Šå¾Œã‚ã«ç½®ãã¾ã™ã€‚
+        // ”wŒi‚ğˆÃ‚­‚·‚é‘S‰æ–Ê•\¦‚ğA’†‰›‚Ìİ’èƒpƒlƒ‹‚æ‚èŒã‚ë‚É’u‚«‚Ü‚·B
         Image overlay = rootRect.gameObject.AddComponent<Image>();
         overlay.color = overlayColor;
         overlay.raycastTarget = false;
@@ -267,7 +267,7 @@ public class InGameOptionMenu : MonoBehaviour
         hintRect.anchoredPosition = new Vector2(-34f, -26f);
         hintRect.sizeDelta = new Vector2(260f, 48f);
 
-        // ã‚¿ã‚¤ãƒˆãƒ«ã¨æ¡ˆå†…ã®ä¸‹ã«ã€é¸æŠé …ç›®ã‚’ä¸¦ã¹ã‚‹é ˜åŸŸã‚’ç¢ºä¿ã—ã¾ã™ã€‚
+        // ƒ^ƒCƒgƒ‹‚ÆˆÄ“à‚Ì‰º‚ÉA‘I‘ğ€–Ú‚ğ•À‚×‚é—Ìˆæ‚ğŠm•Û‚µ‚Ü‚·B
         optionContentRoot = CreateRect("Option Content Root", popupRect);
         optionContentRoot.anchorMin = Vector2.zero;
         optionContentRoot.anchorMax = Vector2.one;
@@ -279,7 +279,7 @@ public class InGameOptionMenu : MonoBehaviour
         RefreshOptionBackHint();
     }
 
-    // ã‚ªãƒ—ã‚·ãƒ§ãƒ³å°‚ç”¨ã® Canvas ã‚’ç”Ÿæˆã—ã€æç”»é †ã¨è§£åƒåº¦ã«å¿œã˜ãŸæ‹¡ç¸®ã‚’è¨­å®šã—ã¾ã™ã€‚
+    // ƒIƒvƒVƒ‡ƒ“ê—p‚Ì Canvas ‚ğ¶¬‚µA•`‰æ‡‚Æ‰ğ‘œ“x‚É‰‚¶‚½Šgk‚ğİ’è‚µ‚Ü‚·B
     private Canvas CreateCanvas()
     {
         GameObject canvasObject = new GameObject("In Game Option Canvas");
@@ -296,7 +296,7 @@ public class InGameOptionMenu : MonoBehaviour
         return createdCanvas;
     }
 
-    // Inspector ã®è¦‹ãŸç›®è¨­å®šã‚’ã€å…±é€šãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”¨ã®ã‚¹ã‚¿ã‚¤ãƒ«ã«ã¾ã¨ã‚ã¾ã™ã€‚
+    // Inspector ‚ÌŒ©‚½–Úİ’è‚ğA‹¤’Êƒƒjƒ…[—p‚ÌƒXƒ^ƒCƒ‹‚É‚Ü‚Æ‚ß‚Ü‚·B
     private RuntimeOptionMenuStyle CreateOptionMenuStyle()
     {
         return new RuntimeOptionMenuStyle
@@ -313,7 +313,7 @@ public class InGameOptionMenu : MonoBehaviour
         };
     }
 
-    // éŸ³é‡ãƒ»æ“ä½œæ–¹å¼ãƒ»å†é–‹ãƒ»ã‚¿ã‚¤ãƒˆãƒ«å¾©å¸°ã®é …ç›®ã¨ã€ãã‚Œãã‚Œã®å‡¦ç†ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
+    // ‰¹—ÊE‘€ì•û®EÄŠJEƒ^ƒCƒgƒ‹•œ‹A‚Ì€–Ú‚ÆA‚»‚ê‚¼‚ê‚Ìˆ—‚ğ“o˜^‚µ‚Ü‚·B
     private void RegisterOptionItems()
     {
         optionMenu.AddButton("CONTINUE", CloseOptions);
@@ -340,19 +340,19 @@ public class InGameOptionMenu : MonoBehaviour
         optionMenu.SelectIndex(0);
     }
 
-    // éŸ³é‡è¨­å®šã‚’ AudioListener ã«åæ˜ ã—ã¾ã™ã€‚
+    // ‰¹—Êİ’è‚ğ AudioListener ‚É”½‰f‚µ‚Ü‚·B
     private void SetMasterVolume(float value)
     {
         AudioListener.volume = Mathf.Clamp01(value);
     }
 
-    // éŸ³é‡ã‚’ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¡¨ç¤ºç”¨ã®æ–‡å­—åˆ—ã«å¤‰æ›ã—ã¾ã™ã€‚
+    // ‰¹—Ê‚ğƒƒjƒ…[•\¦—p‚Ì•¶š—ñ‚É•ÏŠ·‚µ‚Ü‚·B
     private string FormatVolumeValue(float value)
     {
         return Mathf.RoundToInt(Mathf.Clamp01(value) * 100f) + "%";
     }
 
-    // é¸æŠã—ãŸæ“ä½œæ–¹å¼ã‚’ç¾åœ¨ã®ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¸é©ç”¨ã—ã€æ¬¡ã®ã‚·ãƒ¼ãƒ³ç”¨ã«ã‚‚ä¿æŒã—ã¾ã™ã€‚
+    // ‘I‘ğ‚µ‚½‘€ì•û®‚ğŒ»İ‚ÌƒvƒŒƒCƒ„[‚Ö“K—p‚µAŸ‚ÌƒV[ƒ“—p‚É‚à•Û‚µ‚Ü‚·B
     private void HandleMovementControlPresetChanged(int index, string _)
     {
         selectedMovementControlPresetIndex = Mathf.Clamp(index, 0, movementControlPresets.Length - 1);
@@ -365,7 +365,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‰ã˜ã¦ã‹ã‚‰ã€å†é–‹ç®¡ç†ã¸ã‚²ãƒ¼ãƒ ã®å†èª­ã¿è¾¼ã¿ã‚’ä¾é ¼ã—ã¾ã™ã€‚
+    // ƒƒjƒ…[‚ğ•Â‚¶‚Ä‚©‚çAÄŠJŠÇ—‚ÖƒQ[ƒ€‚ÌÄ“Ç‚İ‚İ‚ğˆË—Š‚µ‚Ü‚·B
     private void RestartGame()
     {
         CloseOptions(false);
@@ -379,7 +379,7 @@ public class InGameOptionMenu : MonoBehaviour
         restartManager.RestartGame();
     }
 
-    // ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‰ã˜ã¦ã‹ã‚‰ã€å†é–‹ç®¡ç†ã¸ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³ã¸ã®ç§»å‹•ã‚’ä¾é ¼ã—ã¾ã™ã€‚
+    // ƒƒjƒ…[‚ğ•Â‚¶‚Ä‚©‚çAÄŠJŠÇ—‚Öƒ^ƒCƒgƒ‹ƒV[ƒ“‚Ö‚ÌˆÚ“®‚ğˆË—Š‚µ‚Ü‚·B
     private void ReturnToStartMenu()
     {
         CloseOptions(false);
@@ -393,7 +393,7 @@ public class InGameOptionMenu : MonoBehaviour
         restartManager.ReturnToStartMenu();
     }
 
-    // ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼å›ºæœ‰ã®è­˜åˆ¥åã§åœæ­¢ã‚’è¦æ±‚ã—ã¾ã™ã€‚
+    // ‚±‚Ìƒƒjƒ…[ŒÅ—L‚Ì¯•Ê–¼‚Å’â~‚ğ—v‹‚µ‚Ü‚·B
     private void RequestPause()
     {
         if (pauseManager != null)
@@ -402,7 +402,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // ã“ã®ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®åœæ­¢ä¾é ¼ã ã‘ã‚’è§£é™¤ã—ã€ä»–ã®ç”»é¢ã®ä¾é ¼ã¯ä¿æŒã—ã¾ã™ã€‚
+    // ‚±‚Ìƒƒjƒ…[‚Ì’â~ˆË—Š‚¾‚¯‚ğ‰ğœ‚µA‘¼‚Ì‰æ–Ê‚ÌˆË—Š‚Í•Û‚µ‚Ü‚·B
     private void ReleasePauseRequest()
     {
         if (pauseManager != null)
@@ -411,7 +411,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // é …ç›®ã®ç·¨é›†ä¸­ã‹ã©ã†ã‹ã«å¿œã˜ã¦ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã¨æˆ»ã‚‹ã®æ¡ˆå†…ã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+    // €–Ú‚Ì•ÒW’†‚©‚Ç‚¤‚©‚É‰‚¶‚ÄAƒLƒƒƒ“ƒZƒ‹‚Æ–ß‚é‚ÌˆÄ“à‚ğØ‚è‘Ö‚¦‚Ü‚·B
     private void RefreshOptionBackHint()
     {
         if (optionBackHint == null)
@@ -419,10 +419,12 @@ public class InGameOptionMenu : MonoBehaviour
             return;
         }
 
-        optionBackHint.text = optionMenu != null && optionMenu.HasActiveItem ? "B CANCEL" : "MENU/B BACK";
+        optionBackHint.text = optionMenu != null && optionMenu.HasActiveItem
+                ? "A CANCEL"
+                : "MENU/A BACK";
     }
 
-    // é–‹é–‰çŠ¶æ…‹ã‚’ä¿å­˜ã—ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼å…¨ä½“ã®è¡¨ç¤ºã‚’åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+    // ŠJ•Âó‘Ô‚ğ•Û‘¶‚µAƒƒjƒ…[‘S‘Ì‚Ì•\¦‚ğØ‚è‘Ö‚¦‚Ü‚·B
     private void SetOptionVisible(bool visible)
     {
         isOpen = visible;
@@ -433,14 +435,14 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®æŠ¼ã—ã£ã±ãªã—åˆ¤å®šã‚’è§£é™¤ã—ã€æ¬¡å›ã®å…¥åŠ›ã‚’å—ã‘ä»˜ã‘ã¾ã™ã€‚
+    // ƒXƒeƒBƒbƒN‚Ì‰Ÿ‚µ‚Á‚Ï‚È‚µ”»’è‚ğ‰ğœ‚µAŸ‰ñ‚Ì“ü—Í‚ğó‚¯•t‚¯‚Ü‚·B
     private void ResetOptionInputState()
     {
         isOptionNavigationHeld = false;
         isOptionAdjustmentHeld = false;
     }
 
-    // ä¿æŒæ¸ˆã¿ã®é¸æŠç•ªå·ã‚’å„ªå…ˆã—ã€ãªã‘ã‚Œã°ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ“ä½œæ–¹å¼ã«åˆã†å€™è£œã‚’æ¢ã—ã¾ã™ã€‚
+    // •ÛÏ‚İ‚Ì‘I‘ğ”Ô†‚ğ—Dæ‚µA‚È‚¯‚ê‚ÎƒvƒŒƒCƒ„[‚Ì‘€ì•û®‚É‡‚¤Œó•â‚ğ’T‚µ‚Ü‚·B
     private void SyncSelectionIndexes()
     {
         if (PlayerMovementPresetApplier.TryGetRetainedControlSchemeIndex(out int retainedControlIndex))
@@ -464,7 +466,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // è£œå®Œæ¸ˆã¿ã®æ“ä½œãƒ—ãƒªã‚»ãƒƒãƒˆã‹ã‚‰ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã«è¡¨ç¤ºã™ã‚‹åå‰ã‚’å–ã‚Šå‡ºã—ã¾ã™ã€‚
+    // •âŠ®Ï‚İ‚Ì‘€ìƒvƒŠƒZƒbƒg‚©‚çAƒƒjƒ…[‚É•\¦‚·‚é–¼‘O‚ğæ‚èo‚µ‚Ü‚·B
     private string[] GetMovementControlPresetLabels()
     {
         EnsureMovementControlPresets();
@@ -479,7 +481,7 @@ public class InGameOptionMenu : MonoBehaviour
         return labels;
     }
 
-    // å…±é€šã®è£œå®Œãƒ«ãƒ¼ãƒ«ã‚’é©ç”¨ã—ã¦ã‹ã‚‰ã€ã“ã®ç”»é¢ã®é¸æŠä½ç½®ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ‹¤’Ê‚Ì•âŠ®ƒ‹[ƒ‹‚ğ“K—p‚µ‚Ä‚©‚çA‚±‚Ì‰æ–Ê‚Ì‘I‘ğˆÊ’u‚ğXV‚µ‚Ü‚·B
     private void EnsureMovementControlPresets()
     {
         movementControlPresets = PlayerMovementControlPreset.EnsureDefaults(movementControlPresets);
@@ -491,7 +493,7 @@ public class InGameOptionMenu : MonoBehaviour
         }
     }
 
-    // ãƒ‘ãƒãƒ«ã®ä¸Šä¸‹å·¦å³ã«æ ç·šã‚’é…ç½®ã—ã¾ã™ã€‚
+    // ƒpƒlƒ‹‚Ìã‰º¶‰E‚É˜gü‚ğ”z’u‚µ‚Ü‚·B
     private void CreateBorder(RectTransform parent)
     {
         CreateBorderSegment("Option Border Top", parent, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, 2f));
@@ -500,7 +502,7 @@ public class InGameOptionMenu : MonoBehaviour
         CreateBorderSegment("Option Border Right", parent, new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(2f, 0f));
     }
 
-    // æŒ‡å®šã—ãŸè¾ºã®ä½ç½®ã¨å¤ªã•ã§ã€å…¥åŠ›ã‚’é®ã‚‰ãªã„æ ç·šã‚’ä½œæˆã—ã¾ã™ã€‚
+    // w’è‚µ‚½•Ó‚ÌˆÊ’u‚Æ‘¾‚³‚ÅA“ü—Í‚ğÕ‚ç‚È‚¢˜gü‚ğì¬‚µ‚Ü‚·B
     private void CreateBorderSegment(string objectName, RectTransform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 sizeDelta)
     {
         RectTransform borderRect = CreateRect(objectName, parent);
@@ -515,7 +517,7 @@ public class InGameOptionMenu : MonoBehaviour
         border.raycastTarget = false;
     }
 
-    // æ—¥æœ¬èªãƒ•ã‚©ãƒ³ãƒˆãƒ»æ–‡å­—è‰²ãƒ»æƒãˆã‚’è¨­å®šã—ãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼æ–‡å­—ã‚’ä½œã‚Šã¾ã™ã€‚
+    // “ú–{ŒêƒtƒHƒ“ƒgE•¶šFE‘µ‚¦‚ğİ’è‚µ‚½ƒƒjƒ…[•¶š‚ğì‚è‚Ü‚·B
     private Text CreateText(string objectName, Transform parent, string value, int fontSize, TextAnchor alignment)
     {
         RectTransform rect = CreateRect(objectName, parent);
@@ -531,7 +533,7 @@ public class InGameOptionMenu : MonoBehaviour
         return text;
     }
 
-    // æŒ‡å®šã—ãŸè¦ªã®ä¸‹ã« RectTransform ã‚’æŒã¤ UI ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã—ã¾ã™ã€‚
+    // w’è‚µ‚½e‚Ì‰º‚É RectTransform ‚ğ‚Â UI ƒIƒuƒWƒFƒNƒg‚ğì¬‚µ‚Ü‚·B
     private RectTransform CreateRect(string objectName, Transform parent)
     {
         GameObject rectObject = new GameObject(objectName, typeof(RectTransform));
@@ -539,7 +541,7 @@ public class InGameOptionMenu : MonoBehaviour
         return rectObject.GetComponent<RectTransform>();
     }
 
-    // è¦ªå…¨ä½“ã¸ã‚¢ãƒ³ã‚«ãƒ¼ã‚’åºƒã’ã€æŒ‡å®šã—ãŸä½™ç™½ã‚’è¨­å®šã—ã¾ã™ã€‚
+    // e‘S‘Ì‚ÖƒAƒ“ƒJ[‚ğL‚°Aw’è‚µ‚½—]”’‚ğİ’è‚µ‚Ü‚·B
     private void Stretch(RectTransform rect, Vector2 offsetMin, Vector2 offsetMax)
     {
         rect.anchorMin = Vector2.zero;
@@ -548,7 +550,7 @@ public class InGameOptionMenu : MonoBehaviour
         rect.offsetMax = offsetMax;
     }
 
-    // Inspector ã®å¤‰æ›´æ™‚ã«ã€è¨­å®šå€¤ã‚’æœ‰åŠ¹ãªç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // Inspector ‚Ì•ÏX‚ÉAİ’è’l‚ğ—LŒø‚È”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private void OnValidate()
     {
         navigationDeadZone = Mathf.Clamp(navigationDeadZone, 0.1f, 1f);
