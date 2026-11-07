@@ -1,27 +1,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼è¿½å¾“ã¨ã€ãƒœã‚¿ãƒ³æŠ¼ä¸‹ä¸­ã®ä¿¯ç°ã‚«ãƒ¡ãƒ©ã‚’åˆ¶å¾¡ã—ã¾ã™ã€‚</summary>
+/// <summary>ƒvƒŒƒCƒ„[’Ç]‚ÆAƒ{ƒ^ƒ“‰Ÿ‰º’†‚Ì˜ëáÕƒJƒƒ‰‚ğ§Œä‚µ‚Ü‚·B</summary>
 public class CameraFollowController : MonoBehaviour
 {
-    // è¿½å¾“ã™ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã€ä½¿ç”¨ã™ã‚‹å­ã‚«ãƒ¡ãƒ©ã®å‚ç…§ã§ã™ã€‚
-    [Header("è¿½å¾“å¯¾è±¡")]
+    // ’Ç]‚·‚éƒvƒŒƒCƒ„[‚ÆAg—p‚·‚éqƒJƒƒ‰‚ÌQÆ‚Å‚·B
+    [Header("’Ç]‘ÎÛ")]
     [SerializeField] private Transform target;
     [SerializeField] private Transform cameraChild;
 
-    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰è¦‹ãŸã‚«ãƒ¡ãƒ©ä½ç½®ã¨æ³¨è¦–ç‚¹ã®ç›¸å¯¾ä½ç½®ã§ã™ã€‚
-    [Header("ã‚ªãƒ•ã‚»ãƒƒãƒˆ")]
+    // ƒvƒŒƒCƒ„[‚©‚çŒ©‚½ƒJƒƒ‰ˆÊ’u‚Æ’‹“_‚Ì‘Š‘ÎˆÊ’u‚Å‚·B
+    [Header("ƒIƒtƒZƒbƒg")]
     [SerializeField] private Vector3 localOffset = new Vector3(0f, 7.8f, -18f);
     [SerializeField] private Vector3 localLookAtOffset = new Vector3(0f, 1.2f, 0f);
 
-    // ä½ç½®ã¨å‘ãã®è¿½å¾“é€Ÿåº¦ã€ãŠã‚ˆã³æ°´å¹³å›è»¢ã ã‘ã‚’ä½¿ã†ã‹ã‚’æŒ‡å®šã—ã¾ã™ã€‚
-    [Header("è¿½å¾“è¨­å®š")]
+    // ˆÊ’u‚ÆŒü‚«‚Ì’Ç]‘¬“xA‚¨‚æ‚Ñ…•½‰ñ“]‚¾‚¯‚ğg‚¤‚©‚ğw’è‚µ‚Ü‚·B
+    [Header("’Ç]İ’è")]
     [SerializeField] private float followSmoothTime = 0.25f;
     [SerializeField] private float rotationSmoothSpeed = 8f;
     [SerializeField] private bool useOnlyTargetYaw = true;
 
-    // ä¿¯ç°è¡¨ç¤ºã®æœ‰åŠ¹çŠ¶æ…‹ã€é«˜ã•ã€ç§»å‹•è·é›¢ã€å…¥åŠ›ã—ãã„å€¤ã‚’è¨­å®šã—ã¾ã™ã€‚
-    [Header("ä¿¯ç°ã‚«ãƒ¡ãƒ©")]
+    // ˜ëáÕ•\¦‚Ì—LŒøó‘ÔA‚‚³AˆÚ“®‹——£A“ü—Í‚µ‚«‚¢’l‚ğİ’è‚µ‚Ü‚·B
+    [Header("˜ëáÕƒJƒƒ‰")]
     [SerializeField] private bool enableOverviewCamera = true;
     [SerializeField] private float overviewHeight = 45f;
     [SerializeField] private Vector3 overviewLookAtOffset = Vector3.zero;
@@ -29,13 +29,18 @@ public class CameraFollowController : MonoBehaviour
     [SerializeField] private float overviewPanMaxDistance = 18f;
     [SerializeField] private float overviewPanDeadZone = 0.15f;
 
-    // ã‚«ãƒ¡ãƒ©ãƒªã‚°å†…ã§ä½¿ç”¨ã™ã‚‹å­ã‚«ãƒ¡ãƒ©ã® Transform ã‚’å…¬é–‹ã—ã¾ã™ã€‚
+    [Header("•ÇŠÑ’Ê–h~")]
+    [SerializeField] private LayerMask obstacleLayers;
+    [SerializeField] private float cameraRadius = 0.3f;
+    [SerializeField] private float wallPadding = 0.15f;
+
+    // ƒJƒƒ‰ƒŠƒO“à‚Åg—p‚·‚éqƒJƒƒ‰‚Ì Transform ‚ğŒöŠJ‚µ‚Ü‚·B
     public Transform CameraChild => cameraChild;
 
     private Vector3 followVelocity;
     private Vector3 overviewPanOffset;
 
-    // å­ã‚«ãƒ¡ãƒ©ãŒæœªè¨­å®šãªã‚‰ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¡ãƒ©ã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
+    // qƒJƒƒ‰‚ª–¢İ’è‚È‚çƒƒCƒ“ƒJƒƒ‰‚ğg—p‚µ‚Ü‚·B
     private void Awake()
     {
         if (cameraChild == null && Camera.main != null)
@@ -44,7 +49,7 @@ public class CameraFollowController : MonoBehaviour
         }
     }
 
-    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ›´æ–°å¾Œã«ã€ä¿¯ç°å…¥åŠ›ãƒ»ä½ç½®è¿½å¾“ãƒ»å‘ãã®é †ã§ã‚«ãƒ¡ãƒ©ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ƒvƒŒƒCƒ„[XVŒã‚ÉA˜ëáÕ“ü—ÍEˆÊ’u’Ç]EŒü‚«‚Ì‡‚ÅƒJƒƒ‰‚ğXV‚µ‚Ü‚·B
     private void LateUpdate()
     {
         if (target == null)
@@ -58,7 +63,7 @@ public class CameraFollowController : MonoBehaviour
         SmoothRotate(isOverviewHeld);
     }
 
-    // é€šå¸¸æ™‚ã¯ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åŸºæº–ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆã¸è¿½å¾“ã—ã€ä¿¯ç°ä¸­ã¯å°‚ç”¨ã®ä½ç½®å‡¦ç†ã¸åˆ‡ã‚Šæ›¿ãˆã¾ã™ã€‚
+    // ’Êí‚ÍƒvƒŒƒCƒ„[Šî€‚ÌƒIƒtƒZƒbƒg‚Ö’Ç]‚µA˜ëáÕ’†‚Íê—p‚ÌˆÊ’uˆ—‚ÖØ‚è‘Ö‚¦‚Ü‚·B
     private void SmoothFollow(bool isOverviewHeld)
     {
         if (isOverviewHeld)
@@ -69,6 +74,7 @@ public class CameraFollowController : MonoBehaviour
 
         Quaternion targetYawRotation = GetTargetYawRotation();
         Vector3 targetPosition = target.position + targetYawRotation * localOffset;
+        targetPosition = GetSafeCameraPosition(targetPosition);
 
         transform.position = Vector3.SmoothDamp(
             transform.position,
@@ -78,7 +84,7 @@ public class CameraFollowController : MonoBehaviour
         );
     }
 
-    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ä»˜è¿‘ã®æ³¨è¦–ç‚¹ã¸æ»‘ã‚‰ã‹ã«å‘ã‘ã¾ã™ã€‚ä¿¯ç°ä¸­ã¯å°‚ç”¨ã®å›è»¢å‡¦ç†ã‚’ä½¿ã„ã¾ã™ã€‚
+    // ƒvƒŒƒCƒ„[•t‹ß‚Ì’‹“_‚ÖŠŠ‚ç‚©‚ÉŒü‚¯‚Ü‚·B˜ëáÕ’†‚Íê—p‚Ì‰ñ“]ˆ—‚ğg‚¢‚Ü‚·B
     private void SmoothRotate(bool isOverviewHeld)
     {
         if (isOverviewHeld)
@@ -104,10 +110,11 @@ public class CameraFollowController : MonoBehaviour
         );
     }
 
-    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä¸Šæ–¹ã¸ã€ä¿¯ç°ç”¨ã®ç§»å‹•é‡ã‚’åŠ ãˆãŸä½ç½®ã¾ã§æ»‘ã‚‰ã‹ã«è¿½å¾“ã—ã¾ã™ã€‚
+    // ƒvƒŒƒCƒ„[‚Ìã•û‚ÖA˜ëáÕ—p‚ÌˆÚ“®—Ê‚ğ‰Á‚¦‚½ˆÊ’u‚Ü‚ÅŠŠ‚ç‚©‚É’Ç]‚µ‚Ü‚·B
     private void SmoothFollowOverview()
     {
         Vector3 targetPosition = target.position + overviewPanOffset + Vector3.up * overviewHeight;
+        targetPosition = GetSafeCameraPosition(targetPosition);
 
         transform.position = Vector3.SmoothDamp(
             transform.position,
@@ -116,8 +123,33 @@ public class CameraFollowController : MonoBehaviour
             followSmoothTime
         );
     }
+    private Vector3 GetSafeCameraPosition(Vector3 desiredPosition)
+    {
+        Vector3 origin = target.position;
+        Vector3 direction = desiredPosition - origin;
+        float distance = direction.magnitude;
 
-    // ä¿¯ç°ã®æ³¨è¦–ç‚¹ã¸å‘ã‘ã€ç”»é¢ã®ä¸Šæ–¹å‘ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‰æ–¹ã«åˆã‚ã›ã¾ã™ã€‚
+        if (distance <= 0.001f)
+        {
+            return desiredPosition;
+        }
+
+        if (Physics.SphereCast(
+            origin,
+            cameraRadius,
+            direction.normalized,
+            out RaycastHit hit,
+            distance,
+            obstacleLayers,
+            QueryTriggerInteraction.Ignore))
+        {
+            return hit.point + hit.normal * wallPadding;
+        }
+
+        return desiredPosition;
+    }
+
+    // ˜ëáÕ‚Ì’‹“_‚ÖŒü‚¯A‰æ–Ê‚Ìã•ûŒü‚ğƒvƒŒƒCƒ„[‚Ì‘O•û‚É‡‚í‚¹‚Ü‚·B
     private void SmoothRotateOverview()
     {
         Vector3 lookAtPoint = target.position + overviewPanOffset + overviewLookAtOffset;
@@ -136,7 +168,7 @@ public class CameraFollowController : MonoBehaviour
         );
     }
 
-    // ä¿¯ç°ä¸­ã®å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã‚’ç§»å‹•é‡ã¸å¤‰æ›ã—ã€é€šå¸¸è¦–ç‚¹ã«æˆ»ã£ãŸã‚‰ç§»å‹•é‡ã‚’è§£é™¤ã—ã¾ã™ã€‚
+    // ˜ëáÕ’†‚Ì‰EƒXƒeƒBƒbƒN‚ğˆÚ“®—Ê‚Ö•ÏŠ·‚µA’Êí‹“_‚É–ß‚Á‚½‚çˆÚ“®—Ê‚ğ‰ğœ‚µ‚Ü‚·B
     private void UpdateOverviewPan(bool isOverviewHeld)
     {
         if (!isOverviewHeld)
@@ -167,7 +199,7 @@ public class CameraFollowController : MonoBehaviour
         );
     }
 
-    // ã‚¹ãƒ†ã‚£ãƒƒã‚¯å…¥åŠ›ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ°´å¹³ãªå³ãƒ»å‰æ–¹å‘ã¸å¤‰æ›ã—ã€ç§»å‹•è·é›¢ã‚’åˆ¶é™ã—ã¾ã™ã€‚
+    // ƒXƒeƒBƒbƒN“ü—Í‚ğƒvƒŒƒCƒ„[‚Ì…•½‚È‰EE‘O•ûŒü‚Ö•ÏŠ·‚µAˆÚ“®‹——£‚ğ§ŒÀ‚µ‚Ü‚·B
     private Vector3 GetOverviewPanTargetOffset(Vector2 input)
     {
         Vector2 clampedInput = Vector2.ClampMagnitude(input, 1f);
@@ -183,7 +215,7 @@ public class CameraFollowController : MonoBehaviour
         return (right * clampedInput.x + forward * clampedInput.y) * overviewPanMaxDistance;
     }
 
-    // ä¿¯ç°æ©Ÿèƒ½ãŒæœ‰åŠ¹ã§ã€å·¦ã‚·ãƒ§ãƒ«ãƒ€ãƒ¼ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèªã—ã¾ã™ã€‚
+    // ˜ëáÕ‹@”\‚ª—LŒø‚ÅA¶ƒVƒ‡ƒ‹ƒ_[ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©Šm”F‚µ‚Ü‚·B
     private bool IsOverviewHeld()
     {
         if (!enableOverviewCamera)
@@ -201,7 +233,7 @@ public class CameraFollowController : MonoBehaviour
         return gamepad.leftShoulder.isPressed;
     }
 
-    // è¨­å®šã«å¿œã˜ã¦å¯¾è±¡ã®æ°´å¹³å›è»¢ã ã‘ã€ã¾ãŸã¯å…¨å›è»¢ã‚’å–å¾—ã—ã¾ã™ã€‚
+    // İ’è‚É‰‚¶‚Ä‘ÎÛ‚Ì…•½‰ñ“]‚¾‚¯A‚Ü‚½‚Í‘S‰ñ“]‚ğæ“¾‚µ‚Ü‚·B
     private Quaternion GetTargetYawRotation()
     {
         if (target == null)
@@ -217,7 +249,7 @@ public class CameraFollowController : MonoBehaviour
         return target.rotation;
     }
 
-    // Inspector ã®å¤‰æ›´æ™‚ã«ã€è¨­å®šå€¤ã‚’æœ‰åŠ¹ãªç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // Inspector ‚Ì•ÏX‚ÉAİ’è’l‚ğ—LŒø‚È”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private void OnValidate()
     {
         followSmoothTime = Mathf.Max(0.01f, followSmoothTime);
