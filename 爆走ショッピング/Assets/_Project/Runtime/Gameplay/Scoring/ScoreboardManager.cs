@@ -24,6 +24,7 @@ public class ScoreboardManager : MonoBehaviour
     [SerializeField] private TMP_Text scoreboardText;
     [SerializeField] private SettlementArea settlementArea;
     [SerializeField] private ScoreboardView scoreboardView;
+    [SerializeField]private CandyBuffScript candyBuffScript;
 
     // 目標の種類数・必要個数の範囲と、終了時の所持品・表示の扱いです。
     [Header("目標ボード設定")]
@@ -73,6 +74,7 @@ public class ScoreboardManager : MonoBehaviour
     private bool canSettleCurrentTargets = true;
     private ScoreTarget[] targetPool = Array.Empty<ScoreTarget>();
     private SettlementArea subscribedSettlementArea;
+   
 
     public event Action StateChanged;
 
@@ -359,6 +361,8 @@ public class ScoreboardManager : MonoBehaviour
         StopIncompleteFlash();
         RestoreAllTargetHighlights();
         isBoardActive = false;
+        Debug.Log("complete");
+        candyBuffScript.lotteryCandy();
 
         // ボードを先に無効化しているため、所持品変更通知で目標を再更新しません。
         if (clearInventory && inventory != null)

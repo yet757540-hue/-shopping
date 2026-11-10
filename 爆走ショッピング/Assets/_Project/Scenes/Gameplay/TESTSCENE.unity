@@ -5573,11 +5573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c9fac1e13f65945aefd0b28ef1e6d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  lowSpeedAcceleration: 15
-  highSpeedAcceleration: 4.5
-  accelerationSwitchSpeed: 7
+  accelerationSwitchSpeed: 10
   reverseAcceleration: 6
-  deceleration: 18
+  deceleration: 50
   brakeDeceleration: 25
   maxSpeed: 20
   maxReverseSpeed: 6
@@ -5585,10 +5583,11 @@ MonoBehaviour:
   stopThreshold: 1
   turnResetSpeed: 8
   stickDeadZone: 0.1
-  turnAcceleration: 8
+  turnAcceleration: 15
   maxAngularSpeed: 4.5
   readGamepadDirectly: 1
   controlScheme: 1
+  timerManager: {fileID: 1329814066}
 --- !u!54 &805123031
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7433,6 +7432,57 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c14a34a8a5fcc3d49a621861b2b04f6b, type: 3}
+--- !u!1 &951648611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 951648612}
+  - component: {fileID: 951648613}
+  m_Layer: 0
+  m_Name: BuffController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &951648612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951648611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1470149713}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &951648613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951648611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27141070529d93c459594ee37f47ca95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CandyBuffScript
+  playerManager: {fileID: 805123030}
+  timerManager: {fileID: 1329814066}
+  BuffTime: 20
+  lotteryCandy_acc: 0
+  lotteryCandy_break: 0
+  lotteryCandy_Time: 0
   m_SourcePrefab: {fileID: 100100000, guid: e3cce6bf1692d5f468bf7f36c137dc33, type: 3}
 --- !u!1001 &1006567191
 PrefabInstance:
@@ -10758,7 +10808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 277edb7298fda684d96855a3973fffc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerManager
-  countdownDuration: 180
+  countdownDuration: 5
   showDebugLog: 0
   timerStarted:
     m_PersistentCalls:
@@ -10779,6 +10829,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   resultScenePath: Assets/_Project/Scenes/Menu/Result.unity
+  countdown: 1
 --- !u!114 &1329814067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12076,6 +12127,7 @@ Transform:
   - {fileID: 1126896385}
   - {fileID: 1895983745}
   - {fileID: 1752924146}
+  - {fileID: 951648612}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1484431840
@@ -14573,6 +14625,7 @@ MonoBehaviour:
   scoreboardText: {fileID: 200878384}
   settlementArea: {fileID: 388410271}
   scoreboardView: {fileID: 1752924147}
+  candyBuffScript: {fileID: 951648613}
   targetCount: 4
   minRequiredItemCount: 1
   maxRequiredItemCount: 3
@@ -15946,7 +15999,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7204450255092107085, guid: b319970e0e4f0d447908ed0032ffb43c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.865723
+      value: -16.35
       objectReference: {fileID: 0}
     - target: {fileID: 7204450255092107085, guid: b319970e0e4f0d447908ed0032ffb43c, type: 3}
       propertyPath: m_LocalPosition.y

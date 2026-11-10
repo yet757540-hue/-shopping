@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 ///<summary>車両の入力値を Rigidbody への加速・減速・旋回に変換します。</summary>
 [RequireComponent(typeof(Rigidbody))]
@@ -7,8 +8,8 @@ public class PlayerManager : MonoBehaviour
 {
     // 前後移動の加減速です。速度域で加速力を切り替えます。
     [Header("移動設定")]
-    [SerializeField] private float lowSpeedAcceleration = 25f;
-    [SerializeField] private float highSpeedAcceleration = 10f;
+    private float lowSpeedAcceleration = 15f;
+    private float highSpeedAcceleration = 10f;
     [SerializeField] private float accelerationSwitchSpeed = 15f;
     [SerializeField] private float reverseAcceleration = 12f;
     [SerializeField] private float deceleration = 25f;
@@ -17,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float maxReverseSpeed = 6f;
     [SerializeField] private float triggerDeadZone = 0.1f;
     [SerializeField] private float stopThreshold = 0.1f;
+
 
     // 旋回入力への反応、回転力、減衰、角速度上限の設定です。
     [Header("旋回設定")]
@@ -29,6 +31,9 @@ public class PlayerManager : MonoBehaviour
     [Header("入力設定")]
     [SerializeField] private bool readGamepadDirectly = true;
     [SerializeField] private PlayerMovementControlScheme controlScheme = PlayerMovementControlScheme.FaceButtons;
+
+    [Header("参照")]
+    [SerializeField] private TimerManager timerManager;
 
     private Rigidbody rb;
     private float steerInput;
@@ -59,12 +64,43 @@ public class PlayerManager : MonoBehaviour
     // 直接入力が有効な場合に、現在のゲームパッド入力を読み取ります。
     private void Update()
     {
+        Debug.Log(lowSpeedAcceleration);
         if (readGamepadDirectly)
         {
             ReadGamepadInput();
         }
     }
+    public IEnumerator acc_BuffRoutine(float duration)
+    {
+        Debug.Log("sineeeeeee");
+        // 元の加速力を保存
+        float originalLowSpeed = lowSpeedAcceleration;
+        float originalHighSpeed = highSpeedAcceleration;
 
+        // バフ適用
+        lowSpeedAcceleration = 50f;
+        highSpeedAcceleration = 50f;
+
+        yield return new WaitForSeconds(duration);
+
+        // 元に戻す
+        lowSpeedAcceleration = originalLowSpeed;
+        highSpeedAcceleration = originalHighSpeed;
+    }
+
+    public IEnumerator Time_BuffRoutine(float duration)
+    {
+        Debug.Log("uoooooooooo");
+
+        double originalTimeSpeed = timerManager.countdown;
+        
+        // バフ適用
+        timerManager.countdown = 0.1;
+
+        yield return new WaitForSeconds(duration);
+
+        timerManager.countdown =originalTimeSpeed;
+    }
     // 物理処理は順序を固定し、加速→旋回→上限適用の流れを保ちます。
     private void FixedUpdate()
     {
