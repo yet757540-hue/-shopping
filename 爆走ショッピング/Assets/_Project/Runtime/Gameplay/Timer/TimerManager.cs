@@ -24,12 +24,14 @@ public class TimerManager : MonoBehaviour
     [SerializeField, SceneAssetPath, FormerlySerializedAs("resultSceneName")]
     private string resultScenePath;
 
+
     private float remainingTime;
     private bool isRunning = false;
     private bool isPaused = false;
     private bool hasStarted = false;
     private bool isComplete = false;
-    private int lastNotifiedCentiseconds = -1;
+    private float lastNotifiedCentiseconds = -1;
+    public double countdown = 1;
 
     public event Action Started;
     public event Action Paused;
@@ -68,7 +70,7 @@ public class TimerManager : MonoBehaviour
             return;
         }
 
-        remainingTime = Mathf.Max(0f, remainingTime - Time.deltaTime);
+        remainingTime = Mathf.Max(0f, remainingTime - Time.deltaTime * (float)countdown);
         NotifyTimeChanged(false);
         TimeOverCheck();
     }
