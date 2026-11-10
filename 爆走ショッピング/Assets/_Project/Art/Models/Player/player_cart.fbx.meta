@@ -326,18 +326,53 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: cart
       parentName: player_cart(Clone)
-      position: {x: 0, y: 0.43032965, z: -0.96361923}
-      rotation: {x: 6.123234e-17, y: 1, z: 6.123234e-17, w: 6.123234e-17}
-      scale: {x: 1, y: 1, z: 1}
-    - name: souta
-      parentName: player_cart(Clone)
-      position: {x: 0, y: 0, z: 0}
+      position: {x: 0, y: 0.43032965, z: 1}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Hips
       parentName: player_cart(Clone)
       position: {x: 0, y: 0.49411246, z: -0.04011645}
       rotation: {x: -0.7069683, y: -0.7069683, z: -0.01399387, w: 0.013993905}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftUpleg
+      parentName: Hips
+      position: {x: -0.0011979096, y: -0.10554338, z: 0.020083915}
+      rotation: {x: -0.004229665, y: 0.9850946, z: -0.00057489425, w: 0.17196037}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftLeg
+      parentName: LeftUpleg
+      position: {x: 0.25353464, y: -2.792666e-17, z: -0.015837789}
+      rotation: {x: 0, y: 0.3555185, z: 0, w: 0.93466926}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftFoot
+      parentName: LeftLeg
+      position: {x: 0.20385782, y: 5.3345212e-17, z: 0.031481188}
+      rotation: {x: 0.0010888642, y: -0.81174207, z: 0.004127354, w: 0.58400047}
+      scale: {x: 1, y: 1, z: 1}
+    - name: LeftToeBase
+      parentName: LeftFoot
+      position: {x: 0.13805684, y: 0, z: -0.0030719861}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightUpleg
+      parentName: Hips
+      position: {x: -0.0011982269, y: 0.105543, z: 0.02008387}
+      rotation: {x: 0.0005749241, y: -0.17195997, z: -0.0042296653, w: 0.9850947}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightLeg
+      parentName: RightUpleg
+      position: {x: -0.2535344, y: 5.326345e-17, z: 0.015837608}
+      rotation: {x: 2.6375002e-32, y: 0.35551846, z: -2.2096449e-16, w: 0.93466926}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightFoot
+      parentName: RightLeg
+      position: {x: -0.20385803, y: -1.7709062e-17, z: -0.031481132}
+      rotation: {x: 0.0010887786, y: -0.81174237, z: 0.004127355, w: 0.5840002}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RightToeBase
+      parentName: RightFoot
+      position: {x: -0.13805647, y: 0, z: 0.0030722024}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Spine
       parentName: Hips
@@ -414,44 +449,9 @@ ModelImporter:
       position: {x: -0.06328586, y: 1.2836097e-10, z: -0.0036855617}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: LeftUpleg
-      parentName: Hips
-      position: {x: -0.0011979096, y: -0.10554338, z: 0.020083915}
-      rotation: {x: -0.0042296643, y: 0.9850946, z: -0.0005748942, w: 0.17196037}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LeftLeg
-      parentName: LeftUpleg
-      position: {x: 0.25353464, y: -2.792666e-17, z: -0.015837789}
-      rotation: {x: 0, y: 0.3555185, z: 0, w: 0.93466926}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LeftFoot
-      parentName: LeftLeg
-      position: {x: 0.20385782, y: 5.3345212e-17, z: 0.031481188}
-      rotation: {x: 0.0010888642, y: -0.81174207, z: 0.004127354, w: 0.58400047}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LeftToeBase
-      parentName: LeftFoot
-      position: {x: 0.13805684, y: 0, z: -0.0030719861}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RightUpleg
-      parentName: Hips
-      position: {x: -0.0011982269, y: 0.105543, z: 0.02008387}
-      rotation: {x: 0.00057492405, y: -0.17195995, z: -0.004229665, w: 0.98509467}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RightLeg
-      parentName: RightUpleg
-      position: {x: -0.2535344, y: 5.326345e-17, z: 0.015837608}
-      rotation: {x: 2.6375002e-32, y: 0.35551846, z: -2.2096449e-16, w: 0.93466926}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RightFoot
-      parentName: RightLeg
-      position: {x: -0.20385803, y: -1.7709062e-17, z: -0.031481132}
-      rotation: {x: 0.0010887786, y: -0.81174237, z: 0.004127355, w: 0.5840002}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RightToeBase
-      parentName: RightFoot
-      position: {x: -0.13805647, y: 0, z: 0.0030722024}
+    - name: souta
+      parentName: player_cart(Clone)
+      position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
