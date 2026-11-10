@@ -639,12 +639,15 @@ public class ScoreboardManager : MonoBehaviour
 
             textBuilder.AppendLine(entry.target.DisplayName)
                 .Append("納品 ")
-                .Append(entry.deliveredCount)
+                //.Append(entry.deliveredCount)
+                .Append(GetCurrentCount(entry.target))
                 .Append("/")
                 .Append(entry.requiredCount)
-                .Append("　カート ")
-                .Append(GetCurrentCount(entry.target))
                 .AppendLine();
+                //.Append(entry.requiredCount)
+                //.Append("　カート ")
+                //.Append(GetCurrentCount(entry.target))
+                //.AppendLine();
         }
 
         return textBuilder.ToString().TrimEnd();
