@@ -9,7 +9,7 @@ public sealed class ScoreboardView : MonoBehaviour
     [SerializeField] private Color normalColor = Color.white;
     [Header("納品・カート表示")]
     [SerializeField, Min(220f)] private float panelWidth = 420f;
-    //[SerializeField, Min(12)] private int statusFontSize = 24;
+    [SerializeField, Min(12)] private int statusFontSize = 24;
 
     private ScoreboardManager scoreboard;
 
@@ -88,8 +88,8 @@ public sealed class ScoreboardView : MonoBehaviour
     private void ConfigureLayout()
     {
         if (text == null) return;
-        //text.fontSize = statusFontSize;
-        //text.alignment = TextAlignmentOptions.TopLeft;
+        text.fontSize = statusFontSize;
+        text.alignment = TextAlignmentOptions.TopLeft;
         text.overflowMode = TextOverflowModes.Overflow;
         text.lineSpacing = 1.15f;
         text.raycastTarget = false;

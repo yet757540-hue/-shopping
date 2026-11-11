@@ -34,7 +34,6 @@ public class PlayerManager : MonoBehaviour
 
     [Header("参照")]
     [SerializeField] private TimerManager timerManager;
-    [SerializeField] private CandyBuffScript candyBuffScript;
 
     private Rigidbody rb;
     private float steerInput;
@@ -66,14 +65,11 @@ public class PlayerManager : MonoBehaviour
     private void Update()
     {
         Debug.Log(lowSpeedAcceleration);
-
         if (readGamepadDirectly)
         {
             ReadGamepadInput();
         }
     }
-    //アメのバフ
-    //加速度
     public IEnumerator acc_BuffRoutine(float duration)
     {
         Debug.Log("sineeeeeee");
@@ -87,13 +83,11 @@ public class PlayerManager : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
 
-        candyBuffScript.lotteryCandy_acc = false;
-
         // 元に戻す
         lowSpeedAcceleration = originalLowSpeed;
         highSpeedAcceleration = originalHighSpeed;
     }
-    //時間
+
     public IEnumerator Time_BuffRoutine(float duration)
     {
         Debug.Log("uoooooooooo");
@@ -101,15 +95,12 @@ public class PlayerManager : MonoBehaviour
         double originalTimeSpeed = timerManager.countdown;
         
         // バフ適用
-        timerManager.countdown = 0.3;
+        timerManager.countdown = 0.1;
 
         yield return new WaitForSeconds(duration);
 
-        candyBuffScript.lotteryCandy_Time = false;
-
         timerManager.countdown =originalTimeSpeed;
     }
-
     // 物理処理は順序を固定し、加速→旋回→上限適用の流れを保ちます。
     private void FixedUpdate()
     {

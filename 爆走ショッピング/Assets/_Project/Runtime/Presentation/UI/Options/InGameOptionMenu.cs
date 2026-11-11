@@ -32,7 +32,7 @@ public class InGameOptionMenu : MonoBehaviour
     [SerializeField] private Vector2 optionItemSize = new Vector2(680f, 72f);
     [SerializeField] private int titleFontSize = 44;
     [SerializeField] private int hintFontSize = 26;
-    [SerializeField] private int optionItemFontSize = 40;
+    [SerializeField] private int optionItemFontSize = 32;
     [SerializeField] private float optionItemSpacing = 78f;
     [SerializeField] private float volumeStep = 0.05f;
 
