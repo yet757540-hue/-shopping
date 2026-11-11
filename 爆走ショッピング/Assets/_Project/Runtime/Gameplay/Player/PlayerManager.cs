@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using TMPro;
 
 ///<summary>車両の入力値を Rigidbody への加速・減速・旋回に変換します。</summary>
 [RequireComponent(typeof(Rigidbody))]
@@ -34,6 +35,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("参照")]
     [SerializeField] private TimerManager timerManager;
+    [SerializeField] private CandyBuffScript candyBuffScript;
 
     private Rigidbody rb;
     private float steerInput;
@@ -83,6 +85,8 @@ public class PlayerManager : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
 
+        candyBuffScript.lotteryCandy_acc = false;
+
         // 元に戻す
         lowSpeedAcceleration = originalLowSpeed;
         highSpeedAcceleration = originalHighSpeed;
@@ -95,9 +99,11 @@ public class PlayerManager : MonoBehaviour
         double originalTimeSpeed = timerManager.countdown;
         
         // バフ適用
-        timerManager.countdown = 0.1;
+        timerManager.countdown = 0.3;
 
         yield return new WaitForSeconds(duration);
+
+        candyBuffScript.lotteryCandy_Time = false;
 
         timerManager.countdown =originalTimeSpeed;
     }

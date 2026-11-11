@@ -634,6 +634,7 @@ public class ScoreboardManager : MonoBehaviour
         }
 
         textBuilder.Clear();
+
         foreach (TargetEntry entry in activeEntries)
         {
             if (entry == null || entry.target == null)
@@ -641,17 +642,28 @@ public class ScoreboardManager : MonoBehaviour
                 continue;
             }
 
-            textBuilder.AppendLine(entry.target.DisplayName)
-                .Append("納品 ")
-                //.Append(entry.deliveredCount)
-                .Append(GetCurrentCount(entry.target))
-                .Append("/")
-                .Append(entry.requiredCount)
-                .AppendLine();
-                //.Append(entry.requiredCount)
-                //.Append("　カート ")
-                //.Append(GetCurrentCount(entry.target))
-                //.AppendLine();
+            int currentCount = entry.deliveredCount
+                             + GetCurrentCount(entry.target);
+
+            bool isComplete = currentCount >= entry.requiredCount;
+
+            if (isComplete)
+            {
+                textBuilder.Append("<s>");
+            }
+
+            textBuilder.AppendLine(entry.target.DisplayName);
+                //.Append("納品 ");
+                //.Append(currentCount)
+                //.Append("/")
+                //.Append(entry.requiredCount);
+
+            if (isComplete)
+            {
+                textBuilder.Append("</s>");
+            }
+
+            textBuilder.AppendLine();
         }
 
         return textBuilder.ToString().TrimEnd();
