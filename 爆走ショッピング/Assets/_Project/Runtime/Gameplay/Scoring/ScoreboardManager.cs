@@ -48,7 +48,7 @@ public class ScoreboardManager : MonoBehaviour
     [Header("実行時 UI")]
     [SerializeField] private Vector2 anchoredPosition = new Vector2(-32f, 32f);
     [SerializeField] private Vector2 size = new Vector2(360f, 150f);
-    [SerializeField] private int fontSize = 40;
+    [SerializeField] private int fontSize = 28;
 
     // 結算条件が足りないときの点滅色・回数・間隔です。
     [Header("未達成時の警告")]
@@ -634,8 +634,6 @@ public class ScoreboardManager : MonoBehaviour
         }
 
         textBuilder.Clear();
-
-
         foreach (TargetEntry entry in activeEntries)
         {
             if (entry == null || entry.target == null)
@@ -643,26 +641,18 @@ public class ScoreboardManager : MonoBehaviour
                 continue;
             }
 
-            int currentCount = entry.deliveredCount
-                             + GetCurrentCount(entry.target);
-
-            bool isComplete = currentCount >= entry.requiredCount;
-
-            if (isComplete)
-            {
-                textBuilder.Append("<s>");
-            }
-
-            textBuilder.AppendLine(entry.target.DisplayName);
-
-            if (isComplete)
-            {
-                textBuilder.Append("</s>");
-            }
-
-            textBuilder.AppendLine();
+            textBuilder.AppendLine(entry.target.DisplayName)
+                .Append("納品 ")
+                //.Append(entry.deliveredCount)
+                .Append(GetCurrentCount(entry.target))
+                .Append("/")
+                .Append(entry.requiredCount)
+                .AppendLine();
+                //.Append(entry.requiredCount)
+                //.Append("　カート ")
+                //.Append(GetCurrentCount(entry.target))
+                //.AppendLine();
         }
-
 
         return textBuilder.ToString().TrimEnd();
     }
