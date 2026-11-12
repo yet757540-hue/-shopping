@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ResultScoreManager : MonoBehaviour
 {
-    [SerializeField] private ScoreCarryManager scoreCarryManager;
     [SerializeField] private TMP_Text scoreText;
     
 

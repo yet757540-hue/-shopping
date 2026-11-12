@@ -11,6 +11,9 @@ public class CandyBuffScript : MonoBehaviour
     [SerializeField]private float BuffTime = 20;
 
     private float randomValue;
+    private bool beforeCandy_acc = false;
+   // private bool beforeCandy_break = false;
+    private bool beforeCandy_Time = false;
     public bool lotteryCandy_acc = false;
     public bool lotteryCandy_break = false;
     public bool lotteryCandy_Time = false;
@@ -23,16 +26,25 @@ public class CandyBuffScript : MonoBehaviour
     //加速度
 
     //アメはノーマルは30%ずつ、スペシャル(全部盛り)は10%
+    private void Start()
+    {
+     beforeCandy_acc = false;
+    // beforeCandy_break = false;
+     beforeCandy_Time = false;
+     lotteryCandy_acc = false;
+     lotteryCandy_break = false;
+     lotteryCandy_Time = false;
+    }
     public void lotteryCandy()
     {
-        if (lotteryCandy_acc == true && lotteryCandy_Time == true)
+        if (beforeCandy_acc == true && beforeCandy_Time == true)
         {
             return;
         }
 
         randomValue = Random.Range(1f, 100f);
 
-        if(lotteryCandy_acc==true&&lotteryCandy_Time==false)
+        if(beforeCandy_acc==true&&beforeCandy_Time==false)
         {
             randomValue += 50;
             if (randomValue>100)
@@ -40,7 +52,7 @@ public class CandyBuffScript : MonoBehaviour
                 randomValue = 100;
             }
         }
-        if (lotteryCandy_Time == true && lotteryCandy_acc == true)
+        if (beforeCandy_acc == false && beforeCandy_Time == true)
         {
             randomValue -= 50;
             if (randomValue < 0)
@@ -52,11 +64,15 @@ public class CandyBuffScript : MonoBehaviour
         if (randomValue<=50)
         {
             lotteryCandy_acc = true;
+            beforeCandy_acc = true;
+            beforeCandy_Time = false;
             acc_Candy();
         }
         else if(randomValue>=51)
         {
             lotteryCandy_Time = true;
+            beforeCandy_Time = true;
+            beforeCandy_acc = false;
             Time_Candy();
         }
 
