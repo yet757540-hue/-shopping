@@ -63,7 +63,6 @@ public class CandyBuffScript : MonoBehaviour
     }
     private void acc_Candy()
     {
-        Debug.Log("korosu");
         StartCoroutine(playerManager.acc_BuffRoutine(BuffTime));
     }
     //破壊

@@ -246,7 +246,7 @@ public class TimerManager : MonoBehaviour
         isComplete = true;
         remainingTime = 0f;
         lastNotifiedCentiseconds = -1;
-
+        ScoreCarryManager.Instance.SaveScore();
         NotifyTimeChanged(true);
         Completed?.Invoke();
         Log("[TimerManager] Timer completed");
