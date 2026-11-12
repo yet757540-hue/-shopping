@@ -1,11 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>è¡çªã§å–å¾—ã§ãã‚‹ã‚¢ã‚¤ãƒ†ãƒ  1 ç¨®ã¨ã€ãã®ãƒã‚¤ãƒ©ã‚¤ãƒˆè¡¨ç¤ºã‚’æŒã¡ã¾ã™ã€‚</summary>
+/// <summary>Õ“Ë‚Åæ“¾‚Å‚«‚éƒAƒCƒeƒ€ 1 í‚ÆA‚»‚ÌƒnƒCƒ‰ƒCƒg•\¦‚ğ‚¿‚Ü‚·B</summary>
 [DisallowMultipleComponent]
 public class ScoreTarget : MonoBehaviour
 {
-    // æè³ªã¨è‰²ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã€å¾©å…ƒç”¨ã®å…ƒã®è‰²ã‚’ä¸€çµ„ã¨ã—ã¦ä¿æŒã—ã¾ã™ã€‚
+
+    //’I‚Ì¤•iî•ñ‚ğ‚Â
+    [Serializable]
+    public class ShelfProduct
+    {
+        public string genre;
+        public string itemId;
+        public string displayName;
+        public float itemWeight = 1f;
+    }
+    // Ş¿‚ÆFƒvƒƒpƒeƒBA•œŒ³—p‚ÌŒ³‚ÌF‚ğˆê‘g‚Æ‚µ‚Ä•Û‚µ‚Ü‚·B
     private class MaterialColorState
     {
         public Material material;
@@ -13,23 +24,30 @@ public class ScoreTarget : MonoBehaviour
         public Color originalColor;
     }
 
-    // ç”Ÿæˆã—ãŸé€è¦–è¡¨ç¤ºã®ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã¨ã€ç ´æ£„å¯¾è±¡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¿æŒã—ã¾ã™ã€‚
+    // ¶¬‚µ‚½“§‹•\¦‚ÌƒŒƒ“ƒ_ƒ‰[‚ÆA”jŠü‘ÎÛ‚ÌƒIƒuƒWƒFƒNƒg‚ğ•Û‚µ‚Ü‚·B
     private class VisibleOverlayState
     {
         public Renderer renderer;
         public GameObject gameObject;
     }
 
-    // é›†è¨ˆã«ä½¿ã† IDãƒ»è¡¨ç¤ºåãƒ»é‡é‡ã¨ã€å–å¾—å¾Œã®è¡¨ç¤ºæ–¹é‡ã§ã™ã€‚
-    [Header("ã‚¢ã‚¤ãƒ†ãƒ æƒ…å ±")]
+    // WŒv‚Ég‚¤ IDE•\¦–¼Ed—Ê‚ÆAæ“¾Œã‚Ì•\¦•ûj‚Å‚·B
+    [Header("ƒAƒCƒeƒ€î•ñ")]
     [SerializeField] private string displayName;
     [SerializeField] private string itemId;
     [SerializeField] private float itemWeight = 1f;
     [SerializeField] private bool collectOnce = true;
     [SerializeField] private bool hideWhenCollected = false;
 
-    // ç›®æ¨™ã®å¼·èª¿è‰²ã¨ã€å£è¶Šã—è¡¨ç¤ºã«ä½¿ã†å¯¾è±¡ãƒ»ç‚¹æ»…ãƒ»æè³ªã®è¨­å®šã§ã™ã€‚
-    [Header("ãƒã‚¤ãƒ©ã‚¤ãƒˆ")]
+    //Inspector‚Å’I‚Ì¤•iˆê——‚ğİ’è‚·‚é—“
+
+    [Header("’I‚É‚ ‚é¤•i")]
+    [SerializeField] private List<ShelfProduct> shelfProducts = new List<ShelfProduct>();
+    public IReadOnlyList<ShelfProduct> ShelfProducts => shelfProducts;
+
+
+    // –Ú•W‚Ì‹­’²F‚ÆA•Ç‰z‚µ•\¦‚Ég‚¤‘ÎÛE“_–ÅEŞ¿‚Ìİ’è‚Å‚·B
+    [Header("ƒnƒCƒ‰ƒCƒg")]
     [SerializeField] private Color highlightColor = Color.red;
     [SerializeField] private Renderer[] targetRenderers;
     [SerializeField] private bool flashVisibleThroughWalls = true;
@@ -43,23 +61,23 @@ public class ScoreTarget : MonoBehaviour
     private bool isHighlighted = false;
     private bool isCollected = false;
 
-    // æœªè¨­å®šã®å ´åˆã¯è¡¨ç¤ºåã€æœ€å¾Œã« GameObject åã‚’è­˜åˆ¥ã«ä½¿ã„ã¾ã™ã€‚
+    // –¢İ’è‚Ìê‡‚Í•\¦–¼AÅŒã‚É GameObject –¼‚ğ¯•Ê‚Ég‚¢‚Ü‚·B
     public string DisplayName => string.IsNullOrWhiteSpace(displayName) ? gameObject.name : displayName;
-    // é›†è¨ˆç”¨ ID ã‚’è¿”ã—ã€æœªè¨­å®šãªã‚‰è¡¨ç¤ºåã‚’ä½¿ç”¨ã—ã¾ã™ã€‚
+    // WŒv—p ID ‚ğ•Ô‚µA–¢İ’è‚È‚ç•\¦–¼‚ğg—p‚µ‚Ü‚·B
     public string ItemId => string.IsNullOrWhiteSpace(itemId) ? DisplayName : itemId;
 
-    // ã‚¢ã‚¤ãƒ†ãƒ ä¸€å€‹ã®é‡é‡ã‚’ã€ã‚¼ãƒ­ä»¥ä¸Šã«è£œæ­£ã—ã¦è¿”ã—ã¾ã™ã€‚
+    // ƒAƒCƒeƒ€ˆêŒÂ‚Ìd—Ê‚ğAƒ[ƒˆÈã‚É•â³‚µ‚Ä•Ô‚µ‚Ü‚·B
     public float ItemWeight => Mathf.Max(0f, itemWeight);
-    // ã“ã®ç›®æ¨™ãŒå–å¾—æ¸ˆã¿ã¨ã—ã¦è¨˜éŒ²ã•ã‚Œã¦ã„ã‚‹ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // ‚±‚Ì–Ú•W‚ªæ“¾Ï‚İ‚Æ‚µ‚Ä‹L˜^‚³‚ê‚Ä‚¢‚é‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool IsCollected => isCollected;
 
-    // é€è¦–è¡¨ç¤ºã«ä½¿ç”¨ã™ã‚‹æè³ªãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’å—ã‘å–ã‚Šã¾ã™ã€‚ã“ã“ã§ã¯è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã—ã¾ã›ã‚“ã€‚
+    // “§‹•\¦‚Ég—p‚·‚éŞ¿ƒeƒ“ƒvƒŒ[ƒg‚ğó‚¯æ‚è‚Ü‚·B‚±‚±‚Å‚Í•\¦ƒIƒuƒWƒFƒNƒg‚ğ¶¬‚µ‚Ü‚¹‚ñB
     public void InitializeVisibleOverlayMaterial(Material template)
     {
         visibleOverlayMaterialTemplate = template;
     }
 
-    // å¯¾è±¡ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã¨å…ƒã®è‰²ã‚’ä¿å­˜ã—ã€å£è¶Šã—è¡¨ç¤ºã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æº–å‚™ã—ã¾ã™ã€‚
+    // ‘ÎÛƒŒƒ“ƒ_ƒ‰[‚ÆŒ³‚ÌF‚ğ•Û‘¶‚µA•Ç‰z‚µ•\¦‚ÌƒIƒuƒWƒFƒNƒg‚ğ€”õ‚µ‚Ü‚·B
     private void Awake()
     {
         CacheRenderers();
@@ -67,7 +85,7 @@ public class ScoreTarget : MonoBehaviour
         CreateVisibleOverlays();
     }
 
-    // ãƒã‚¤ãƒ©ã‚¤ãƒˆä¸­ã ã‘ã€æ™‚é–“ã«å¿œã˜ãŸé€è¦–è¡¨ç¤ºã®ç‚¹æ»…ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ƒnƒCƒ‰ƒCƒg’†‚¾‚¯AŠÔ‚É‰‚¶‚½“§‹•\¦‚Ì“_–Å‚ğXV‚µ‚Ü‚·B
     private void Update()
     {
         if (!isHighlighted || !flashVisibleThroughWalls || visibleOverlays.Count == 0)
@@ -75,19 +93,19 @@ public class ScoreTarget : MonoBehaviour
             return;
         }
 
-        // å¾€å¾©ã™ã‚‹å€¤ã‚’æ»‘ã‚‰ã‹ã«è£œé–“ã—ã€å£è¶Šã—è¡¨ç¤ºã®é€æ˜åº¦ã¨ã—ã¦ä½¿ã„ã¾ã™ã€‚
+        // ‰•œ‚·‚é’l‚ğŠŠ‚ç‚©‚É•âŠÔ‚µA•Ç‰z‚µ•\¦‚Ì“§–¾“x‚Æ‚µ‚Äg‚¢‚Ü‚·B
         float fade = Mathf.PingPong(Time.time * flashFrequency, 1f);
         fade = fade * fade * (3f - 2f * fade);
         SetOverlayAlpha(visibleOverlayAlpha * fade);
     }
 
-    // ä¸€åº¦ã ã‘å–å¾—ã™ã‚‹è¨­å®šã¨å–å¾—æ¸ˆã¿çŠ¶æ…‹ã‹ã‚‰ã€å–å¾—å¯èƒ½ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // ˆê“x‚¾‚¯æ“¾‚·‚éİ’è‚Ææ“¾Ï‚İó‘Ô‚©‚çAæ“¾‰Â”\‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool CanCollect()
     {
         return !collectOnce || !isCollected;
     }
 
-    // å–å¾—æ¸ˆã¿ã«ã—ã€ãƒã‚¤ãƒ©ã‚¤ãƒˆã‚’è§£é™¤ã—ã¦ã€è¨­å®šã«å¿œã˜ã¦é€šå¸¸è¡¨ç¤ºã‚’éš ã—ã¾ã™ã€‚
+    // æ“¾Ï‚İ‚É‚µAƒnƒCƒ‰ƒCƒg‚ğ‰ğœ‚µ‚ÄAİ’è‚É‰‚¶‚Ä’Êí•\¦‚ğ‰B‚µ‚Ü‚·B
     public void MarkCollected()
     {
         isCollected = true;
@@ -99,14 +117,14 @@ public class ScoreTarget : MonoBehaviour
         }
     }
 
-    // å–å¾—æ¸ˆã¿çŠ¶æ…‹ã‚’è§£é™¤ã—ã€é€šå¸¸ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’å†è¡¨ç¤ºã—ã¾ã™ã€‚
+    // æ“¾Ï‚İó‘Ô‚ğ‰ğœ‚µA’ÊíƒŒƒ“ƒ_ƒ‰[‚ğÄ•\¦‚µ‚Ü‚·B
     public void ResetCollected()
     {
         isCollected = false;
         SetRenderersVisible(true);
     }
 
-    // çŠ¶æ…‹ãŒå¤‰ã‚ã£ãŸå ´åˆã ã‘æè³ªè‰²ã‚’åˆ‡ã‚Šæ›¿ãˆã€é€è¦–è¡¨ç¤ºã®æœ‰åŠ¹ãƒ»ç„¡åŠ¹ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // ó‘Ô‚ª•Ï‚í‚Á‚½ê‡‚¾‚¯Ş¿F‚ğØ‚è‘Ö‚¦A“§‹•\¦‚Ì—LŒøE–³Œø‚ğXV‚µ‚Ü‚·B
     public void SetHighlighted(bool highlighted)
     {
         if (isHighlighted == highlighted)
@@ -139,7 +157,7 @@ public class ScoreTarget : MonoBehaviour
         ApplyOverlayVisible(false);
     }
 
-    // å¯¾è±¡ãŒæœªè¨­å®šãªã‚‰å­éšå±¤ã®ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’é›†ã‚ã¾ã™ã€‚
+    // ‘ÎÛ‚ª–¢İ’è‚È‚çqŠK‘w‚ÌƒŒƒ“ƒ_ƒ‰[‚ğW‚ß‚Ü‚·B
     private void CacheRenderers()
     {
         if (targetRenderers != null && targetRenderers.Length > 0)
@@ -150,7 +168,7 @@ public class ScoreTarget : MonoBehaviour
         targetRenderers = GetComponentsInChildren<Renderer>();
     }
 
-    // å„æè³ªã®è‰²ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã¨å…ƒã®è‰²ã‚’è¨˜éŒ²ã—ã€ãƒã‚¤ãƒ©ã‚¤ãƒˆè§£é™¤æ™‚ã«å¾©å…ƒã§ãã‚‹ã‚ˆã†ã«ã—ã¾ã™ã€‚
+    // ŠeŞ¿‚ÌFƒvƒƒpƒeƒB‚ÆŒ³‚ÌF‚ğ‹L˜^‚µAƒnƒCƒ‰ƒCƒg‰ğœ‚É•œŒ³‚Å‚«‚é‚æ‚¤‚É‚µ‚Ü‚·B
     private void CacheOriginalColors()
     {
         originalColors.Clear();
@@ -186,7 +204,7 @@ public class ScoreTarget : MonoBehaviour
         }
     }
 
-    // æè³ªãŒå¯¾å¿œã™ã‚‹è‰²ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£åã‚’èª¿ã¹ã€å¯¾å¿œã—ã¦ã„ãªã‘ã‚Œã° null ã‚’è¿”ã—ã¾ã™ã€‚
+    // Ş¿‚ª‘Î‰‚·‚éFƒvƒƒpƒeƒB–¼‚ğ’²‚×A‘Î‰‚µ‚Ä‚¢‚È‚¯‚ê‚Î null ‚ğ•Ô‚µ‚Ü‚·B
     private string GetColorProperty(Material material)
     {
         if (material == null)
@@ -207,7 +225,7 @@ public class ScoreTarget : MonoBehaviour
         return null;
     }
 
-    // å‰ã®é€è¦–è¡¨ç¤ºã‚’ç ´æ£„ã—ã€è¨­å®šãŒæœ‰åŠ¹ãªå ´åˆã ã‘å„ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã®è¡¨ç¤ºç”¨ã‚³ãƒ”ãƒ¼ã‚’ä½œã‚Šã¾ã™ã€‚
+    // ‘O‚Ì“§‹•\¦‚ğ”jŠü‚µAİ’è‚ª—LŒø‚Èê‡‚¾‚¯ŠeƒŒƒ“ƒ_ƒ‰[‚Ì•\¦—pƒRƒs[‚ğì‚è‚Ü‚·B
     private void CreateVisibleOverlays()
     {
         DestroyVisibleOverlays();
@@ -237,10 +255,10 @@ public class ScoreTarget : MonoBehaviour
         ApplyOverlayVisible(false);
     }
 
-    // é€šå¸¸ãƒ¡ãƒƒã‚·ãƒ¥ã¾ãŸã¯ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã«åˆã‚ã›ã¦ã€é€è¦–è¡¨ç¤ºç”¨ã®ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’è¤‡è£½ã—ã¾ã™ã€‚
+    // ’ÊíƒƒbƒVƒ…‚Ü‚½‚ÍƒXƒLƒ“ƒƒbƒVƒ…‚É‡‚í‚¹‚ÄA“§‹•\¦—p‚ÌƒŒƒ“ƒ_ƒ‰[‚ğ•¡»‚µ‚Ü‚·B
     private void CreateVisibleOverlay(Renderer targetRenderer, Material overlayMaterial)
     {
-        // é€šå¸¸ãƒ¡ãƒƒã‚·ãƒ¥ã¯å½¢çŠ¶ã‚’å…±æœ‰ã—ã€ã‚¹ã‚­ãƒ³ãƒ¡ãƒƒã‚·ãƒ¥ã¯ãƒœãƒ¼ãƒ³å‚ç…§ã‚‚å¼•ãç¶™ãã¾ã™ã€‚
+        // ’ÊíƒƒbƒVƒ…‚ÍŒ`ó‚ğ‹¤—L‚µAƒXƒLƒ“ƒƒbƒVƒ…‚Íƒ{[ƒ“QÆ‚àˆø‚«Œp‚¬‚Ü‚·B
         MeshRenderer meshRenderer = targetRenderer as MeshRenderer;
 
         if (meshRenderer != null)
@@ -276,7 +294,7 @@ public class ScoreTarget : MonoBehaviour
         AddVisibleOverlay(skinnedOverlayRenderer, overlayMaterial);
     }
 
-    // å¯¾è±¡ã®å­ã¨ã—ã¦ä¿å­˜å¯¾è±¡å¤–ã®è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œã‚Šã€ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ›ã‚’ãã‚ãˆã¾ã™ã€‚
+    // ‘ÎÛ‚Ìq‚Æ‚µ‚Ä•Û‘¶‘ÎÛŠO‚Ì•\¦ƒIƒuƒWƒFƒNƒg‚ğì‚èAƒ[ƒJƒ‹•ÏŠ·‚ğ‚»‚ë‚¦‚Ü‚·B
     private GameObject CreateOverlayObject(Transform parent)
     {
         GameObject overlayObject = new GameObject("ScoreTarget Visible Overlay");
@@ -288,7 +306,7 @@ public class ScoreTarget : MonoBehaviour
         return overlayObject;
     }
 
-    // ãƒ¡ãƒƒã‚·ãƒ¥ã®ç¨®é¡ã«é–¢ä¿‚ãªãã€æè³ªã¨å½±ã®è¨­å®šã‚’å…±é€šåŒ–ã—ã¾ã™ã€‚
+    // ƒƒbƒVƒ…‚Ìí—Ş‚ÉŠÖŒW‚È‚­AŞ¿‚Æ‰e‚Ìİ’è‚ğ‹¤’Ê‰»‚µ‚Ü‚·B
     private void AddVisibleOverlay(Renderer overlayRenderer, Material overlayMaterial)
     {
         overlayRenderer.sharedMaterial = overlayMaterial;
@@ -301,7 +319,7 @@ public class ScoreTarget : MonoBehaviour
         });
     }
 
-    // ç”Ÿæˆæ¸ˆã¿æè³ªã‚’å†åˆ©ç”¨ã—ã€åˆå›ã ã‘ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‹ã‚‰å°‚ç”¨æè³ªã‚’ä½œã‚Šã¾ã™ã€‚
+    // ¶¬Ï‚İŞ¿‚ğÄ—˜—p‚µA‰‰ñ‚¾‚¯ƒeƒ“ƒvƒŒ[ƒg‚©‚çê—pŞ¿‚ğì‚è‚Ü‚·B
     private Material GetVisibleOverlayMaterial()
     {
         if (visibleOverlayMaterial != null)
@@ -309,7 +327,7 @@ public class ScoreTarget : MonoBehaviour
             return visibleOverlayMaterial;
         }
 
-        // å…±æœ‰ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã‚’ç›´æ¥å¤‰æ›´ã›ãšã€ã“ã®ç›®æ¨™å°‚ç”¨ã®æè³ªã‚’ç”Ÿæˆã—ã¾ã™ã€‚
+        // ‹¤—Lƒeƒ“ƒvƒŒ[ƒg‚ğ’¼Ú•ÏX‚¹‚¸A‚±‚Ì–Ú•Wê—p‚ÌŞ¿‚ğ¶¬‚µ‚Ü‚·B
         if (visibleOverlayMaterialTemplate != null)
         {
             visibleOverlayMaterial = new Material(visibleOverlayMaterialTemplate);
@@ -322,7 +340,7 @@ public class ScoreTarget : MonoBehaviour
         return null;
     }
 
-    // æè³ªã®å–å¾—ã¨è‰²ã®æ›¸ãè¾¼ã¿ã‚’åˆ†ã‘ã€åˆæœŸåŒ–ã®ç›¸äº’å‘¼ã³å‡ºã—ã‚’é¿ã‘ã¾ã™ã€‚
+    // Ş¿‚Ìæ“¾‚ÆF‚Ì‘‚«‚İ‚ğ•ª‚¯A‰Šú‰»‚Ì‘ŠŒİŒÄ‚Ño‚µ‚ğ”ğ‚¯‚Ü‚·B
     private void SetOverlayAlpha(float alpha)
     {
         Material overlayMaterial = GetVisibleOverlayMaterial();
@@ -335,7 +353,7 @@ public class ScoreTarget : MonoBehaviour
         ApplyOverlayColor(overlayMaterial, alpha);
     }
 
-    // ãƒã‚¤ãƒ©ã‚¤ãƒˆè‰²ã«æŒ‡å®šã‚¢ãƒ«ãƒ•ã‚¡ã‚’è¨­å®šã—ã€é€è¦–è¡¨ç¤ºã®æè³ªã¸æ›¸ãè¾¼ã¿ã¾ã™ã€‚
+    // ƒnƒCƒ‰ƒCƒgF‚Éw’èƒAƒ‹ƒtƒ@‚ğİ’è‚µA“§‹•\¦‚ÌŞ¿‚Ö‘‚«‚İ‚Ü‚·B
     private void ApplyOverlayColor(Material overlayMaterial, float alpha)
     {
         Color overlayColor = highlightColor;
@@ -343,7 +361,7 @@ public class ScoreTarget : MonoBehaviour
         overlayMaterial.SetColor("_BaseColor", overlayColor);
     }
 
-    // é€è¦–è¡¨ç¤ºç”¨ã®å…¨ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ã¾ã¨ã‚ã¦è¡¨ç¤ºãƒ»éè¡¨ç¤ºã«ã—ã¾ã™ã€‚
+    // “§‹•\¦—p‚Ì‘SƒŒƒ“ƒ_ƒ‰[‚ğ‚Ü‚Æ‚ß‚Ä•\¦E”ñ•\¦‚É‚µ‚Ü‚·B
     private void ApplyOverlayVisible(bool visible)
     {
         foreach (VisibleOverlayState overlay in visibleOverlays)
@@ -355,7 +373,7 @@ public class ScoreTarget : MonoBehaviour
         }
     }
 
-    // é€šå¸¸è¡¨ç¤ºç”¨ã®å…¨ãƒ¬ãƒ³ãƒ€ãƒ©ãƒ¼ã‚’ã¾ã¨ã‚ã¦è¡¨ç¤ºãƒ»éè¡¨ç¤ºã«ã—ã¾ã™ã€‚
+    // ’Êí•\¦—p‚Ì‘SƒŒƒ“ƒ_ƒ‰[‚ğ‚Ü‚Æ‚ß‚Ä•\¦E”ñ•\¦‚É‚µ‚Ü‚·B
     private void SetRenderersVisible(bool visible)
     {
         if (targetRenderers == null)
@@ -372,7 +390,7 @@ public class ScoreTarget : MonoBehaviour
         }
     }
 
-    // ç”Ÿæˆã—ãŸé€è¦–è¡¨ç¤ºã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç ´æ£„ã—ã€ç®¡ç†ä¸€è¦§ã‚’ç©ºã«ã—ã¾ã™ã€‚
+    // ¶¬‚µ‚½“§‹•\¦ƒIƒuƒWƒFƒNƒg‚ğ”jŠü‚µAŠÇ—ˆê——‚ğ‹ó‚É‚µ‚Ü‚·B
     private void DestroyVisibleOverlays()
     {
         foreach (VisibleOverlayState overlay in visibleOverlays)
@@ -388,13 +406,13 @@ public class ScoreTarget : MonoBehaviour
         visibleOverlays.Clear();
     }
 
-    // ç„¡åŠ¹åŒ–æ™‚ã«å…ƒã®æè³ªè‰²ã¸æˆ»ã—ã€é€è¦–è¡¨ç¤ºã‚’åœæ­¢ã—ã¾ã™ã€‚
+    // –³Œø‰»‚ÉŒ³‚ÌŞ¿F‚Ö–ß‚µA“§‹•\¦‚ğ’â~‚µ‚Ü‚·B
     private void OnDisable()
     {
         SetHighlighted(false);
     }
 
-    // ç”Ÿæˆã—ãŸé€è¦–è¡¨ç¤ºã¨å°‚ç”¨æè³ªã‚’è§£æ”¾ã—ã¾ã™ã€‚å…±æœ‰ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã¯ç ´æ£„ã—ã¾ã›ã‚“ã€‚
+    // ¶¬‚µ‚½“§‹•\¦‚Æê—pŞ¿‚ğ‰ğ•ú‚µ‚Ü‚·B‹¤—Lƒeƒ“ƒvƒŒ[ƒg‚Í”jŠü‚µ‚Ü‚¹‚ñB
     private void OnDestroy()
     {
         DestroyVisibleOverlays();
@@ -406,7 +424,7 @@ public class ScoreTarget : MonoBehaviour
         }
     }
 
-    // Inspector ã®å¤‰æ›´æ™‚ã«ã€è¨­å®šå€¤ã‚’æœ‰åŠ¹ãªç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // Inspector ‚Ì•ÏX‚ÉAİ’è’l‚ğ—LŒø‚È”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private void OnValidate()
     {
         itemWeight = Mathf.Max(0f, itemWeight);

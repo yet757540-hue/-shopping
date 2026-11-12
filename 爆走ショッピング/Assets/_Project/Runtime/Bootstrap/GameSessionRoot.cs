@@ -2,15 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã®æ§‹æˆãƒ«ãƒ¼ãƒˆã§ã™ã€‚æ©Ÿèƒ½é–“ã®å‚ç…§ã€åˆæœŸåŒ–ã€ã‚¤ãƒ™ãƒ³ãƒˆæ¥ç¶šã‚’ã“ã“ã ã‘ã«é›†ã‚ã¾ã™ã€‚
-/// å„æ©Ÿèƒ½ã¯å¿…è¦ãªä¾å­˜å…ˆã ã‘ã‚’å—ã‘å–ã‚Šã€ã‚·ãƒ¼ãƒ³å…¨ä½“ã‚’æ¤œç´¢ã—ã¾ã›ã‚“ã€‚
+/// ƒQ[ƒ€ƒV[ƒ“‚Ì\¬ƒ‹[ƒg‚Å‚·B‹@”\ŠÔ‚ÌQÆA‰Šú‰»AƒCƒxƒ“ƒgÚ‘±‚ğ‚±‚±‚¾‚¯‚ÉW‚ß‚Ü‚·B
+/// Še‹@”\‚Í•K—v‚ÈˆË‘¶æ‚¾‚¯‚ğó‚¯æ‚èAƒV[ƒ“‘S‘Ì‚ğŒŸõ‚µ‚Ü‚¹‚ñB
 /// </summary>
 [DefaultExecutionOrder(-1000)]
 [DisallowMultipleComponent]
 public sealed class GameSessionRoot : MonoBehaviour
 {
-    // ã‚²ãƒ¼ãƒ é€²è¡Œã‚’æ‹…å½“ã™ã‚‹ã‚µãƒ¼ãƒ“ã‚¹ã§ã™ã€‚ã™ã¹ã¦åŒã˜ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã«é…ç½®ã—ã¾ã™ã€‚
-    [Header("ã‚²ãƒ¼ãƒ é€²è¡Œã‚µãƒ¼ãƒ“ã‚¹")]
+    // ƒQ[ƒ€is‚ğ’S“–‚·‚éƒT[ƒrƒX‚Å‚·B‚·‚×‚Ä“¯‚¶ƒQ[ƒ€ƒV[ƒ“‚É”z’u‚µ‚Ü‚·B
+    [Header("ƒQ[ƒ€isƒT[ƒrƒX")]
     [SerializeField] private PlayerManager player;
     [SerializeField] private PlayerInventory inventory;
     [SerializeField] private PlayerCollisionReporter collisionReporter;
@@ -22,8 +22,8 @@ public sealed class GameSessionRoot : MonoBehaviour
     [SerializeField] private GameRestartManager restartManager;
     [SerializeField] private ScoreTarget[] scoreTargets = System.Array.Empty<ScoreTarget>();
 
-    // è¡¨ç¤ºãƒ»å…¥åŠ›ã‚’æ‹…å½“ã™ã‚‹ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã§ã™ã€‚
-    [Header("è¡¨ç¤ºã¨å…¥åŠ›")]
+    // •\¦E“ü—Í‚ğ’S“–‚·‚éƒRƒ“ƒ|[ƒlƒ“ƒg‚Å‚·B
+    [Header("•\¦‚Æ“ü—Í")]
     [SerializeField] private CollisionFeedbackManager collisionFeedback;
     [SerializeField] private InventoryInfluenceSettings inventoryInfluence;
     [SerializeField] private InventoryStatusUI inventoryHud;
@@ -34,9 +34,12 @@ public sealed class GameSessionRoot : MonoBehaviour
 
     private bool subscribed;
 
-    // å¿…é ˆå‚ç…§ã‚’æ¤œè¨¼ã—ã€æ­£å¸¸ãªå ´åˆã ã‘å„æ©Ÿèƒ½ã‚’åˆæœŸåŒ–ã—ã¦ã‚¤ãƒ™ãƒ³ãƒˆã‚’æ¥ç¶šã—ã¾ã™ã€‚
+    // •K{QÆ‚ğŒŸØ‚µA³í‚Èê‡‚¾‚¯Še‹@”\‚ğ‰Šú‰»‚µ‚ÄƒCƒxƒ“ƒg‚ğÚ‘±‚µ‚Ü‚·B
     private void Awake()
     {
+
+        AutoAssignScoreTargets();
+
         if (!ValidateReferences(true))
         {
             enabled = false;
@@ -46,14 +49,26 @@ public sealed class GameSessionRoot : MonoBehaviour
         InitializeSystems();
         Subscribe();
     }
+    // Inspector ‚Ì”z—ñ‚ª‹ó‚È‚çAƒV[ƒ““à‚Ì ScoreTarget ‚ğŒó•â‚Æ‚µ‚Ä©“®“o˜^‚µ‚Ü‚·B
+    private void AutoAssignScoreTargets()
+    {
+        if (scoreTargets != null && scoreTargets.Length > 0)
+        {
+            return;
+        }
 
-    // ã‚·ãƒ¼ãƒ³ç ´æ£„æ™‚ã«ã€ç™»éŒ²ã—ãŸã‚²ãƒ¼ãƒ é€²è¡Œã‚¤ãƒ™ãƒ³ãƒˆã‚’è§£é™¤ã—ã¾ã™ã€‚
+        scoreTargets = FindObjectsByType<ScoreTarget>(FindObjectsInactive.Exclude);
+        Debug.Log("[GameSessionRoot] Auto-assigned ScoreTargets: " + scoreTargets.Length, this);
+    }
+
+
+    // ƒV[ƒ“”jŠü‚ÉA“o˜^‚µ‚½ƒQ[ƒ€isƒCƒxƒ“ƒg‚ğ‰ğœ‚µ‚Ü‚·B
     private void OnDestroy()
     {
         Unsubscribe();
     }
 
-    // ä¸è¶³ã—ã¦ã„ã‚‹å¿…é ˆå‚ç…§ã‚’é›†ã‚ã€å¿…è¦ã«å¿œã˜ã¦ã‚¨ãƒ©ãƒ¼ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚
+    // •s‘«‚µ‚Ä‚¢‚é•K{QÆ‚ğW‚ßA•K—v‚É‰‚¶‚ÄƒGƒ‰[‚ğ•\¦‚µ‚Ü‚·B
     public bool ValidateReferences(bool logErrors)
     {
         List<string> missing = new List<string>();
@@ -92,7 +107,7 @@ public sealed class GameSessionRoot : MonoBehaviour
         return false;
     }
 
-    // åˆæœŸåŒ–é †ã‚’ã“ã“ã«ä¸¦ã¹ã‚‹ã“ã¨ã§ã€ã‚²ãƒ¼ãƒ é–‹å§‹æ™‚ã®æ¥ç¶šé †ã‚’è¿½ã„ã‚„ã™ãã—ã¾ã™ã€‚
+    // ‰Šú‰»‡‚ğ‚±‚±‚É•À‚×‚é‚±‚Æ‚ÅAƒQ[ƒ€ŠJn‚ÌÚ‘±‡‚ğ’Ç‚¢‚â‚·‚­‚µ‚Ü‚·B
     private void InitializeSystems()
     {
         scoreboardManager.Initialize(impactSettings, inventory, settlementArea, scoreTargets, scoreboardView);
@@ -105,7 +120,7 @@ public sealed class GameSessionRoot : MonoBehaviour
         timerHud.Initialize(timerManager);
     }
 
-    // UnityEvent ã§ã¯ãªã C# ã‚¤ãƒ™ãƒ³ãƒˆã‚’ä½¿ã†æ¥ç¶šã‚’ã€é–‹å§‹æ™‚ã«ã¾ã¨ã‚ã¦ç™»éŒ²ã—ã¾ã™ã€‚
+    // UnityEvent ‚Å‚Í‚È‚­ C# ƒCƒxƒ“ƒg‚ğg‚¤Ú‘±‚ğAŠJn‚É‚Ü‚Æ‚ß‚Ä“o˜^‚µ‚Ü‚·B
     private void Subscribe()
     {
         if (subscribed)
@@ -123,7 +138,7 @@ public sealed class GameSessionRoot : MonoBehaviour
         subscribed = true;
     }
 
-    // ã‚·ãƒ¼ãƒ³ç ´æ£„æ™‚ã«ã¯åŒã˜çµ„ã¿åˆã‚ã›ã‚’è§£é™¤ã—ã€ç ´æ£„æ¸ˆã¿å‚ç…§ã®å‘¼ã³å‡ºã—ã‚’é˜²ãã¾ã™ã€‚
+    // ƒV[ƒ“”jŠü‚É‚Í“¯‚¶‘g‚İ‡‚í‚¹‚ğ‰ğœ‚µA”jŠüÏ‚İQÆ‚ÌŒÄ‚Ño‚µ‚ğ–h‚¬‚Ü‚·B
     private void Unsubscribe()
     {
         if (!subscribed)
@@ -141,7 +156,7 @@ public sealed class GameSessionRoot : MonoBehaviour
         subscribed = false;
     }
 
-    // å‚ç…§ãŒæœªè¨­å®šãªã‚‰ã€ãã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‚’ä¸è¶³ä¸€è¦§ã«è¿½åŠ ã—ã¾ã™ã€‚
+    // QÆ‚ª–¢İ’è‚È‚çA‚»‚ÌƒtƒB[ƒ‹ƒh–¼‚ğ•s‘«ˆê——‚É’Ç‰Á‚µ‚Ü‚·B
     private static void Require(Object value, string name, ICollection<string> missing)
     {
         if (value == null)

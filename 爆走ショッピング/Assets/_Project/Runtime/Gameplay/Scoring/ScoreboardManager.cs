@@ -5,59 +5,72 @@ using System.Text;
 using UnityEngine;
 using TMPro;
 
-/// <summary>ç¾åœ¨ã®ç›®æ¨™ã€ç²å¾—æ•°ã€çµç®—å¾—ç‚¹ã‚’ç®¡ç†ã—ã€HUD ç”¨ã®æ–‡å­—åˆ—ã‚’æä¾›ã—ã¾ã™ã€‚</summary>
+/// <summary>Œ»İ‚Ì–Ú•WAŠl“¾”AŒ‹Z“¾“_‚ğŠÇ—‚µAHUD —p‚Ì•¶š—ñ‚ğ’ñ‹Ÿ‚µ‚Ü‚·B</summary>
 public class ScoreboardManager : MonoBehaviour
 {
-    // æŠ½é¸ã•ã‚ŒãŸç›®æ¨™ã€å¿…è¦æ•°ã€åˆ†å‰²ç´å“æ¸ˆã¿ã®ç´¯è¨ˆã‚’ä¿æŒã—ã¾ã™ã€‚
+    // ’Š‘I‚³‚ê‚½–Ú•WA•K—v”A•ªŠ„”[•iÏ‚İ‚Ì—İŒv‚ğ•Û‚µ‚Ü‚·B
     [Serializable]
     private class TargetEntry
     {
         public ScoreTarget target;
+        public string genre;
+        public string itemId;
+        public string displayName;
+        public float itemWeight;
         public int requiredCount;
         public int deliveredCount;
     }
 
-    // ä»–ã®ã‚²ãƒ¼ãƒ æ©Ÿèƒ½ã¸ã®å‚ç…§ã¯ã€GameSessionRoot ã‹ã‚‰åˆæœŸåŒ–æ™‚ã«å—ã‘å–ã‚Šã¾ã™ã€‚
-    [Header("å‚ç…§")]
+    private class ProductCandidate
+    {
+        public string genre;
+        public string itemId;
+        public string displayName;
+        public float itemWeight;
+        public readonly List<ScoreTarget> shelves = new List<ScoreTarget>();
+    }
+
+    // ‘¼‚ÌƒQ[ƒ€‹@”\‚Ö‚ÌQÆ‚ÍAGameSessionRoot ‚©‚ç‰Šú‰»‚Éó‚¯æ‚è‚Ü‚·B
+    [Header("QÆ")]
     [SerializeField] private ImpactSettings impactSettings;
     [SerializeField] private PlayerInventory inventory;
     [SerializeField] private TMP_Text scoreboardText;
     [SerializeField] private SettlementArea settlementArea;
     [SerializeField] private ScoreboardView scoreboardView;
-    [SerializeField]private CandyBuffScript candyBuffScript;
+    [SerializeField] private CandyBuffScript candyBuffScript;
 
-    // ç›®æ¨™ã®ç¨®é¡æ•°ãƒ»å¿…è¦å€‹æ•°ã®ç¯„å›²ã¨ã€çµ‚äº†æ™‚ã®æ‰€æŒå“ãƒ»è¡¨ç¤ºã®æ‰±ã„ã§ã™ã€‚
-    [Header("ç›®æ¨™ãƒœãƒ¼ãƒ‰è¨­å®š")]
+    // –Ú•W‚Ìí—Ş”E•K—vŒÂ”‚Ì”ÍˆÍ‚ÆAI—¹‚ÌŠ•iE•\¦‚Ìˆµ‚¢‚Å‚·B
+    [Header("–Ú•Wƒ{[ƒhİ’è")]
     [SerializeField] private int targetCount = 3;
     [SerializeField] private int minRequiredItemCount = 3;
     [SerializeField] private int maxRequiredItemCount = 8;
     [SerializeField] private bool resetInventoryOnEnd = true;
     [SerializeField] private bool clearWhenTimerStops = false;
 
-    // çµç®—ä¸€å›ã®å›ºå®šç‚¹ã¨ã€å¿…è¦æ•°ã‚’è¶…ãˆãŸã‚¢ã‚¤ãƒ†ãƒ ä¸€å€‹ã‚ãŸã‚Šã®å¾—ç‚¹ã§ã™ã€‚
-    [Header("å¾—ç‚¹")]
+    // Œ‹Zˆê‰ñ‚ÌŒÅ’è“_‚ÆA•K—v”‚ğ’´‚¦‚½ƒAƒCƒeƒ€ˆêŒÂ‚ ‚½‚è‚Ì“¾“_‚Å‚·B
+    [Header("“¾“_")]
     [SerializeField] private int targetItemScoreMultiplier = 10;
     [SerializeField] private int settlementBonusScore = 50;
 
-    // è¡çªå¼·åº¦ã«å¿œã˜ã¦è£œé–“ã™ã‚‹ã€ç²å¾—å€‹æ•°ã®æœ€å°å€¤ã¨æœ€å¤§å€¤ã§ã™ã€‚
-    [Header("è¡çªæ™‚ã®ã‚¢ã‚¤ãƒ†ãƒ ç²å¾—")]
+    // Õ“Ë‹­“x‚É‰‚¶‚Ä•âŠÔ‚·‚éAŠl“¾ŒÂ”‚ÌÅ¬’l‚ÆÅ‘å’l‚Å‚·B
+    [Header("Õ“Ë‚ÌƒAƒCƒeƒ€Šl“¾")]
     [SerializeField] private int minItemGain = 1;
     [SerializeField] private int maxItemGain = 5;
 
-    // ä»¥å‰ã® UI é…ç½®è¨­å®šã§ã™ã€‚ç¾åœ¨ã®è¡¨ç¤ºä½ç½®ã¨æ–‡å­—è¨­å®šã«ã¯ä½¿ç”¨ã—ã¦ã„ã¾ã›ã‚“ã€‚
-    [Header("å®Ÿè¡Œæ™‚ UI")]
+    // ˆÈ‘O‚Ì UI ”z’uİ’è‚Å‚·BŒ»İ‚Ì•\¦ˆÊ’u‚Æ•¶šİ’è‚É‚Íg—p‚µ‚Ä‚¢‚Ü‚¹‚ñB
+    [Header("Às UI")]
     [SerializeField] private Vector2 anchoredPosition = new Vector2(-32f, 32f);
     [SerializeField] private Vector2 size = new Vector2(360f, 150f);
     [SerializeField] private int fontSize = 28;
 
-    // çµç®—æ¡ä»¶ãŒè¶³ã‚Šãªã„ã¨ãã®ç‚¹æ»…è‰²ãƒ»å›æ•°ãƒ»é–“éš”ã§ã™ã€‚
-    [Header("æœªé”æˆæ™‚ã®è­¦å‘Š")]
+    // Œ‹ZğŒ‚ª‘«‚è‚È‚¢‚Æ‚«‚Ì“_–ÅFE‰ñ”EŠÔŠu‚Å‚·B
+    [Header("–¢’B¬‚ÌŒx")]
     [SerializeField] private Color incompleteFlashColor = Color.red;
     [SerializeField] private int incompleteFlashCount = 3;
     [SerializeField] private float incompleteFlashInterval = 0.12f;
 
-    // ç›´å‰ã®è¨ˆç®—å€¤ã‚„é›†è¨ˆå€¤ã‚’ã€Inspector ã§ç¢ºèªã™ã‚‹ãŸã‚ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã§ã™ã€‚
-    [Header("å®Ÿè¡Œæ™‚ãƒ‡ãƒãƒƒã‚°")]
+    // ’¼‘O‚ÌŒvZ’l‚âWŒv’l‚ğAInspector ‚ÅŠm”F‚·‚é‚½‚ß‚ÌƒtƒB[ƒ‹ƒh‚Å‚·B
+    [Header("ÀsƒfƒoƒbƒO")]
     [SerializeField] private float lastRawImpactSpeed = 0f;
     [SerializeField] private float lastImpactSpeed = 0f;
     [SerializeField] private float lastImpactRate = 0f;
@@ -74,11 +87,11 @@ public class ScoreboardManager : MonoBehaviour
     private bool canSettleCurrentTargets = true;
     private ScoreTarget[] targetPool = Array.Empty<ScoreTarget>();
     private SettlementArea subscribedSettlementArea;
-   
+
 
     public event Action StateChanged;
 
-    // ç›®æ¨™ãŒæœ‰åŠ¹ã§ä¸€ä»¶ä»¥ä¸Šã‚ã‚Šã€å…¨ã¦ã®å¿…è¦æ•°ã‚’ç´å“æ¸ˆã¿ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // –Ú•W‚ª—LŒø‚ÅˆêŒˆÈã‚ ‚èA‘S‚Ä‚Ì•K—v”‚ğ”[•iÏ‚İ‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool IsComplete
     {
         get
@@ -105,24 +118,24 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
-    // ç›®æ¨™ãƒœãƒ¼ãƒ‰ãŒæœ‰åŠ¹ã§ã€ç›®æ¨™ãŒä¸€ä»¶ä»¥ä¸Šã‚ã‚‹ã‹ã‚’è¿”ã—ã¾ã™ã€‚
+    // –Ú•Wƒ{[ƒh‚ª—LŒø‚ÅA–Ú•W‚ªˆêŒˆÈã‚ ‚é‚©‚ğ•Ô‚µ‚Ü‚·B
     public bool IsActive => isBoardActive && activeEntries.Count > 0;
-    // æˆåŠŸã—ãŸçµç®—ã®ç´¯è¨ˆå›æ•°ã‚’è¿”ã—ã¾ã™ã€‚
+    // ¬Œ÷‚µ‚½Œ‹Z‚Ì—İŒv‰ñ”‚ğ•Ô‚µ‚Ü‚·B
     public int CompletedSettlementCount => completedSettlementCount;
-    // çµç®—æ™‚ã«å¿…è¦æ•°ã‚’è¶…ãˆã¦ã„ãŸã‚¢ã‚¤ãƒ†ãƒ ã®ç´¯è¨ˆå€‹æ•°ã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ‹Z‚É•K—v”‚ğ’´‚¦‚Ä‚¢‚½ƒAƒCƒeƒ€‚Ì—İŒvŒÂ”‚ğ•Ô‚µ‚Ü‚·B
     public int SettledExcessTargetItemCount => settledExcessTargetItemCount;
-    // è¶…éã‚¢ã‚¤ãƒ†ãƒ ä¸€å€‹ã‚ãŸã‚Šã®å¾—ç‚¹ã‚’è¿”ã—ã¾ã™ã€‚
+    // ’´‰ßƒAƒCƒeƒ€ˆêŒÂ‚ ‚½‚è‚Ì“¾“_‚ğ•Ô‚µ‚Ü‚·B
     public int TargetItemScoreMultiplier => targetItemScoreMultiplier;
-    // çµç®—æˆåŠŸä¸€å›ã‚ãŸã‚Šã®å›ºå®šå¾—ç‚¹ã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ‹Z¬Œ÷ˆê‰ñ‚ ‚½‚è‚ÌŒÅ’è“¾“_‚ğ•Ô‚µ‚Ü‚·B
     public int SettlementBonusScorePerSettlement => settlementBonusScore;
-    // çµç®—å›æ•°ã«å›ºå®šå¾—ç‚¹ã‚’æ›ã‘ãŸç´¯è¨ˆç‚¹ã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ‹Z‰ñ”‚ÉŒÅ’è“¾“_‚ğŠ|‚¯‚½—İŒv“_‚ğ•Ô‚µ‚Ü‚·B
     public int SettlementBonusScore => completedSettlementCount * settlementBonusScore;
-    // è¶…éã‚¢ã‚¤ãƒ†ãƒ ã®ç´¯è¨ˆå€‹æ•°ã«ä¸€å€‹ã‚ãŸã‚Šã®å¾—ç‚¹ã‚’æ›ã‘ã¦è¿”ã—ã¾ã™ã€‚
+    // ’´‰ßƒAƒCƒeƒ€‚Ì—İŒvŒÂ”‚ÉˆêŒÂ‚ ‚½‚è‚Ì“¾“_‚ğŠ|‚¯‚Ä•Ô‚µ‚Ü‚·B
     public int TargetItemScore => settledExcessTargetItemCount * targetItemScoreMultiplier;
-    // çµç®—å›æ•°ã«ã‚ˆã‚‹å¾—ç‚¹ã¨è¶…éã‚¢ã‚¤ãƒ†ãƒ ã«ã‚ˆã‚‹å¾—ç‚¹ã®åˆè¨ˆã‚’è¿”ã—ã¾ã™ã€‚
+    // Œ‹Z‰ñ”‚É‚æ‚é“¾“_‚Æ’´‰ßƒAƒCƒeƒ€‚É‚æ‚é“¾“_‚Ì‡Œv‚ğ•Ô‚µ‚Ü‚·B
     public int TotalScore => SettlementBonusScore + TargetItemScore;
 
-    // é€šå¸¸ã®æ–‡å­—è‰²ã‚’è¨˜éŒ²ã—ã€å¾—ç‚¹ã¨ç›®æ¨™è¡¨ç¤ºã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚
+    // ’Êí‚Ì•¶šF‚ğ‹L˜^‚µA“¾“_‚Æ–Ú•W•\¦‚ğ‰Šú‰»‚µ‚Ü‚·B
     private void Awake()
     {
         if (scoreboardText != null)
@@ -134,14 +147,14 @@ public class ScoreboardManager : MonoBehaviour
         ClearScoreboard();
     }
 
-    // æ‰€æŒå“ã®å¤‰åŒ–ã¨çµç®—ã‚¨ãƒªã‚¢ã®å…¥é€€å ´ã‚¤ãƒ™ãƒ³ãƒˆã‚’è³¼èª­ã—ã¾ã™ã€‚
+    // Š•i‚Ì•Ï‰»‚ÆŒ‹ZƒGƒŠƒA‚Ì“ü‘ŞêƒCƒxƒ“ƒg‚ğw“Ç‚µ‚Ü‚·B
     private void OnEnable()
     {
         SubscribeInventory();
         SubscribeSettlementArea();
     }
 
-    // æ‰€æŒå“ã¨çµç®—ã‚¨ãƒªã‚¢ã®ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­ã‚’è§£é™¤ã—ã¾ã™ã€‚
+    // Š•i‚ÆŒ‹ZƒGƒŠƒA‚ÌƒCƒxƒ“ƒgw“Ç‚ğ‰ğœ‚µ‚Ü‚·B
     private void OnDisable()
     {
         if (inventory != null)
@@ -152,7 +165,7 @@ public class ScoreboardManager : MonoBehaviour
         UnsubscribeSettlementArea();
     }
 
-    // æ–°ã—ã„ç›®æ¨™ã‚’ä½œã‚‹å‰ã«ã€å‰å›ã®ãƒã‚¤ãƒ©ã‚¤ãƒˆã¨å–å¾—çŠ¶æ…‹ã‚’å¿…ãšåˆæœŸåŒ–ã—ã¾ã™ã€‚
+    // V‚µ‚¢–Ú•W‚ğì‚é‘O‚ÉA‘O‰ñ‚ÌƒnƒCƒ‰ƒCƒg‚Ææ“¾ó‘Ô‚ğ•K‚¸‰Šú‰»‚µ‚Ü‚·B
     public void StartScoreboard()
     {
         if (isBoardActive)
@@ -160,7 +173,7 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
-        // ã‚¨ãƒªã‚¢å†…ã§æ¬¡ã®ç›®æ¨™ãŒå§‹ã¾ã£ãŸå ´åˆã¯ã€ä¸€åº¦é€€å‡ºã™ã‚‹ã¾ã§å†çµç®—ã‚’è¨±å¯ã—ã¾ã›ã‚“ã€‚
+        // ƒGƒŠƒA“à‚ÅŸ‚Ì–Ú•W‚ªn‚Ü‚Á‚½ê‡‚ÍAˆê“x‘Şo‚·‚é‚Ü‚ÅÄŒ‹Z‚ğ‹–‰Â‚µ‚Ü‚¹‚ñB
         canSettleCurrentTargets = settlementArea == null || !settlementArea.HasPlayerInside;
         StopIncompleteFlash();
         RestoreAllTargetHighlights();
@@ -175,29 +188,32 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
-        // åŒã˜ç¨®é¡ã‚’é‡è¤‡æŠ½é¸ã—ãªã„å€™è£œä¸€è¦§ã‚’ä½œã‚Šã€é¸ã‚“ã å€™è£œã¯ä¸€è¦§ã‹ã‚‰å–ã‚Šé™¤ãã¾ã™ã€‚
-        List<ScoreTarget> candidates = BuildUniqueCandidates();
+        // ƒWƒƒƒ“ƒ‹‚ğd•¡‚È‚µ‚Å’Š‘I‚µA‚»‚ÌƒWƒƒƒ“ƒ‹‚Ì¤•i‚Æ’I‚ğ‘I‚Ñ‚Ü‚·B
+        List<ProductCandidate> candidates = BuildUniqueCandidates();
+        HashSet<string> usedGenres = new HashSet<string>();
+        HashSet<ScoreTarget> usedShelves = new HashSet<ScoreTarget>();
         int count = Mathf.Min(targetCount, candidates.Count);
-
         for (int i = 0; i < count; i++)
         {
-            int index = UnityEngine.Random.Range(0, candidates.Count);
-            ScoreTarget selectedTarget = candidates[index];
-
-            activeEntries.Add(new TargetEntry
-            {
-                target = selectedTarget,
-                requiredCount = GetRandomRequiredCount()
-            });
-
-            SetHighlightForItemId(selectedTarget.ItemId, true);
-            candidates.RemoveAt(index);
+            List<string> genres = new List<string>();
+            foreach (ProductCandidate c in candidates)
+                if (!usedGenres.Contains(c.genre) && c.shelves.Exists(x => x != null && !usedShelves.Contains(x)) && !genres.Contains(c.genre))
+                    genres.Add(c.genre);
+            if (genres.Count == 0) break;
+            string genre = genres[UnityEngine.Random.Range(0, genres.Count)];
+            usedGenres.Add(genre);
+            List<ProductCandidate> products = candidates.FindAll(x => x.genre == genre && x.shelves.Exists(y => y != null && !usedShelves.Contains(y)));
+            ProductCandidate product = products[UnityEngine.Random.Range(0, products.Count)];
+            List<ScoreTarget> shelves = product.shelves.FindAll(x => x != null && !usedShelves.Contains(x));
+            ScoreTarget selectedShelf = shelves[UnityEngine.Random.Range(0, shelves.Count)];
+            usedShelves.Add(selectedShelf);
+            activeEntries.Add(new TargetEntry { target = selectedShelf, genre = product.genre, itemId = product.itemId, displayName = product.displayName, itemWeight = product.itemWeight, requiredCount = GetRandomRequiredCount() });
+            selectedShelf.SetHighlighted(selectedShelf.CanCollect());
         }
-
         RefreshText();
     }
 
-    // æœªé”æˆã®ç›®æ¨™ãŒã‚ã‚Œã°è­¦å‘Šã—ã€ãã‚Œä»¥å¤–ã¯è¨­å®šã«å¿œã˜ã¦æ‰€æŒå“ã‚’æ¶ˆã—ã¦ç›®æ¨™ã‚’çµ‚äº†ã—ã¾ã™ã€‚
+    // –¢’B¬‚Ì–Ú•W‚ª‚ ‚ê‚ÎŒx‚µA‚»‚êˆÈŠO‚Íİ’è‚É‰‚¶‚ÄŠ•i‚ğÁ‚µ‚Ä–Ú•W‚ğI—¹‚µ‚Ü‚·B
     public bool TryCompleteScoreboard()
     {
         if (IsActive && !IsComplete)
@@ -210,7 +226,7 @@ public class ScoreboardManager : MonoBehaviour
         return true;
     }
 
-    // å…¥å ´æ™‚ã«è»Šå†…ã‚’ã™ã¹ã¦é™ã‚ã—ã€å¯¾è±¡å“ã‚’ç´¯è¨ˆç´å“æ•°ã¸åŠ ãˆã¾ã™ã€‚å®Œç´æ™‚ã ã‘æ¬¡ã¸é€²ã¿ã¾ã™ã€‚
+    // “üê‚ÉÔ“à‚ğ‚·‚×‚Ä~‚ë‚µA‘ÎÛ•i‚ğ—İŒv”[•i”‚Ö‰Á‚¦‚Ü‚·BŠ®”[‚¾‚¯Ÿ‚Öi‚İ‚Ü‚·B
     public bool TrySettleCompletedTargets()
     {
         bool canDeliver = IsActive && canSettleCurrentTargets;
@@ -223,12 +239,12 @@ public class ScoreboardManager : MonoBehaviour
             {
                 if (entry != null && entry.target != null)
                 {
-                    entry.deliveredCount += inventory.GetCount(entry.target);
+                    entry.deliveredCount += inventory.GetCount(entry.itemId);
                 }
             }
         }
 
-        // å¯¾è±¡å¤–ã®å“ã‚„ç›®æ¨™ãŒç„¡ã„ã¨ãã®è·ç‰©ã‚‚ã€å…¥å ´æ™‚ã«ã¯å¿…ãšé™ã‚ã—ã¾ã™ã€‚
+        // ‘ÎÛŠO‚Ì•i‚â–Ú•W‚ª–³‚¢‚Æ‚«‚Ì‰×•¨‚àA“üê‚É‚Í•K‚¸~‚ë‚µ‚Ü‚·B
         inventory?.ClearInventory();
         RefreshAfterInventoryChanged();
 
@@ -237,24 +253,24 @@ public class ScoreboardManager : MonoBehaviour
             return false;
         }
 
-        // åˆ†å‰²ç´å“ã®ç´¯è¨ˆã‹ã‚‰è¶…éåˆ†ã‚’é›†è¨ˆã—ã€å®Œç´ãƒœãƒ¼ãƒŠã‚¹ã¯ä¸€å›ã ã‘åŠ ç®—ã—ã¾ã™ã€‚
+        // •ªŠ„”[•i‚Ì—İŒv‚©‚ç’´‰ß•ª‚ğWŒv‚µAŠ®”[ƒ{[ƒiƒX‚Íˆê‰ñ‚¾‚¯‰ÁZ‚µ‚Ü‚·B
         RecordSettlementScore();
         CompleteScoreboard(false);
 
-        // å ±é…¬é¸æŠã‚’æŒŸã¾ãšã€é”æˆå¾Œã¯ã™ãæ¬¡ã®ç›®æ¨™ã‚’ä½œæˆã—ã¾ã™ã€‚
+        // •ñV‘I‘ğ‚ğ‹²‚Ü‚¸A’B¬Œã‚Í‚·‚®Ÿ‚Ì–Ú•W‚ğì¬‚µ‚Ü‚·B
         StartScoreboard();
 
         return true;
     }
 
-    // é”æˆå›æ•°ã¨è¶…éå–å¾—å€‹æ•°ã‚’ã‚¼ãƒ­ã«æˆ»ã—ã¾ã™ã€‚
+    // ’B¬‰ñ”‚Æ’´‰ßæ“¾ŒÂ”‚ğƒ[ƒ‚É–ß‚µ‚Ü‚·B
     public void ResetScore()
     {
         completedSettlementCount = 0;
         settledExcessTargetItemCount = 0;
     }
 
-    // ãƒã‚¤ãƒ©ã‚¤ãƒˆã¨è­¦å‘Šã‚’è§£é™¤ã—ã€ç›®æ¨™ä¸€è¦§ã‚’ç©ºã«ã—ã¦è¡¨ç¤ºå´ã¸é€šçŸ¥ã—ã¾ã™ã€‚
+    // ƒnƒCƒ‰ƒCƒg‚ÆŒx‚ğ‰ğœ‚µA–Ú•Wˆê——‚ğ‹ó‚É‚µ‚Ä•\¦‘¤‚Ö’Ê’m‚µ‚Ü‚·B
     public void ClearScoreboard()
     {
         RestoreAllTargetHighlights();
@@ -265,7 +281,7 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
-    // è¡çªç›¸æ‰‹ãŒç›®æ¨™ã§ã€ã‹ã¤ååˆ†ãªé€Ÿåº¦ãªã‚‰ã‚¢ã‚¤ãƒ†ãƒ ã‚’å…¥æ‰‹ã—ã¾ã™ã€‚
+    // Õ“Ë‘Šè‚ª–Ú•W‚ÅA‚©‚Â\•ª‚È‘¬“x‚È‚çƒAƒCƒeƒ€‚ğ“üè‚µ‚Ü‚·B
     public void RegisterCollision(Collision collision)
     {
         if (collision == null)
@@ -290,21 +306,17 @@ public class ScoreboardManager : MonoBehaviour
             return;
         }
 
-        if (!inventory.TryAddItem(target, itemGain))
-        {
-            return;
-        }
-
-        if (!isBoardActive)
-        {
-            return;
-        }
-
+        TargetEntry taskEntry = isBoardActive ? activeEntries.Find(entry => entry != null && entry.target == target) : null;
+        bool added = taskEntry != null
+            ? inventory.TryAddItem(target, taskEntry.itemId, taskEntry.displayName, taskEntry.itemWeight, itemGain)
+            : inventory.TryAddItem(target, itemGain);
+        if (!added) return;
+        if (!isBoardActive) return;
         UpdateTargetHighlight(target);
         RefreshText();
     }
 
-    // è¡¨ç¤ºå…ˆãŒã‚ã‚Œã°ã€å‰ã®ç‚¹æ»…ã‚’æ­¢ã‚ã¦æœªé”æˆè­¦å‘Šã®ç‚¹æ»…ã‚’é–‹å§‹ã—ã¾ã™ã€‚
+    // •\¦æ‚ª‚ ‚ê‚ÎA‘O‚Ì“_–Å‚ğ~‚ß‚Ä–¢’B¬Œx‚Ì“_–Å‚ğŠJn‚µ‚Ü‚·B
     public void FlashIncompleteWarning()
     {
         if (scoreboardText == null && scoreboardView == null)
@@ -316,14 +328,14 @@ public class ScoreboardManager : MonoBehaviour
         incompleteFlashCoroutine = StartCoroutine(FlashIncompleteCoroutine());
     }
 
-    // ç¾åœ¨ã®è¶…éå–å¾—å€‹æ•°ã‚’ç´¯è¨ˆã¸åŠ ãˆã€é”æˆå›æ•°ã‚’å¢—ã‚„ã—ã¾ã™ã€‚
+    // Œ»İ‚Ì’´‰ßæ“¾ŒÂ”‚ğ—İŒv‚Ö‰Á‚¦A’B¬‰ñ”‚ğ‘‚â‚µ‚Ü‚·B
     private void RecordSettlementScore()
     {
         settledExcessTargetItemCount += CalculateSettledExcessTargetItemCount();
         completedSettlementCount++;
     }
 
-    // å¿…è¦æ•°ã‚’è¶…ãˆãŸç´¯è¨ˆç´å“æ•°ã ã‘ã‚’ã€ã‚¢ã‚¤ãƒ†ãƒ  ID ã”ã¨ã«é‡è¤‡ãªãåˆè¨ˆã—ã¾ã™ã€‚
+    // •K—v”‚ğ’´‚¦‚½—İŒv”[•i”‚¾‚¯‚ğAƒAƒCƒeƒ€ ID ‚²‚Æ‚Éd•¡‚È‚­‡Œv‚µ‚Ü‚·B
     private int CalculateSettledExcessTargetItemCount()
     {
         if (activeEntries.Count == 0)
@@ -332,7 +344,7 @@ public class ScoreboardManager : MonoBehaviour
         }
 
         int total = 0;
-        // åŒã˜ ID ã®å¾—ç‚¹ã‚’äºŒé‡è¨ˆä¸Šã—ãªã„ãŸã‚ã®è¨˜éŒ²ã§ã™ã€‚
+        // “¯‚¶ ID ‚Ì“¾“_‚ğ“ñdŒvã‚µ‚È‚¢‚½‚ß‚Ì‹L˜^‚Å‚·B
         HashSet<string> countedItemIds = new HashSet<string>();
 
         foreach (TargetEntry entry in activeEntries)
@@ -342,7 +354,7 @@ public class ScoreboardManager : MonoBehaviour
                 continue;
             }
 
-            string itemId = entry.target.ItemId;
+            string itemId = entry.itemId;
 
             if (string.IsNullOrWhiteSpace(itemId) || !countedItemIds.Add(itemId))
             {
@@ -355,7 +367,7 @@ public class ScoreboardManager : MonoBehaviour
         return total;
     }
 
-    // ç›®æ¨™ã‚’çµ‚äº†çŠ¶æ…‹ã«ã—ã€å¼•æ•°ã¨è¨­å®šã«å¿œã˜ã¦æ‰€æŒå“ã‚„ç›®æ¨™è¡¨ç¤ºã‚’æ¶ˆã—ã¾ã™ã€‚
+    // –Ú•W‚ğI—¹ó‘Ô‚É‚µAˆø”‚Æİ’è‚É‰‚¶‚ÄŠ•i‚â–Ú•W•\¦‚ğÁ‚µ‚Ü‚·B
     private void CompleteScoreboard(bool clearInventory)
     {
         StopIncompleteFlash();
@@ -364,7 +376,7 @@ public class ScoreboardManager : MonoBehaviour
         Debug.Log("complete");
         candyBuffScript.lotteryCandy();
 
-        // ãƒœãƒ¼ãƒ‰ã‚’å…ˆã«ç„¡åŠ¹åŒ–ã—ã¦ã„ã‚‹ãŸã‚ã€æ‰€æŒå“å¤‰æ›´é€šçŸ¥ã§ç›®æ¨™ã‚’å†æ›´æ–°ã—ã¾ã›ã‚“ã€‚
+        // ƒ{[ƒh‚ğæ‚É–³Œø‰»‚µ‚Ä‚¢‚é‚½‚ßAŠ•i•ÏX’Ê’m‚Å–Ú•W‚ğÄXV‚µ‚Ü‚¹‚ñB
         if (clearInventory && inventory != null)
         {
             inventory.ClearInventory();
@@ -376,8 +388,8 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
-    /// <summary>ã‚²ãƒ¼ãƒ é–‹å§‹å‰ã« GameSessionRoot ã‹ã‚‰å‚ç…§ã‚’å—ã‘å–ã‚Šã€è¡¨ç¤ºã¨é€šçŸ¥ã‚’åˆæœŸåŒ–ã—ã¾ã™ã€‚</summary>
-    // GameSessionRoot ã‹ã‚‰ä¾å­˜å…ˆã‚’å—ã‘å–ã‚Šã€ç›®æ¨™å€™è£œãƒ»è¡¨ç¤ºãƒ»ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­ã‚’è¨­å®šã—ã¾ã™ã€‚
+    /// <summary>ƒQ[ƒ€ŠJn‘O‚É GameSessionRoot ‚©‚çQÆ‚ğó‚¯æ‚èA•\¦‚Æ’Ê’m‚ğ‰Šú‰»‚µ‚Ü‚·B</summary>
+    // GameSessionRoot ‚©‚çˆË‘¶æ‚ğó‚¯æ‚èA–Ú•WŒó•âE•\¦EƒCƒxƒ“ƒgw“Ç‚ğİ’è‚µ‚Ü‚·B
     public void Initialize(
         ImpactSettings configuredImpactSettings,
         PlayerInventory configuredInventory,
@@ -407,19 +419,19 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
-    // çµç®—ã‚¨ãƒªã‚¢ã¸ã®å…¥å ´æ™‚ã«è»Šå†…ã‚’é™ã‚ã—ã€ä»Šå›ã®ç´å“ã‚’åæ˜ ã—ã¾ã™ã€‚
+    // Œ‹ZƒGƒŠƒA‚Ö‚Ì“üê‚ÉÔ“à‚ğ~‚ë‚µA¡‰ñ‚Ì”[•i‚ğ”½‰f‚µ‚Ü‚·B
     private void HandleSettlementAreaEntered()
     {
         TrySettleCompletedTargets();
     }
 
-    // ä¸€åº¦ã‚¨ãƒªã‚¢ã‹ã‚‰å‡ºãŸã“ã¨ã§ã€æ¬¡å›å…¥å ´æ™‚ã®çµç®—ã‚’è¨±å¯ã—ã¾ã™ã€‚
+    // ˆê“xƒGƒŠƒA‚©‚ço‚½‚±‚Æ‚ÅAŸ‰ñ“üê‚ÌŒ‹Z‚ğ‹–‰Â‚µ‚Ü‚·B
     private void HandleSettlementAreaExited()
     {
         canSettleCurrentTargets = true;
     }
 
-    // ä»¥å‰ã®ã‚¨ãƒªã‚¢ã®è³¼èª­ã‚’è§£é™¤ã—ã€ç¾åœ¨ã®ã‚¨ãƒªã‚¢ã¸é‡è¤‡ãªãç™»éŒ²ã—ã¾ã™ã€‚
+    // ˆÈ‘O‚ÌƒGƒŠƒA‚Ìw“Ç‚ğ‰ğœ‚µAŒ»İ‚ÌƒGƒŠƒA‚Öd•¡‚È‚­“o˜^‚µ‚Ü‚·B
     private void SubscribeSettlementArea()
     {
         if (settlementArea == null)
@@ -440,7 +452,7 @@ public class ScoreboardManager : MonoBehaviour
         subscribedSettlementArea.PlayerExited += HandleSettlementAreaExited;
     }
 
-    // å®Ÿéš›ã«è³¼èª­ã—ãŸã‚¨ãƒªã‚¢ã‹ã‚‰å…¥é€€å ´é€šçŸ¥ã‚’è§£é™¤ã—ã€è³¼èª­å…ˆã‚’ã‚¯ãƒªã‚¢ã—ã¾ã™ã€‚
+    // ÀÛ‚Éw“Ç‚µ‚½ƒGƒŠƒA‚©‚ç“ü‘Şê’Ê’m‚ğ‰ğœ‚µAw“Çæ‚ğƒNƒŠƒA‚µ‚Ü‚·B
     private void UnsubscribeSettlementArea()
     {
         if (subscribedSettlementArea == null)
@@ -453,7 +465,7 @@ public class ScoreboardManager : MonoBehaviour
         subscribedSettlementArea = null;
     }
 
-    // æ‰€æŒå“ã®å¤‰åŒ–ã‚’é‡è¤‡ãªãè³¼èª­ã—ã€ç›®æ¨™è¡¨ç¤ºã®æ›´æ–°ã«ã¤ãªã’ã¾ã™ã€‚
+    // Š•i‚Ì•Ï‰»‚ğd•¡‚È‚­w“Ç‚µA–Ú•W•\¦‚ÌXV‚É‚Â‚È‚°‚Ü‚·B
     private void SubscribeInventory()
     {
         if (inventory == null)
@@ -465,29 +477,33 @@ public class ScoreboardManager : MonoBehaviour
         inventory.InventoryChanged += RefreshAfterInventoryChanged;
     }
 
-    // åŒã˜ã‚¢ã‚¤ãƒ†ãƒ  ID ã‚’ä¸€ã¤ã«ã¾ã¨ã‚ã€ä»Šå›ã®æŠ½é¸å€™è£œã‚’ä½œã‚Šã¾ã™ã€‚
-    private List<ScoreTarget> BuildUniqueCandidates()
+    // ’I‚Ì¤•i‚ğƒWƒƒƒ“ƒ‹‚Æ¤•i ID ‚²‚Æ‚É‚Ü‚Æ‚ß‚Ü‚·B
+    private List<ProductCandidate> BuildUniqueCandidates()
     {
-        List<ScoreTarget> candidates = new List<ScoreTarget>();
-        HashSet<string> usedItemIds = new HashSet<string>();
-
-        foreach (ScoreTarget target in targetPool)
+        List<ProductCandidate> result = new List<ProductCandidate>();
+        Dictionary<string, ProductCandidate> map = new Dictionary<string, ProductCandidate>();
+        foreach (ScoreTarget shelf in targetPool)
         {
-            if (target == null || string.IsNullOrWhiteSpace(target.ItemId))
+            if (shelf == null || shelf.ShelfProducts == null) continue;
+            foreach (ScoreTarget.ShelfProduct p in shelf.ShelfProducts)
             {
-                continue;
-            }
-
-            if (usedItemIds.Add(target.ItemId))
-            {
-                candidates.Add(target);
+                if (p == null || string.IsNullOrWhiteSpace(p.genre) || string.IsNullOrWhiteSpace(p.itemId)) continue;
+                string genre = p.genre.Trim();
+                string id = p.itemId.Trim();
+                string key = genre + "|" + id;
+                if (!map.TryGetValue(key, out ProductCandidate c))
+                {
+                    c = new ProductCandidate { genre = genre, itemId = id, displayName = string.IsNullOrWhiteSpace(p.displayName) ? id : p.displayName.Trim(), itemWeight = Mathf.Max(0f, p.itemWeight) };
+                    map.Add(key, c);
+                    result.Add(c);
+                }
+                if (!c.shelves.Contains(shelf)) c.shelves.Add(shelf);
             }
         }
-
-        return candidates;
+        return result;
     }
 
-    // è¡çªã—ãŸ Collider ã®è¦ªã‚’å„ªå…ˆã—ã€è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã° Rigidbody ã®è¦ªã‹ã‚‰ç›®æ¨™ã‚’æ¢ã—ã¾ã™ã€‚
+    // Õ“Ë‚µ‚½ Collider ‚Ìe‚ğ—Dæ‚µAŒ©‚Â‚©‚ç‚È‚¯‚ê‚Î Rigidbody ‚Ìe‚©‚ç–Ú•W‚ğ’T‚µ‚Ü‚·B
     private ScoreTarget FindScoreTarget(Collision collision)
     {
         ScoreTarget target = null;
@@ -510,7 +526,7 @@ public class ScoreboardManager : MonoBehaviour
         return target;
     }
 
-    // å¿…è¦æ•°ã¯ Inspector ã®ç¯„å›²ã‹ã‚‰æŠ½é¸ã—ã¾ã™ã€‚
+    // •K—v”‚Í Inspector ‚Ì”ÍˆÍ‚©‚ç’Š‘I‚µ‚Ü‚·B
     private int GetRandomRequiredCount()
     {
         int min = Mathf.Min(minRequiredItemCount, maxRequiredItemCount);
@@ -519,7 +535,7 @@ public class ScoreboardManager : MonoBehaviour
         return lastRequiredCount;
     }
 
-    // è£œæ­£æ¸ˆã¿ã®è¡çªå¼·åº¦ã‹ã‚‰ç²å¾—æ•°ã‚’è¨ˆç®—ã—ã€ã—ãã„å€¤æœªæº€ãªã‚‰å–å¾—ã‚’æ‹’å¦ã—ã¾ã™ã€‚
+    // •â³Ï‚İ‚ÌÕ“Ë‹­“x‚©‚çŠl“¾”‚ğŒvZ‚µA‚µ‚«‚¢’l–¢–‚È‚çæ“¾‚ğ‹‘”Û‚µ‚Ü‚·B
     private bool TryCalculateItemGain(float impactSpeed, out int itemGain)
     {
         lastRawImpactSpeed = impactSpeed;
@@ -538,7 +554,7 @@ public class ScoreboardManager : MonoBehaviour
         return true;
     }
 
-    // å…¨ã¦ã®ç›®æ¨™å€™è£œã‚’æœªå–å¾—ãƒ»è¡¨ç¤ºçŠ¶æ…‹ã¸æˆ»ã—ã¾ã™ã€‚
+    // ‘S‚Ä‚Ì–Ú•WŒó•â‚ğ–¢æ“¾E•\¦ó‘Ô‚Ö–ß‚µ‚Ü‚·B
     private void ResetTargetCollectionState()
     {
         foreach (ScoreTarget target in targetPool)
@@ -550,7 +566,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
-    // ç›®æ¨™ãŒæœ‰åŠ¹ãªé–“ã ã‘ã€å¿…è¦å€‹æ•°ã«å¿œã˜ãŸãƒã‚¤ãƒ©ã‚¤ãƒˆã¨æ–‡å­—ã‚’æ›´æ–°ã—ã¾ã™ã€‚
+    // –Ú•W‚ª—LŒø‚ÈŠÔ‚¾‚¯A•K—vŒÂ”‚É‰‚¶‚½ƒnƒCƒ‰ƒCƒg‚Æ•¶š‚ğXV‚µ‚Ü‚·B
     private void RefreshAfterInventoryChanged()
     {
         if (!isBoardActive)
@@ -569,46 +585,21 @@ public class ScoreboardManager : MonoBehaviour
         RefreshText();
     }
 
-    // åŒã˜ã‚¢ã‚¤ãƒ†ãƒ  ID ã®ç›®æ¨™ã‚’æ¢ã—ã€å¿…è¦æ•°ãŒã¾ã è¶³ã‚Šãªã„ã‹ã‚’è¡¨ç¤ºã¸åæ˜ ã—ã¾ã™ã€‚
+    // ‘I‚Î‚ê‚½’I‚¾‚¯‚ğ“_“”‚µA¤•iŠ”‚É‰‚¶‚ÄÁ“”‚µ‚Ü‚·B
     private void UpdateTargetHighlight(ScoreTarget target)
     {
-        TargetEntry entry = activeEntries.Find(item => item.target != null && item.target.ItemId == target.ItemId);
-
-        if (entry == null || entry.target == null)
-        {
-            return;
-        }
-
-        bool stillNeeded = entry.deliveredCount + GetCurrentCount(entry.target) < entry.requiredCount;
-        SetHighlightForItemId(entry.target.ItemId, stillNeeded);
+        TargetEntry entry = activeEntries.Find(x => x != null && x.target == target);
+        if (entry == null) return;
+        bool needed = entry.deliveredCount + GetCurrentCount(entry.itemId) < entry.requiredCount;
+        entry.target.SetHighlighted(needed && entry.target.CanCollect());
     }
 
-    // æŒ‡å®š ID ã®å€™è£œå…¨ã¦ã«ã€å–å¾—å¯èƒ½çŠ¶æ…‹ã‚’è€ƒæ…®ã—ãŸãƒã‚¤ãƒ©ã‚¤ãƒˆã‚’é©ç”¨ã—ã¾ã™ã€‚
-    private void SetHighlightForItemId(string itemId, bool highlighted)
+    private int GetCurrentCount(string itemId)
     {
-        if (targetPool == null || string.IsNullOrWhiteSpace(itemId))
-        {
-            return;
-        }
-
-        foreach (ScoreTarget target in targetPool)
-        {
-            if (target == null || target.ItemId != itemId)
-            {
-                continue;
-            }
-
-            target.SetHighlighted(highlighted && target.CanCollect());
-        }
+        return inventory != null ? inventory.GetCount(itemId) : 0;
     }
 
-    // ç›®æ¨™ã¨åŒã˜ã‚¢ã‚¤ãƒ†ãƒ  ID ã®æ‰€æŒæ•°ã‚’è¿”ã—ã¾ã™ã€‚æ‰€æŒå“å‚ç…§ãŒãªã‘ã‚Œã°ã‚¼ãƒ­ã§ã™ã€‚
-    private int GetCurrentCount(ScoreTarget target)
-    {
-        return inventory != null ? inventory.GetCount(target) : 0;
-    }
-
-    // ç›®æ¨™æ–‡å­—ã‚’æ›´æ–°ã—ã€è³¼èª­ã—ã¦ã„ã‚‹è¡¨ç¤ºã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã¸å¤‰æ›´ã‚’é€šçŸ¥ã—ã¾ã™ã€‚
+    // –Ú•W•¶š‚ğXV‚µAw“Ç‚µ‚Ä‚¢‚é•\¦ƒRƒ“ƒ|[ƒlƒ“ƒg‚Ö•ÏX‚ğ’Ê’m‚µ‚Ü‚·B
     private void RefreshText()
     {
         if (scoreboardText != null)
@@ -619,13 +610,13 @@ public class ScoreboardManager : MonoBehaviour
         StateChanged?.Invoke();
     }
 
-    // è¡¨ç¤ºå´ãŒä½¿ç”¨ã™ã‚‹ã€ç¾åœ¨ã®ç›®æ¨™ã¨æ‰€æŒæ•°ã®æ–‡å­—åˆ—ã‚’è¿”ã—ã¾ã™ã€‚
+    // •\¦‘¤‚ªg—p‚·‚éAŒ»İ‚Ì–Ú•W‚ÆŠ”‚Ì•¶š—ñ‚ğ•Ô‚µ‚Ü‚·B
     public string GetDisplayText()
     {
         return BuildDisplayText();
     }
 
-    // ç›´æ¥ã® Text æ›´æ–°ã¨ ScoreboardView ãŒåŒã˜ç›®æ¨™æ–‡ã‚’ä½¿ã†ãŸã‚ã€æ–‡å­—åˆ—ã®çµ„ã¿ç«‹ã¦ã‚’ä¸€ã‹æ‰€ã«ç½®ãã¾ã™ã€‚
+    // ’¼Ú‚Ì Text XV‚Æ ScoreboardView ‚ª“¯‚¶–Ú•W•¶‚ğg‚¤‚½‚ßA•¶š—ñ‚Ì‘g‚İ—§‚Ä‚ğˆê‚©Š‚É’u‚«‚Ü‚·B
     private string BuildDisplayText()
     {
         if (!isBoardActive || activeEntries.Count == 0)
@@ -643,7 +634,7 @@ public class ScoreboardManager : MonoBehaviour
             }
 
             int currentCount = entry.deliveredCount
-                             + GetCurrentCount(entry.target);
+                             + GetCurrentCount(entry.itemId);
 
             bool isComplete = currentCount >= entry.requiredCount;
 
@@ -652,11 +643,11 @@ public class ScoreboardManager : MonoBehaviour
                 textBuilder.Append("<s>");
             }
 
-            textBuilder.AppendLine(entry.target.DisplayName);
-                //.Append("ç´å“ ");
-                //.Append(currentCount)
-                //.Append("/")
-                //.Append(entry.requiredCount);
+            textBuilder.AppendLine(entry.displayName);
+            //.Append("”[•i ");
+            //.Append(currentCount)
+            //.Append("/")
+            //.Append(entry.requiredCount);
 
             if (isComplete)
             {
@@ -669,7 +660,7 @@ public class ScoreboardManager : MonoBehaviour
         return textBuilder.ToString().TrimEnd();
     }
 
-    // å€™è£œä¸€è¦§ã¨ç¾åœ¨ã®ç›®æ¨™ã«æ®‹ã£ã¦ã„ã‚‹ãƒã‚¤ãƒ©ã‚¤ãƒˆã‚’è§£é™¤ã—ã¾ã™ã€‚
+    // Œó•âˆê——‚ÆŒ»İ‚Ì–Ú•W‚Éc‚Á‚Ä‚¢‚éƒnƒCƒ‰ƒCƒg‚ğ‰ğœ‚µ‚Ü‚·B
     private void RestoreAllTargetHighlights()
     {
         if (targetPool != null)
@@ -692,7 +683,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
-    // è­¦å‘Šè‰²ã¨é€šå¸¸è‰²ã‚’äº¤äº’ã«è¡¨ç¤ºã—ã€æŒ‡å®šå›æ•°å¾Œã«é€šå¸¸è‰²ã¸æˆ»ã—ã¾ã™ã€‚
+    // ŒxF‚Æ’ÊíF‚ğŒğŒİ‚É•\¦‚µAw’è‰ñ”Œã‚É’ÊíF‚Ö–ß‚µ‚Ü‚·B
     private IEnumerator FlashIncompleteCoroutine()
     {
         int count = Mathf.Max(1, incompleteFlashCount);
@@ -711,7 +702,7 @@ public class ScoreboardManager : MonoBehaviour
         incompleteFlashCoroutine = null;
     }
 
-    // é€²è¡Œä¸­ã®ç‚¹æ»…ã‚’åœæ­¢ã—ã€æ–‡å­—è‰²ã¨ãƒ“ãƒ¥ãƒ¼ã®è­¦å‘ŠçŠ¶æ…‹ã‚’å…ƒã«æˆ»ã—ã¾ã™ã€‚
+    // is’†‚Ì“_–Å‚ğ’â~‚µA•¶šF‚Æƒrƒ…[‚ÌŒxó‘Ô‚ğŒ³‚É–ß‚µ‚Ü‚·B
     private void StopIncompleteFlash()
     {
         if (incompleteFlashCoroutine != null)
@@ -731,7 +722,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
-    // ç›´æ¥ã® Text ã¨å°‚ç”¨ãƒ“ãƒ¥ãƒ¼ã®ä¸¡æ–¹ã¸ã€è­¦å‘Šè¡¨ç¤ºã®çŠ¶æ…‹ã‚’åæ˜ ã—ã¾ã™ã€‚
+    // ’¼Ú‚Ì Text ‚Æê—pƒrƒ…[‚Ì—¼•û‚ÖAŒx•\¦‚Ìó‘Ô‚ğ”½‰f‚µ‚Ü‚·B
     private void SetScoreboardColor(Color color, bool warning)
     {
         if (scoreboardText != null)
@@ -745,7 +736,7 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
-    // Inspector ã®å¤‰æ›´æ™‚ã«ã€è¨­å®šå€¤ã‚’æœ‰åŠ¹ãªç¯„å›²ã¸è£œæ­£ã—ã¾ã™ã€‚
+    // Inspector ‚Ì•ÏX‚ÉAİ’è’l‚ğ—LŒø‚È”ÍˆÍ‚Ö•â³‚µ‚Ü‚·B
     private void OnValidate()
     {
         targetCount = Mathf.Max(1, targetCount);

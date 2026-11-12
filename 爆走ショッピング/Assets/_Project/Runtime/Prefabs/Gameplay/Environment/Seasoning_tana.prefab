@@ -50,10 +50,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
       propertyPath: m_Name
-      value: tana1 (3)
+      value: Seasoning_tana
       objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 12b6ed83399a68c4288655c879a1d22c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7146889613731450194}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3191590124374501647}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7197168480714241512}
   m_SourcePrefab: {fileID: 100100000, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+--- !u!1 &7648154035631518687 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+  m_PrefabInstance: {fileID: 7413727917991284366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7146889613731450194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648154035631518687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e22255978be8642a4d95e2fff38c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
+  displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
+  shelfProducts:
+  - genre: "\u8ABF\u5473\u6599"
+    itemId: Soysaucebox
+    displayName: "\u3057\u3087\u3046\u3086"
+    itemWeight: 0
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.7
+  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
+--- !u!65 &3191590124374501647
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648154035631518687}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7888424, y: 2.034737, z: 0.58306867}
+  m_Center: {x: 0.0045535266, y: -0.012837887, z: 0.24438289}
+--- !u!114 &7197168480714241512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7648154035631518687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c538f1f40aae304ea0c4c0e76ec8d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectAttach
+  particle: {fileID: 6704568711332667320, guid: ea5e52cd24d405444b8b2006cb7e2e87, type: 3}

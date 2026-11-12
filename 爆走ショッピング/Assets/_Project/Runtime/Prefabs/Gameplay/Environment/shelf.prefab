@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1882355770937305546
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -189.84
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.77556264
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 41.13
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      propertyPath: m_Name
+      value: shelf
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6259167399959532439}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3244617251132853040}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2359263375865367205}
+  m_SourcePrefab: {fileID: 100100000, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+--- !u!1 &1647773516202955931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ef1e50788a109e940970d75f80b3af15, type: 3}
+  m_PrefabInstance: {fileID: 1882355770937305546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-6259167399959532439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647773516202955931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e22255978be8642a4d95e2fff38c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
+  displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
+  shelfProducts:
+  - genre: "\u304F\u3060\u3082\u306E"
+    itemId: Applebox
+    displayName: "\u30EA\u30F3\u30B4"
+    itemWeight: 0
+  - genre: "\u304F\u3060\u3082\u306E"
+    itemId: Bananabox
+    displayName: "\u30D0\u30CA\u30CA"
+    itemWeight: 0
+  - genre: "\u304F\u3060\u3082\u306E"
+    itemId: Orangebox
+    displayName: "\u30AA\u30EC\u30F3\u30B8"
+    itemWeight: 0
+  - genre: "\u304F\u3060\u3082\u306E"
+    itemId: Watermelonbox
+    displayName: "\u30B9\u30A4\u30AB"
+    itemWeight: 0
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.7
+  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
+--- !u!65 &3244617251132853040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647773516202955931}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.824603, y: 1.5511261, z: 3.0364351}
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.000000059604645}
+--- !u!114 &-2359263375865367205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647773516202955931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c538f1f40aae304ea0c4c0e76ec8d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectAttach
+  particle: {fileID: 0}

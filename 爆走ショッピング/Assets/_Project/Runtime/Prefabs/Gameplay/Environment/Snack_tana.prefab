@@ -50,10 +50,86 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
       propertyPath: m_Name
-      value: tana1 (1)
+      value: Snack_tana
       objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 12b6ed83399a68c4288655c879a1d22c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -830347061015507154}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6137215847331791094}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 624103994510459373}
   m_SourcePrefab: {fileID: 100100000, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+--- !u!1 &8203145154337666538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+  m_PrefabInstance: {fileID: 9013397062759106747}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-830347061015507154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203145154337666538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e22255978be8642a4d95e2fff38c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreTarget
+  displayName: 
+  itemId: 
+  itemWeight: 1
+  collectOnce: 1
+  hideWhenCollected: 0
+  shelfProducts: []
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  targetRenderers: []
+  flashVisibleThroughWalls: 1
+  flashFrequency: 1
+  visibleOverlayAlpha: 0.7
+  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
+--- !u!65 &-6137215847331791094
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203145154337666538}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7955354, y: 1.9968598, z: 0.58093244}
+  m_Center: {x: 0.0021919608, y: -0.0075917244, z: 0.24595562}
+--- !u!114 &624103994510459373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203145154337666538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c538f1f40aae304ea0c4c0e76ec8d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectAttach
+  particle: {fileID: 6704568711332667320, guid: ea5e52cd24d405444b8b2006cb7e2e87, type: 3}

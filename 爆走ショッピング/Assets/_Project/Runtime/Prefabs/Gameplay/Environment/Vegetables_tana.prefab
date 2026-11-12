@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vegetables_tana
       objectReference: {fileID: 0}
+    - target: {fileID: 1170970068873931921, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 12b6ed83399a68c4288655c879a1d22c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59,6 +63,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5534295757510601846}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7399984965024057496}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2764991208234011580}
   m_SourcePrefab: {fileID: 100100000, guid: d6f4a1c140e9771439d6f77a38751711, type: 3}
 --- !u!1 &8492160539436365073 stripped
 GameObject:
@@ -82,9 +92,60 @@ MonoBehaviour:
   itemWeight: 1
   collectOnce: 1
   hideWhenCollected: 0
+  shelfProducts:
+  - genre: "\u3084\u3055\u3044"
+    itemId: Carrotbox
+    displayName: "\u306B\u3093\u3058\u3093"
+    itemWeight: 0
+  - genre: "\u3084\u3055\u3044"
+    itemId: Daikonbox
+    displayName: "\u3060\u3044\u3053\u3093"
+    itemWeight: 0
+  - genre: "\u3084\u3055\u3044"
+    itemId: Potatobox
+    displayName: "\u30B8\u30E3\u30AC\u30A4\u30E2"
+    itemWeight: 0
+  - genre: "\u3084\u3055\u3044"
+    itemId: Tomatobox
+    displayName: "\u30C8\u30DE\u30C8"
+    itemWeight: 0
   highlightColor: {r: 1, g: 0, b: 0, a: 1}
   targetRenderers: []
   flashVisibleThroughWalls: 1
   flashFrequency: 1
   visibleOverlayAlpha: 0.7
   visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
+--- !u!65 &-7399984965024057496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492160539436365073}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7692425, y: 2.0182061, z: 0.5811766}
+  m_Center: {x: -0.004843235, y: -0.0056803226, z: 0.24597958}
+--- !u!114 &-2764991208234011580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492160539436365073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c538f1f40aae304ea0c4c0e76ec8d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EffectAttach
+  particle: {fileID: 6704568711332667320, guid: ea5e52cd24d405444b8b2006cb7e2e87, type: 3}
