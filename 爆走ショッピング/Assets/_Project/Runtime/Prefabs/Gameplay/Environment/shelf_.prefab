@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c538f1f40aae304ea0c4c0e76ec8d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectAttach
-  particle: {fileID: 0}
+  particle: {fileID: 6704568711332667320, guid: ea5e52cd24d405444b8b2006cb7e2e87, type: 3}
