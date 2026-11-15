@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.PlayerLoop;
 
 /// <summary>現在の目標、獲得数、結算得点を管理し、HUD 用の文字列を提供します。</summary>
 public class ScoreboardManager : MonoBehaviour
@@ -30,6 +32,7 @@ public class ScoreboardManager : MonoBehaviour
         public readonly List<ScoreTarget> shelves = new List<ScoreTarget>();
     }
 
+    [SerializeField] private GameObject carrytext;
     // 他のゲーム機能への参照は、GameSessionRoot から初期化時に受け取ります。
     [Header("参照")]
     [SerializeField] private ImpactSettings impactSettings;
@@ -118,6 +121,48 @@ public class ScoreboardManager : MonoBehaviour
         }
     }
 
+    // 現在の所持品と納品済み個数を合わせて、全目標を達成できるか判定する
+    public bool CanDeliver
+    {
+        get
+        {
+            if (!IsActive || inventory == null)
+            {
+                return false;
+            }
+
+            foreach (TargetEntry entry in activeEntries)
+            {
+                if (entry == null || entry.target == null)
+                {
+                    return false;
+                }
+
+                int currentCount =
+                    entry.deliveredCount + inventory.GetCount(entry.itemId);
+
+                if (currentCount < entry.requiredCount)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    }
+
+   
+    private void Update()
+    {
+        if(CanDeliver)
+        {
+            carrytext.SetActive(true);
+        }
+        else
+        {
+            carrytext.SetActive(false);
+        }
+    }
     // 目標ボードが有効で、目標が一件以上あるかを返します。
     public bool IsActive => isBoardActive && activeEntries.Count > 0;
     // 成功した結算の累計回数を返します。
@@ -262,6 +307,8 @@ public class ScoreboardManager : MonoBehaviour
 
         return true;
     }
+
+  
 
     // 達成回数と超過取得個数をゼロに戻します。
     public void ResetScore()

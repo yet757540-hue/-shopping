@@ -336,11 +336,11 @@ MonoBehaviour:
   movementPresets:
   - displayName: EASY
     settings:
-      lowSpeedAcceleration: 20
-      highSpeedAcceleration: 2.5
+      lowSpeedAcceleration: 15
+      highSpeedAcceleration: 20
       accelerationSwitchSpeed: 8
-      reverseAcceleration: 12
-      deceleration: 18
+      reverseAcceleration: 6
+      deceleration: 50
       brakeDeceleration: 25
       maxSpeed: 30
       maxReverseSpeed: 7
@@ -821,8 +821,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1183, y: -505}
-  m_SizeDelta: {x: 400, y: 250}
+  m_AnchoredPosition: {x: -82, y: -348}
+  m_SizeDelta: {x: 550, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &294896590
 MonoBehaviour:
@@ -867,7 +867,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 294896591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 402878359}
+        m_TargetAssemblyTypeName: StartMenuControlManager, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &294896591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &334333150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -941,7 +953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.893188, y: -139.01984}
+  m_AnchoredPosition: {x: 1526, y: 9}
   m_SizeDelta: {x: 650, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &334333151
@@ -1068,7 +1080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402878358}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 451.81265, y: 483.79736, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1218,7 +1230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.893188, y: -409.01984}
+  m_AnchoredPosition: {x: -25, y: -100}
   m_SizeDelta: {x: 650, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636139414
@@ -1684,6 +1696,83 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &1557088318638776626
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 721.0194
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 440.22174
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 430032179115520000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323680001794122482, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      propertyPath: m_Name
+      value: EndGameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1323680001794122482, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1557088318638776628}
+  m_SourcePrefab: {fileID: 100100000, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+--- !u!1 &1557088318638776627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1323680001794122482, guid: edaf1b511607f394d88a26f93730524a, type: 3}
+  m_PrefabInstance: {fileID: 1557088318638776626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1557088318638776628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557088318638776627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394e5805b1be91c499112f5bb4e3dcc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndGameManager
 --- !u!1001 &6099940038306566598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1747,7 +1836,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 100001}
   - {fileID: 200001}
-  - {fileID: 6099940038306566598}
   - {fileID: 1441572551}
-  - {fileID: 402878360}
   - {fileID: 1227064245}
+  - {fileID: 402878360}
+  - {fileID: 6099940038306566598}
+  - {fileID: 1557088318638776626}
