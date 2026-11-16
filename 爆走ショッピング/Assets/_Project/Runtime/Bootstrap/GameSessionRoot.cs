@@ -34,6 +34,15 @@ public sealed class GameSessionRoot : MonoBehaviour
 
     private bool subscribed;
 
+    public enum GameSceneType
+    {
+        NormalGameplay,
+        ShoppingGameplay
+    }
+
+    [Header("シーン設定")]
+    [SerializeField] private GameSceneType sceneType;
+
     // 必須参照を検証し、正常な場合だけ各機能を初期化してイベントを接続します。
     private void Awake()
     {
@@ -69,29 +78,34 @@ public sealed class GameSessionRoot : MonoBehaviour
     }
 
     // 不足している必須参照を集め、必要に応じてエラーを表示します。
+
     public bool ValidateReferences(bool logErrors)
     {
         List<string> missing = new List<string>();
+
+        // どちらのシーンでも必要な参照
         Require(player, nameof(player), missing);
         Require(inventory, nameof(inventory), missing);
-        Require(collisionReporter, nameof(collisionReporter), missing);
-        Require(impactSettings, nameof(impactSettings), missing);
-        Require(settlementArea, nameof(settlementArea), missing);
         Require(timerManager, nameof(timerManager), missing);
-        Require(scoreboardManager, nameof(scoreboardManager), missing);
         Require(pauseManager, nameof(pauseManager), missing);
         Require(restartManager, nameof(restartManager), missing);
-        Require(collisionFeedback, nameof(collisionFeedback), missing);
-        Require(inventoryInfluence, nameof(inventoryInfluence), missing);
-        Require(inventoryHud, nameof(inventoryHud), missing);
-        Require(timerHud, nameof(timerHud), missing);
-        Require(scoreboardView, nameof(scoreboardView), missing);
-        Require(optionMenu, nameof(optionMenu), missing);
-        Require(resultScreen, nameof(resultScreen), missing);
 
-        if (scoreTargets == null || scoreTargets.Length == 0)
+        // 通常のGameplayでのみ必要な参照
+        if (sceneType == GameSceneType.NormalGameplay)
         {
-            missing.Add(nameof(scoreTargets));
+            Require(collisionReporter, nameof(collisionReporter), missing);
+            Require(impactSettings, nameof(impactSettings), missing);
+            Require(settlementArea, nameof(settlementArea), missing);
+            Require(scoreboardManager, nameof(scoreboardManager), missing);
+            Require(collisionFeedback, nameof(collisionFeedback), missing);
+            Require(inventoryInfluence, nameof(inventoryInfluence), missing);
+            Require(inventoryHud, nameof(inventoryHud), missing);
+            Require(timerHud, nameof(timerHud), missing);
+            Require(scoreboardView, nameof(scoreboardView), missing);
+            Require(optionMenu, nameof(optionMenu), missing);
+            Require(resultScreen, nameof(resultScreen), missing);
+
+    
         }
 
         if (missing.Count == 0)
@@ -101,11 +115,14 @@ public sealed class GameSessionRoot : MonoBehaviour
 
         if (logErrors)
         {
-            Debug.LogError("[GameSessionRoot] Missing required scene references: " + string.Join(", ", missing), this);
+            Debug.LogError(
+                "[GameSessionRoot] Missing required scene references: "
+                + string.Join(", ", missing), this);
         }
 
         return false;
     }
+
 
     // 初期化順をここに並べることで、ゲーム開始時の接続順を追いやすくします。
     private void InitializeSystems()

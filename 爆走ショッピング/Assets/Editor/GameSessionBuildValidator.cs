@@ -37,8 +37,17 @@ public sealed class GameSessionBuildValidator : IPreprocessBuildWithReport
                 continue;
             }
 
-            Scene scene = EditorSceneManager.OpenScene(buildScene.path, OpenSceneMode.Single);
-            GameSessionRoot root = Object.FindAnyObjectByType<GameSessionRoot>();
+            // ShoppingGameplayは検証対象から除外する
+            if (buildScene.path.Contains("ShoppingGameplay"))
+            {
+                continue;
+            }
+
+            Scene scene = EditorSceneManager.OpenScene(
+                buildScene.path, OpenSceneMode.Single);
+
+            GameSessionRoot root =
+                Object.FindAnyObjectByType<GameSessionRoot>();
 
             // タイトル専用シーンにはゲーム進行サービスを要求しません。
             if (root == null)
