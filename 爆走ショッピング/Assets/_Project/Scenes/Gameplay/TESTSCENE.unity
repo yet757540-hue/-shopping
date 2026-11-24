@@ -157,12 +157,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1670665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -589,12 +586,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &34380559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -917,12 +911,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &53246826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1834,12 +1825,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &95608006
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2054,12 +2042,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 1
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &118073463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2775,12 +2760,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &178358071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3303,12 +3285,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &233821822
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5764,12 +5743,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &491850324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6235,12 +6211,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &530611053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6509,12 +6482,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &546455429
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6844,12 +6814,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &561043933
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7043,12 +7010,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &566839163
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7374,12 +7338,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &591673965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7794,12 +7755,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &630349192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7936,12 +7894,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &635717824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8259,12 +8214,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &651168731
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8716,12 +8668,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &675749801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9748,12 +9697,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &784136772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10545,12 +10491,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &841133569
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11114,12 +11057,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &889500251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11520,12 +11460,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &900732357
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11719,12 +11656,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &911667506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11856,12 +11790,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &912207169
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12222,12 +12153,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &919986446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13228,12 +13156,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1007975772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13556,12 +13481,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1034819718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14537,12 +14459,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1100170847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14790,12 +14709,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1126854094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14982,12 +14898,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1140250712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16246,12 +16159,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1213212012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17159,12 +17069,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1269506022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17911,12 +17818,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1309358515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18365,12 +18269,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1329266836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18884,12 +18785,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1357716492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19281,12 +19179,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1378411519
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20046,12 +19941,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1449822506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20250,12 +20142,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1455569799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20457,12 +20346,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1462747332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20818,12 +20704,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1484431842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21534,12 +21417,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1534960557
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22985,12 +22865,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1657454149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23805,12 +23682,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1747101361
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24295,12 +24169,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1778598220
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24511,12 +24382,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1786128700
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25385,12 +25253,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1864241108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25584,12 +25449,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1876517062
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26225,12 +26087,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1941767518
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26748,12 +26607,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1977753599
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27144,12 +27000,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &1994018182
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28237,12 +28090,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &2088944343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28379,12 +28229,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 0}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.3
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &2113772995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28871,6 +28718,63 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &8661137410393816782
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3190586813036318277, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259790629500451176, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+      propertyPath: m_Name
+      value: TargetPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -28911,3 +28815,4 @@ SceneRoots:
   - {fileID: 106299441}
   - {fileID: 422762717}
   - {fileID: 945583127}
+  - {fileID: 8661137410393816782}

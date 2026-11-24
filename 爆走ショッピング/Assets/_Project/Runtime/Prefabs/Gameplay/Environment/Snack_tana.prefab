@@ -105,12 +105,9 @@ MonoBehaviour:
   collectOnce: 1
   hideWhenCollected: 0
   shelfProducts: []
-  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+  iconPrefab: {fileID: 7812805121917651457, guid: 3f865930bd109794b9c5a723fa5c98ea, type: 3}
+  iconHeightOffset: 0.5
   targetRenderers: []
-  flashVisibleThroughWalls: 1
-  flashFrequency: 1
-  visibleOverlayAlpha: 0.7
-  visibleOverlayMaterialTemplate: {fileID: 2100000, guid: 3c3b0523a21d4f21866d895fc2b250c2, type: 2}
 --- !u!65 &-6137215847331791094
 BoxCollider:
   m_ObjectHideFlags: 0
