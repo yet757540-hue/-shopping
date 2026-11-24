@@ -80,7 +80,9 @@ public class CameraFollowController : MonoBehaviour
             transform.position,
             targetPosition,
             ref followVelocity,
-            followSmoothTime
+            followSmoothTime,
+            Mathf.Infinity,
+            Time.unscaledDeltaTime
         );
     }
 
@@ -106,7 +108,7 @@ public class CameraFollowController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             targetRotation,
-            rotationSmoothSpeed * Time.deltaTime
+            rotationSmoothSpeed * Time.unscaledDeltaTime
         );
     }
 
@@ -120,7 +122,9 @@ public class CameraFollowController : MonoBehaviour
             transform.position,
             targetPosition,
             ref followVelocity,
-            followSmoothTime
+            followSmoothTime,
+            Mathf.Infinity,
+            Time.unscaledDeltaTime
         );
     }
     private Vector3 GetSafeCameraPosition(Vector3 desiredPosition)
@@ -164,7 +168,7 @@ public class CameraFollowController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             targetRotation,
-            rotationSmoothSpeed * Time.deltaTime
+            rotationSmoothSpeed * Time.unscaledDeltaTime
         );
     }
 
@@ -195,7 +199,7 @@ public class CameraFollowController : MonoBehaviour
         overviewPanOffset = Vector3.Lerp(
             overviewPanOffset,
             targetPanOffset,
-            overviewPanSmoothSpeed * Time.deltaTime
+            overviewPanSmoothSpeed * Time.unscaledDeltaTime
         );
     }
 
